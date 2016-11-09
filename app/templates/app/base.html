@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static from staticfiles %}
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href={% static "app/img/favicon.ico" %}/>
+    <link rel="stylesheet" href= {% static "app/css/bootstrap.min.css" %} />
+    <link rel="stylesheet" href= {% static "app/css/emp.css" %} />
+    {% block special_css %}
+    {% endblock %}
+</head>
+<body>
+    <div class="clearfix">
+        <div class="top" id="temp_right" style="float:left; background: url({% static "app/img/head.jpg" %})">
+            <img src={% static "app/img/logo2.png" %}>
+        </div>
+        <div class="col-md-offset-8  col-md-4 col-sm-4" style="    margin-top: -60px;">
+            <ul style="margin-top: -60px;display: inline-block;" class="li-tab">
+                <li class="li-round active" style="display: inline-block;" onclick="window.location.href='/welcome/'">实时数据</li>
+                <li class="li-round" style="display: inline-block;">历史数据</li>
+                <li class="li-round" style="display: inline-block;" onclick="window.location.href='/station/'">数据统计</li>
+                <li class="li-round" style="display: inline-block;">平台介绍</li>
+            </ul>
+        </div>
+    </div>
+    {% block body_content %}
+        Welcome to the PM25
+    {% endblock %}
+    <script src= {% static "app/js/jquery-3.1.1.min.js" %}></script>
+{#    <script src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>#}
+    <script src= {% static "app/js/bootstrap.min.js" %}></script>
+    <script src= {% static "app/js/highcharts.js" %}></script>
+    {% block special_js %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://code.hcharts.cn/hcharts.cn/hhhGuD -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="staticBase" content="http://img.hcharts.cn/static/hcode/">
+    <title>未命名 | HCODE</title>
+    <link rel="icon" href="http://img.hcharts.cn/static/hcode/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://code.hcharts.cn/hcharts.cn/apple-touch-icon.png">
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <link rel="stylesheet" href="./未命名 _ HCODE_files/style.css">
+    <script src="./未命名 _ HCODE_files/hm.js"></script><script src="./未命名 _ HCODE_files/modernizr.js"></script>
+<script src="./未命名 _ HCODE_files/share.js"></script><link rel="stylesheet" href="./未命名 _ HCODE_files/share_style0_16.css"></head>
+
+<body id="app">
+    <!--[if lt IE 10]>
+    <div class="browserupgrade">
+    HCODE 目前只支持 IE10 以上的浏览器，为了更好的体验，建议使用谷歌、火狐、IE10+ 等主流浏览器访问本站！
+    </div>
+    <![endif]-->
+<header><nav class="navbar navbar-default"><div class="container-fluid"><div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><div class="logo"><a href="http://code.hcharts.cn/"><img title="HCODE" alt="HCODE" src="./未命名 _ HCODE_files/logo.png"></a><a href="http://code.hcharts.cn/about#changelog" target="_blank"><span class="version">2.0.3</span></a></div></div><div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><ul class="nav navbar-nav"><li><a href="javascript:void(0)" title="Ctrl + Enter"><i class="fa fa-play"></i>运行 </a></li><li><a href="javascript:void(0)"><i class="fa fa-floppy-o"></i>保存</a></li></ul><ul class="nav navbar-nav nav-new"><li><a href="javascript:void(0)"><i class="fa fa-code-fork"></i>创建分支</a></li><li><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-share-square-o"></i>分享<b class="caret"></b></a><ul class="dropdown-menu tip share-tip"><div class="tip-closer">x</div><div class="tip-content"><p><label>分享链接</label><input type="text" readonly="" value="http://code.hcharts.cn/hcharts.cn/hhhGuD"></p><p><label>分享全屏结果</label><input type="text" readonly="" value="http://code.hcharts.cn/hcharts.cn/hhhGuD/share"></p><p><label>嵌入您的页面</label><textarea style="height:84px;line-height:1.4;font-size:12px;" readonly=""></textarea></p><div class="share-conf-wrapper"><div class="share-conf"><p><label><input type="checkbox"> 运行结果</label><label><input type="checkbox"> JavaScript</label><label><input type="checkbox"> HTML</label><label><input type="checkbox"> CSS</label></p><label>分享到社区</label><div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1478653789037"><a href="http://code.hcharts.cn/hcharts.cn/hhhGuD#" class="bds_more" data-cmd="more"></a><a href="http://code.hcharts.cn/hcharts.cn/hhhGuD#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="http://code.hcharts.cn/hcharts.cn/hhhGuD#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="http://code.hcharts.cn/hcharts.cn/hhhGuD#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="http://code.hcharts.cn/hcharts.cn/hhhGuD#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="http://code.hcharts.cn/hcharts.cn/hhhGuD#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="http://code.hcharts.cn/hcharts.cn/hhhGuD#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="http://code.hcharts.cn/hcharts.cn/hhhGuD#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a></div></div><div class="share-qrcode"><span>手机扫码预览</span></div></div></div></ul></li></ul><ul class="nav navbar-nav"><li style="display: none;"><a href="javascript:void(0)"><i class="fa fa-floppy-o"></i>保存</a></li><li><a href="http://code.hcharts.cn/hcharts.cn/hhhGuD#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-cog"></i>设置<b class="caret"></b></a><ul class="dropdown-menu tip cog-tip"><div class="tip-closer">x</div><div class="tip-content"><p> HTML 文档模式：（<a href="http://code.hcharts.cn/docs#doctype" target="_blank">文档说明</a>）</p><select><option value="0">HTML5</option><option value="1">HTML 4.01 Strict</option><option value="2">HTML 4.01 Transitional</option><option value="3">HTML 4.01 Frameset</option><option value="4">XHTML 1.0 Strict</option><option value="5">XHTML 1.0 Transitional</option><option value="6">XHTML 1.1</option></select><p class="hr"></p><label><input type="checkbox"> 保存当前布局 </label><p><label><input type="checkbox"> 运行时自动格式化代码 </label></p></div></ul></li><li style="display: none;"><a href="http://code.hcharts.cn/new" target="_blank"><i class="fa fa-plus-circle" aria-hidden="true"></i>创建新代码</a></li><li style="display: none;"><a href="http://code.hcharts.cn/user-voice" target="_blank"><i class="fa fa-lightbulb-o"></i>意见建议</a></li><li style="display: none;"><a href="http://code.hcharts.cn/about"><i class="fa fa-info-circle" aria-hidden="true"></i>关于</a></li></ul><ul class="nav navbar-nav navbar-right"><li><a href="javascript:void(0)"><i class="fa fa-user"></i>登陆 / 注册<b class="caret"></b></a></li></ul></div></div></nav></header>
+<style>
+    body {
+    height: 100%;
+    overflow: hidden;
+    background-color: #F6F6F6;
+}</style>
+	<div id="loading" style="display: none;">
+        <div class="loading">
+            <img src="./未命名 _ HCODE_files/loader.gif" alt="加载中">
+            <p>系统初始化中，请稍后...</p>
+        </div>
+    </div>
+
+
+    <section>
+        <div id="menu">
+            <ul>
+                <li class="menu active">
+                    <h3 class="menu-title"><i class="fa fa-code" aria-hidden="true"></i>代码信息 </h3>
+                    <div class="menu-content" style="display:block">
+                        <p>
+                            <input type="text" title="命名你的代码" placeholder="名字，必填">
+                        </p>
+                        <p>
+                            <textarea placeholder="描述" title="描述你的代码"></textarea>
+                        </p>
+                        
+                        
+                        <p>
+                                <!-- 作者：<a href="$[base.serverBase]u/$[code.author.id]" target="_blank">$[code.author.name]</a>，<br> -->
+                                <!-- 所属分组：<a href="$[base.serverBase]$[code.group.code]">$[code.group.name]</a> -->
+                                作者：群大大，<br>
+                                所属分组：hcharts
+                            </p>
+                        <p class="menu-line"></p>
+                        <p>
+                            </p><h5>保存到分组</h5>
+                            
+                                您暂无分组，<a href="javascript:void(0)">马上创建一个</a>？
+                            
+                            
+                        <p></p>
+                    
+                        
+                    </div>
+                </li>
+              
+                <li class="menu menu-extends">
+                    <h3 class="menu-title"><i class="fa fa-file-code-o" aria-hidden="true"></i>外部资源 <div class="icon icon-num" data-toggle="tooltip" data-placement="right" data-container="body" title="依赖 4 个外部资源">4</div></h3>
+                    <div class="menu-content">
+                        <div class="libs">
+                            <p style="display: none;">暂无</p>
+                            <ul>
+                                <li>
+                                    <a target="_blank" href="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js">jquery-1.8.3.min.js</a>
+                                    <div class="libs-icon">
+                                        <span>
+                                            <i class="fa fa-chevron-up" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="上移" style="display: none;"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-chevron-down" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="下移"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="移除"></i>
+                                        </span>
+                                    </div>
+                                </li><li>
+                                    <a target="_blank" href="http://cdn.hcharts.cn/highcharts/highcharts.js">highcharts.js</a>
+                                    <div class="libs-icon">
+                                        <span>
+                                            <i class="fa fa-chevron-up" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="上移"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-chevron-down" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="下移"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="移除"></i>
+                                        </span>
+                                    </div>
+                                </li><li>
+                                    <a target="_blank" href="http://cdn.hcharts.cn/highcharts/highcharts-more.js">highcharts-more.js</a>
+                                    <div class="libs-icon">
+                                        <span>
+                                            <i class="fa fa-chevron-up" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="上移"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-chevron-down" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="下移"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="移除"></i>
+                                        </span>
+                                    </div>
+                                </li><li>
+                                    <a target="_blank" href="http://cdn.hcharts.cn/highcharts/modules/solid-gauge.js">solid-gauge.js</a>
+                                    <div class="libs-icon">
+                                        <span>
+                                            <i class="fa fa-chevron-up" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="上移"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-chevron-down" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="下移" style="display: none;"></i>
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-times" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="移除"></i>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="menu-line"></div>
+                        <button class="btn btn-info btn-sm">添加常用资源 （已选 4）</button>
+                        <h5>添加新的资源</h5>
+                        <div class="new-lib">
+                            <input type="text" class="new-lib-input" placeholder="输入 JS / CSS 文件地址">
+                            <i class="fa fa-plus-circle new-lib-icon" aria-hidden="true" title="点击或回车添加"></i>
+                            <p class="new-lib-message"></p>
+                        </div>
+                        <p>更多文件见 <a href="http://cdn.hcharts.cn/index.html" target="_blank">开放CDN服务</a></p>
+                    </div>
+                </li>
+                 <!-- <li class="menu">
+                    <h3 class="menu-title"><i class="fa fa-database" aria-hidden="true"></i>模拟数据 <div class="icon"><i class="fa fa-volume-up" aria-hidden="true"  data-toggle="tooltip" data-placement="right" title="新功能"></i></div></h3>
+                    <div class="menu-content">
+                        基于 <a href="http://datas.jianshukeji.com#mock" target="_blank">简数数据</a> 平台提供模拟数据功能，<a href="/docs#mockdata"> 详见文档</a>
+                    </div>
+                </li>  -->
+                
+                <li class="menu">
+                    <h3 class="menu-title"><i class="fa fa-keyboard-o" aria-hidden="true"></i>快捷键 <div class="icon"><i class="fa fa-thumbs-up" aria-hidden="true" data-toggle="tooltip" data-placement="right" data-container="body" title="推荐使用"></i></div></h3>
+                    <div class="menu-content">
+                        <p>快捷键风格同 Sublime，同时支持 Emmet 特性，常用快捷键如下：</p>
+                        <h5>全局快捷键</h5>
+                        <ul class="shortkey">
+                            <li>
+                                <code>
+                                    <span class="key">Ctrl + Enter</span>
+                                    <span class="option">：运行</span>
+
+                                </code>
+                            </li>
+                            <li>
+                                <code>
+                                    <span class="key">Ctrl + ←/→</span>
+                                    <span class="option">：折叠左侧菜单</span>
+                                </code>
+                            </li>
+                            <li>
+                                <code>
+                                    <span class="key">Ctrl + Z</span>
+                                    <span class="option">：撤销所有编辑器</span>
+                                </code>
+                            </li>
+                            <li>
+                                <code>
+                                    <span class="key">Ctrl + U</span>
+                                    <span class="option">：恢复所有编辑器</span>
+                                </code>
+                            </li>
+                        </ul>
+                        <h5>编辑器快捷键</h5>
+                        <ul class="shortkey">
+                            <li>
+                                <code>
+                                    <span class="key">Ctrl + Enter</span>
+                                    <span class="option">：运行</span>
+                                </code>
+                            </li>
+                            <li>
+                                <code>
+                                    <span class="key small">Ctrl + /</span>
+                                    <span class="option">：注释代码</span>
+                                </code>
+                            </li>
+                            <li>
+                                <code>
+                                    <span class="key small">Ctrl + H</span>
+                                    <span class="option">：格式化代码</span>
+                                </code>
+                            </li>
+                             <li>
+                                <code>
+                                    <span class="key small">Ctrl + Z</span>
+                                    <span class="option">：撤销</span>
+                                </code>
+                            </li>
+                             <li>
+                                <code>
+                                    <span class="key small">Ctrl + Y</span>
+                                    <span class="option">：恢复</span>
+                                </code>
+                            </li>
+                            <li>
+                                <code>
+                                    <span class="key small">Tab</span>
+                                    <span class="option">：快捷生成代码</span>
+                                </code>
+                            </li>
+                            <li>
+                                <code>
+                                    <span class="key small">Ctrl + L</span>
+                                    <span class="option">：选中当前行</span>
+                                </code>
+                            </li>
+                            
+                            <li>
+                                <code>
+                                    <span class="key small">F11</span>
+                                    <span class="option">：最大化当前编辑器</span>
+                                </code>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu">
+                    <h3 class="menu-title"><i class="fa fa-info-circle" aria-hidden="true"></i>关于</h3>
+                    <div class="menu-content">
+                        <p>
+                            HCODE 是一个在线代码测试、托管、分享的工具；
+                        </p>
+                        <p>
+                            当前版本 2.0.3,这里有 <a href="http://code.hcharts.cn/about#changelog" target="_blank">更新日志</a>；
+                        </p>
+                        <p>
+                            使用前请查阅 <a href="http://code.hcharts.cn/docs" target="_blank">帮助文档</a> 及 <a href="http://code.hcharts.cn/about" target="_blank">说明</a>；
+                        </p>
+                        <p>
+                            如果你发现 Bug 或有任何意见建议 ，请到我们的 <a href="http://code.hcharts.cn/user-voice" target="_blank">Bug 反馈及意见建议</a> 页面反馈和讨论。
+                        </p>
+                        <p>
+                            Copyright © 2016 <a href="http://www.hcharts.cn/?spm=hcode2.0" target="_blank">Highcharts 中文官网</a>，由 <a href="http://jianshukeji.com/?spm=hcode2.0" target="_blank">简数科技</a> 提供服务
+                        </p>
+                    </div>
+                </li>
+                <li class="menu-extra">
+                    <a class="btn btn-info bug-report" href="http://code.hcharts.cn/user-voice" target="_blank"><i class="fa fa-bug" aria-hidden="true"></i> 报告 Bug</a>
+                </li>
+            </ul>
+
+            <div class="menu-switch"><i class="fa fa-caret-square-o-left" aria-hidden="true" title="折叠菜单"></i></div>
+
+        </div>
+        <div id="editor" style="left: 220px;">
+        <div class="lm_goldenlayout lm_item lm_root" style="width: 1050px; height: 596px;"><div class="lm_item lm_row" style="width: 1050px; height: 596px;"><div class="lm_item lm_column" style="width: 525px; height: 596px;"><div class="lm_item lm_stack" style="width: 525px; height: 596px;"><div class="lm_header" style="height: 20px; overflow: visible;"><ul class="lm_tabs"><li class="lm_tab lm_active" title="JavaScript" style="z-index: 1;"><i class="lm_left"></i><span class="lm_title">JavaScript</span><i class="lm_right"></i></li></ul><ul class="lm_controls"><li class="lm_maximise" title="最大化"></li></ul></div><div class="lm_items" style="width: 525px; height: 576px;"><div class="lm_item_container" style="width: 525px; height: 576px; display: block;"><div class="lm_content" style="width: 525px; height: 576px;"><textarea placeholder="请在这里编写 javascript 代码" style="display: none;">$(function () {
+
+    // 去掉这里的注释就是类似 Apple Watch 上的效果了
+    
+    if (!Highcharts.theme) {
+        Highcharts.setOptions({
+            chart: {
+                backgroundColor: 'black'
+            },
+            colors: ['#F62366', '#9DFF02', '#0CCDD6'],
+            title: {
+                style: {
+                    color: 'silver'
+                }
+            },
+            tooltip: {
+                style: {
+                    color: 'silver'
+                }
+            }
+        });
+    }
+    
+
+    Highcharts.chart('container', {
+
+        chart: {
+            type: 'solidgauge',
+            marginTop: 50
+        },
+		credits: {
+            text: 'hcharts.cn',
+            href: 'http://www.hcharts.cn'
+        },
+        title: {
+            text: 'Activity',
+            style: {
+                fontSize: '24px'
+            }
+        },
+
+        tooltip: {
+            borderWidth: 0,
+            backgroundColor: 'none',
+            shadow: false,
+            style: {
+                fontSize: '16px'
+            },
+            pointFormat: '{series.name}&lt;br&gt;&lt;span style="font-size:2em; color: {point.color}; font-weight: bold"&gt;{point.y}%&lt;/span&gt;',
+            positioner: function (labelWidth, labelHeight) {
+                return {
+                    x: 200 - labelWidth / 2,
+                    y: 180
+                };
+            }
+        },
+
+        pane: {
+            startAngle: 0,
+            endAngle: 360,
+            background: [{ // Track for Move
+                outerRadius: '112%',
+                innerRadius: '88%',
+                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0.3).get(),
+                borderWidth: 0
+            }, { // Track for Exercise
+                outerRadius: '87%',
+                innerRadius: '63%',
+                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.3).get(),
+                borderWidth: 0
+            }, { // Track for Stand
+                outerRadius: '62%',
+                innerRadius: '38%',
+                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2]).setOpacity(0.3).get(),
+                borderWidth: 0
+            }]
+        },
+
+        yAxis: {
+            min: 0,
+            max: 100,
+            lineWidth: 0,
+            tickPositions: []
+        },
+
+        plotOptions: {
+            solidgauge: {
+                borderWidth: '34px',
+                dataLabels: {
+                    enabled: false
+                },
+                linecap: 'round',
+                stickyTracking: false
+            }
+        },
+
+        series: [{
+            name: 'Move',
+            borderColor: Highcharts.getOptions().colors[0],
+            data: [{
+                color: Highcharts.getOptions().colors[0],
+                radius: '100%',
+                innerRadius: '100%',
+                y: 80
+            }]
+        }, {
+            name: 'Exercise',
+            borderColor: Highcharts.getOptions().colors[1],
+            data: [{
+                color: Highcharts.getOptions().colors[1],
+                radius: '75%',
+                innerRadius: '75%',
+                y: 65
+            }]
+        }, {
+            name: 'Stand',
+            borderColor: Highcharts.getOptions().colors[2],
+            data: [{
+                color: Highcharts.getOptions().colors[2],
+                radius: '50%',
+                innerRadius: '50%',
+                y: 50
+            }]
+        }]
+    },
+
+    /**
+     * In the chart load callback, add icons on top of the circular shapes
+     */
+    function callback() {
+
+        // Move icon
+        this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
+            .attr({
+                'stroke': '#303030',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                'zIndex': 10
+            })
+            .translate(190, 26)
+            .add(this.series[2].group);
+
+        // Exercise icon
+        this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8, 'M', 8, -8, 'L', 16, 0, 8, 8])
+            .attr({
+                'stroke': '#fff',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                'zIndex': 10
+            })
+            .translate(190, 61)
+            .add(this.series[2].group);
+
+        // Stand icon
+        this.renderer.path(['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0])
+            .attr({
+                'stroke': '#303030',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                'zIndex': 10
+            })
+            .translate(190, 96)
+            .add(this.series[2].group);
+    });
+
+
+});
+</textarea><div class="CodeMirror cm-s-default CodeMirror-wrap CodeMirror-overlayscroll CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 209px; left: 216px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="4" autocomplete="off"></textarea></div><div class="CodeMirror-overlayscroll-horizontal" cm-not-content="true" style="display: none;"><div></div></div><div class="CodeMirror-overlayscroll-vertical" cm-not-content="true" style="display: block; bottom: 0px;"><div style="height: 141.433px; top: 61.3809px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 47px; margin-bottom: 0px; border-right-width: 30px; min-height: 2438px; padding-right: 6px; padding-bottom: 0px;"><div style="position: relative; top: 18px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>93</div></div><div class="CodeMirror-linenumber CodeMirror-gutter-elt"><div>127</div></div></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 169px; top: 450px; height: 18px;">&nbsp;</div></div><div class="CodeMirror-code"><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">2</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  <span class="cm-comment">// 去掉这里的注释就是类似 Apple Watch 上的效果了</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">3</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  <span class="cm-keyword">if</span> (<span class="cm-operator">!</span><span class="cm-variable">Highcharts</span>.<span class="cm-property">theme</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">4</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  <span class="cm-variable">Highcharts</span>.<span class="cm-property">setOptions</span>({</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">5</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">chart</span>: {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">6</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">backgroundColor</span>: <span class="cm-string">'black'</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">7</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  },</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">8</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">colors</span>: [<span class="cm-string">'#F62366'</span>, <span class="cm-string">'#9DFF02'</span>, <span class="cm-string">'#0CCDD6'</span>],</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">9</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">title</span>: {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">10</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">style</span>: {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">11</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">color</span>: <span class="cm-string">'silver'</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">12</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">13</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  },</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">14</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">tooltip</span>: {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">15</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">style</span>: {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">16</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">color</span>: <span class="cm-string">'silver'</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">17</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">18</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">19</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  });</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">20</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">21</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp;  <span class="cm-variable">Highcharts</span>.<span class="cm-property">chart</span>(<span class="cm-string">'container'</span>, {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">22</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  <span class="cm-property">chart</span>: {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">23</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">type</span>: <span class="cm-string">'solidgauge'</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">24</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">marginTop</span>: <span class="cm-number">50</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">25</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  },</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">26</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  <span class="cm-property">credits</span>: {</span></pre></div><div style="position: relative;" class="CodeMirror-activeline"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -47px; width: 47px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">27</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">text</span>: <span class="cm-string">'吃粥'</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">28</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">href</span>: <span class="cm-string">'http://www.hcharts.cn'</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">29</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  },</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">30</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  <span class="cm-property">title</span>: {</span></pre></div><div style="position: relative;" class=""><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">31</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">text</span>: <span class="cm-string">'PM25'</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">32</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">style</span>: {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">33</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">fontSize</span>: <span class="cm-string">'24px'</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">34</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">35</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  },</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">36</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  <span class="cm-property">tooltip</span>: {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">37</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">borderWidth</span>: <span class="cm-number">0</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">38</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">backgroundColor</span>: <span class="cm-string">'none'</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">39</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">shadow</span>: <span class="cm-atom">false</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">40</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">style</span>: {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">41</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">fontSize</span>: <span class="cm-string">'16px'</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">42</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  },</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">43</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">pointFormat</span>: <span class="cm-string">'{series.name}&lt;br&gt;&lt;span style="font-size:2em; color: {point.color}; font-weight: bold"&gt;{point.y}%&lt;/span&gt;'</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">44</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">positioner</span>: <span class="cm-keyword">function</span> (<span class="cm-def">labelWidth</span>, <span class="cm-def">labelHeight</span>) {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">45</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-keyword">return</span> {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">46</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">x</span>: <span class="cm-number">200</span> <span class="cm-operator">-</span> <span class="cm-variable-2">labelWidth</span> <span class="cm-operator">/</span> <span class="cm-number">2</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">47</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">y</span>: <span class="cm-number">180</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">48</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  };</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">49</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">50</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  },</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">51</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  <span class="cm-property">pane</span>: {</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">52</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">startAngle</span>: <span class="cm-number">0</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">53</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">endAngle</span>: <span class="cm-number">360</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">54</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">background</span>: [{ <span class="cm-comment">// Track for Move</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">55</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">outerRadius</span>: <span class="cm-string">'112%'</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">56</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">innerRadius</span>: <span class="cm-string">'88%'</span>,</span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -47px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 23px;">57</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <span class="cm-property">backgroundColor</span>: <span class="cm-variable">Highcharts</span>.<span class="cm-property">Color</span>(<span class="cm-variable">Highcharts</span>.<span class="cm-property">getOptions</span>().<span class="cm-property">colors</span>[<span class="cm-number">0</span>]).<span class="cm-property">setOpacity</span>(<span class="cm-number">0.3</span>).<span class="cm-property">get</span>(),</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 2438px;"></div><div class="CodeMirror-gutters" style="height: 2468px;"><div class="CodeMirror-gutter CodeMirror-lint-markers"></div><div class="CodeMirror-gutter CodeMirror-foldgutter"></div><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 31px;"></div></div></div></div></div></div></div></div></div><div class="lm_splitter lm_horizontal" style="width: 1px;"><div class="lm_drag_handle"></div></div><div class="lm_item lm_column" style="width: 524px; height: 596px;"><div class="lm_item lm_stack" style="width: 524px; height: 417px;"><div class="lm_header" style="height: 20px; overflow: visible;"><ul class="lm_tabs"><li class="lm_tab lm_active" title="运行结果" style="z-index: 1;"><i class="lm_left"></i><span class="lm_title">运行结果</span><i class="lm_right"></i></li></ul><ul class="lm_controls"><li class="lm_maximise" title="最大化"></li></ul></div><div class="lm_items" style="width: 524px; height: 397px;"><div class="lm_item_container" style="width: 524px; height: 397px; display: block;"><div class="lm_content" style="width: 524px; height: 397px;"><iframe id="ifr" sandbox="allow-forms allow-popups allow-modals allow-scripts allow-same-origin" src="./未命名 _ HCODE_files/saved_resource.html"></iframe></div></div></div></div><div class="lm_splitter lm_vertical" style="height: 1px;"><div class="lm_drag_handle"></div></div><div class="lm_item lm_stack" style="width: 524px; height: 178px;"><div class="lm_header" style="height: 20px; overflow: visible;"><ul class="lm_tabs"><li class="lm_tab lm_active" title="HTML" style="z-index: 2;"><i class="lm_left"></i><span class="lm_title">HTML</span><i class="lm_right"></i></li><li class="lm_tab" title="CSS" style="z-index: 1;"><i class="lm_left"></i><span class="lm_title">CSS</span><i class="lm_right"></i></li></ul><ul class="lm_controls"><li class="lm_maximise" title="最大化"></li></ul></div><div class="lm_items" style="width: 524px; height: 158px;"><div class="lm_item_container" style="width: 524px; height: 158px; display: block;"><div class="lm_content" style="width: 524px; height: 158px;"><textarea placeholder="请在这里编写 html 代码，注意编辑器已经包含基本的标签，只需要写 body 里的内容即可" style="display: none;">&lt;div id="container" style="width: 400px; height: 400px; margin: 0 auto"&gt;
+&lt;/div&gt;</textarea><div class="CodeMirror cm-s-default CodeMirror-wrap CodeMirror-overlayscroll"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 4px; left: 53px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="4"></textarea></div><div class="CodeMirror-overlayscroll-horizontal" cm-not-content="true" style="display: none;"><div></div></div><div class="CodeMirror-overlayscroll-vertical" cm-not-content="true" style="display: none;"><div></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 45px; margin-bottom: 0px; border-right-width: 30px; min-height: 80px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure">AخA</div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 8px; top: 0px; height: 17.5px;">&nbsp;</div></div><div class="CodeMirror-code"><div style="position: relative;" class="CodeMirror-activeline"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: -45px; width: 45px;"></div><div class="CodeMirror-gutter-wrapper CodeMirror-activeline-gutter" style="left: -45px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 21px;">1</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">div</span> <span class="cm-attribute">id</span>=<span class="cm-string">"container"</span> <span class="cm-attribute">style</span>=<span class="cm-string">"width: 400px; height: 400px; margin: 0 auto"</span><span class="cm-tag cm-bracket">&gt;</span></span></pre></div><div style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -45px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 21px;">2</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span class="cm-tag cm-bracket CodeMirror-matchingtag">&lt;/</span><span class="cm-tag CodeMirror-matchingtag">div</span><span class="cm-tag cm-bracket CodeMirror-matchingtag">&gt;</span></span></pre></div><div class="" style="position: relative;"><div class="CodeMirror-gutter-wrapper" style="left: -45px;"><div class="CodeMirror-linenumber CodeMirror-gutter-elt" style="left: 16px; width: 21px;">3</div></div><pre class=" CodeMirror-line "><span style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent; top: 80px;"></div><div class="CodeMirror-gutters" style="height: 110px;"><div class="CodeMirror-gutter CodeMirror-lint-markers"></div><div class="CodeMirror-gutter CodeMirror-foldgutter"></div><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 29px;"></div></div></div></div></div></div><div class="lm_item_container" style="width: 524px; height: 158px; display: none;"><div class="lm_content" style="width: 524px; height: 158px;"><textarea placeholder="请在这里编写 css 代码" style="display: none;">body,.result_content {
+    background: #000!important;
+}
+</textarea><div class="CodeMirror cm-s-default CodeMirror-wrap CodeMirror-overlayscroll"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;" tabindex="4"></textarea></div><div class="CodeMirror-overlayscroll-horizontal" cm-not-content="true" style="display: none;"><div></div></div><div class="CodeMirror-overlayscroll-vertical" cm-not-content="true" style="display: block; bottom: 0px;"><div style="height: 10px; top: 0px;"></div></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; padding-right: 6px; padding-bottom: 0px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"><pre class="CodeMirror-line"><span style="padding-right: 0.1px;"><span class="cm-tag">body</span>,<span class="cm-qualifier">.result_content</span> {</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"></div><div class="CodeMirror-code"></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; border-bottom: 0px solid transparent;"></div><div class="CodeMirror-gutters"><div class="CodeMirror-gutter CodeMirror-lint-markers"></div><div class="CodeMirror-gutter CodeMirror-foldgutter"></div><div class="CodeMirror-gutter CodeMirror-linenumbers" style="width: 1px;"></div></div></div></div></div></div></div></div></div></div></div></div>
+    </section>
+
+
+    <div id="hcode">
+        <h1>未命名 | HCODE</h1>
+        <h2>在线测试、分享、托管你的代码</h2>
+        <textarea class="code" data-type="javascript">$(function () {
+
+    // 去掉这里的注释就是类似 Apple Watch 上的效果了
+    
+    if (!Highcharts.theme) {
+        Highcharts.setOptions({
+            chart: {
+                backgroundColor: 'black'
+            },
+            colors: ['#F62366', '#9DFF02', '#0CCDD6'],
+            title: {
+                style: {
+                    color: 'silver'
+                }
+            },
+            tooltip: {
+                style: {
+                    color: 'silver'
+                }
+            }
+        });
+    }
+    
+
+    Highcharts.chart('container', {
+
+        chart: {
+            type: 'solidgauge',
+            marginTop: 50
+        },
+		credits: {
+            text: 'hcharts.cn',
+            href: 'http://www.hcharts.cn'
+        },
+        title: {
+            text: 'Activity',
+            style: {
+                fontSize: '24px'
+            }
+        },
+
+        tooltip: {
+            borderWidth: 0,
+            backgroundColor: 'none',
+            shadow: false,
+            style: {
+                fontSize: '16px'
+            },
+            pointFormat: '{series.name}&lt;br&gt;&lt;span style="font-size:2em; color: {point.color}; font-weight: bold"&gt;{point.y}%&lt;/span&gt;',
+            positioner: function (labelWidth, labelHeight) {
+                return {
+                    x: 200 - labelWidth / 2,
+                    y: 180
+                };
+            }
+        },
+
+        pane: {
+            startAngle: 0,
+            endAngle: 360,
+            background: [{ // Track for Move
+                outerRadius: '112%',
+                innerRadius: '88%',
+                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0.3).get(),
+                borderWidth: 0
+            }, { // Track for Exercise
+                outerRadius: '87%',
+                innerRadius: '63%',
+                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0.3).get(),
+                borderWidth: 0
+            }, { // Track for Stand
+                outerRadius: '62%',
+                innerRadius: '38%',
+                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2]).setOpacity(0.3).get(),
+                borderWidth: 0
+            }]
+        },
+
+        yAxis: {
+            min: 0,
+            max: 100,
+            lineWidth: 0,
+            tickPositions: []
+        },
+
+        plotOptions: {
+            solidgauge: {
+                borderWidth: '34px',
+                dataLabels: {
+                    enabled: false
+                },
+                linecap: 'round',
+                stickyTracking: false
+            }
+        },
+
+        series: [{
+            name: 'Move',
+            borderColor: Highcharts.getOptions().colors[0],
+            data: [{
+                color: Highcharts.getOptions().colors[0],
+                radius: '100%',
+                innerRadius: '100%',
+                y: 80
+            }]
+        }, {
+            name: 'Exercise',
+            borderColor: Highcharts.getOptions().colors[1],
+            data: [{
+                color: Highcharts.getOptions().colors[1],
+                radius: '75%',
+                innerRadius: '75%',
+                y: 65
+            }]
+        }, {
+            name: 'Stand',
+            borderColor: Highcharts.getOptions().colors[2],
+            data: [{
+                color: Highcharts.getOptions().colors[2],
+                radius: '50%',
+                innerRadius: '50%',
+                y: 50
+            }]
+        }]
+    },
+
+    /**
+     * In the chart load callback, add icons on top of the circular shapes
+     */
+    function callback() {
+
+        // Move icon
+        this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
+            .attr({
+                'stroke': '#303030',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                'zIndex': 10
+            })
+            .translate(190, 26)
+            .add(this.series[2].group);
+
+        // Exercise icon
+        this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8, 'M', 8, -8, 'L', 16, 0, 8, 8])
+            .attr({
+                'stroke': '#fff',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                'zIndex': 10
+            })
+            .translate(190, 61)
+            .add(this.series[2].group);
+
+        // Stand icon
+        this.renderer.path(['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0])
+            .attr({
+                'stroke': '#303030',
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                'stroke-width': 2,
+                'zIndex': 10
+            })
+            .translate(190, 96)
+            .add(this.series[2].group);
+    });
+
+
+});
+</textarea>
+        <textarea class="code" data-type="html">&lt;div id="container" style="width: 400px; height: 400px; margin: 0 auto"&gt;
+&lt;/div&gt;</textarea>
+        <textarea class="code" data-type="css">body,.result_content {
+    background: #000!important;
+}
+</textarea>
+        <textarea class="code" data-type="options">{"code":{"doctype":0,"code":"hhhGuD","selectedCdns":["1","3","5","27"],"author":{"name":"群大大","id":5},"name":"未命名","newGroup":"11","saveLayout":0,"version":0,"group":{"code":"hcharts.cn","name":"hcharts","id":11}}}</textarea>
+    </div>
+
+
+    <!-- 创建分组 modal -->
+    <div class="modal fade" id="group-modal">
+        <div class="modal-dialog modal-middle">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <span class="modal-title">创建分组</span>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <label>分组名</label>
+                        <input type="text" placeholder="请输入分组名称，最大长度为 20 个字符">
+                    </p>
+                    <p>
+                        <label>个性域名</label>
+                        <input type="text" placeholder="请输入 5 ~ 20 位英文字符、数字，_、-、.">
+                        </p><p>
+                            <code class="url">http://code.hcharts.cn/</code>
+                        </p>
+                    <p></p>
+                    <p class="red">
+                        
+                    </p>
+                    <p>
+                        <button class="btn btn-sm btn-info">确定</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fork 代码 modal -->
+    <div class="modal fade" id="fork-modal">
+        <div class="modal-dialog modal-middle">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <span class="modal-title">请填写代码名字</span>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <input type="text" placeholder="请命名你的代码，方便查找与管理">
+                    </p>
+                    <p class="red"></p>
+                    <p>
+                        <button class="btn btn-sm btn-info">确定</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CDN 文件选择 modal -->
+    <div class="modal fade" id="cdn-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <span class="modal-title">添加常用资源</span>
+                </div>
+                <div class="modal-body">
+                    <dl>
+                        <dt>jQuery <small>单选选项</small></dt>
+                        <dd>
+                            <label>
+                                <input type="checkbox" value="1" data-name="jquery-1.8.3.min.js">jquery-1.8.3.min.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="2" data-name="jquery-1.8.2.min.js">jquery-1.8.2.min.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="35" data-name="jquery-2.1.4.min.js">jquery-2.1.4.min.js
+                            </label>
+                        </dd>
+                    </dl><dl>
+                        <dt>Highcharts <small>单选选项</small></dt>
+                        <dd>
+                            <label>
+                                <input type="checkbox" value="3" data-name="highcharts.js">highcharts.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="4" data-name="highstock.js">highstock.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="30" data-name="highmaps.js">highmaps.js
+                            </label>
+                        </dd>
+                    </dl><dl>
+                        <dt>Highcharts 增强功能 <small></small></dt>
+                        <dd>
+                            <label>
+                                <input type="checkbox" value="5" data-name="highcharts-more.js">highcharts-more.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="6" data-name="highcharts-3d.js">highcharts-3d.js
+                            </label>
+                        </dd>
+                    </dl><dl>
+                        <dt>Highcharts 功能模块 <small></small></dt>
+                        <dd>
+                            <label>
+                                <input type="checkbox" value="7" data-name="exporting.js">exporting.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="8" data-name="no-data-to-display.js">no-data-to-display.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="9" data-name="data.js">data.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="10" data-name="funnel.js">funnel.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="11" data-name="heatmap.js">heatmap.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="26" data-name="drilldown.js">drilldown.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="27" data-name="solid-gauge.js">solid-gauge.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="31" data-name="map.js">map.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="32" data-name="broken-axis.js">broken-axis.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="33" data-name="treemap.js">treemap.js
+                            </label>
+                        </dd>
+                    </dl><dl>
+                        <dt>Highcharts 插件 <small></small></dt>
+                        <dd>
+                            <label>
+                                <input type="checkbox" value="12" data-name="export-excel">export-excel
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="13" data-name="grouped-categories">grouped-categories
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="14" data-name="draggable-legend">draggable-legend
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="15" data-name="crossing-specific-value">crossing-specific-value
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="28" data-name="HighchartTable.js">HighchartTable.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="29" data-name="multicolor_series.js">multicolor_series.js
+                            </label>
+                        </dd>
+                    </dl><dl>
+                        <dt>Highcharts 主题 <small></small></dt>
+                        <dd>
+                            <label>
+                                <input type="checkbox" value="17" data-name="dark-blue.js">dark-blue.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="18" data-name="dark-green.js">dark-green.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="19" data-name="dark-unica.js">dark-unica.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="20" data-name="gray.js">gray.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="21" data-name="grid.js">grid.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="22" data-name="grid-light.js">grid-light.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="23" data-name="sand-signika.js">sand-signika.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="24" data-name="skies.js">skies.js
+                            </label>
+                        </dd>
+                    </dl><dl>
+                        <dt>常用工具库 <small></small></dt>
+                        <dd>
+                            <label>
+                                <input type="checkbox" value="16" data-name="vue.js">vue.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="25" data-name="moment.js">moment.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="38" data-name="lodash.js">lodash.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="39" data-name="bootstrap.css">bootstrap.css
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="36" data-name="bootstrap.js">bootstrap.js
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="37" data-name="fontawesome.css">fontawesome.css
+                            </label>
+                        </dd><dd>
+                            <label>
+                                <input type="checkbox" value="34" data-name="gojs.js">gojs.js
+                            </label>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info">确定</button>
+                    <span class="modal-footer-text"><a href="javascript:void(0)">清除选择</a> / <a href="http://code.hcharts.cn/docs#cdns" target="_blank">说明文档</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer style="display: none;"><div class="container"><p>© 2016 <a href="http://www.hcharts.cn/?spm=hcode2.0" target="_blank">Highcharts 中文官网</a>，由 <a href="http://jianshukeji.com/?spm=hcode2.0" target="_blank">简数科技</a> 提供服务 <span class="footer-social">关注我们 <a href="http://weibo.com/highcharts" target="_blank" title="微博" alt="微博"><i class="fa fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0)" title="微信公众号" alt="微信公众号" class="footer-weixin"><i class="fa fa-weixin" aria-hidden="true"></i><span></span></a><a href="http://github.com/hcharts" target="_blank" title="Github" alt="Github"><i class="fa fa-github" aria-hidden="true"></i></a><a href="http://www.hcharts.cn/about/qun.php" target="_blank" title="QQ群" alt="QQ群"><i class="fa fa-qq" aria-hidden="true"></i></a></span></p></div></footer><div class="modal fade" id="login-modal" data-backdrop="static"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><p><label>用户名</label><input type="text" placeholder="用户名"></p><p><label>密码</label><input type="password" placeholder="密码"></p><p style="display: none;"><label>验证码</label><input type="text" placeholder="验证码"></p><div class="login-btns"><p style="display: none;"><label>验证码</label><input type="text" placeholder="验证码"></p><button class="btn btn-sm btn-info login-button">登陆</button><p class="login-text"><span class="login-message"></span><span class="register"><a href="http://bbs.hcharts.cn/member.php?mod=register" target="_blank">注册新用户 / </a><a href="http://bbs.hcharts.cn/" target="_blank">找回密码</a></span></p></div></div></div></div></div> 
+        <script src="./未命名 _ HCODE_files/plugins.js"></script>
+    <script src="./未命名 _ HCODE_files/hcode.js"></script>
+
+    <script src="./未命名 _ HCODE_files/editor.js"></script>
+
+
+<div class="lm_dropTargetIndicator"><div class="lm_inner"></div></div><div class="lm_transition_indicator"></div><iframe frameborder="0" scrolling="no" style="background-color: transparent; border: 0px; display: none;" src="./未命名 _ HCODE_files/saved_resource(1).html"></iframe><div id="GOOGLE_INPUT_CHEXT_FLAG" style="display: none;" input="" input_stat="{&quot;tlang&quot;:true,&quot;tsbc&quot;:true,&quot;pun&quot;:true,&quot;mk&quot;:true,&quot;ss&quot;:true}"></div></body></html>
