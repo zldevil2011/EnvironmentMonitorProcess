@@ -46,3 +46,21 @@
     vertical-align: middle !important;
     text-align: center;
 }
+.head-mt60{
+    margin-top: -60px;
+}
+@media(max-width: 600px) {
+    .head-mt60{
+        margin-top: 0px;
+        text-align: center;
+    }
+    .head-mt60 ul{
+        padding: 0;
+    }
+    .head-mt60 .li-round{
+        padding: 4px 4px;
+    }
+    .li-round-sm{
+        padding: 1px 3px;
+    }
+}

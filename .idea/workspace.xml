@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ae365bb0-7d81-4613-ad4a-5ae987cbd3b2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/base.html" afterPath="$PROJECT_DIR$/app/templates/app/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/welcome.html" afterPath="$PROJECT_DIR$/app/templates/app/welcome.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app_static/css/emp.css" afterPath="$PROJECT_DIR$/app_static/css/emp.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/app/css/emp.css" afterPath="$PROJECT_DIR$/static/app/css/emp.css" />
     </list>
     <ignored path="EMP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,82 +55,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/welcome.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
-              <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EMP/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-              <folding>
-                <element signature="e#556#597#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="welcome.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/templates/app/welcome.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="74" column="37" selection-start-line="74" selection-start-column="37" selection-end-line="74" selection-end-column="37" />
-              <folding>
-                <element signature="e#220#256#0#HTML" expanded="true" />
-                <element signature="e#824#866#0#HTML" expanded="true" />
-                <element signature="e#1028#1055#0#HTML" expanded="true" />
-                <element signature="e#2354#2405#0#HTML" expanded="true" />
-                <element signature="e#2489#2514#0#HTML" expanded="true" />
-                <element signature="e#2552#2615#0#HTML" expanded="true" />
-                <element signature="e#2676#2701#0#HTML" expanded="true" />
-                <element signature="e#2742#2900#0#HTML" expanded="true" />
-                <element signature="e#2996#3071#0#HTML" expanded="true" />
-                <element signature="e#3493#3523#0#HTML" expanded="true" />
-                <element signature="e#3625#3688#0#HTML" expanded="true" />
-                <element signature="e#4082#4119#0#HTML" expanded="true" />
-                <element signature="e#4284#4315#0#HTML" expanded="true" />
-                <element signature="e#4424#4455#0#HTML" expanded="true" />
-                <element signature="e#4564#4595#0#HTML" expanded="true" />
-                <element signature="e#4704#4735#0#HTML" expanded="true" />
-                <element signature="e#4844#4875#0#HTML" expanded="true" />
-                <element signature="e#4984#5015#0#HTML" expanded="true" />
-                <element signature="e#5124#5155#0#HTML" expanded="true" />
-                <element signature="e#5264#5295#0#HTML" expanded="true" />
-                <element signature="e#5404#5435#0#HTML" expanded="true" />
-                <element signature="e#5544#5575#0#HTML" expanded="true" />
-                <element signature="e#5684#5715#0#HTML" expanded="true" />
-                <element signature="e#5824#5855#0#HTML" expanded="true" />
-                <element signature="e#5964#5995#0#HTML" expanded="true" />
-                <element signature="e#6104#6135#0#HTML" expanded="true" />
-                <element signature="e#6244#6275#0#HTML" expanded="true" />
-                <element signature="e#6384#6415#0#HTML" expanded="true" />
-                <element signature="e#6524#6555#0#HTML" expanded="true" />
-                <element signature="e#6664#6695#0#HTML" expanded="true" />
-                <element signature="e#6804#6835#0#HTML" expanded="true" />
-                <element signature="e#6944#6975#0#HTML" expanded="true" />
-                <element signature="e#7084#7115#0#HTML" expanded="true" />
-                <element signature="e#7224#7255#0#HTML" expanded="true" />
-                <element signature="e#7364#7395#0#HTML" expanded="true" />
-                <element signature="e#7504#7535#0#HTML" expanded="true" />
-                <element signature="e#7644#7675#0#HTML" expanded="true" />
-                <element signature="e#7784#7815#0#HTML" expanded="true" />
-                <element signature="e#7924#7955#0#HTML" expanded="true" />
-                <element signature="e#8064#8095#0#HTML" expanded="true" />
-                <element signature="e#8204#8235#0#HTML" expanded="true" />
-                <element signature="e#8344#8375#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stations.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/app/stations.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
+              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -139,9 +64,10 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/app/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="17" selection-start-line="19" selection-start-column="12" selection-end-line="24" selection-end-column="17" />
+            <state relative-caret-position="195">
+              <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
               <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ul#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -151,8 +77,18 @@
       <file leaf-file-name="emp.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app_static/css/emp.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+            <state relative-caret-position="438">
+              <caret line="48" column="11" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="welcome.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/app/welcome.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="82" column="32" selection-start-line="82" selection-start-column="32" selection-end-line="82" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -182,8 +118,8 @@
         <option value="$PROJECT_DIR$/app/urls.py" />
         <option value="$PROJECT_DIR$/app/templates/app/stations.html" />
         <option value="$PROJECT_DIR$/static/app/css/emp.css" />
-        <option value="$PROJECT_DIR$/app/templates/app/base.html" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/app/templates/app/base.html" />
         <option value="$PROJECT_DIR$/app_static/css/emp.css" />
         <option value="$PROJECT_DIR$/app/templates/app/welcome.html" />
       </list>
@@ -227,7 +163,160 @@
       <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="media" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app_static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app_static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
     </panes>
   </component>
@@ -540,7 +629,7 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26171243" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26171243" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290938" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -644,50 +733,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#220#256#0#HTML" expanded="true" />
-            <element signature="e#824#866#0#HTML" expanded="true" />
-            <element signature="e#1028#1055#0#HTML" expanded="true" />
-            <element signature="e#2354#2405#0#HTML" expanded="true" />
-            <element signature="e#2489#2514#0#HTML" expanded="true" />
-            <element signature="e#2552#2615#0#HTML" expanded="true" />
-            <element signature="e#2676#2701#0#HTML" expanded="true" />
-            <element signature="e#2742#2900#0#HTML" expanded="true" />
-            <element signature="e#2996#3071#0#HTML" expanded="true" />
-            <element signature="e#3493#3523#0#HTML" expanded="true" />
-            <element signature="e#3625#3688#0#HTML" expanded="true" />
-            <element signature="e#4082#4119#0#HTML" expanded="true" />
-            <element signature="e#4284#4315#0#HTML" expanded="true" />
-            <element signature="e#4424#4455#0#HTML" expanded="true" />
-            <element signature="e#4564#4595#0#HTML" expanded="true" />
-            <element signature="e#4704#4735#0#HTML" expanded="true" />
-            <element signature="e#4844#4875#0#HTML" expanded="true" />
-            <element signature="e#4984#5015#0#HTML" expanded="true" />
-            <element signature="e#5124#5155#0#HTML" expanded="true" />
-            <element signature="e#5264#5295#0#HTML" expanded="true" />
-            <element signature="e#5404#5435#0#HTML" expanded="true" />
-            <element signature="e#5544#5575#0#HTML" expanded="true" />
-            <element signature="e#5684#5715#0#HTML" expanded="true" />
-            <element signature="e#5824#5855#0#HTML" expanded="true" />
-            <element signature="e#5964#5995#0#HTML" expanded="true" />
-            <element signature="e#6104#6135#0#HTML" expanded="true" />
-            <element signature="e#6244#6275#0#HTML" expanded="true" />
-            <element signature="e#6384#6415#0#HTML" expanded="true" />
-            <element signature="e#6524#6555#0#HTML" expanded="true" />
-            <element signature="e#6664#6695#0#HTML" expanded="true" />
-            <element signature="e#6804#6835#0#HTML" expanded="true" />
-            <element signature="e#6944#6975#0#HTML" expanded="true" />
-            <element signature="e#7084#7115#0#HTML" expanded="true" />
-            <element signature="e#7224#7255#0#HTML" expanded="true" />
-            <element signature="e#7364#7395#0#HTML" expanded="true" />
-            <element signature="e#7504#7535#0#HTML" expanded="true" />
-            <element signature="e#7644#7675#0#HTML" expanded="true" />
-            <element signature="e#7784#7815#0#HTML" expanded="true" />
-            <element signature="e#7924#7955#0#HTML" expanded="true" />
-            <element signature="e#8064#8095#0#HTML" expanded="true" />
-            <element signature="e#8204#8235#0#HTML" expanded="true" />
-            <element signature="e#8344#8375#0#HTML" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -704,6 +750,7 @@
         <state relative-caret-position="270">
           <caret line="18" column="78" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="78" />
           <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ul#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
@@ -757,50 +804,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#220#256#0#HTML" expanded="true" />
-            <element signature="e#824#866#0#HTML" expanded="true" />
-            <element signature="e#1028#1055#0#HTML" expanded="true" />
-            <element signature="e#2354#2405#0#HTML" expanded="true" />
-            <element signature="e#2489#2514#0#HTML" expanded="true" />
-            <element signature="e#2552#2615#0#HTML" expanded="true" />
-            <element signature="e#2676#2701#0#HTML" expanded="true" />
-            <element signature="e#2742#2900#0#HTML" expanded="true" />
-            <element signature="e#2996#3071#0#HTML" expanded="true" />
-            <element signature="e#3493#3523#0#HTML" expanded="true" />
-            <element signature="e#3625#3688#0#HTML" expanded="true" />
-            <element signature="e#4082#4119#0#HTML" expanded="true" />
-            <element signature="e#4284#4315#0#HTML" expanded="true" />
-            <element signature="e#4424#4455#0#HTML" expanded="true" />
-            <element signature="e#4564#4595#0#HTML" expanded="true" />
-            <element signature="e#4704#4735#0#HTML" expanded="true" />
-            <element signature="e#4844#4875#0#HTML" expanded="true" />
-            <element signature="e#4984#5015#0#HTML" expanded="true" />
-            <element signature="e#5124#5155#0#HTML" expanded="true" />
-            <element signature="e#5264#5295#0#HTML" expanded="true" />
-            <element signature="e#5404#5435#0#HTML" expanded="true" />
-            <element signature="e#5544#5575#0#HTML" expanded="true" />
-            <element signature="e#5684#5715#0#HTML" expanded="true" />
-            <element signature="e#5824#5855#0#HTML" expanded="true" />
-            <element signature="e#5964#5995#0#HTML" expanded="true" />
-            <element signature="e#6104#6135#0#HTML" expanded="true" />
-            <element signature="e#6244#6275#0#HTML" expanded="true" />
-            <element signature="e#6384#6415#0#HTML" expanded="true" />
-            <element signature="e#6524#6555#0#HTML" expanded="true" />
-            <element signature="e#6664#6695#0#HTML" expanded="true" />
-            <element signature="e#6804#6835#0#HTML" expanded="true" />
-            <element signature="e#6944#6975#0#HTML" expanded="true" />
-            <element signature="e#7084#7115#0#HTML" expanded="true" />
-            <element signature="e#7224#7255#0#HTML" expanded="true" />
-            <element signature="e#7364#7395#0#HTML" expanded="true" />
-            <element signature="e#7504#7535#0#HTML" expanded="true" />
-            <element signature="e#7644#7675#0#HTML" expanded="true" />
-            <element signature="e#7784#7815#0#HTML" expanded="true" />
-            <element signature="e#7924#7955#0#HTML" expanded="true" />
-            <element signature="e#8064#8095#0#HTML" expanded="true" />
-            <element signature="e#8204#8235#0#HTML" expanded="true" />
-            <element signature="e#8344#8375#0#HTML" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -836,50 +840,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#220#256#0#HTML" expanded="true" />
-            <element signature="e#824#866#0#HTML" expanded="true" />
-            <element signature="e#1028#1055#0#HTML" expanded="true" />
-            <element signature="e#2354#2405#0#HTML" expanded="true" />
-            <element signature="e#2489#2514#0#HTML" expanded="true" />
-            <element signature="e#2552#2615#0#HTML" expanded="true" />
-            <element signature="e#2676#2701#0#HTML" expanded="true" />
-            <element signature="e#2742#2900#0#HTML" expanded="true" />
-            <element signature="e#2996#3071#0#HTML" expanded="true" />
-            <element signature="e#3493#3523#0#HTML" expanded="true" />
-            <element signature="e#3625#3688#0#HTML" expanded="true" />
-            <element signature="e#4082#4119#0#HTML" expanded="true" />
-            <element signature="e#4284#4315#0#HTML" expanded="true" />
-            <element signature="e#4424#4455#0#HTML" expanded="true" />
-            <element signature="e#4564#4595#0#HTML" expanded="true" />
-            <element signature="e#4704#4735#0#HTML" expanded="true" />
-            <element signature="e#4844#4875#0#HTML" expanded="true" />
-            <element signature="e#4984#5015#0#HTML" expanded="true" />
-            <element signature="e#5124#5155#0#HTML" expanded="true" />
-            <element signature="e#5264#5295#0#HTML" expanded="true" />
-            <element signature="e#5404#5435#0#HTML" expanded="true" />
-            <element signature="e#5544#5575#0#HTML" expanded="true" />
-            <element signature="e#5684#5715#0#HTML" expanded="true" />
-            <element signature="e#5824#5855#0#HTML" expanded="true" />
-            <element signature="e#5964#5995#0#HTML" expanded="true" />
-            <element signature="e#6104#6135#0#HTML" expanded="true" />
-            <element signature="e#6244#6275#0#HTML" expanded="true" />
-            <element signature="e#6384#6415#0#HTML" expanded="true" />
-            <element signature="e#6524#6555#0#HTML" expanded="true" />
-            <element signature="e#6664#6695#0#HTML" expanded="true" />
-            <element signature="e#6804#6835#0#HTML" expanded="true" />
-            <element signature="e#6944#6975#0#HTML" expanded="true" />
-            <element signature="e#7084#7115#0#HTML" expanded="true" />
-            <element signature="e#7224#7255#0#HTML" expanded="true" />
-            <element signature="e#7364#7395#0#HTML" expanded="true" />
-            <element signature="e#7504#7535#0#HTML" expanded="true" />
-            <element signature="e#7644#7675#0#HTML" expanded="true" />
-            <element signature="e#7784#7815#0#HTML" expanded="true" />
-            <element signature="e#7924#7955#0#HTML" expanded="true" />
-            <element signature="e#8064#8095#0#HTML" expanded="true" />
-            <element signature="e#8204#8235#0#HTML" expanded="true" />
-            <element signature="e#8344#8375#0#HTML" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -929,28 +890,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/welcome.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/app/js/highcharts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="74" selection-start-line="0" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EMP/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-          <folding>
-            <element signature="e#556#597#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -972,14 +915,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/stations.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -988,19 +923,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/base.html">
+    <entry file="file://$PROJECT_DIR$/app/templates/app/stations.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="17" selection-start-line="19" selection-start-column="12" selection-end-line="24" selection-end-column="17" />
+        <state relative-caret-position="75">
+          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EMP/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
           <folding>
-            <element signature="n#style#0;n#ul#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#556#597#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/app/css/emp.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
+        <state relative-caret-position="432">
           <caret line="47" column="1" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
           <folding />
         </state>
@@ -1008,60 +951,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app_static/css/emp.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+        <state relative-caret-position="438">
+          <caret line="48" column="11" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/welcome.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/app/welcome.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="74" column="37" selection-start-line="74" selection-start-column="37" selection-end-line="74" selection-end-column="37" />
-          <folding>
-            <element signature="e#220#256#0#HTML" expanded="true" />
-            <element signature="e#824#866#0#HTML" expanded="true" />
-            <element signature="e#1028#1055#0#HTML" expanded="true" />
-            <element signature="e#2354#2405#0#HTML" expanded="true" />
-            <element signature="e#2489#2514#0#HTML" expanded="true" />
-            <element signature="e#2552#2615#0#HTML" expanded="true" />
-            <element signature="e#2676#2701#0#HTML" expanded="true" />
-            <element signature="e#2742#2900#0#HTML" expanded="true" />
-            <element signature="e#2996#3071#0#HTML" expanded="true" />
-            <element signature="e#3493#3523#0#HTML" expanded="true" />
-            <element signature="e#3625#3688#0#HTML" expanded="true" />
-            <element signature="e#4082#4119#0#HTML" expanded="true" />
-            <element signature="e#4284#4315#0#HTML" expanded="true" />
-            <element signature="e#4424#4455#0#HTML" expanded="true" />
-            <element signature="e#4564#4595#0#HTML" expanded="true" />
-            <element signature="e#4704#4735#0#HTML" expanded="true" />
-            <element signature="e#4844#4875#0#HTML" expanded="true" />
-            <element signature="e#4984#5015#0#HTML" expanded="true" />
-            <element signature="e#5124#5155#0#HTML" expanded="true" />
-            <element signature="e#5264#5295#0#HTML" expanded="true" />
-            <element signature="e#5404#5435#0#HTML" expanded="true" />
-            <element signature="e#5544#5575#0#HTML" expanded="true" />
-            <element signature="e#5684#5715#0#HTML" expanded="true" />
-            <element signature="e#5824#5855#0#HTML" expanded="true" />
-            <element signature="e#5964#5995#0#HTML" expanded="true" />
-            <element signature="e#6104#6135#0#HTML" expanded="true" />
-            <element signature="e#6244#6275#0#HTML" expanded="true" />
-            <element signature="e#6384#6415#0#HTML" expanded="true" />
-            <element signature="e#6524#6555#0#HTML" expanded="true" />
-            <element signature="e#6664#6695#0#HTML" expanded="true" />
-            <element signature="e#6804#6835#0#HTML" expanded="true" />
-            <element signature="e#6944#6975#0#HTML" expanded="true" />
-            <element signature="e#7084#7115#0#HTML" expanded="true" />
-            <element signature="e#7224#7255#0#HTML" expanded="true" />
-            <element signature="e#7364#7395#0#HTML" expanded="true" />
-            <element signature="e#7504#7535#0#HTML" expanded="true" />
-            <element signature="e#7644#7675#0#HTML" expanded="true" />
-            <element signature="e#7784#7815#0#HTML" expanded="true" />
-            <element signature="e#7924#7955#0#HTML" expanded="true" />
-            <element signature="e#8064#8095#0#HTML" expanded="true" />
-            <element signature="e#8204#8235#0#HTML" expanded="true" />
-            <element signature="e#8344#8375#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="108">
+          <caret line="82" column="32" selection-start-line="82" selection-start-column="32" selection-end-line="82" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
