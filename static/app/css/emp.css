@@ -15,6 +15,18 @@
     border-radius: 4px;
     background: wheat;
 }
+.li-round-sm{
+    padding: 1px 14px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: wheat;
+}
 .li-round:hover{
     background: #0f7777;
 }
