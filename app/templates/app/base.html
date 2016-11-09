@@ -18,10 +18,10 @@
         </div>
         <div class="col-md-offset-8  col-md-4 col-sm-12 head-mt60">
             <ul style="display: inline-block;" class="li-tab">
-                <li class="li-round active" style="display: inline-block;" onclick="window.location.href='/welcome/'">实时数据</li>
-                <li class="li-round" style="display: inline-block;">历史数据</li>
-                <li class="li-round" style="display: inline-block;" onclick="window.location.href='/station/'">数据统计</li>
-                <li class="li-round" style="display: inline-block;">平台介绍</li>
+                <li name = "index" class="li-round" style="display: inline-block;" onclick="window.location.href='/index/'">实时数据</li>
+                <li name = "historical" class="li-round" style="display: inline-block;" onclick="window.location.href='/historical/'">历史数据</li>
+                <li name = "station" class="li-round" style="display: inline-block;" onclick="window.location.href='/station/'">数据统计</li>
+                <li name = "introduction" class="li-round" style="display: inline-block;">平台介绍</li>
             </ul>
         </div>
     </div>
@@ -34,5 +34,12 @@
     <script src= {% static "app/js/highcharts.js" %}></script>
     {% block special_js %}
     {% endblock %}
+    <script>
+        var path = window.location.pathname;
+        var len = path.length;
+        path = path.slice(1, len-1);
+        $("[name=" + path + "]").siblings().removeClass("active");
+        $("[name=" + path + "]").addClass("active");
+    </script>
 </body>
 </html>
