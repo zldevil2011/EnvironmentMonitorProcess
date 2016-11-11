@@ -1,0 +1,128 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}管理数据{% endblock %}
+
+{% block body_content %}
+    <div class="clearfix">
+
+        <div class="col-md-3 col-sm-12 border-gray middle-height">
+            <blockquote class=" alert-success img-rounded">
+                数据列表
+            </blockquote>
+            <blockquote>
+                设备列表
+            </blockquote>
+            <blockquote>
+                数据统计
+            </blockquote>
+        </div>
+        <div class="col-md-9 col-sm-12 border-gray middle-height" style="padding:0px;">
+            <div class="col-md-12 column img-rounded" style="height: auto; line-height: 30px; background: rgba(0,0,0, 0.1); padding: 5px 0;">
+                <div class="col-md-3" style="padding-right: 1px;">
+                    <label for="" class="col-sm-4 control-label">类型</label>
+                    <div class="col-sm-8">
+                        <select class="btn-block form-control">
+                            <option>PM25</option>
+                            <option>PM10</option>
+                            <option>SO2</option>
+                            <option>CO</option>
+                            <option>NO2</option>
+                            <option>O3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="" class="col-sm-3 control-label">筛选</label>
+                        <div class="col-sm-4">
+                            <input name="start_time" type="date" class="form-control" id="">
+                        </div>
+                        <label for="" class="col-sm-1 control-label">至</label>
+                        <div class="col-sm-4">
+                            <input name="end_time" type="date" class="form-control" id="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                编号
+                            </th>
+                            <th>
+                                参数
+                            </th>
+                            <th>
+                                数值
+                            </th>
+                            <th>
+                                时间
+                            </th>
+                            <th>
+                                采集点
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>SO2</td>
+                            <td>22</td>
+                            <td>2016-11-01 12:00:00</td>
+                            <td>海淀区</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>SO2</td>
+                            <td>22</td>
+                            <td>2016-11-01 12:00:00</td>
+                            <td>海淀区</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>SO2</td>
+                            <td>22</td>
+                            <td>2016-11-01 12:00:00</td>
+                            <td>海淀区</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>SO2</td>
+                            <td>22</td>
+                            <td>2016-11-01 12:00:00</td>
+                            <td>海淀区</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>SO2</td>
+                            <td>22</td>
+                            <td>2016-11-01 12:00:00</td>
+                            <td>海淀区</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>SO2</td>
+                            <td>22</td>
+                            <td>2016-11-01 12:00:00</td>
+                            <td>海淀区</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{#    <div id="description" style="width:90%; height: 400px;"></div>#}
+{#    <button id="submit">提交</button>#}
+{% endblock %}
+{% block special_js %}
+
+{#<script>#}
+{#    var id_content = UE.getEditor('description',{'initialFrameWidth': 800, 'initialFrameHeight': 300, 'serverUrl': '/ueditor/controller/?imagePathFormat=img/&filePathFormat=img/'});#}
+{#    var submit = document.getElementById("submit");#}
+{#    submit.onclick = function(){#}
+{#        var productDescription = id_content.getContent();#}
+{#        alert(productDescription);#}
+{#    };#}
+{#</script>#}
+{% endblock %}
