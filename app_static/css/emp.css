@@ -49,6 +49,15 @@
 .head-mt60{
     margin-top: -60px;
 }
+.border-gray{
+    border: 1px solid #bbbaba;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+.middle-height{
+    min-height: 600px;
+}
 @media(max-width: 600px) {
     .head-mt60{
         margin-top: 0px;
@@ -62,5 +71,9 @@
     }
     .li-round-sm{
         padding: 1px 3px;
+    }
+    .middle-height{
+        min-height:1px;
+        height: auto;
     }
 }

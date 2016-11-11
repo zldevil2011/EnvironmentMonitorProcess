@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
-                <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <nav class="navbar navbar-default" role="navigation">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#HJ_menu">
                             <span class="sr-only">Toggle navigation</span>
@@ -56,10 +56,11 @@
                 </nav>
             </div>
         </div>
-    </div>
+
     {% block body_content %}
         Welcome to the PM25
     {% endblock %}
+    </div>
     <script src= {% static "app/js/jquery-3.1.1.min.js" %}></script>
     <script src= {% static "app/js/bootstrap.min.js" %}></script>
     <script src= {% static "app/js/highcharts.js" %}></script>
