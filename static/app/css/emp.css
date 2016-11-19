@@ -94,3 +94,6 @@
 .tr_hander tr:hover{
     background-color: #fbe7e7 !important;
 }
+.hander{
+    cursor: pointer;
+}
