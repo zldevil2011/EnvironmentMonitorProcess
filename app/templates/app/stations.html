@@ -1,10 +1,101 @@
 {% extends "app/base.html" %}
 {% load static from staticfiles %}
 {% block title %}数据统计{% endblock %}
+{% block special_css %}
+    <style>
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+            color: #555;
+            cursor: default;
+            background-color:#57b382;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+        }
+    </style>
+{% endblock %}
 {% block body_content %}
     <div class="clearfix">
-        <div id="map" style="width:100%;height:600px; border: 1px solid rgba(0, 0, 0, 0.04); border-radius: 6px;"></div>
+        <div class="col-md-12" style="height: 120px;">
+            <p style="font-size: 32px;color: #555;text-indent: 20px;line-height: 120px;">观测点数据排行<span style="float: right;font-size: 12px;color:#ec832a;">统计时间:2016-11-18 12:00:00</span></p>
+        </div>
     </div>
+    <div class="clearfix">
+        <div class="col-md-12 column" style="padding: 0;">
+			<div class="tabbable" id="tabs-971732">
+				<ul class="nav nav-tabs" style="background-color: #ececec;">
+					<li class="active" style="width: 25%;text-align: center;border-right: 1px solid #d1d1d1;">
+						 <a href="#panel-realTime" data-toggle="tab" style="">实时排行</a>
+					</li>
+					<li style="width: 25%;text-align: center;border-right: 1px solid #d1d1d1;">
+						 <a href="#panel-yesterday" data-toggle="tab">昨日排行</a>
+					</li>
+                    <li style="width: 25%;text-align: center;border-right: 1px solid #d1d1d1;">
+						 <a href="#panel-week" data-toggle="tab">一周排行</a>
+					</li>
+                    <li style="width: 25%;text-align: center;">
+						 <a href="#panel-month" data-toggle="tab">一月排行</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="panel-realTime">
+						<div class="col-md-12" style="padding: 0;margin-top: 50px;">
+                            <table class="table table-striped text-center table-td-center">
+                                <thead>
+                                    <tr style="background-color: #e8e8e8;">
+                                        <th class="text-center" style="padding: 15px;">监测站点</th>
+                                        <th class="text-center" style="padding: 15px;">安装地址</th>
+                                        <th class="text-center" style="padding: 15px;">经度</th>
+                                        <th class="text-center" style="padding: 15px;">纬度</th>
+                                        <th class="text-center" style="padding: 15px;">最后更新时间</th>
+                                        <th class="text-center" style="padding: 15px;">安装时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tr_hander">
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+					</div>
+					<div class="tab-pane" id="panel-yesterday">
+						<p>
+							YESTERDAY
+						</p>
+					</div>
+                    <div class="tab-pane" id="panel-week">
+						<p>
+							WEEK
+						</p>
+					</div>
+                    <div class="tab-pane" id="panel-month">
+						<p>
+							MONTH
+						</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+    </div>
+{#    <div class="clearfix">#}
+{#        <div id="map" style="width:100%;height:600px; border: 1px solid rgba(0, 0, 0, 0.04); border-radius: 6px;"></div>#}
+{#    </div>#}
 {% endblock %}
 {% block special_js %}
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WZVN4DbW3hfB9MSgMmwVQBHU8ZV8jRxW"></script>
