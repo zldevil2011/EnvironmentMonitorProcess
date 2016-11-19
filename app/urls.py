@@ -4,11 +4,13 @@ from views.station import station
 from views.historical import historical_data, historical_device
 from views.admin_index import admin_index
 from views.admin_data import admin_data
+from views.platform import information
 urlpatterns = [
 	url(r'^index/$', index, name="welcome"),
 	url(r'^station/$', station, name="station"),
 	url(r'^historical_device/$', historical_device, name="historical_device"),
-	url(r'^historical_device_data/$', historical_data, name="historical_data")
+	url(r'^historical_device_data/$', historical_data, name="historical_data"),
+	url(r'^information/$', information, name="information")
 ]
 
 urlpatterns += [
