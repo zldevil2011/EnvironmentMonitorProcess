@@ -77,3 +77,14 @@
         height: auto;
     }
 }
+.horizontal-text-center{text-align: center;}
+.footer-fix-bottom{
+    position: relative;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    bottom: 0;
+    margin-bottom: 0;
+    border-width: 1px 0 0;
+    color:#999;
+}

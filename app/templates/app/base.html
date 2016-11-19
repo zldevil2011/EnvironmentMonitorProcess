@@ -12,6 +12,9 @@
     {% endblock %}
 </head>
 <body>
+    <div style="width: 80%;margin:0 auto;">
+
+
     <div class="clearfix">
         <div class="top" id="temp_right" style="float:left; background: url({% static "app/img/head2.png" %})">
             <img src={% static "app/img/logo2.png" %}>
@@ -28,6 +31,31 @@
     {% block body_content %}
         Welcome to the PM25
     {% endblock %}
+    </div>
+    <div class="horizontal-text-center footer-fix-bottom" style="background-color: rgba(0,0,0,0.75);margin-top: 40px;">
+        <section>
+            <h4>友情链接</h4>
+            <p>
+                <a href="http://www.nmc.gov.cn/" target="_blank" rel="nofollow">中央气象台</a>
+                 |<a href="http://www.weather.com/" target="_blank" rel="nofollow">美国气象频道</a>
+                 |<a href="http://www.weather.com.cn/" target="_blank" rel="nofollow">中国天气网</a>
+                 |<a href="http://www.pm25.com/" target="_blank" rel="nofollow">绿色呼吸</a>
+                 |<a href="http://www.feeyo.com/" target="_blank" rel="nofollow">飞友网</a>
+                 |<a href="http://i.firefoxchina.cn/?www.firefoxchina.cn" target="_blank" rel="nofollow">火狐浏览器</a>
+                 |<a href="http://tianqitong.sina.cn/" target="_blank" rel="nofollow">天气通</a>
+                 |<a href="http://weather.mipang.com" target="_blank" rel="nofollow">米胖天气</a>
+                 |<a href="http://www.xn121.com/" target="_blank" rel="nofollow">兴农网</a>
+                 |<a href="http://www.mlogcn.com/" target="_blank" rel="nofollow">象辑科技</a>
+                 |<a href="http://www.tianqi.com/" target="_blank" rel="nofollow">天气网</a>
+            </p>
+        </section>
+        <section>
+            <p>关于我们|联系我们|批评建议</p>
+            <p>Copyright © 2016-2016 JSFY, All Rights Reserved</p>
+            <p style="margin:0;">京师方圆信息技术有限公司 版权所有</p>
+        </section>
+    </div>
+
     <script src= {% static "app/js/jquery-3.1.1.min.js" %}></script>
 {#    <script src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>#}
     <script src= {% static "app/js/bootstrap.min.js" %}></script>
