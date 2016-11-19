@@ -6,6 +6,6 @@ import json
 
 
 def historical_data(request):
-	return render(request, "app/historical_data.html", {
+	return render(request, "app/historical_device_list.html", {
 
 	})
