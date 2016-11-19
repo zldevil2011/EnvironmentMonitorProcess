@@ -5,7 +5,13 @@ from dss.Serializer import serializer
 import json
 
 
-def historical_data(request):
+def historical_device(request):
 	return render(request, "app/historical_device_list.html", {
+
+	})
+
+
+def historical_data(request):
+	return render(request, "app/historical_data.html", {
 
 	})

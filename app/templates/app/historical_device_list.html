@@ -1,6 +1,6 @@
 {% extends "app/base.html" %}
 {% load static from staticfiles %}
-{% block title %}历史数据{% endblock %}
+{% block title %}设备列表{% endblock %}
 {% block body_content %}
     <div class="clearfix">
         <div class="col-md-12">
@@ -18,26 +18,26 @@
                         <th class="text-center">安装时间</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                <tbody class="tr_hander">
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
                 </tbody>
             </table>
         </div>
@@ -54,9 +54,11 @@
         var map = new BMap.Map("map");          // 创建地图实例
         var point = new BMap.Point(117.533683,30.699859);  // 创建点坐标
         var sContent =
-        "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>池州</h4>" +
-        "<img style='float:right;margin:4px' id='imgDemo' src='http://b.hiphotos.baidu.com/baike/pic/item/adaf2edda3cc7cd9645689f33101213fb80e91a5.jpg' width='139' height='104' title='天安门'/>" +
-        "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>安徽征圣智能科技有限公司主要从事设计、研发、制造和销售电力计量和智能电网配套设备。公司于2011年11月在池州经济技术开发区注册成立，公司现有员工100余人，其中专业研发人员占员工总数的32%，企业注册资金3000万元人民币。 公司在池州投建的年产150万户电能计量箱项目及永磁真空断路器及高压柜项目。该项目占地约60亩，总投资20000万元，其中固定资产投资16000万元。项目达产后年产值可达5亿元以上。达产后将填补池州市新材料（工程塑料）智能电能计量箱、第一代物联网设备、永磁智能真空断路器及小型集成化智能电控高压柜生产企业的空白。</p>" +
+        "<div><h4>张家湾</h4>" +
+        "<h4>PM2.5:77</h4>" +
+        "<h4>SO2:66</h4>" +
+        "<h4>PM10:77</h4>" +
+        "<h4>AQI:123<a href='/historical_device_data/'>查看历史数据</a></h4>" +
         "</div>";
         var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
         var marker = new BMap.Marker(point);
@@ -69,7 +71,7 @@
                infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
             }
         });
-        marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+{#        marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画#}
         map.addControl(new BMap.NavigationControl());
         map.addControl(new BMap.ScaleControl());
         map.addControl(new BMap.OverviewMapControl());
