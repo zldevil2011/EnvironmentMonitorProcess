@@ -2,10 +2,39 @@
 {% load static from staticfiles %}
 {% block title %}平台信息{% endblock %}
 {% block special_css %}
+<style>
 
+</style>
 {% endblock %}
 
 {% block body_content %}
+    <div class="row clearfix" style="margin-top: 10px;">
+		<div class="col-md-12 column" style="">
+			<div class="carousel slide" id="carousel-900864">
+				<ol class="carousel-indicators">
+					<li class="active" data-slide-to="0" data-target="#carousel-900864">
+					</li>
+					<li data-slide-to="1" data-target="#carousel-900864">
+					</li>
+					<li data-slide-to="2" data-target="#carousel-900864">
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<img alt="" style="border-radius: 100px;"  src={% static "app/img/huanbao1.jpg" %}/>
+					</div>
+					<div class="item">
+						<img alt="" style="border-radius: 100px;" src={% static "app/img/huanbao2.jpg" %} />
+					</div>
+					<div class="item">
+						<img alt="" style="border-radius: 100px;" src={% static "app/img/huanbao3.jpg" %} />
+					</div>
+				</div>
+                <a class="left carousel-control" href="#carousel-900864" data-slide="prev" style="background-image: none;"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                <a class="right carousel-control" href="#carousel-900864" data-slide="next" style="background-image: none;"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+		</div>
+	</div>
     <div class="clearfix" style="margin-top: 50px;">
         <div class = "col-md-4">
             <div class="col-md-12" style="border-left: 4px solid #c1c1c1;">
@@ -53,34 +82,34 @@
                 </ul>
             </div>
         </div>
+        <div class="col-md-12">
+            <hr>
+        </div>
+        <div class="col-md-12" style="border-left: 4px solid #c1c1c1;">
+            <span style="font-weight: bold;color: #888;font-size: 18px;">时事资料</span>
+        </div>
+        <div class="col-md-12" style="margin-top: 10px;">
+            <div class="col-md-4">
+                [1] PM2.5成分与高血压相关心脑血管疾病急诊的关系及对RAS基因表达的影响
+            </div>
+            <div class="col-md-4">
+                [2] 北京地区PM2.5的成分特征及来源分析
+            </div>
+            <div class="col-md-4">
+                [3] PM2.5暴露对肺炎克雷伯菌致大鼠肺部炎症的影响
+            </div>
+            <div class="col-md-4" style="margin-top: 10px;">
+                [4] 《中国城市能源消耗对健康影响的评价：基于吸入反应系数的分析》
+            </div>
+            <div class="col-md-4" style="margin-top: 10px;">
+                [5] 《中国广州肺癌死亡和对空气污染的关系研究》
+            </div>
+            <div class="col-md-4" style="margin-top: 10px;">
+                [6] 《燃煤大气污染物对中国孕妇以及儿童发展的影响》
+            </div>
+        </div>
     </div>
-    <div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="carousel slide" id="carousel-900864">
-				<ol class="carousel-indicators">
-					<li class="active" data-slide-to="0" data-target="#carousel-900864">
-					</li>
-					<li data-slide-to="1" data-target="#carousel-900864">
-					</li>
-					<li data-slide-to="2" data-target="#carousel-900864">
-					</li>
-				</ol>
-				<div class="carousel-inner">
-					<div class="item active">
-						<img alt="" src={% static "app/img/huanbao1.jpg" %} />
-					</div>
-					<div class="item">
-						<img alt="" src={% static "app/img/huanbao2.jpg" %} />
-					</div>
-					<div class="item">
-						<img alt="" src={% static "app/img/huanbao3.jpg" %} />
-					</div>
-				</div>
-                <a class="left carousel-control" href="#carousel-900864" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                <a class="right carousel-control" href="#carousel-900864" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-			</div>
-		</div>
-	</div>
+
 {% endblock %}
 {% block special_js %}
     <script>

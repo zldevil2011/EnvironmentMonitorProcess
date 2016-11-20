@@ -7,8 +7,21 @@
             width: 150px;
             height: 150px;
             background-color: #ffffff; /* Can be set to transparent */
-            border: 6px #bfaeae solid;
+            border-width: 12px;
+            border-color:#bfaeae;
+            animation:mymove 6s infinite;
+            animation-timing-function:ease;
+            border-style:solid;
             -webkit-border-radius: 100px;
+        }
+        @keyframes mymove
+        {
+            0% { border-color:#68cb00;}
+            20% { border-color:#f6e200;}
+            40% { border-color:#fb890f;}
+            60% { border-color:#df2d00;}
+            80% { border-color:#b414bb;}
+            100% { border-color:#b414bb;}
         }
     </style>
 {% endblock %}
