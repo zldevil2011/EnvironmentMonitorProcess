@@ -23,6 +23,14 @@ class AqiParameter(object):
 							 {"pm25": [{"level":0,"value":10.0/7} ,{"level":35,"value":5.0/4} ,{"level":75,"value":5.0/4} ,{"level":115,"value":10.0/7} ,{"level":150,"value":1} ,{"level":250,"value":1} ,{"level":350,"value":2.0/3}]}
 							 ]
 		self.start_point = [400,300,200,150,100,50,0]
+		self.AQI_info = {}
+		self.AQI_info_standard = [{"val":0, "level": "一级", "classification": "优", "health": "空气质量令人满意，基本无空气污染", "step": "各类人群可正常活动"},
+								  {"val": 50, "level": "二级", "classification": "良", "health": "空气质量可接受，但某些污染物可能对极少数异常敏感人群健康有较弱影响",
+								   "step": "极少数异常敏感人群应减少户外活动"},
+								  {"val": 100, "level": "三级", "classification": "轻度污染",
+								   "health": "易感人群症状有轻度加剧，健康人群出现刺激状况",
+								   "step": "儿童，老年人及心脏病，呼吸系统疾病患者应减少长时间，高强度的户外训练"},
+								  ]
 
 	def get_24_iaqi(self, data):
 		for key in data.keys():
