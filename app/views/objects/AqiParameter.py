@@ -6,6 +6,8 @@ class AqiParameter(object):
 		self.IAQI_1 = []
 		self.AQI_24 = 0
 		self.AQI_1 = 0
+		self.Main_Pollute_24 = ''
+		self.Main_Pollute_1 = ''
 		self.fix_value_24 = [{"so2": [{"level":0, "value": 1}, {"level":50, "value": 1.0/2},{"level":150, "value": 2.0/13},{"level":475, "value": 2.0/13},{"level":800, "value": 1.0/8},{"level":1600, "value": 1.0/5},{"level":2100, "value": 5.0/26}] },
 							 {"no2": [{"level":0, "value": 5.0/4}, {"level":40, "value": 5.0/4}, {"level":80, "value": 1.0/2}, {"level":180, "value": 1.0/2}, {"level":280, "value": 10.0/57}, {"level":565, "value": 20.0/37}, {"level":750, "value": 10.0/19}]},
 							 {"pm10":[{"level":0, "value":1}, {"level":50, "value":1.0/2}, {"level":150, "value":1.0/2}, {"level":250, "value":1.0/2}, {"level":350, "value":10.0/7}, {"level":420, "value":5.0/4}, {"level":500, "value":1} ]},
@@ -72,10 +74,30 @@ class AqiParameter(object):
 	def get_1_aqi(self, data):
 		self.get_1_iaqi(data)
 		self.AQI_1 = max(self.IAQI_1)
+		if self.AQI_1 > 50:
+			pollute_str = ["so2", "no2", "pm10", "co2", "o3", "pm2.5"]
+			max_val = -1
+			max_name = ""
+			for idx, val in enumerate(self.IAQI_1):
+				if val > max_val:
+					max_name = pollute_str[idx]
+		else:
+			max_name = "无"
+		self.Main_Pollute_1 = max_name
 
 	def get_24_aqi(self, data):
 		self.get_24_iaqi(data)
 		self.AQI_24 = max(self.IAQI_24)
+		if self.AQI_24 > 50:
+			pollute_str = ["so2", "no2", "pm10", "co2", "o3", "pm2.5"]
+			max_val = -1
+			max_name = ""
+			for idx, val in enumerate(self.IAQI_24):
+				if val > max_val:
+					max_name = pollute_str[idx]
+		else:
+			max_name = "无"
+		self.Main_Pollute_24 = max_name
 
 
 if __name__ == '__main__':
@@ -83,6 +105,7 @@ if __name__ == '__main__':
 	data = {"so2":32, "no2": 53, "pm10": 294, "co":2, "o3":33, "pm25":158}
 	# aqi.get_24_iaqi(data)
 	aqi.get_1_aqi(data)
+	print aqi.Main_Pollute_1
 	# for i in range(len(aqi.fix_value_24)):
 	# 	print aqi.fix_value_24[i].keys()[0]
 	# 	val = aqi.fix_value_24[i].values()[0]
