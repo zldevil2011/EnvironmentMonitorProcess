@@ -17,7 +17,7 @@ class AqiParameter(object):
 		self.IAQI_24 = []
 		self.IAQI_1 = []
 		self.AQI_24 = 0
-		self.AQI_24 = 0
+		self.AQI_1 = 0
 		self.fix_value_24 = [{"so2": [{"level":0, "value": 1}, {"level":50, "value": 1.0/2},{"level":150, "value": 2.0/13},{"level":475, "value": 2.0/13},{"level":800, "value": 1.0/8},{"level":1600, "value": 1.0/5},{"level":2100, "value": 5.0/26}] },
 							 {"no2": [{"level":0, "value": 5.0/4}, {"level":40, "value": 5.0/4}, {"level":80, "value": 1.0/2}, {"level":180, "value": 1.0/2}, {"level":280, "value": 10.0/57}, {"level":565, "value": 20.0/37}, {"level":750, "value": 10.0/19}]},
 							 {"pm10":[{"level":0, "value":1}, {"level":50, "value":1.0/2}, {"level":150, "value":1.0/2}, {"level":250, "value":1.0/2}, {"level":350, "value":10.0/7}, {"level":420, "value":5.0/4}, {"level":500, "value":1} ]},
@@ -34,27 +34,58 @@ class AqiParameter(object):
 							 ]
 		self.start_point = [400,300,200,150,100,50,0]
 
-	def get_24_iaqi(self, key, val):
-		for i in range(len(self.fix_value_24)):
-			if self.fix_value_24[i].keys()[0] == key:
-				print self.fix_value_24[i]
-				level_data = self.fix_value_24[i].values()[0]
-				cnt = -1
-				level_data.reverse()
-				for level in level_data:
-					cnt += 1
-					if val > level["level"]:
-						print level
-						print self.start_point[cnt]
-						iaqi = round((val - level["level"]) * level["value"] + self.start_point[cnt])
-						self.IAQI_24.append(iaqi)
-						break
-				break
+	def get_24_iaqi(self, data):
+		for key in data.keys():
+			key = key
+			val = data[key]
+			for i in range(len(self.fix_value_24)):
+				if self.fix_value_24[i].keys()[0] == key:
+					print self.fix_value_24[i]
+					level_data = self.fix_value_24[i].values()[0]
+					cnt = -1
+					level_data.reverse()
+					for level in level_data:
+						cnt += 1
+						if val > level["level"]:
+							print level
+							print self.start_point[cnt]
+							iaqi = round((val - level["level"]) * level["value"] + self.start_point[cnt])
+							self.IAQI_24.append(iaqi)
+							break
+					break
+		self.AQI_24 = max(self.IAQI_24)
 
 		print self.IAQI_24
+
+	def get_1_iaqi(self, data):
+		for key in data.keys():
+			key = key
+			val = data[key]
+			for i in range(len(self.fix_value_1)):
+				if self.fix_value_1[i].keys()[0] == key:
+					print self.fix_value_1[i]
+					level_data = self.fix_value_1[i].values()[0]
+					cnt = -1
+					level_data.reverse()
+					for level in level_data:
+						cnt += 1
+						if val > level["level"]:
+							print level
+							print self.start_point[cnt]
+							iaqi = round((val - level["level"]) * level["value"] + self.start_point[cnt])
+							self.IAQI_1.append(iaqi)
+							break
+					break
+		self.AQI_1 = max(self.IAQI_1)
+		print "AP"
+		print self.IAQI_1
+		print self.AQI_1
+
 if __name__ == '__main__':
 	aqi = AqiParameter()
-	aqi.get_24_iaqi("so2", 214)
+	data = {"so2":32, "no2": 53, "pm10": 294, "co":2, "o3":33, "pm25":158}
+	# aqi.get_24_iaqi(data)
+	aqi.get_1_iaqi(data)
 	# for i in range(len(aqi.fix_value_24)):
 	# 	print aqi.fix_value_24[i].keys()[0]
 	# 	val = aqi.fix_value_24[i].values()[0]
