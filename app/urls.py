@@ -6,6 +6,7 @@ from views.admin_index import admin_index
 from views.admin_data import admin_data
 from views.platform import information
 urlpatterns = [
+	url(r'^$', index, name="welcome"),
 	url(r'^index/$', index, name="welcome"),
 	url(r'^station/$', station, name="station"),
 	url(r'^historical_device/$', historical_device, name="historical_device"),
