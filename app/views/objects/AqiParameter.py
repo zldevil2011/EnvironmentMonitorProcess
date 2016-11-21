@@ -1,3 +1,5 @@
+#coding=utf-8
+import math
 class AqiParameter(object):
 	def __init__(self):
 		self.so2_24 = 0
@@ -12,8 +14,10 @@ class AqiParameter(object):
 		self.o3_1 = 0
 		self.pm25_24 = 0
 		self.pm25_1 = 0
-		self.IAQI = []
-		self.AQI = 0
+		self.IAQI_24 = []
+		self.IAQI_1 = []
+		self.AQI_24 = 0
+		self.AQI_24 = 0
 		self.fix_value_24 = [{"so2": [{"level":0, "value": 1}, {"level":50, "value": 1.0/2},{"level":150, "value": 2.0/13},{"level":475, "value": 2.0/13},{"level":800, "value": 1.0/8},{"level":1600, "value": 1.0/5},{"level":2100, "value": 5.0/26}] },
 							 {"no2": [{"level":0, "value": 5.0/4}, {"level":40, "value": 5.0/4}, {"level":80, "value": 1.0/2}, {"level":180, "value": 1.0/2}, {"level":280, "value": 10.0/57}, {"level":565, "value": 20.0/37}, {"level":750, "value": 10.0/19}]},
 							 {"pm10":[{"level":0, "value":1}, {"level":50, "value":1.0/2}, {"level":150, "value":1.0/2}, {"level":250, "value":1.0/2}, {"level":350, "value":10.0/7}, {"level":420, "value":5.0/4}, {"level":500, "value":1} ]},
@@ -28,8 +32,38 @@ class AqiParameter(object):
 							 {"o3":[{"level":0, "value": 5.0/16}, {"level":160, "value": 5.0/4}, {"level":200, "value": 1.0/2}, {"level":300, "value": 1.0/2}, {"level":400, "value": 1.0/4}, {"level":800, "value": 1.0/2}, {"level":1000, "value": 1.0/2}]},
 							 {"pm25": [{"level":0,"value":10.0/7} ,{"level":35,"value":5.0/4} ,{"level":75,"value":5.0/4} ,{"level":115,"value":10.0/7} ,{"level":150,"value":1} ,{"level":250,"value":1} ,{"level":350,"value":2.0/3}]}
 							 ]
-		self.start_point = [0,50,100,150,200,300,400]
+		self.start_point = [400,300,200,150,100,50,0]
 
-	def get_iaqi(self):
-		if self.so2_24 == 0
+	def get_24_iaqi(self, key, val):
+		for i in range(len(self.fix_value_24)):
+			if self.fix_value_24[i].keys()[0] == key:
+				print self.fix_value_24[i]
+				level_data = self.fix_value_24[i].values()[0]
+				cnt = -1
+				level_data.reverse()
+				for level in level_data:
+					cnt += 1
+					if val > level["level"]:
+						print level
+						print self.start_point[cnt]
+						iaqi = round((val - level["level"]) * level["value"] + self.start_point[cnt])
+						self.IAQI_24.append(iaqi)
+						break
+				break
+
+		print self.IAQI_24
+if __name__ == '__main__':
+	aqi = AqiParameter()
+	aqi.get_24_iaqi("so2", 214)
+	# for i in range(len(aqi.fix_value_24)):
+	# 	print aqi.fix_value_24[i].keys()[0]
+	# 	val = aqi.fix_value_24[i].values()[0]
+	# 	print type(val)
+	# 	try:
+	# 		val.reverse()
+	# 	except Exception, e:
+	# 		print(str(e))
+	# 	for i in val:
+	# 		print i
+
 
