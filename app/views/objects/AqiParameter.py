@@ -2,18 +2,6 @@
 import math
 class AqiParameter(object):
 	def __init__(self):
-		# self.so2_24 = 0
-		# self.so2_1 = 0
-		# self.no2_24 = 0
-		# self.no2_1 = 0
-		# self.pm10_24 = 0
-		# self.pm10_1 = 0
-		# self.co_24 = 0
-		# self.co_1 = 0
-		# self.o3_24 = 0
-		# self.o3_1 = 0
-		# self.pm25_24 = 0
-		# self.pm25_1 = 0
 		self.IAQI_24 = []
 		self.IAQI_1 = []
 		self.AQI_24 = 0
@@ -81,17 +69,20 @@ class AqiParameter(object):
 		print self.IAQI_1
 		print self.AQI_1
 
-	def get_1_aqi(self):
+	def get_1_aqi(self, data):
+		self.get_1_iaqi(data)
 		self.AQI_1 = max(self.IAQI_1)
 
-	def get_24_aqi(self):
+	def get_24_aqi(self, data):
+		self.get_24_iaqi(data)
 		self.AQI_24 = max(self.IAQI_24)
+
 
 if __name__ == '__main__':
 	aqi = AqiParameter()
 	data = {"so2":32, "no2": 53, "pm10": 294, "co":2, "o3":33, "pm25":158}
 	# aqi.get_24_iaqi(data)
-	aqi.get_1_iaqi(data)
+	aqi.get_1_aqi(data)
 	# for i in range(len(aqi.fix_value_24)):
 	# 	print aqi.fix_value_24[i].keys()[0]
 	# 	val = aqi.fix_value_24[i].values()[0]
