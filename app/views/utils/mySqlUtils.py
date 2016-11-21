@@ -6,7 +6,7 @@ class MySQL(object):
 	def __init__(self):
 		self.host = '127.0.0.1'
 		self.user = 'root'
-		self.password = 'Long@680920'
+		self.password = 'xp'
 		self.database = 'python_test'
 		self.db = None
 		self.cursor = None
