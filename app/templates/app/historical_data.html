@@ -4,20 +4,24 @@
 {% block body_content %}
     <div class="clearfix" style="background-color: #fdfdfd;">
         <div class="col-md-12">
-            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">张家湾 观测点数据</p>
+            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">{{ device.name }} 观测点数据</p>
         </div>
         <div class="col-md-12" style="padding: 0px;">
             <div class="clearfix" style="">
                 <div class="col-md-12" style="width: 100%; height: auto !important; min-height: 30px;font-size: 14px;
                 background-color: #f4f4f4; overflow: hidden;line-height: 30px;">
                     <span class="">PM2.5</span>
-                    <ul style="display: inline-block;margin-bottom: 0px;!important; float: right; " class="li-tab">
-                        <li class="li-round-sm active" style="display: inline-block;">今日数据</li>
-                        <li class="li-round-sm" style="display: inline-block;">当月日平均</li>
-                        <li class="li-round-sm" style="display: inline-block;">当年月平均</li>
+                    <ul name = "historical_pm25" style="display: inline-block;margin-bottom: 0px;!important; float: right; " class="li-tab">
+                        <li name = "today" class="li-round-sm active" style="display: inline-block;">今日数据</li>
+                        <li name = "month" class="li-round-sm" style="display: inline-block;">当月日平均</li>
+                        <li name = "year" class="li-round-sm" style="display: inline-block;">当年月平均</li>
                     </ul>
                 </div>
-                <div id="pm25_historical" style="min-width:100%; height:300px;border: 1px solid #bbbaba;"></div>
+                <div class="col-md-12" style="padding: 0;">
+                    <div id="pm25_today_historical" style="min-width:100%; height:300px;border: 1px solid #bbbaba;"></div>
+                    <div id="pm25_month_historical" style="height:300px;border: 1px solid #bbbaba;display: none;"></div>
+                    <div id="pm25_year_historical" style="height:300px;border: 1px solid #bbbaba;display: none;"></div>
+                </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
                 <div class="col-md-12" style="width: 100%; height: auto !important; min-height: 30px;font-size: 14px;
@@ -42,13 +46,17 @@
                 <div class="col-md-12" style="width: 100%; height: auto !important; min-height: 30px;font-size: 14px;
                 background-color: #f4f4f4; overflow: hidden;line-height: 30px;">
                     <span class="">历史数据</span>
-                    <ul style="display: inline-block;margin-bottom: 0px;!important; float: right; " class="li-tab">
-                        <li class="li-round-sm active" style="display: inline-block;">一周数据</li>
-                        <li class="li-round-sm" style="display: inline-block;">当月日平均</li>
-                        <li class="li-round-sm" style="display: inline-block;">当年月平均</li>
+                    <ul name = "historical_parameter" style="display: inline-block;margin-bottom: 0px;!important; float: right; " class="li-tab">
+                        <li name = "week" class="li-round-sm active" style="display: inline-block;">一周数据</li>
+                        <li name = "month" class="li-round-sm" style="display: inline-block;">当月日平均</li>
+                        <li name = "year" class="li-round-sm" style="display: inline-block;">当年月平均</li>
                     </ul>
                 </div>
-                <div id="other_historical" style="min-width:100%;height:300px; border: 1px solid #bbbaba;"></div>
+                <div class="col-md-12" style="padding: 0;">
+                    <div id="other_week_historical" style="min-width:100%;height:300px; border: 1px solid #bbbaba;"></div>
+                    <div id="other_month_historical" style="height:300px; border: 1px solid #bbbaba;display: none;"></div>
+                    <div id="other_year_historical" style="height:300px; border: 1px solid #bbbaba;display: none;"></div>
+                </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
                 <div class="col-md-12" style="width: 100%; height: auto !important; min-height: 30px;font-size: 14px;
@@ -110,8 +118,34 @@
     <script src= {% static "app/js/highcharts-more.js" %}></script>
     <script src= {% static "app/js/modules/solid-gauge.js" %}></script>
     <script>
+        $("[name=historical_pm25] li").on("click", function(){
+            $(this).addClass("active").siblings().removeClass("active");
+            var div_name = "pm25_" + $(this).attr("name") + "_historical";
+            $("#" + div_name).css("display", "block").siblings().css("display","none");
+        });
+        $("[name=historical_parameter] li").on("click", function(){
+            $(this).addClass("active").siblings().removeClass("active");
+            var div_name = "other_" + $(this).attr("name") + "_historical";
+            $("#" + div_name).css("display", "block").siblings().css("display","none");
+        });
+    </script>
+    <script>
         var data = {{ data | safe }};
         console.log(data);
+        var today_data = data.today_data;
+        var today_data_hour = today_data.today_data_hour;
+        var today_data_data = today_data.today_data_data;
+        var week_data = data.week_data;
+        var week_data_day = week_data.week_data_day;
+        var week_data_data = week_data.week_data_data;
+        var month_data = data.month_data;
+        console.log(month_data);
+        var month_data_day = month_data.month_data_day;
+        var month_data_data = month_data.month_data_data;
+        console.log(month_data_data);
+        var year_data = data.year_data;
+        var year_data_month = year_data.year_data_month;
+        var year_data_data = year_data.year_data_data;
         $(function () {
             var colors = ['#FF0000', '#90BF18', '#EDCA4E'];
             Highcharts.getOptions().colors = Highcharts.map(colors, function (color) {
@@ -121,7 +155,7 @@
                      ]
                  };
              });
-            $('#pm25_historical').highcharts({
+            $('#pm25_today_historical').highcharts({
 
                 chart: {
                     type: 'column'
@@ -130,24 +164,11 @@
                     text: '今日PM25数据'
                 },
                 subtitle: {
-                    text: '来源：各站点平均值'
+                    text: '来源：{{ device.name }}观测点'
                 },
                 credits: false,
                 xAxis: {
-                    categories: [
-                        '09:05',
-                        '09:10',
-                        '09:15',
-                        '09:20',
-                        '09:25',
-                        '09:30',
-                        '09:35',
-                        '09:40',
-                        '09:45',
-                        '09:50',
-                        '09:55',
-                        '10:00',
-                    ],
+                    categories: today_data_hour,
                     crosshair: true
                 },
                 yAxis: {
@@ -178,40 +199,33 @@
                         value: 150,
                         color: colors[2]
                     }],
-                    name: 'SO2',
-                    data: [49.9, 71.5, 106.4, 77.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                    name: 'PM2.5',
+                    data: today_data_data.pm25
                 }]
             });
-        });
-    </script>
-    <script>
-        $(function () {
-            $('#other_historical').highcharts({
+            var standard_width = $("#pm25_today_historical div").width();
+            $("#pm25_month_historical").width(standard_width);
+            $("#pm25_year_historical").width(standard_width);
+            $('#pm25_month_historical').highcharts({
+
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: '历史数据'
+                    text: '当月PM25数据'
                 },
                 subtitle: {
-                    text: '来源：各站点平均值'
+                    text: '来源：{{ device.name }}观测点'
                 },
+                credits: false,
                 xAxis: {
-                    categories: [
-                        '11-03',
-                        '11-04',
-                        '11-05',
-                        '11-06',
-                        '11-07',
-                        '11-08',
-                        '11-09'
-                    ],
+                    categories: month_data_day,
                     crosshair: true
                 },
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Rainfall (mm)'
+                        text: 'PM25 (ug/m3)'
                     }
                 },
                 tooltip: {
@@ -229,23 +243,68 @@
                     }
                 },
                 series: [{
-                    name: 'SO2',
-                    data: [176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-                }, {
-                    name: 'O3',
-                    data: [84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-                }, {
-                    name: 'CO',
-                    data: [48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
-                }, {
-                    name: 'NO2',
-                    data: [75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-                },{
-                    name: 'PM10',
-                    data: [75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+                    zones: [{
+                        value: 100,
+                        color: colors[1]
+                    }, {
+                        value: 150,
+                        color: colors[2]
+                    }],
+                    name: 'PM2.5',
+                    data: month_data_data.pm25
+                }]
+            });
+            $('#pm25_year_historical').highcharts({
+
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '当年PM25数据'
+                },
+                subtitle: {
+                    text: '来源：{{ device.name }}观测点'
+                },
+                credits: false,
+                xAxis: {
+                    categories: year_data_month,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'PM25 (ug/m3)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    zones: [{
+                        value: 100,
+                        color: colors[1]
+                    }, {
+                        value: 150,
+                        color: colors[2]
+                    }],
+                    name: 'PM2.5',
+                    data: year_data_data.pm25
                 }]
             });
         });
+{#    </script>#}
+{#    <script>#}
         $(function () {
             $('#other_day_historical').highcharts({
                 chart: {
@@ -255,40 +314,22 @@
                     text: '当日数据'
                 },
                 subtitle: {
-                    text: '来源：各站点平均值'
+                    text: '来源：{{ device.name }}观测点'
                 },
                 xAxis: {
-                    categories: [
-                        '01:00',
-                        '02:00',
-                        '03:00',
-                        '04:00',
-                        '05:00',
-                        '06:00',
-                        '07:00',
-                        '08:00',
-                        '09:00',
-                        '10-00',
-                        '11:00',
-                        '12:00',
-                        '13:00',
-                        '14:00',
-                        '15:00',
-                        '16:00',
-                        '17:00'
-                    ],
+                    categories: today_data_hour,
                     crosshair: true
                 },
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Rainfall (mm)'
+                        text: '浓度 (ppm)'
                     }
                 },
                 tooltip: {
                     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y:.1f} ppm</b></td></tr>',
                     footerFormat: '</table>',
                     shared: true,
                     useHTML: true
@@ -301,19 +342,175 @@
                 },
                 series: [{
                     name: 'SO2',
-                    data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,49.9, 71.5, 106.4, 129.2, 144.0]
+                    data: today_data_data.so2
                 }, {
                     name: 'O3',
-                    data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3,83.6, 78.8, 98.5, 93.4, 106.0]
+                    data: today_data_data.o3
                 }, {
                     name: 'CO',
-                    data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2,48.9, 38.8, 39.3, 41.4, 47.0]
+                    data: today_data_data.co
                 }, {
                     name: 'NO2',
-                    data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1,2.4, 33.2, 34.5, 39.7, 52.6]
+                    data: today_data_data.no2
                 },{
                     name: 'PM10',
-                    data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1,42.4, 33.2, 34.5, 39.7, 52.6]
+                    data: today_data_data.pm10
+                }]
+            });
+            $('#other_week_historical').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '一周数据'
+                },
+                subtitle: {
+                    text: '来源：{{ device.name }}观测点'
+                },
+                xAxis: {
+                    categories: week_data_day,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '浓度 (ppm)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} ppm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'SO2',
+                    data: week_data_data.so2
+                }, {
+                    name: 'O3',
+                    data: week_data_data.o3
+                }, {
+                    name: 'CO',
+                    data: week_data_data.co
+                }, {
+                    name: 'NO2',
+                    data: week_data_data.no
+                },{
+                    name: 'PM10',
+                    data: week_data_data.pm10
+                }]
+            });
+            var standard_width = $("#other_week_historical div").width();
+            $("#other_month_historical").width(standard_width);
+            $("#other_year_historical").width(standard_width);
+            $('#other_month_historical').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '一月数据'
+                },
+                subtitle: {
+                    text: '来源：{{ device.name }}观测点'
+                },
+                xAxis: {
+                    categories: month_data_day,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '浓度 (ppm)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} ppm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'SO2',
+                    data: month_data_data.so2
+                }, {
+                    name: 'O3',
+                    data: month_data_data.o3
+                }, {
+                    name: 'CO',
+                    data: month_data_data.co
+                }, {
+                    name: 'NO2',
+                    data: month_data_data.no
+                },{
+                    name: 'PM10',
+                    data: month_data_data.pm10
+                }]
+            });
+            $('#other_year_historical').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '当年数据'
+                },
+                subtitle: {
+                    text: '来源：{{ device.name }}观测点'
+                },
+                xAxis: {
+                    categories: year_data_month,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: '浓度 (ppm)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} ppm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'SO2',
+                    data: year_data_data.so2
+                }, {
+                    name: 'O3',
+                    data: year_data_data.o3
+                }, {
+                    name: 'CO',
+                    data: year_data_data.co
+                }, {
+                    name: 'NO2',
+                    data: year_data_data.no
+                },{
+                    name: 'PM10',
+                    data: year_data_data.pm10
                 }]
             });
         });

@@ -34,6 +34,7 @@ def historical_device(request):
 
 
 def historical_data(request):
+	device = {"id":1, "name": "京师方圆"}
 	datas_list_all = [
 		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
 		 "time": "2016-11-22 12:00:00"},
@@ -117,7 +118,7 @@ def historical_data(request):
 	week_data_data = {"so2": [], "no2": [], "pm10": [], "co": [], "o3": [], "pm25": []}
 	factors = ["so2", "no2", "pm10", "co", "o3", "pm25"]
 	for i in range(7):
-		time_start = datetime(time_now.tm_year, time_now.tm_mon, time_now.tm_mday, 0, 0, 0) - timedelta(days=1)
+		time_start = datetime(time_now.tm_year, time_now.tm_mon, time_now.tm_mday, 0, 0, 0) - timedelta(days=i)
 		week_data_day.append(str(time_start.month) + u"月" + str(time_start.day) + u"号")
 		time_end = time_start + timedelta(days=1)
 		for factor in factors:
@@ -132,7 +133,10 @@ def historical_data(request):
 				week_data_data[factor].append(factor_sum / factor_num)
 			except:
 				week_data_data[factor].append(0)
+	week_data_day.reverse()
 	week_data["week_data_day"] = week_data_day
+	for factor in factors:
+		week_data_data[factor].reverse()
 	week_data["week_data_data"] = week_data_data
 	# 计算当月日平均
 	import time
@@ -142,8 +146,8 @@ def historical_data(request):
 	month_data_data = {"so2": [], "no2": [], "pm10": [], "co": [], "o3": [], "pm25": []}
 	factors = ["so2", "no2", "pm10", "co", "o3", "pm25"]
 	for i in range(1,time_now_day+1):
-		time_start = datetime(time_now.tm_year, time_now.tm_mon, 1, 0, 0, 0)
-		month_data_day.append(str(time_start.month) + u"月" + str(time_start.day) + u"号")
+		time_start = datetime(time_now.tm_year, time_now.tm_mon, i, 0, 0, 0)
+		month_data_day.append(str(time_start.day) + u"号")
 		time_end = time_start + timedelta(days=1)
 		for factor in factors:
 			factor_sum = 0
@@ -167,7 +171,7 @@ def historical_data(request):
 	year_data_data = {"so2": [], "no2": [], "pm10": [], "co": [], "o3": [], "pm25": []}
 	factors = ["so2", "no2", "pm10", "co", "o3", "pm25"]
 	for i in range(1, time_now_month + 1):
-		time_start = datetime(time_now.tm_year, 1, 1, 0, 0, 0)
+		time_start = datetime(time_now.tm_year, i, 1, 0, 0, 0)
 		year_data_month.append(str(time_start.month) + u"月")
 		import calendar
 		monthRange = calendar.monthrange(time_now.tm_year, 1)
@@ -187,12 +191,13 @@ def historical_data(request):
 	year_data["year_data_month"] = year_data_month
 	year_data["year_data_data"] = year_data_data
 
-	data = []
-	data.append(today_data)
-	data.append(week_data)
-	data.append(month_data)
-	data.append(year_data)
+	data = {}
+	data["today_data"] = today_data
+	data["week_data"] = week_data
+	data["month_data"] = month_data
+	data["year_data"] = year_data
 	# return HttpResponse(data)
 	return render(request, "app/historical_data.html", {
 		"data": json.dumps(data),
+		"device": device,
 	})
