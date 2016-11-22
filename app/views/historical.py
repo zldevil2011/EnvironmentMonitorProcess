@@ -9,10 +9,12 @@ from objects.AqiParameter import AqiParameter
 
 
 def historical_device(request):
+	# 设备列表
 	device_list = [
 		{"id": 1, "name": u"京师方圆", "address" : u"凤凰大道", "longitude": 117.2944, "latitude": 30.4127, "latest_time":"2016-11-22 12:00:00", "install_time": "2016-11-12 12:00:00"},
 		{"id": 2, "name": u"清风大道路", "address" : u"新城区", "longitude": 117.2944, "latitude": 30.4027, "latest_time":"2016-11-22 12:00:00", "install_time": "2016-11-10 12:00:00"},
 	]
+	# 每个站点最新的一条数据
 	device_data = [
 		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-12 12:00:00"},
 		{"name": u"清风大道路", "so2": 33, "no2": 20, "pm10": 20, "co": 2, "o3": 12, "pm25": 12,"time": "2016-11-12 12:00:00"}

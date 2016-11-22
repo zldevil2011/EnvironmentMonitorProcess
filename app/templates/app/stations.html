@@ -47,29 +47,32 @@
                                         <th class="text-center" style="padding: 15px;">排名</th>
                                         <th class="text-center" style="padding: 15px;">质量</th>
                                         <th class="text-center" style="padding: 15px;">观测点</th>
-                                        <th class="text-center" style="padding: 15px;">省份</th>
+{#                                        <th class="text-center" style="padding: 15px;">省份</th>#}
                                         <th class="text-center" style="padding: 15px;">PM2.5浓度</th>
                                         <th class="text-center" style="padding: 15px;">AQI指数</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tr_hander">
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12μg/m³</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
+                                    {% for data in real_time %}
+                                        <tr><td>{{ forloop.counter }}</td><td><span class="level{{ data.level }}_background" style="padding:3px 25px;">{{ data.classification }}</span></td><td>{{ data.name }}</td><td>{{ data.pm25 }}μg/m³</td><td>{{ data.AQI }}</td></tr>
+                                    {% endfor %}
+
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
                                 </tbody>
                             </table>
                         </div>
@@ -82,29 +85,31 @@
                                         <th class="text-center" style="padding: 15px;">排名</th>
                                         <th class="text-center" style="padding: 15px;">质量</th>
                                         <th class="text-center" style="padding: 15px;">观测点</th>
-                                        <th class="text-center" style="padding: 15px;">省份</th>
+{#                                        <th class="text-center" style="padding: 15px;">省份</th>#}
                                         <th class="text-center" style="padding: 15px;">PM2.5浓度</th>
                                         <th class="text-center" style="padding: 15px;">AQI指数</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tr_hander">
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12μg/m³</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">良</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">差</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
+                                    {% for data in yesterday_time %}
+                                        <tr><td>{{ forloop.counter }}</td><td><span class="level{{ data.level }}_background" style="padding:3px 25px;">{{ data.classification }}</span></td><td>{{ data.name }}</td><td>{{ data.pm25 }}μg/m³</td><td>{{ data.AQI }}</td></tr>
+                                    {% endfor %}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">良</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">差</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
                                 </tbody>
                             </table>
                         </div>
@@ -117,29 +122,32 @@
                                         <th class="text-center" style="padding: 15px;">排名</th>
                                         <th class="text-center" style="padding: 15px;">质量</th>
                                         <th class="text-center" style="padding: 15px;">观测点</th>
-                                        <th class="text-center" style="padding: 15px;">省份</th>
+{#                                        <th class="text-center" style="padding: 15px;">省份</th>#}
                                         <th class="text-center" style="padding: 15px;">PM2.5浓度</th>
                                         <th class="text-center" style="padding: 15px;">AQI指数</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tr_hander">
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12μg/m³</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>
+                                    {% for data in week_time %}
+                                        <tr><td>{{ forloop.counter }}</td><td><span class="level{{ data.level }}_background" style="padding:3px 25px;">{{ data.classification }}</span></td><td>{{ data.name }}</td><td>{{ data.pm25 }}μg/m³</td><td>{{ data.AQI }}</td></tr>
+                                    {% endfor %}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12μg/m³</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>张家湾</td><td>安徽</td><td>12</td><td>87</td></tr>#}
                                 </tbody>
                             </table>
                         </div>
@@ -152,29 +160,32 @@
                                         <th class="text-center" style="padding: 15px;">排名</th>
                                         <th class="text-center" style="padding: 15px;">质量</th>
                                         <th class="text-center" style="padding: 15px;">观测点</th>
-                                        <th class="text-center" style="padding: 15px;">省份</th>
+{#                                        <th class="text-center" style="padding: 15px;">省份</th>#}
                                         <th class="text-center" style="padding: 15px;">PM2.5浓度</th>
                                         <th class="text-center" style="padding: 15px;">AQI指数</th>
                                     </tr>
                                 </thead>
                                 <tbody class="tr_hander">
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12μg/m³</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">良</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">差</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
-                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>
+                                    {% for data in month_time %}
+                                        <tr><td>{{ forloop.counter }}</td><td><span class="level{{ data.level }}_background" style="padding:3px 25px;">{{ data.classification }}</span></td><td>{{ data.name }}</td><td>{{ data.pm25 }}μg/m³</td><td>{{ data.AQI }}</td></tr>
+                                    {% endfor %}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12μg/m³</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">良</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">差</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ffff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #ff0000;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
+{#                                    <tr><td>1</td><td><span style="padding:3px 25px; background-color: #00ff00;">优</span></td><td>京师方圆</td><td>安徽</td><td>12</td><td>87</td></tr>#}
                                 </tbody>
                             </table>
                         </div>

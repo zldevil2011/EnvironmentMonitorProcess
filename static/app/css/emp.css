@@ -77,6 +77,24 @@
 .level6_color{
     color: #6f0474;
 }
+.level1_background{
+    background-color: #00e400;
+}
+.level2_background{
+    background-color: #f6e200;
+}
+.level3_background{
+    background-color: #fb890f;
+}
+.level4_background{
+    background-color: #df2c00;
+}
+.level5_background{
+    background-color: #b414bb;
+}
+.level6_background{
+    background-color: #6f0474;
+}
 .table-td-center tr td{
     vertical-align: middle !important;
     text-align: center;
