@@ -112,15 +112,22 @@
                 <div class="col-md-12" style="width: 100%; height: auto !important; min-height: 30px;font-size: 14px;
                 background-color: #f4f4f4; overflow: hidden;line-height: 30px;">
                     <span class="glyphicon glyphicon-th-list"></span>
-                    <ul style="display: inline-block;margin-bottom: 0px;!important; float: right; " class="li-tab">
-                        <li class="li-round-sm active" style="display: inline-block;">PM10</li>
-                        <li class="li-round-sm" style="display: inline-block;">SO2</li>
-                        <li class="li-round-sm" style="display: inline-block;">O3</li>
-                        <li class="li-round-sm" style="display: inline-block;">CO</li>
-                        <li class="li-round-sm" style="display: inline-block;">NO2</li>
+                    <ul name = "other_parameters" style="display: inline-block;margin-bottom: 0px;!important; float: right; " class="li-tab">
+                        <li name = "PM10" class="li-round-sm active" style="display: inline-block;">PM10</li>
+                        <li name = "SO2" class="li-round-sm" style="display: inline-block;">SO2</li>
+                        <li name = "O3" class="li-round-sm" style="display: inline-block;">O3</li>
+                        <li name = "CO" class="li-round-sm" style="display: inline-block;">CO</li>
+                        <li name = "NO2" class="li-round-sm" style="display: inline-block;">NO2</li>
                     </ul>
                 </div>
-                <div id="other_PM10" style="min-width:100%;height:300px;"></div>
+                <div class="col-md-12" style="padding: 0;">
+                    <div id="other_PM10" style="min-width:100%;height:300px;"></div>
+                    <div id="other_SO2" style="height:300px;"></div>
+                    <div id="other_O3" style="height:300px;"></div>
+                    <div id="other_CO" style="height:300px;"></div>
+                    <div id="other_NO2" style="height:300px;"></div>
+                </div>
+
             </div>
         </div>
 {#        <div class="col-md-8">#}
@@ -337,9 +344,23 @@
 {#                }#}
 {#            }, 2000);#}
 {#        });#}
+        $("[name=other_parameters] li").on("click", function(){
+            console.log($(this).attr("name"));
+            $(this).addClass("active").siblings().removeClass("active");
+            var id = "other_" + $(this).attr("name");
+            $("#" + id).css("display", "block").siblings().css("display", "none");
+        });
+        $("[name=PM10]").click();
 
-
-
+        var twelve_data = {{ twelve_data | safe}};
+        var twelve_data_hour = twelve_data.twelve_data_hour;
+        var twelve_data_data = twelve_data.twelve_data_data;
+        var twelve_data_so2 = twelve_data_data.so2;
+        var twelve_data_pm10 = twelve_data_data.pm10;
+        var twelve_data_no2 = twelve_data_data.no2;
+        var twelve_data_co = twelve_data_data.co;
+        var twelve_data_o3 = twelve_data_data.o3;
+        var twelve_data_pm25 = twelve_data_data.pm25;
         $(function () {
             $('#container').highcharts({
                 credits:false,
@@ -348,13 +369,13 @@
                     backgroundColor: 'rgba(80,81,95,0.1)',
                 },
                 title: {
-                    text: '最近一小时PM25检测值'
+                    text: '今日PM25监测值'
                 },
                 subtitle: {
-                    text: '来源：各个采集站点'
+                    text: '来源：各站点平均值'
                 },
                 xAxis: {
-                    categories: ['09:00', '09:10', '09:20', '09:30', '09:40', '09:50', '10:00', '10:10', '10:20', '10:30', '10:40', '10:50']
+                    categories: twelve_data_hour
                 },
                 yAxis: {
                     title: {
@@ -371,7 +392,7 @@
                 },
                 series: [{
                     name: '均值',
-                    data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                    data: twelve_data_pm25
                 }]
             });
         });
@@ -391,27 +412,14 @@
                     backgroundColor: 'rgba(80,81,95,0.1)',
                 },
                 title: {
-                    text: '最近一小时PM10'
+                    text: '今日PM10监测值'
                 },
                 subtitle: {
                     text: '来源：各站点平均值'
                 },
                 credits: false,
                 xAxis: {
-                    categories: [
-                        '09:05',
-                        '09:10',
-                        '09:15',
-                        '09:20',
-                        '09:25',
-                        '09:30',
-                        '09:35',
-                        '09:40',
-                        '09:45',
-                        '09:50',
-                        '09:55',
-                        '10:00',
-                    ],
+                    categories: twelve_data_hour,
                     crosshair: true
                 },
                 yAxis: {
@@ -443,9 +451,215 @@
                         color: colors[2]
                     }],
                     name: 'PM10',
-                    data: [49.9, 71.5, 106.4, 77.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                    data: twelve_data_pm25
                 }]
             });
+            var standard_width = $("#other_PM10 div").width();
+            $("#other_NO2").width(standard_width);
+            $("#other_SO2").width(standard_width);
+            $("#other_PM10").width(standard_width);
+            $("#other_O3").width(standard_width);
+            $("#other_CO").width(standard_width);
+            $('#other_SO2').highcharts({
+
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'rgba(80,81,95,0.1)',
+                },
+                title: {
+                    text: '今日SO2监测值'
+                },
+                subtitle: {
+                    text: '来源：各站点平均值'
+                },
+                credits: false,
+                xAxis: {
+                    categories: twelve_data_hour,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'SO2 (ug/m3)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    zones: [{
+                        value: 100,
+                        color: colors[1]
+                    }, {
+                        value: 150,
+                        color: colors[2]
+                    }],
+                    name: 'SO2',
+                    data: twelve_data_so2
+                }]
+            });
+{#            $('#other_SO2 div').width(standard_width);#}
+            $('#other_O3').highcharts({
+
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'rgba(80,81,95,0.1)',
+                },
+                title: {
+                    text: '今日O3监测值'
+                },
+                subtitle: {
+                    text: '来源：各站点平均值'
+                },
+                credits: false,
+                xAxis: {
+                    categories: twelve_data_hour,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'O3 (ug/m3)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    zones: [{
+                        value: 100,
+                        color: colors[1]
+                    }, {
+                        value: 150,
+                        color: colors[2]
+                    }],
+                    name: 'O3',
+                    data: twelve_data_o3
+                }]
+            });
+{#            $('#other_O3 div').width(standard_width);#}
+            $('#other_CO').highcharts({
+
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'rgba(80,81,95,0.1)',
+                },
+                title: {
+                    text: '今日CO监测值'
+                },
+                subtitle: {
+                    text: '来源：各站点平均值'
+                },
+                credits: false,
+                xAxis: {
+                    categories: twelve_data_hour,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'CO (ug/m3)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    zones: [{
+                        value: 100,
+                        color: colors[1]
+                    }, {
+                        value: 150,
+                        color: colors[2]
+                    }],
+                    name: 'CO',
+                    data: twelve_data_co
+                }]
+            });
+{#            $('#other_CO div').width(standard_width);#}
+            $('#other_NO2').highcharts({
+
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'rgba(80,81,95,0.1)',
+                },
+                title: {
+                    text: '今日NO2监测值'
+                },
+                subtitle: {
+                    text: '来源：各站点平均值'
+                },
+                credits: false,
+                xAxis: {
+                    categories: twelve_data_hour,
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'NO2 (ug/m3)'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    zones: [{
+                        value: 100,
+                        color: colors[1]
+                    }, {
+                        value: 150,
+                        color: colors[2]
+                    }],
+                    name: 'NO2',
+                    data: twelve_data_no2
+                }]
+            });
+{#            $('#other_NO2 div').width(standard_width);#}
         });
 
     </script>
