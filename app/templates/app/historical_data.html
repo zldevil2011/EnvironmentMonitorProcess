@@ -43,7 +43,7 @@
             <div class="clearfix" style="margin-top: 20px;">
                 <div class="col-md-12" style="width: 100%; height: auto !important; min-height: 30px;font-size: 14px;
                     background-color: #f0c36d; overflow: hidden;line-height: 30px;">
-                    <span class="">达标天数:10天    污染天数:8天    最高PM25:100    最低PM25:10</span>
+                    <span class="" name="other_today_historical"></span>
                 </div>
             </div>
             <div class="clearfix" style="margin-top: 20px;">
@@ -65,7 +65,9 @@
             <div class="clearfix" style="margin-top: 20px;">
                 <div class="col-md-12" style="width: 100%; height: auto !important; min-height: 30px;font-size: 14px;
                     background-color: #f0c36d; overflow: hidden;line-height: 30px;">
-                    <span class="">达标天数:10天    污染天数:8天    最高PM25:100    最低PM25:10</span>
+                    <span class="" name="other_week_historical" style="display: block;"></span>
+                    <span class="" name="other_month_historical" style="display: none;"></span>
+                    <span class="" name="other_year_historical" style="display: none;"></span>
                 </div>
             </div>
         </div>
@@ -132,6 +134,7 @@
             $(this).addClass("active").siblings().removeClass("active");
             var div_name = "other_" + $(this).attr("name") + "_historical";
             $("#" + div_name).css("display", "block").siblings().css("display","none");
+            $("[name=" + div_name + "]").css("display", "block").siblings().css("display","none");
         });
     </script>
     <script>
@@ -143,21 +146,32 @@
         $("[name=pm25_today_historical]").html("最低AQI: " + today_data.today_data_min_aqi.today_data_min_aqi_val +
                 " 日期: " + today_data.today_data_min_aqi.today_data_min_aqi_date + "  | 最高AQI: " + today_data.today_data_max_aqi.today_data_max_aqi_val +
                 " 日期: " + today_data.today_data_max_aqi.today_data_max_aqi_date);
+        $("[name=other_today_historical]").html("最低AQI: " + today_data.today_data_min_aqi.today_data_min_aqi_val +
+                " 日期: " + today_data.today_data_min_aqi.today_data_min_aqi_date + "  | 最高AQI: " + today_data.today_data_max_aqi.today_data_max_aqi_val +
+                " 日期: " + today_data.today_data_max_aqi.today_data_max_aqi_date);
 
         var week_data = data.week_data;
         var week_data_day = week_data.week_data_day;
         var week_data_data = week_data.week_data_data;
-
+        $("[name=other_week_historical]").html("最低AQI: " + week_data.week_data_min_aqi.week_data_min_aqi_val +
+                " 日期: " + week_data.week_data_min_aqi.week_data_min_aqi_date + "  | 最高AQI: " + week_data.week_data_max_aqi.week_data_max_aqi_val +
+                " 日期: " + week_data.week_data_max_aqi.week_data_max_aqi_date);
         var month_data = data.month_data;
         var month_data_day = month_data.month_data_day;
         var month_data_data = month_data.month_data_data;
         $("[name=pm25_month_historical]").html("最低AQI: " + month_data.month_data_min_aqi.month_data_min_aqi_val +
                 " 日期: " + month_data.month_data_min_aqi.month_data_min_aqi_date + "  | 最高AQI: " + month_data.month_data_max_aqi.month_data_max_aqi_val +
                 " 日期: " + month_data.month_data_max_aqi.month_data_max_aqi_date);
+        $("[name=other_month_historical]").html("最低AQI: " + month_data.month_data_min_aqi.month_data_min_aqi_val +
+                " 日期: " + month_data.month_data_min_aqi.month_data_min_aqi_date + "  | 最高AQI: " + month_data.month_data_max_aqi.month_data_max_aqi_val +
+                " 日期: " + month_data.month_data_max_aqi.month_data_max_aqi_date);
         var year_data = data.year_data;
         var year_data_month = year_data.year_data_month;
         var year_data_data = year_data.year_data_data;
         $("[name=pm25_year_historical]").html("最低AQI: " + year_data.year_data_min_aqi.year_data_min_aqi_val +
+                " 日期: " + year_data.year_data_min_aqi.year_data_min_aqi_date + "  | 最高AQI: " + year_data.year_data_max_aqi.year_data_max_aqi_val +
+                " 日期: " + year_data.year_data_max_aqi.year_data_max_aqi_date);
+        $("[name=other_year_historical]").html("最低AQI: " + year_data.year_data_min_aqi.year_data_min_aqi_val +
                 " 日期: " + year_data.year_data_min_aqi.year_data_min_aqi_date + "  | 最高AQI: " + year_data.year_data_max_aqi.year_data_max_aqi_val +
                 " 日期: " + year_data.year_data_max_aqi.year_data_max_aqi_date);
         $(function () {
