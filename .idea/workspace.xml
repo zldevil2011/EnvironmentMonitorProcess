@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ae365bb0-7d81-4613-ad4a-5ae987cbd3b2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/index.py" afterPath="$PROJECT_DIR$/app/views/index.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/objects/AqiParameter.py" afterPath="$PROJECT_DIR$/app/views/objects/AqiParameter.py" />
     </list>
     <ignored path="EMP.iws" />
@@ -18,7 +17,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/EMP$mySqlUtils.coverage" NAME="mySqlUtils Coverage Results" MODIFIED="1479646878744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/views/utils" />
-    <SUITE FILE_PATH="coverage/EMP$AqiParameter.coverage" NAME="AqiParameter Coverage Results" MODIFIED="1479736531859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/views/objects" />
+    <SUITE FILE_PATH="coverage/EMP$AqiParameter.coverage" NAME="AqiParameter Coverage Results" MODIFIED="1479776019109" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/views/objects" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -35,7 +34,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-330">
+            <state relative-caret-position="135">
               <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
               <folding>
                 <marker date="1479627644000" expanded="false" signature="8791:8825" ph="..." />
@@ -87,7 +86,7 @@
       <file leaf-file-name="mySqlUtils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/utils/mySqlUtils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
+            <state relative-caret-position="165">
               <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
               <folding>
                 <marker date="1479736793000" expanded="true" signature="1705:1731" ph="INSERT INTO EMPLOYEE... " />
@@ -119,8 +118,8 @@
       <file leaf-file-name="AqiParameter.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/objects/AqiParameter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="31" column="78" selection-start-line="31" selection-start-column="78" selection-end-line="31" selection-end-column="78" />
+            <state relative-caret-position="146">
+              <caret line="131" column="74" selection-start-line="131" selection-start-column="74" selection-end-line="131" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -184,7 +183,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="713" />
+    <option name="height" value="720" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -571,7 +570,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="713" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="720" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22778675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -584,7 +583,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43961352" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4363929" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43630573" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -603,15 +602,15 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43961352" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22778675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43961352" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22778675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4363929" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43630573" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -884,7 +883,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -892,40 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="61" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
-          <folding>
-            <element signature="e#152#186#0#HTML" expanded="false" />
-            <marker date="1479625215000" expanded="false" signature="4202:4231" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="4416:4439" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="4560:4583" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="4704:4727" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="4848:4871" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="4992:5015" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5136:5159" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5280:5303" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5424:5447" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5568:5591" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5712:5735" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5856:5879" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6000:6023" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6144:6167" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6288:6311" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6432:6455" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6576:6599" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6720:6743" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6864:6887" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7008:7031" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7152:7175" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7296:7319" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7440:7463" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7584:7607" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7728:7751" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7872:7895" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="8016:8039" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="8160:8183" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="8304:8327" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="8448:8471" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="8592:8615" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -933,28 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1740">
           <caret line="116" column="86" selection-start-line="116" selection-start-column="63" selection-end-line="116" selection-end-column="86" />
-          <folding>
-            <element signature="e#490#524#0#HTML" expanded="true" />
-            <element signature="e#10363#10397#0#HTML" expanded="true" />
-            <element signature="e#10463#10485#0#HTML" expanded="true" />
-            <marker date="1479625257000" expanded="false" signature="15559:15603" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="15737:15781" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="15915:15959" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="16093:16137" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="16271:16315" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="16449:16493" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="16627:16671" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="16805:16849" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="16983:17027" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="17161:17205" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="17339:17383" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="17517:17561" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="17695:17739" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="17873:17917" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="18051:18095" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="18229:18273" ph="..." />
-            <marker date="1479625257000" expanded="false" signature="18576:18659" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -962,16 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="70" selection-start-line="17" selection-start-column="70" selection-end-line="17" selection-end-column="70" />
-          <folding>
-            <element signature="e#152#186#0#HTML" expanded="true" />
-            <element signature="e#520#554#0#HTML" expanded="true" />
-            <element signature="e#604#626#0#HTML" expanded="true" />
-            <element signature="e#685#707#0#HTML" expanded="true" />
-            <element signature="e#766#788#0#HTML" expanded="true" />
-            <element signature="e#845#867#0#HTML" expanded="true" />
-            <element signature="e#924#946#0#HTML" expanded="true" />
-            <element signature="e#1007#1029#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -979,7 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1185">
           <caret line="82" column="18" selection-start-line="82" selection-start-column="18" selection-end-line="82" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -987,9 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1004,7 +932,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1019,7 +946,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="70" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1033,7 +959,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-330">
+        <state relative-caret-position="135">
           <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
           <folding>
             <marker date="1479627644000" expanded="false" signature="8791:8825" ph="..." />
@@ -1091,7 +1017,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/utils/mySqlUtils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
+        <state relative-caret-position="165">
           <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
           <folding>
             <marker date="1479736793000" expanded="true" signature="1705:1731" ph="INSERT INTO EMPLOYEE... " />
@@ -1101,8 +1027,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/objects/AqiParameter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="31" column="78" selection-start-line="31" selection-start-column="78" selection-end-line="31" selection-end-column="78" />
+        <state relative-caret-position="146">
+          <caret line="131" column="74" selection-start-line="131" selection-start-column="74" selection-end-line="131" selection-end-column="74" />
           <folding />
         </state>
       </provider>
