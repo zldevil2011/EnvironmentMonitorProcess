@@ -5,6 +5,7 @@ from dss.Serializer import serializer
 import json
 from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
+from objects.AqiParameter import AqiParameter
 
 
 def historical_device(request):
@@ -31,6 +32,12 @@ def historical_device(request):
 		"device_list": device_list,
 		"device_list_data": json.dumps(device_list),
 	})
+
+
+def get_aqi(data):
+	cal = AqiParameter()
+	cal.get_1_aqi(data)
+	return cal.AQI_1
 
 
 def historical_data(request):
@@ -76,13 +83,13 @@ def historical_data(request):
 		 "time": "2016-11-22 03:57:00"},
 		{"name": u"京师方圆", "so2": 192, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
 		 "time": "2016-11-22 02:13:00"},
-		{"name": u"京师方圆", "so2": 202, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+		{"name": u"京师方圆", "so2": 202, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 12,
 		 "time": "2016-11-22 01:35:00"},
-		{"name": u"京师方圆", "so2": 22, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+		{"name": u"京师方圆", "so2": 22, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 12,
 		 "time": "2016-11-22 00:57:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 10, "co": 2, "o3": 33, "pm25": 12,
 		 "time": "2016-11-21 23:13:00"},
-		{"name": u"京师方圆", "so2": 42, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+		{"name": u"京师方圆", "so2": 42, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 12,
 		 "time": "2016-11-21 22:35:00"},
 	]
 	# 计算今日数据
@@ -92,6 +99,8 @@ def historical_data(request):
 	print time_now
 	today_data = {}
 	today_data_hour = []
+	today_data_min_aqi = {"today_data_min_aqi_date": "", "today_data_min_aqi_val": 0}
+	today_data_max_aqi = {"today_data_max_aqi_date": "", "today_data_max_aqi_val": 0}
 	today_data_data = {"so2": [], "no2": [], "pm10": [], "co": [], "o3": [], "pm25": []}
 	factors = ["so2", "no2", "pm10", "co", "o3", "pm25"]
 	for i in range(1, time_now_hour + 1):
@@ -102,19 +111,33 @@ def historical_data(request):
 			factor_sum = 0
 			factor_num = 0
 			for data in datas_list_all:
+				aqi = get_aqi(data)
 				time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 				if time_start <= time < time_end:
 					factor_sum += data[factor]
 					factor_num += 1
+					if today_data_min_aqi["today_data_min_aqi_val"] == 0:
+						today_data_min_aqi["today_data_min_aqi_val"] = aqi
+						today_data_min_aqi["today_data_min_aqi_date"] = data["time"]
+					elif aqi < today_data_min_aqi["today_data_min_aqi_val"]:
+						today_data_min_aqi["today_data_min_aqi_val"] = aqi
+						today_data_min_aqi["today_data_min_aqi_date"] = data["time"]
+					if aqi > today_data_max_aqi["today_data_max_aqi_val"]:
+						today_data_max_aqi["today_data_max_aqi_val"] = aqi
+						today_data_max_aqi["today_data_max_aqi_date"] = data["time"]
 			try:
 				today_data_data[factor].append(factor_sum / factor_num)
 			except:
 				today_data_data[factor].append(0)
 	today_data["today_data_hour"] = today_data_hour
 	today_data["today_data_data"] = today_data_data
+	today_data["today_data_min_aqi"] = today_data_min_aqi
+	today_data["today_data_max_aqi"] = today_data_max_aqi
 	# 计算一周日平均数据
 	week_data = {}
 	week_data_day = []
+	week_data_min_aqi = {"week_data_min_aqi_date": "", "week_data_min_aqi_val": 0}
+	week_data_max_aqi = {"week_data_max_aqi_date": "", "week_data_max_aqi_val": 0}
 	week_data_data = {"so2": [], "no2": [], "pm10": [], "co": [], "o3": [], "pm25": []}
 	factors = ["so2", "no2", "pm10", "co", "o3", "pm25"]
 	for i in range(7):
@@ -125,10 +148,20 @@ def historical_data(request):
 			factor_sum = 0
 			factor_num = 0
 			for data in datas_list_all:
+				aqi = get_aqi(data)
 				time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 				if time_start <= time < time_end:
 					factor_sum += data[factor]
 					factor_num += 1
+					if week_data_min_aqi["week_data_min_aqi_val"] == 0:
+						week_data_min_aqi["week_data_min_aqi_val"] = aqi
+						week_data_min_aqi["week_data_min_aqi_date"] = data["time"]
+					elif aqi < week_data_min_aqi["week_data_min_aqi_val"]:
+						week_data_min_aqi["week_data_min_aqi_val"] = aqi
+						week_data_min_aqi["week_data_min_aqi_date"] = data["time"]
+					if aqi > week_data_max_aqi["week_data_max_aqi_val"]:
+						week_data_max_aqi["week_data_max_aqi_val"] = aqi
+						week_data_max_aqi["week_data_max_aqi_date"] = data["time"]
 			try:
 				week_data_data[factor].append(factor_sum / factor_num)
 			except:
@@ -138,11 +171,15 @@ def historical_data(request):
 	for factor in factors:
 		week_data_data[factor].reverse()
 	week_data["week_data_data"] = week_data_data
+	week_data["week_data_min_aqi"] = week_data_min_aqi
+	week_data["week_data_max_aqi"] = week_data_max_aqi
 	# 计算当月日平均
 	import time
 	time_now_day = time.localtime(time.time()).tm_mday
 	month_data = {}
 	month_data_day = []
+	month_data_min_aqi = {"month_data_min_aqi_date": "", "month_data_min_aqi_val": 0}
+	month_data_max_aqi = {"month_data_max_aqi_date": "", "month_data_max_aqi_val": 0}
 	month_data_data = {"so2": [], "no2": [], "pm10": [], "co": [], "o3": [], "pm25": []}
 	factors = ["so2", "no2", "pm10", "co", "o3", "pm25"]
 	for i in range(1,time_now_day+1):
@@ -153,21 +190,35 @@ def historical_data(request):
 			factor_sum = 0
 			factor_num = 0
 			for data in datas_list_all:
+				aqi = get_aqi(data)
 				time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 				if time_start <= time < time_end:
 					factor_sum += data[factor]
 					factor_num += 1
+					if month_data_min_aqi["month_data_min_aqi_val"] == 0:
+						month_data_min_aqi["month_data_min_aqi_val"] = aqi
+						month_data_min_aqi["month_data_min_aqi_date"] = data["time"]
+					elif aqi < month_data_min_aqi["month_data_min_aqi_val"]:
+						month_data_min_aqi["month_data_min_aqi_val"] = aqi
+						month_data_min_aqi["month_data_min_aqi_date"] = data["time"]
+					if aqi > month_data_max_aqi["month_data_max_aqi_val"]:
+						month_data_max_aqi["month_data_max_aqi_val"] = aqi
+						month_data_max_aqi["month_data_max_aqi_date"] = data["time"]
 			try:
 				month_data_data[factor].append(factor_sum / factor_num)
 			except:
 				month_data_data[factor].append(0)
 	month_data["month_data_day"] = month_data_day
 	month_data["month_data_data"] = month_data_data
+	month_data["month_data_min_aqi"] = month_data_min_aqi
+	month_data["month_data_max_aqi"] = month_data_max_aqi
 	# 计算当年月平均
 	import time
 	time_now_month = time.localtime(time.time()).tm_mon
 	year_data = {}
 	year_data_month = []
+	year_data_min_aqi = {"year_data_min_aqi_date": "", "year_data_min_aqi_val": 0}
+	year_data_max_aqi = {"year_data_max_aqi_date": "", "year_data_max_aqi_val": 0}
 	year_data_data = {"so2": [], "no2": [], "pm10": [], "co": [], "o3": [], "pm25": []}
 	factors = ["so2", "no2", "pm10", "co", "o3", "pm25"]
 	for i in range(1, time_now_month + 1):
@@ -180,17 +231,28 @@ def historical_data(request):
 			factor_sum = 0
 			factor_num = 0
 			for data in datas_list_all:
+				aqi = get_aqi(data)
 				time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 				if time_start <= time < time_end:
 					factor_sum += data[factor]
 					factor_num += 1
+					if year_data_min_aqi["year_data_min_aqi_val"] == 0:
+						year_data_min_aqi["year_data_min_aqi_val"] = aqi
+						year_data_min_aqi["year_data_min_aqi_date"] = data["time"]
+					elif aqi < year_data_min_aqi["year_data_min_aqi_val"]:
+						year_data_min_aqi["year_data_min_aqi_val"] = aqi
+						year_data_min_aqi["year_data_min_aqi_date"] = data["time"]
+					if aqi > year_data_max_aqi["year_data_max_aqi_val"]:
+						year_data_max_aqi["year_data_max_aqi_val"] = aqi
+						year_data_max_aqi["year_data_max_aqi_date"] = data["time"]
 			try:
 				year_data_data[factor].append(factor_sum / factor_num)
 			except:
 				year_data_data[factor].append(0)
 	year_data["year_data_month"] = year_data_month
 	year_data["year_data_data"] = year_data_data
-
+	year_data["year_data_min_aqi"] = year_data_min_aqi
+	year_data["year_data_max_aqi"] = year_data_max_aqi
 	data = {}
 	data["today_data"] = today_data
 	data["week_data"] = week_data
