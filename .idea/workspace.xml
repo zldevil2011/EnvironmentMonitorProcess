@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ae365bb0-7d81-4613-ad4a-5ae987cbd3b2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/historical_device_list.html" afterPath="$PROJECT_DIR$/app/templates/app/historical_device_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/historical_data.html" afterPath="$PROJECT_DIR$/app/templates/app/historical_data.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/historical.py" afterPath="$PROJECT_DIR$/app/views/historical.py" />
     </list>
     <ignored path="EMP.iws" />
@@ -36,17 +36,17 @@
         <entry file="file://$PROJECT_DIR$/app/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
-              <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="historical.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="historical.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/historical.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="10" column="77" selection-start-line="10" selection-start-column="77" selection-end-line="10" selection-end-column="77" />
+            <state relative-caret-position="285">
+              <caret line="182" column="16" selection-start-line="182" selection-start-column="16" selection-end-line="182" selection-end-column="16" />
               <folding>
                 <element signature="e#15#86#0" expanded="true" />
               </folding>
@@ -54,12 +54,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="historical_device_list.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/templates/app/historical_device_list.html">
+      <file leaf-file-name="historical_data.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/app/historical_data.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="681">
-              <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
-              <folding />
+            <state relative-caret-position="216">
+              <caret line="112" column="34" selection-start-line="112" selection-start-column="34" selection-end-line="112" selection-end-column="34" />
+              <folding>
+                <element signature="e#152#186#0#HTML" expanded="true" />
+                <element signature="e#3176#3206#0#HTML" expanded="true" />
+                <marker date="1479796583000" expanded="false" signature="4203:4232" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="4417:4440" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="4561:4584" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="4705:4728" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="4849:4872" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="4993:5016" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="5137:5160" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="5281:5304" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="5425:5448" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="5569:5592" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="5713:5736" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="5857:5880" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="6001:6024" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="6145:6168" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="6289:6312" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="6433:6456" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="6577:6600" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="6721:6744" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="6865:6888" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="7009:7032" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="7153:7176" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="7297:7320" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="7441:7464" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="7585:7608" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="7729:7752" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="7873:7896" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="8017:8040" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="8161:8184" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="8305:8328" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="8449:8472" ph="..." />
+                <marker date="1479796583000" expanded="false" signature="8593:8616" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,8 +101,8 @@
       <file leaf-file-name="index.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/index.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="34" column="40" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="40" />
+            <state relative-caret-position="450">
+              <caret line="118" column="54" selection-start-line="117" selection-start-column="4" selection-end-line="118" selection-end-column="54" />
               <folding>
                 <element signature="e#15#86#0" expanded="true" />
               </folding>
@@ -109,7 +143,6 @@
         <option value="$PROJECT_DIR$/static/app/css/emp.css" />
         <option value="$PROJECT_DIR$/app/views/utils/get_news_list.py" />
         <option value="$PROJECT_DIR$/app/templates/app/base.html" />
-        <option value="$PROJECT_DIR$/app/templates/app/historical_data.html" />
         <option value="$PROJECT_DIR$/app/templates/app/stations.html" />
         <option value="$PROJECT_DIR$/app/templates/app/information.html" />
         <option value="$PROJECT_DIR$/app/views/objects/__init__.py" />
@@ -120,8 +153,9 @@
         <option value="$PROJECT_DIR$/EMP/settings.py" />
         <option value="$PROJECT_DIR$/app/views/index.py" />
         <option value="$PROJECT_DIR$/app/templates/app/index.html" />
-        <option value="$PROJECT_DIR$/app/views/historical.py" />
         <option value="$PROJECT_DIR$/app/templates/app/historical_device_list.html" />
+        <option value="$PROJECT_DIR$/app/templates/app/historical_data.html" />
+        <option value="$PROJECT_DIR$/app/views/historical.py" />
       </list>
     </option>
   </component>
@@ -554,7 +588,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280255" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43949044" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22778675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22778675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -810,47 +844,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/historical_data.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="61" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
-          <folding>
-            <element signature="e#152#186#0#HTML" expanded="false" />
-            <marker date="1479625215000" expanded="false" signature="4202:4231" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="4416:4439" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="4560:4583" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="4704:4727" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="4848:4871" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="4992:5015" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5136:5159" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5280:5303" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5424:5447" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5568:5591" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5712:5735" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="5856:5879" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6000:6023" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6144:6167" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6288:6311" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6432:6455" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6576:6599" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6720:6743" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="6864:6887" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7008:7031" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7152:7175" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7296:7319" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7440:7463" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7584:7607" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7728:7751" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="7872:7895" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="8016:8039" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="8160:8183" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="8304:8327" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="8448:8471" ph="..." />
-            <marker date="1479625215000" expanded="false" signature="8592:8615" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/app/stations.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1740">
@@ -1040,39 +1033,81 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/historical_device_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="681">
+          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/index.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="34" column="40" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="40" />
+        <state relative-caret-position="450">
+          <caret line="118" column="54" selection-start-line="117" selection-start-column="4" selection-end-line="118" selection-end-column="54" />
           <folding>
             <element signature="e#15#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/historical_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="112" column="34" selection-start-line="112" selection-start-column="34" selection-end-line="112" selection-end-column="34" />
+          <folding>
+            <element signature="e#152#186#0#HTML" expanded="true" />
+            <element signature="e#3176#3206#0#HTML" expanded="true" />
+            <marker date="1479796583000" expanded="false" signature="4203:4232" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="4417:4440" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="4561:4584" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="4705:4728" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="4849:4872" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="4993:5016" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="5137:5160" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="5281:5304" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="5425:5448" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="5569:5592" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="5713:5736" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="5857:5880" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="6001:6024" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="6145:6168" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="6289:6312" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="6433:6456" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="6577:6600" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="6721:6744" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="6865:6888" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="7009:7032" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="7153:7176" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="7297:7320" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="7441:7464" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="7585:7608" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="7729:7752" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="7873:7896" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="8017:8040" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="8161:8184" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="8305:8328" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="8449:8472" ph="..." />
+            <marker date="1479796583000" expanded="false" signature="8593:8616" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/historical.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="77" selection-start-line="10" selection-start-column="77" selection-end-line="10" selection-end-column="77" />
+        <state relative-caret-position="285">
+          <caret line="182" column="16" selection-start-line="182" selection-start-column="16" selection-end-line="182" selection-end-column="16" />
           <folding>
             <element signature="e#15#86#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/historical_device_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
