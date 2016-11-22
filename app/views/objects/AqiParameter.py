@@ -25,18 +25,18 @@ class AqiParameter(object):
 		self.start_point = [400,300,200,150,100,50,0]
 		self.AQI_info_24 = {}
 		self.AQI_info_1 = {}
-		self.AQI_info_standard = [{"val":0, "level": "一级", "classification": "优", "health": "空气质量令人满意，基本无空气污染", "step": "各类人群可正常活动"},
-								  {"val": 50, "level": "二级", "classification": "良", "health": "空气质量可接受，但某些污染物可能对极少数异常敏感人群健康有较弱影响",
+		self.AQI_info_standard = [{"val":0, "level_no": 1, "level": "一级", "classification": "优", "health": "空气质量令人满意，基本无空气污染", "step": "各类人群可正常活动"},
+								  {"val": 50, "level_no": 2, "level": "二级", "classification": "良", "health": "空气质量可接受，但某些污染物可能对极少数异常敏感人群健康有较弱影响",
 								   "step": "极少数异常敏感人群应减少户外活动"},
-								  {"val": 100, "level": "三级", "classification": "轻度污染","health": "易感人群症状有轻度加剧，健康人群出现刺激状况",
+								  {"val": 100, "level_no": 3, "level": "三级", "classification": "轻度污染","health": "易感人群症状有轻度加剧，健康人群出现刺激状况",
 								   "step": "儿童，老年人及心脏病，呼吸系统疾病患者应减少长时间，高强度的户外训练"},
-								  {"val": 150, "level": "四级", "classification": "中度污染",
+								  {"val": 150, "level_no": 4, "level": "四级", "classification": "中度污染",
 								   "health": "进一步加剧易感人群症状，可能对健康人群心脏，呼吸系统有影响",
 								   "step": "儿童，老年人及心脏病，呼吸系统疾病患者避免长时间，高强度的户外训练，一般人群适量减少户外运动"},
-								  {"val": 200, "level": "五级", "classification": "重度污染",
+								  {"val": 200, "level_no": 5, "level": "五级", "classification": "重度污染",
 								   "health": "心脏病和肺病患者症状显著加剧，运动耐受力降低，健康人群普遍出现症状",
 								   "step": "儿童，老年人及心脏病，呼吸系统疾病患者应停留在室内，停止户外运动，一般人群减少户外运动"},
-								  {"val": 300, "level": "六级", "classification": "严重污染",
+								  {"val": 300, "level_no": 6, "level": "六级", "classification": "严重污染",
 								   "health": "健康人群运动耐受力降低，有明显强烈症状，提前出现某些疾病",
 								   "step": "儿童，老年人和病人应当留在室内，避免体力消耗，一般人群应避免户外运动"}
 								  ]
@@ -68,15 +68,15 @@ class AqiParameter(object):
 			val = data[key]
 			for i in range(len(self.fix_value_1)):
 				if self.fix_value_1[i].keys()[0] == key:
-					print self.fix_value_1[i]
+					# print self.fix_value_1[i]
 					level_data = self.fix_value_1[i].values()[0]
 					cnt = -1
 					level_data.reverse()
 					for level in level_data:
 						cnt += 1
 						if val > level["level"]:
-							print level
-							print self.start_point[cnt]
+							# print level
+							# print self.start_point[cnt]
 							iaqi = round((val - level["level"]) * level["value"] + self.start_point[cnt])
 							self.IAQI_1.append(iaqi)
 							break
@@ -98,6 +98,7 @@ class AqiParameter(object):
 		self.Main_Pollute_1 = max_name
 		for x in self.AQI_info_standard:
 			if self.AQI_1 > x["val"]:
+				self.AQI_info_1["level_no"] = x["level_no"]
 				self.AQI_info_1["level"] = x["level"]
 				self.AQI_info_1["classification"] = x["classification"]
 				self.AQI_info_1["health"] = x["health"]
@@ -120,6 +121,7 @@ class AqiParameter(object):
 		self.AQI_24 = max(self.IAQI_24)
 		for x in self.AQI_info_standard:
 			if self.AQI_24 > x["val"]:
+				self.AQI_info_24["level_no"] = x["level_no"]
 				self.AQI_info_24["level"] = x["level"]
 				self.AQI_info_24["classification"] = x["classification"]
 				self.AQI_info_24["health"] = x["health"]

@@ -32,7 +32,7 @@
             <div class="col-md-8">
                 <div class="col-md-4" style="margin: 0 auto;">
                     <div id="circle" style="text-align: center; line-height: 150px;display: inline-block;">
-                        <p style="font-size: 18px;">187</p>
+                        <p style="font-size: 18px;">{{ average_data.AQI_1 }}</p>
                     </div>
                     <div style="display: inline-block; height: 30px;line-height: 30px;margin-left: -35px;background-color: #ffffff;">
                         <p style="font-size: 16px;">AQI指数</p>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-4" style="margin: 0 auto;">
                     <div id="circle" style="text-align: center; line-height: 150px;display: inline-block;">
-                        <p style="font-size: 18px;">PM25</p>
+                        <p style="font-size: 18px;">{{ average_data.Main_Pollute_1 }}</p>
                     </div>
                     <div style="display: inline-block; height: 30px;line-height: 30px;margin-left: -49px;background-color: #ffffff;">
                         <p style="font-size: 16px;">首要污染物</p>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-md-4" style="margin: 0 auto;">
                     <div id="circle" style="text-align: center; line-height: 150px;display: inline-block;">
-                        <p style="font-size: 18px;">64ug</p>
+                        <p style="font-size: 18px;">{{ average_data.pm25 }}</p>
                     </div>
                     <div style="display: inline-block; height: 30px;line-height: 30px;margin-left: -49px;background-color: #ffffff;">
                         <p style="font-size: 16px;">PM2.5浓度</p>
@@ -62,7 +62,7 @@
                     0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;150&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;200&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;300&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500
                 </div>
                 <div class="cbor_gauge_num" style="font-size: 12px;opacity: 0.5;padding-top: 5px;">
-                    <span style="color:#ea9d0c;"><b>良</b></span>
+                    <span class = "level{{ average_data.AQI_info_1.level_no }}_color"><b>{{ average_data.AQI_info_1.classification }}</b></span>
                 </div>
             </div>
         </div>
@@ -83,21 +83,23 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
-                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>
+                        {% for data in data_real_time %}
+                            <tr><td>{{ data.name }}</td><td>{{ data.Main_Pollute_1 }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td></tr>
+                        {% endfor %}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
                     </tbody>
                 </table>
             </div>

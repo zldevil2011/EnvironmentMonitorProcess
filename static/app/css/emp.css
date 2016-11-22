@@ -33,14 +33,49 @@
 .li-tab .active{
     background: #0f7777;
 }
-.level1{
+.level1,.level2,.level3,.level4,.level5,.level6{
     width: 30px;
     height: 15px;
     border: 1px solid #FFFFFF;
-    background: #00e400;
     display: inline-flex;
     margin-left: 3px;
     margin-top: 6px;
+}
+.level1{
+    background: #00e400;
+}
+.level2{
+    background: #f6e200;
+}
+.level3{
+    background: #fb890f;
+}
+.level4{
+    background: #df2c00;
+}
+.level5{
+    background: #b414bb;
+}
+.level6{
+    background: #6f0474;
+}
+.level1_color{
+    color: #00e400;
+}
+.level2_color{
+    color: #f6e200;
+}
+.level3_color{
+    color: #fb890f;
+}
+.level4_color{
+    color: #df2c00;
+}
+.level5_color{
+    color: #b414bb;
+}
+.level6_color{
+    color: #6f0474;
 }
 .table-td-center tr td{
     vertical-align: middle !important;
