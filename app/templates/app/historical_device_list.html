@@ -19,25 +19,10 @@
                     </tr>
                 </thead>
                 <tbody class="tr_hander">
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
-                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>
+                    {% for device in device_list %}
+                        <tr onclick="window.location.href='/historical_device_data/{{ device.id }}'"><td>{{ device.name }}</td><td>{{ device.address }}</td><td>{{ device.longitude }}</td><td>{{ device.latitude }}</td><td>{{ device.latest_time }}</td><td>{{ device.install_time }}</td></tr>
+                    {% endfor %}
+{#                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>#}
                 </tbody>
             </table>
         </div>
@@ -52,26 +37,51 @@
     <script type="text/javascript" src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>
     <script>
         var map = new BMap.Map("map");          // 创建地图实例
-        var point = new BMap.Point(117.533683,30.699859);  // 创建点坐标
-        var sContent =
-        "<div><h4>张家湾</h4>" +
-        "<h4>PM2.5:77</h4>" +
-        "<h4>SO2:66</h4>" +
-        "<h4>PM10:77</h4>" +
-        "<h4>AQI:123<a href='/historical_device_data/'>查看历史数据</a></h4>" +
-        "</div>";
-        var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-        var marker = new BMap.Marker(point);
-        map.addOverlay(marker);
-        marker.addEventListener("click", function(){
-{#            lushu.start();#}
-            this.openInfoWindow(infoWindow);
-            //图片加载完毕重绘infowindow
-            document.getElementById('imgDemo').onload = function (){
-               infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+        var device_list_data = {{ device_list_data | safe}};
+        console.log(device_list_data);
+        console.log(typeof(device_list_data));
+        var markerArr = new Array();
+        var infoWindowArr = new Array();
+        for(var i = 0; i < device_list_data.length; ++i) {
+            console.log(device_list_data[i].name);
+            var data = device_list_data[i];
+            var point = new BMap.Point(data.longitude, data.latitude);  // 创建点坐标
+            var sContent =
+                    "<div><h4>" + data.name + "</h4>" +
+                    "<h4>PM2.5:" + data.pm25 + "</h4>" +
+                    "<h4>SO2:" + data.so2 + "</h4>" +
+                    "<h4>PM10:" + data.pm10 + "</h4>" +
+                    "<h4>AQI:" + data.AQI + "<a href='/historical_device_data/" + data.id + "'>查看历史数据</a></h4>" +
+                    "</div>";
+            var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+            var marker = new BMap.Marker(point);
+            infoWindowArr.push(infoWindow);
+            markerArr.push(marker);
+{#            map.addOverlay(marker);#}
+{#            marker.addEventListener("click", function () {#}
+{#                            lushu.start();#}
+{#                this.openInfoWindow(infoWindow);#}
+{#                //图片加载完毕重绘infowindow#}
+{#                document.getElementById('imgDemo').onload = function () {#}
+{#                    infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏#}
+{#                }#}
+{#            });#}
+        }
+
+        for(var i = 0; i < infoWindowArr.length; ++i){
+            map.addOverlay(markerArr[i]);
+            var ope = new markerClick(i);
+            markerArr[i].addEventListener("click", ope.clickFunc);
+        }
+        function markerClick(i){
+            this.clickFunc = function() {
+                console.log(i);
+                this.openInfoWindow(infoWindowArr[i]);
             }
-        });
+        }
+
 {#        marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画#}
+
         map.addControl(new BMap.NavigationControl());
         map.addControl(new BMap.ScaleControl());
         map.addControl(new BMap.OverviewMapControl());
