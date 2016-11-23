@@ -18,5 +18,6 @@ def admin_index(request):
 		return HttpResponse("创建失败" + str(e))
 	return render(request, "admin/admin_index.html", {
 		"form": form,
+		"adminer": adminer,
 	})
 	# form = ItemUEditorModelForm(instance=item)

@@ -13,5 +13,6 @@ def admin_data(request):
 	except:
 		return HttpResponseRedirect("/admin_login/")
 	return render(request, "admin/admin_data.html", {
+		"adminer": adminer
 	})
 	# form = ItemUEditorModelForm(instance=item)
