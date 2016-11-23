@@ -42,8 +42,11 @@ def get_aqi(data):
 	return cal.AQI_1
 
 
-def historical_data(request):
-	device = {"id":1, "name": "京师方圆"}
+def historical_data(request,device_id):
+	try:
+		device = {"id": 1, "name": "京师方圆"}
+	except:
+		return HttpResponse("没有数据")
 	datas_list_all = [
 		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
 		 "time": "2016-11-22 12:00:00"},

@@ -11,7 +11,7 @@ urlpatterns = [
 	url(r'^index/$', index, name="welcome"),
 	url(r'^station/$', station, name="station"),
 	url(r'^historical_device/$', historical_device, name="historical_device"),
-	url(r'^historical_device_data/$', historical_data, name="historical_data"),
+	url(r'^historical_device_data/(?P<device_id>\d+)/$', historical_data, name="historical_data"),
 	url(r'^information/$', information, name="information")
 ]
 
