@@ -32,30 +32,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="admin_index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/admin/admin_index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <marker date="1479894728000" expanded="false" signature="232:246" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="admin_data.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/admin/admin_data.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="184" column="44" selection-start-line="184" selection-start-column="44" selection-end-line="184" selection-end-column="44" />
+            <state relative-caret-position="171">
+              <caret line="254" column="28" selection-start-line="254" selection-start-column="28" selection-end-line="254" selection-end-column="28" />
               <folding>
-                <marker date="1479895739000" expanded="false" signature="1207:1285" ph="..." />
-                <marker date="1479895739000" expanded="false" signature="1345:1364" ph="..." />
-                <marker date="1479895739000" expanded="false" signature="6621:6699" ph="..." />
-                <marker date="1479895739000" expanded="false" signature="6759:6778" ph="..." />
+                <marker date="1479896865000" expanded="false" signature="1207:1285" ph="..." />
+                <marker date="1479896865000" expanded="false" signature="1345:1364" ph="..." />
+                <marker date="1479896865000" expanded="false" signature="11432:11510" ph="..." />
+                <marker date="1479896865000" expanded="false" signature="11570:11589" ph="..." />
               </folding>
             </state>
           </provider>
@@ -64,103 +50,8 @@
       <file leaf-file-name="admin_data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/admin_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="41" column="21" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="21" />
-              <folding>
-                <element signature="e#15#86#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/index.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="14" column="5" selection-start-line="11" selection-start-column="4" selection-end-line="14" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="station.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/station.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3165">
-              <caret line="217" column="36" selection-start-line="217" selection-start-column="36" selection-end-line="217" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="historical.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/historical.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="15" column="5" selection-start-line="12" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/app/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="367" column="53" selection-start-line="359" selection-start-column="8" selection-end-line="367" selection-end-column="53" />
-              <folding>
-                <element signature="e#1231#1255#0#HTML" expanded="true" />
-                <marker date="1479892797000" expanded="false" signature="10182:10216" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="10402:10421" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="11856:11899" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="12202:12219" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="12538:12605" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="12689:12711" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="12781:12803" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="12872:12894" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="12963:12985" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="13055:13077" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="13199:13254" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="13914:13937" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="14058:14081" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="14202:14225" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="14346:14369" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="14490:14513" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="14634:14657" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="14778:14801" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="14922:14945" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="15066:15089" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="15210:15233" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="15354:15377" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="15498:15521" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="15642:15665" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="15786:15809" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="15930:15953" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="16074:16097" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="16218:16241" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="16362:16385" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="16506:16529" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="16650:16673" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="16794:16817" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="16938:16961" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="17082:17105" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="17226:17249" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="17370:17393" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="17514:17537" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="17658:17681" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="17802:17825" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="17946:17969" ph="..." />
-                <marker date="1479892797000" expanded="false" signature="18090:18113" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin_index.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/admin_index.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="22" column="33" selection-start-line="16" selection-start-column="4" selection-end-line="22" selection-end-column="33" />
+            <state relative-caret-position="375">
+              <caret line="39" column="21" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="21" />
               <folding>
                 <element signature="e#15#86#0" expanded="true" />
               </folding>
@@ -262,7 +153,56 @@
     <panes>
       <pane id="Scope" />
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EMP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
       <pane id="Scratches" />
     </panes>
@@ -624,7 +564,7 @@
     <frame x="0" y="23" width="1280" height="720" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23101777" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23101777" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290938" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -654,7 +594,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280255" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43949044" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23101777" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23101777" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32961783" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1184,8 +1124,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="41" column="21" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="21" />
+        <state relative-caret-position="375">
+          <caret line="39" column="21" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="21" />
           <folding>
             <element signature="e#15#86#0" expanded="true" />
           </folding>
@@ -1194,13 +1134,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/admin/admin_data.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="184" column="44" selection-start-line="184" selection-start-column="44" selection-end-line="184" selection-end-column="44" />
+        <state relative-caret-position="171">
+          <caret line="254" column="28" selection-start-line="254" selection-start-column="28" selection-end-line="254" selection-end-column="28" />
           <folding>
-            <marker date="1479895739000" expanded="false" signature="1207:1285" ph="..." />
-            <marker date="1479895739000" expanded="false" signature="1345:1364" ph="..." />
-            <marker date="1479895739000" expanded="false" signature="6621:6699" ph="..." />
-            <marker date="1479895739000" expanded="false" signature="6759:6778" ph="..." />
+            <marker date="1479896865000" expanded="false" signature="1207:1285" ph="..." />
+            <marker date="1479896865000" expanded="false" signature="1345:1364" ph="..." />
+            <marker date="1479896865000" expanded="false" signature="11432:11510" ph="..." />
+            <marker date="1479896865000" expanded="false" signature="11570:11589" ph="..." />
           </folding>
         </state>
       </provider>

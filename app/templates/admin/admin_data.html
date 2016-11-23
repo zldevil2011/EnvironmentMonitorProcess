@@ -83,15 +83,17 @@
                                     <th>
                                         采集点
                                     </th>
+                                    {% if adminer.user.is_staff %}
                                     <th>
                                         操作
                                     </th>
+                                    {% endif %}
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for d in data %}
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{ d.id }}</td>
                                     <td>{{ d.pm25 }}</td>
                                     <td>{{ d.pm10 }}</td>
                                     <td>{{ d.so2 }}</td>
@@ -100,24 +102,86 @@
                                     <td>{{ d.o3 }}</td>
                                     <td>{{ d.time }}</td>
                                     <td>{{ d.name }}</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
+                                    {% if adminer.user.is_staff %}
+                                        <td><button class="btn btn-danger btn-block" href="#modal-data-{{ d.id }}" role="button" data-toggle="modal">编辑</button></td>
+                                    {% endif %}
                                 </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="modal fade" id="modal-container-552858" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                {% for d in data %}
+                <div class="modal fade" id="modal-data-{{ d.id }}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="modal-title" id="myModalLabel">
-                                    标题
+                                    数据ID：{{ d.id }}
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                内容...
+                                <div class="row clearfix">
+                                <div class="col-md-12 column">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <label for="ID" class="col-sm-2 control-label">ID</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="" readonly value="{{ d.id }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pm25" class="col-sm-2 control-label">PM2.5</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="{{ d.id }}_pm25" value="{{ d.pm25 }}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pm10" class="col-sm-2 control-label">PM10</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="{{ d.id }}_pm10"  value="{{ d.pm10 }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="so2" class="col-sm-2 control-label">SO2</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="{{ d.id }}_SO2" value="{{ d.so2 }}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="CO" class="col-sm-2 control-label">CO</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="{{ d.id }}_CO" value="{{ d.co }}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="NO2" class="col-sm-2 control-label">NO2</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="{{ d.id }}_NO2"  value="{{ d.no2 }}"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="O3" class="col-sm-2 control-label">O3</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" id="{{ d.id }}_O3" value="{{ d.o3 }}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="time" class="col-sm-2 control-label">时间</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="{{ d.id }}_time" value="{{ d.time }}" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">采集点</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="{{ d.id }}_name" value="{{ d.name }}" readonly/>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             </div>
                             <div class="modal-footer">
                                  <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
@@ -125,6 +189,7 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
                 <div class="tab-pane" id="panel-yesterday">
 {#                    <div class="col-md-12 column img-rounded" style="height: auto; line-height: 30px; background: rgba(0,0,0, 0.1); padding: 5px 0;">#}
 {#                        <div class="col-md-3" style="padding-right: 1px;">#}
@@ -180,12 +245,69 @@
                                     <td>{{ device.address }}</td>
                                     <td>{{ device.install_time }}</td>
                                     <td>{{ device.latest_time }}</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
+                                    <td><button class="btn btn-danger btn-block" href="#modal-device-{{ device.id }}" role="button" data-toggle="modal">编辑</button></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
+{#                    每个设备对应的悬浮窗#}
+                    {% for d in device_list %}
+                        <div class="modal fade" id="modal-device-{{ d.id }}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            设备ID：{{ d.id }}
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row clearfix">
+                                        <div class="col-md-12 column">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label for="ID" class="col-sm-2 control-label">ID</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="" readonly value="{{ d.id }}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="name" class="col-sm-2 control-label">监测点</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="{{ d.id }}_name" value="{{ d.name }}" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="address" class="col-sm-2 control-label">安装地址</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="{{ d.id }}_address"  value="{{ d.address }}"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="time" class="col-sm-2 control-label">安装时间</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="{{ d.id }}_install_time" value="{{ d.install_time }}" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="time" class="col-sm-2 control-label">时间</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="{{ d.id }}_latest_time" value="{{ d.latest_time }}" />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
                 </div>
             </div>
         </div>
