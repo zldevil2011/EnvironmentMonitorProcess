@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Adminer(models.Model):
 	user = models.OneToOneField(User, related_name='appuser')
+	username = models.CharField(max_length=50, null=True)
 
 	def __unicode__(self):
 		return str(self.pk)

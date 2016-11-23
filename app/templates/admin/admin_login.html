@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理登陆</title>
+    {% load static from staticfiles %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href={% static "app/img/favicon.ico" %}/>
+    <link rel="stylesheet" href= {% static "app/css/bootstrap.min.css" %} />
+    <link rel="stylesheet" href= {% static "app/css/emp.css" %} />
+    <style>
+        .vertical-center{  position: absolute;  top: 50%;  left: 50%;  transform: translate(-50%, -50%);  }
+    </style>
+</head>
+<body style="background: url({% static "app/img/head2.png" %}); background-repeat:no-repeat;background-size:100% 100%;background-attachment: fixed;">
+    <div class="clearfix vertical-center" style="background-color: rgba(144, 180, 189, 0.6);width: 500px;height: 300px;">
+        <div class="col-md-12 column" style="padding: 0;">
+			<div class="tabbable" id="tabs-971732">
+				<ul class="nav nav-tabs" style="">
+					<li class="active" style="width: 25%;text-align: center;border-right: 1px solid #d1d1d1;">
+						 <a href="#panel-levelOne" data-toggle="tab" style="">一级管理</a>
+					</li>
+					<li style="width: 25%;text-align: center;border-right: 1px solid #d1d1d1;">
+						 <a href="#panel-levelTwo" data-toggle="tab">二级管理</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="panel-levelOne" style="margin-top: 20px;">
+						<div class="row clearfix">
+                            <div class="col-md-offset-2 col-md-8 column">
+                                <form class="form-horizontal" role="form" onsubmit="return login_1();">
+                                    <div class="form-group">
+                                        <label for="username_1" class="col-sm-3 control-label">用户名</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="username_1" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password_1" class="col-sm-3 control-label">密码</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" class="form-control" id="password_1" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="secret_1" class="col-sm-3 control-label">一级密码</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" class="form-control" id="secret_1" />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                             <button type="submit" class="btn btn-info btn-block">登陆</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+					</div>
+					<div class="tab-pane" id="panel-levelTwo" style="margin-top: 20px;">
+						<div class="row clearfix">
+                            <div class="col-md-offset-2 col-md-8 column">
+                                <form class="form-horizontal" role="form" onsubmit="return login_2();">
+                                    <div class="form-group">
+                                        <label for="username_2" class="col-sm-3 control-label">用户名</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="username_2" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                         <label for="password_2" class="col-sm-3 control-label">密码</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" class="form-control" id="password_2" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                         <label for="secret_2" class="col-sm-3 control-label">二级密码</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" class="form-control" id="secret_2" />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                             <button type="submit" class="btn btn-info btn-block">登陆</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <script src= {% static "app/js/jquery-3.1.1.min.js" %}></script>
+    <script src= {% static "app/js/bootstrap.min.js" %}></script>
+    <script src= {% static "app/js/highcharts.js" %}></script>
+    <script>
+        function login_1(){
+            var username = $("#username_1").val();
+            var password = $("#password_1").val();
+            var secret = $("#secret_1").val();
+            $.ajax({
+                url : '/admin_login/',
+                type: 'POST',
+                data: {username: username, password:password, secret:secret, level:1},
+                success:function(res){
+                    if(res == "success"){
+                        window.location.href="/admin_index/";
+                    }else{
+                        alert("用户名或密码错误");
+                    }
+                },
+                error:function(res){
+                    alert("用户名或密码错误");
+                }
+            });
+            return false;
+        }
+        function login_2(){
+            var username = $("#username_2").val();
+            var password = $("#password_2").val();
+            var secret = $("#secret_2").val();
+            $.ajax({
+                url : '/admin_login/',
+                type: 'POST',
+                data: {username: username, password:password, secret:secret, level:2},
+                success:function(res){
+                    if(res == "success"){
+                        window.location.href="/admin_index/";
+                    }else{
+                        alert("用户名或密码错误");
+                    }
+                },
+                error:function(res){
+                    alert("用户名或密码错误");
+                }
+            });
+            return false;
+        }
+    </script>
+</body>
+</html>
+
