@@ -210,7 +210,7 @@
                 tooltip: {
                     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y:.1f} ug/m3</b></td></tr>',
                     footerFormat: '</table>',
                     shared: true,
                     useHTML: true
@@ -231,6 +231,9 @@
                     }],
                     name: 'PM2.5',
                     data: today_data_data.pm25
+                },{
+                    name: 'PM10',
+                    data: today_data_data.pm10
                 }]
             });
             var standard_width = $("#pm25_today_historical div").width();
@@ -261,7 +264,7 @@
                 tooltip: {
                     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y:.1f} ug/m3</b></td></tr>',
                     footerFormat: '</table>',
                     shared: true,
                     useHTML: true
@@ -282,6 +285,9 @@
                     }],
                     name: 'PM2.5',
                     data: month_data_data.pm25
+                },{
+                    name: 'PM10',
+                    data: month_data_data.pm10
                 }]
             });
             $('#pm25_year_historical').highcharts({
@@ -309,7 +315,7 @@
                 tooltip: {
                     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y:.1f} ug/m3</b></td></tr>',
                     footerFormat: '</table>',
                     shared: true,
                     useHTML: true
@@ -330,6 +336,9 @@
                     }],
                     name: 'PM2.5',
                     data: year_data_data.pm25
+                },{
+                    name: 'PM10',
+                    data: year_data_data.pm10
                 }]
             });
         });
@@ -382,10 +391,12 @@
                 }, {
                     name: 'NO2',
                     data: today_data_data.no2
-                },{
-                    name: 'PM10',
-                    data: today_data_data.pm10
-                }]
+                },
+{#                    {#}
+{#                    name: 'PM10',#}
+{#                    data: today_data_data.pm10#}
+{#                }#}
+                ]
             });
             $('#other_week_historical').highcharts({
                 chart: {
@@ -432,11 +443,13 @@
                     data: week_data_data.co
                 }, {
                     name: 'NO2',
-                    data: week_data_data.no
-                },{
-                    name: 'PM10',
-                    data: week_data_data.pm10
-                }]
+                    data: week_data_data.no2
+                },
+{#                    {#}
+{#                    name: 'PM10',#}
+{#                    data: week_data_data.pm10#}
+{#                }#}
+                ]
             });
             var standard_width = $("#other_week_historical div").width();
             $("#other_month_historical").width(standard_width);
@@ -486,11 +499,13 @@
                     data: month_data_data.co
                 }, {
                     name: 'NO2',
-                    data: month_data_data.no
-                },{
-                    name: 'PM10',
-                    data: month_data_data.pm10
-                }]
+                    data: month_data_data.no2
+                },
+{#                    {#}
+{#                    name: 'PM10',#}
+{#                    data: month_data_data.pm10#}
+{#                }#}
+                ]
             });
             $('#other_year_historical').highcharts({
                 chart: {
@@ -537,11 +552,13 @@
                     data: year_data_data.co
                 }, {
                     name: 'NO2',
-                    data: year_data_data.no
-                },{
-                    name: 'PM10',
-                    data: year_data_data.pm10
-                }]
+                    data: year_data_data.no2
+                },
+{#                    {#}
+{#                    name: 'PM10',#}
+{#                    data: year_data_data.pm10#}
+{#                }#}
+                ]
             });
         });
 
