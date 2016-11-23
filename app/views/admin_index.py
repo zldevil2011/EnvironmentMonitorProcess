@@ -13,8 +13,21 @@ def admin_index(request):
 		adminer = Adminer.objects.get(username=request.session["username"])
 	except:
 		return HttpResponseRedirect("/admin_login/")
-		# 计算最近24小时站点均值
-		# 首先获取最近24小时内所有站点的的数据
+	# 统计监测点数量
+	device_list = [
+		{"id": 1, "name": u"京师方圆", "address": u"凤凰大道", "longitude": 117.2944, "latitude": 30.4127,
+		 "latest_time": "2016-11-22 12:00:00", "install_time": "2016-11-12 12:00:00"},
+		{"id": 2, "name": u"清风大道路", "address": u"新城区", "longitude": 117.2944, "latitude": 30.4027,
+		 "latest_time": "2016-11-22 12:00:00", "install_time": "2016-11-10 12:00:00"},
+	]
+	device_len = len(device_list)
+
+	# 正常工作点数量
+	device_normal_len = device_len
+
+
+	# 计算最近24小时站点均值
+	# 首先获取最近24小时内所有站点的的数据
 	datas_list_12 = [
 		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
 		 "time": "2016-11-23 12:00:00"},
@@ -65,6 +78,25 @@ def admin_index(request):
 		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
 		 "time": "2016-11-23 10:35:00"},
 	]
+	# 计算各个数据的采集数量
+	today = datetime.today()
+	today_start = datetime(today.year,today.month,today.day,0,0,0)
+	today_end = today_start + timedelta(days=1)
+	today_data_no = 0
+	for data in datas_list_12:
+		time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
+		if today_start <= time < today_end:
+			today_data_no += 1
+	pm25_len = today_data_no
+	co_len = today_data_no
+	no2_len = today_data_no
+	so2_len = today_data_no
+	pm10_len = today_data_no
+	o3_len = today_data_no
+
+
+
+
 	average_12 = []
 	import time
 	time_now = time.localtime(time.time())
@@ -100,5 +132,13 @@ def admin_index(request):
 	return render(request, "admin/admin_index.html", {
 		"twelve_data": twelve_data,
 		"adminer": adminer,
+		"pm25_len": pm25_len,
+		"co_len": co_len,
+		"no2_len": no2_len,
+		"so2_len": so2_len,
+		"pm10_len": pm10_len,
+		"o3_len": o3_len,
+		"device_len": device_len,
+		"device_normal_len": device_normal_len,
 	})
 	# form = ItemUEditorModelForm(instance=item)
