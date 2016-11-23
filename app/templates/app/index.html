@@ -56,7 +56,8 @@
                 </div>
             </div>
             <div class="col-md-4" style="text-align: center;">
-                <div style="margin:0 auto;margin-top: 70px;width: 235px;height: 11px;background: url(/static/app/img/citydate_sprite.png) -6px -4px no-repeat;">
+{#                ;margin-top: 70px;#}
+                <div style="margin:0 auto;width: 235px;height: 11px;background: url(/static/app/img/citydate_sprite.png) -6px -4px no-repeat;">
                 </div>
                 <div class="cbor_gauge_num" style="font-size: 12px;opacity: 0.5;padding-top: 5px;">
                     0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;150&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;200&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;300&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500
@@ -64,6 +65,10 @@
                 <div class="cbor_gauge_num" style="font-size: 12px;opacity: 0.5;padding-top: 5px;">
                     <span class = "level{{ average_data.AQI_info_1.level_no }}_color"><b>{{ average_data.AQI_info_1.classification }}</b></span>
                 </div>
+                <div style="color:#7db364;text-align: left;">健康影响:</div>
+                <div style="text-align: left;">{{ average_data.AQI_info_1.health }}</div><br>
+                <div style="color:#7db364;text-align: left;">温馨提示:</div>
+                <div style="text-align: left;">{{ average_data.AQI_info_1.step }}</div>
             </div>
         </div>
         <div class="col-md-12">
