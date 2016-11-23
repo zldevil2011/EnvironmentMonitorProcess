@@ -21,7 +21,7 @@
                 <ul style="display: inline-block;" class="li-tab">
                     <li name = "index" class="li-round" style="display: inline-block;" onclick="window.location.href='/index/'">实时数据</li>
                     <li name = "historical_device" class="li-round" style="display: inline-block;" onclick="window.location.href='/historical_device/'">站点分布</li>
-                    <li name = "historical_device_data" class="li-round" style="display: inline-block;" onclick="window.location.href='/historical_device_data/'">站点数据</li>
+                    <li name = "historical_device_data" class="li-round" style="display: inline-block;" onclick="window.location.href='/historical_device_data/1/'">站点数据</li>
                     <li name = "station" class="li-round" style="display: inline-block;" onclick="window.location.href='/station/'">站点排行</li>
                     <li name = "information" class="li-round" style="display: inline-block;" onclick="window.location.href='/information/'">平台介绍</li>
                 </ul>
@@ -65,8 +65,13 @@
         var path = window.location.pathname;
         var len = path.length;
         path = path.slice(1, len-1);
-        $("[name=" + path + "]").siblings().removeClass("active");
-        $("[name=" + path + "]").addClass("active");
+        try{
+            $("[name=" + path + "]").siblings().removeClass("active");
+            $("[name=" + path + "]").addClass("active");
+        }catch(e){
+            ;
+        }
+
     </script>
 </body>
 </html>

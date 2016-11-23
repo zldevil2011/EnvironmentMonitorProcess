@@ -124,6 +124,8 @@
     <script src= {% static "app/js/highcharts-more.js" %}></script>
     <script src= {% static "app/js/modules/solid-gauge.js" %}></script>
     <script>
+        $("[name=historical_device_data]").siblings().removeClass("active");
+        $("[name=historical_device_data]").addClass("active");
         $("[name=historical_pm25] li").on("click", function(){
             $(this).addClass("active").siblings().removeClass("active");
             var div_name = "pm25_" + $(this).attr("name") + "_historical";
