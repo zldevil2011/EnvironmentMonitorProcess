@@ -48,15 +48,15 @@ class AqiParameter(object):
 			val = data[key]
 			for i in range(len(self.fix_value_24)):
 				if self.fix_value_24[i].keys()[0] == key:
-					print self.fix_value_24[i]
+					# print self.fix_value_24[i]
 					level_data = self.fix_value_24[i].values()[0]
 					cnt = -1
 					level_data.reverse()
 					for level in level_data:
 						cnt += 1
 						if val > level["level"]:
-							print level
-							print self.start_point[cnt]
+							# print level
+							# print self.start_point[cnt]
 							iaqi = round((val - level["level"]) * level["value"] + self.start_point[cnt])
 							self.IAQI_24.append(iaqi)
 							break

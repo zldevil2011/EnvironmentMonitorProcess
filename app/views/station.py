@@ -66,11 +66,15 @@ def station(request):
 		{"id": 2, "name": u"清风大道路", "address": u"新城区", "longitude": 117.2944, "latitude": 30.4027, "install_time": "2016-11-10 12:00:00"},
 	]
 	# 实时排行
+	time_now = datetime.today()
+	start_time = datetime(time_now.year, time_now.month, time_now.day, 0, 0, 0)
+	end_time = start_time + timedelta(days=1)
 	real_time = []
 	for device in device_list:
 		device_info = {}
 		for data in datas_list_all:
-			if data["name"] == device["name"]:
+			time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
+			if data["name"] == device["name"] and start_time <= time < end_time:
 				cal = AqiParameter()
 				cal.get_1_aqi(data)
 				device_info["level"] = cal.AQI_info_1["level_no"]
@@ -99,6 +103,7 @@ def station(request):
 				data_tmp["pm25"] += data["pm25"]
 				cnt += 1
 		if cnt != 0:
+			print "cnt=", cnt
 			data_tmp["so2"] = (data_tmp["so2"] * 1.0) / cnt
 			data_tmp["no2"] = (data_tmp["no2"] * 1.0) / cnt
 			data_tmp["pm10"] = (data_tmp["pm10"] * 1.0) / cnt
@@ -108,10 +113,11 @@ def station(request):
 			cal = AqiParameter()
 			cal.get_24_aqi(data_tmp)
 			device_info = {}
-			device_info["level"] = cal.AQI_info_1["level_no"]
+			print cal
+			device_info["level"] = cal.AQI_info_24["level_no"]
 			device_info["name"] = device["name"]
-			device_info["AQI"] = cal.AQI_1
-			device_info["classification"] = cal.AQI_info_1.classification
+			device_info["AQI"] = cal.AQI_24
+			device_info["classification"] = cal.AQI_info_24["classification"]
 			device_info["pm25"] = data_tmp["pm25"]
 			yesterday_time.append(device_info)
 		else:
@@ -152,10 +158,10 @@ def station(request):
 			cal = AqiParameter()
 			cal.get_24_aqi(data_tmp)
 			device_info = {}
-			device_info["level"] = cal.AQI_info_1["level_no"]
+			device_info["level"] = cal.AQI_info_24["level_no"]
 			device_info["name"] = device["name"]
-			device_info["AQI"] = cal.AQI_1
-			device_info["classification"] = cal.AQI_info_1.classification
+			device_info["AQI"] = cal.AQI_24
+			device_info["classification"] = cal.AQI_info_24["classification"]
 			device_info["pm25"] = data_tmp["pm25"]
 			week_time.append(device_info)
 		else:
@@ -195,10 +201,10 @@ def station(request):
 			cal = AqiParameter()
 			cal.get_24_aqi(data_tmp)
 			device_info = {}
-			device_info["level"] = cal.AQI_info_1["level_no"]
+			device_info["level"] = cal.AQI_info_24["level_no"]
 			device_info["name"] = device["name"]
-			device_info["AQI"] = cal.AQI_1
-			device_info["classification"] = cal.AQI_info_1.classification
+			device_info["AQI"] = cal.AQI_24
+			device_info["classification"] = cal.AQI_info_24["classification"]
 			device_info["pm25"] = data_tmp["pm25"]
 			month_time.append(device_info)
 		else:
