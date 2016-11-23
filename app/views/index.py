@@ -27,7 +27,7 @@ def index(request):
 	# 		"step": u"极少数异常敏感人群应减少户外活动"
 	# 	}
 	# ]
-	# 对所有的观测点进行数据平均计算AQI／PM2.5／首要污染物
+	# 对所有的观测点进行数据平均计算AQI／PM2.5／首要污染物用于各监测点实时数据
 	data_real_time = []
 	for data in datas_list:
 		calculator = AqiParameter()
@@ -37,7 +37,7 @@ def index(request):
 		data["AQI_info_1"] = calculator.AQI_info_1
 		data_real_time.append(data)
 		print calculator
-	# 计算实时采集数据的均值
+	# 计算各个站点实时采集数据的均值在首页的三个环圈显示
 	average_data = {"so2": 0, "no2": 0, "pm10": 0, "co": 0, "o3": 0, "pm25": 0}
 	for data in datas_list:
 		average_data["so2"] += data["so2"]

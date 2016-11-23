@@ -66,23 +66,32 @@
 {% endblock %}
 {% block special_js %}
     <script>
+        var twelve_data = {{ twelve_data | safe}};
+        var twelve_data_hour = twelve_data.twelve_data_hour;
+        var twelve_data_data = twelve_data.twelve_data_data;
+        var twelve_data_so2 = twelve_data_data.so2;
+        var twelve_data_pm10 = twelve_data_data.pm10;
+        var twelve_data_no2 = twelve_data_data.no2;
+        var twelve_data_co = twelve_data_data.co;
+        var twelve_data_o3 = twelve_data_data.o3;
+        var twelve_data_pm25 = twelve_data_data.pm25;
         $('#pm25_now').highcharts({
             credits:false,
             chart: {
                 type: 'spline'
             },
             title: {
-                text: '最近一小时PM25检测值'
+                text: '今日PM25监测均值'
             },
             subtitle: {
                 text: '来源：各个采集站点'
             },
             xAxis: {
-                categories: ['09:00', '09:10', '09:20', '09:30', '09:40', '09:50', '10:00', '10:10', '10:20', '10:30', '10:40', '10:50']
+                categories: twelve_data_hour
             },
             yAxis: {
                 title: {
-                    text: 'ug/m3'
+                    text: '浓度(ug/m3)'
                 }
             },
             plotOptions: {
@@ -94,8 +103,11 @@
                 }
             },
             series: [{
-                name: '均值',
-                data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                name: 'PM2.5均值',
+                data: twelve_data_pm25
+            },{
+                name: 'PM10均值',
+                data: twelve_data_pm10
             }]
         });
 
@@ -104,33 +116,25 @@
                 type: 'column'
             },
             title: {
-                text: '历史数据'
+                text: '今日其他参数均值'
             },
             subtitle: {
                 text: '来源：各站点平均值'
             },
             xAxis: {
-                categories: [
-                    '11-03',
-                    '11-04',
-                    '11-05',
-                    '11-06',
-                    '11-07',
-                    '11-08',
-                    '11-09'
-                ],
+                categories: twelve_data_hour,
                 crosshair: true
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Rainfall (mm)'
+                    text: '参数浓度 (ppm)'
                 }
             },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                '<td style="padding:0"><b>{point.y:.1f} ppm</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
@@ -143,28 +147,17 @@
             },
             series: [{
                 name: 'SO2',
-                data: [176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                data: twelve_data_so2
             }, {
                 name: 'O3',
-                data: [84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+                data: twelve_data_o3
             }, {
                 name: 'CO',
-                data: [48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+                data: twelve_data_co
             }, {
                 name: 'NO2',
-                data: [75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-            },{
-                name: 'PM10',
-                data: [75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+                data: twelve_data_no2
             }]
         });
     </script>
-{#<script>#}
-{#    var id_content = UE.getEditor('description',{'initialFrameWidth': 800, 'initialFrameHeight': 300, 'serverUrl': '/ueditor/controller/?imagePathFormat=img/&filePathFormat=img/'});#}
-{#    var submit = document.getElementById("submit");#}
-{#    submit.onclick = function(){#}
-{#        var productDescription = id_content.getContent();#}
-{#        alert(productDescription);#}
-{#    };#}
-{#</script>#}
 {% endblock %}
