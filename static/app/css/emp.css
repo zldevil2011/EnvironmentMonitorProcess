@@ -150,3 +150,6 @@
 .hander{
     cursor: pointer;
 }
+.td-vertical-middle td{
+    vertical-align: middle !important;
+}
