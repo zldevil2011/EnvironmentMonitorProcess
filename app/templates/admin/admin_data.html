@@ -25,33 +25,33 @@
             </ul>
             <div class="tab-content" style="margin-top: 20px;">
                 <div class="tab-pane active" id="panel-realTime">
-                    <div class="col-md-12 column img-rounded" style="height: auto; line-height: 30px; background: rgba(0,0,0, 0.1); padding: 5px 0;">
-                        <div class="col-md-3" style="padding-right: 1px;">
-                            <label for="" class="col-sm-4 control-label">类型</label>
-                            <div class="col-sm-8">
-                                <select class="btn-block form-control">
-                                    <option>PM25</option>
-                                    <option>PM10</option>
-                                    <option>SO2</option>
-                                    <option>CO</option>
-                                    <option>NO2</option>
-                                    <option>O3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <label for="" class="col-sm-3 control-label">筛选</label>
-                                <div class="col-sm-4">
-                                    <input name="start_time" type="date" class="form-control" id="">
-                                </div>
-                                <label for="" class="col-sm-1 control-label">至</label>
-                                <div class="col-sm-4">
-                                    <input name="end_time" type="date" class="form-control" id="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{#                    <div class="col-md-12 column img-rounded" style="height: auto; line-height: 30px; background: rgba(0,0,0, 0.1); padding: 5px 0;">#}
+{#                        <div class="col-md-3" style="padding-right: 1px;">#}
+{#                            <label for="" class="col-sm-4 control-label">类型</label>#}
+{#                            <div class="col-sm-8">#}
+{#                                <select class="btn-block form-control">#}
+{#                                    <option>PM25</option>#}
+{#                                    <option>PM10</option>#}
+{#                                    <option>SO2</option>#}
+{#                                    <option>CO</option>#}
+{#                                    <option>NO2</option>#}
+{#                                    <option>O3</option>#}
+{#                                </select>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-md-9">#}
+{#                            <div class="form-group">#}
+{#                                <label for="" class="col-sm-3 control-label">筛选</label>#}
+{#                                <div class="col-sm-4">#}
+{#                                    <input name="start_time" type="date" class="form-control" id="">#}
+{#                                </div>#}
+{#                                <label for="" class="col-sm-1 control-label">至</label>#}
+{#                                <div class="col-sm-4">#}
+{#                                    <input name="end_time" type="date" class="form-control" id="">#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
                     <div class="col-md-12">
                         <table class="table table-hover table-striped td-vertical-middle">
                             <thead>
@@ -60,10 +60,22 @@
                                         编号
                                     </th>
                                     <th>
-                                        参数
+                                        PM2.5
                                     </th>
                                     <th>
-                                        数值
+                                        PM10
+                                    </th>
+                                    <th>
+                                        SO2
+                                    </th>
+                                    <th>
+                                        CO
+                                    </th>
+                                    <th>
+                                        NO2
+                                    </th>
+                                    <th>
+                                        O3
                                     </th>
                                     <th>
                                         时间
@@ -77,54 +89,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for d in data %}
                                 <tr>
                                     <td>1</td>
-                                    <td>SO2</td>
-                                    <td>22</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>海淀区</td>
+                                    <td>{{ d.pm25 }}</td>
+                                    <td>{{ d.pm10 }}</td>
+                                    <td>{{ d.so2 }}</td>
+                                    <td>{{ d.co }}</td>
+                                    <td>{{ d.no2 }}</td>
+                                    <td>{{ d.o3 }}</td>
+                                    <td>{{ d.time }}</td>
+                                    <td>{{ d.name }}</td>
                                     <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>SO2</td>
-                                    <td>22</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>海淀区</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>SO2</td>
-                                    <td>22</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>海淀区</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>SO2</td>
-                                    <td>22</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>海淀区</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>SO2</td>
-                                    <td>22</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>海淀区</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>SO2</td>
-                                    <td>22</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>海淀区</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -148,28 +126,28 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="panel-yesterday">
-                    <div class="col-md-12 column img-rounded" style="height: auto; line-height: 30px; background: rgba(0,0,0, 0.1); padding: 5px 0;">
-                        <div class="col-md-3" style="padding-right: 1px;">
-                            <label for="" class="col-sm-4 control-label">类型</label>
-                            <div class="col-sm-8">
-                                <select class="btn-block form-control">
-                                    <option>终端</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <label for="" class="col-sm-3 control-label">筛选</label>
-                                <div class="col-sm-4">
-                                    <input name="start_time" type="date" class="form-control" id="">
-                                </div>
-                                <label for="" class="col-sm-1 control-label">至</label>
-                                <div class="col-sm-4">
-                                    <input name="end_time" type="date" class="form-control" id="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{#                    <div class="col-md-12 column img-rounded" style="height: auto; line-height: 30px; background: rgba(0,0,0, 0.1); padding: 5px 0;">#}
+{#                        <div class="col-md-3" style="padding-right: 1px;">#}
+{#                            <label for="" class="col-sm-4 control-label">类型</label>#}
+{#                            <div class="col-sm-8">#}
+{#                                <select class="btn-block form-control">#}
+{#                                    <option>终端</option>#}
+{#                                </select>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-md-9">#}
+{#                            <div class="form-group">#}
+{#                                <label for="" class="col-sm-3 control-label">筛选</label>#}
+{#                                <div class="col-sm-4">#}
+{#                                    <input name="start_time" type="date" class="form-control" id="">#}
+{#                                </div>#}
+{#                                <label for="" class="col-sm-1 control-label">至</label>#}
+{#                                <div class="col-sm-4">#}
+{#                                    <input name="end_time" type="date" class="form-control" id="">#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
                     <div class="col-md-12">
                         <table class="table table-hover table-striped td-vertical-middle">
                             <thead>
@@ -195,54 +173,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for device in device_list %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>京师方圆</td>
-                                    <td>凤凰大道</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>2016-11-22 12:00:0</td>
+                                    <td>{{ device.id }}</td>
+                                    <td>{{ device.name }}</td>
+                                    <td>{{ device.address }}</td>
+                                    <td>{{ device.install_time }}</td>
+                                    <td>{{ device.latest_time }}</td>
                                     <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>京师方圆</td>
-                                    <td>凤凰大道</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>2016-11-22 12:00:0</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>京师方圆</td>
-                                    <td>凤凰大道</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>2016-11-22 12:00:0</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>京师方圆</td>
-                                    <td>凤凰大道</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>2016-11-22 12:00:0</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>京师方圆</td>
-                                    <td>凤凰大道</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>2016-11-22 12:00:0</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>京师方圆</td>
-                                    <td>凤凰大道</td>
-                                    <td>2016-11-01 12:00:00</td>
-                                    <td>2016-11-22 12:00:0</td>
-                                    <td><button class="btn btn-danger btn-block" href="#modal-container-552858" role="button" data-toggle="modal">编辑</button></td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
