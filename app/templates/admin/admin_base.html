@@ -11,6 +11,11 @@
     {{ form.media }}
     {% block special_css %}
     {% endblock %}
+    <style>
+        .container{
+            width: 80% !important;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -28,14 +33,14 @@
 
                     <div class="collapse navbar-collapse" id="HJ_menu">
                         <ul class="nav navbar-nav">
-                            <li name = "admin_index" class="active">
+                            <li name = "admin_index">
                                  <a href="/admin_index/">首页</a>
                             </li>
                             <li name="admin_data">
                                  <a href="/admin_data/">数据</a>
                             </li>
-                            <li name="admin_document">
-                                 <a href="/admin_document/">文档</a>
+                            <li name="admin_document_list">
+                                 <a href="/admin_document_list/">文档</a>
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">

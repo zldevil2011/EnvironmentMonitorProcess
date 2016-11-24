@@ -1,21 +1,98 @@
 {% extends "admin/admin_base.html" %}
 {% block title %}管理文档{% endblock %}
-
+{% block special_css %}
+    <style>
+        .container{
+            width: 80% !important;
+        }
+    </style>
+{% endblock %}
 {% block body_content %}
-    <div class="clearfix">
-
+    <div class="row clearfix">
+        <div class="col-md-12">
+            <div class="horizontal-center-block"  style="width: 100%;">
+                <table class="table table-bordered horizontal-center-block">
+                    <tr>
+                        <td>
+                            文章标题<hr>
+                            <select name = "newsType" class="btn label-default" style="width: 9%;height: 30px;">
+                                <option value="original">原创</option>
+                                <option value="reprint">转载</option>
+                            </select>
+                            <input name = "newsTitle" type="text" class="form-control" style="width:90%;display: inline;border-radius: 6px;" value="{{ news.title }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="father">
+                            文章内容<hr>
+                            <div id="description" style="width:100%; height: 400px;"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 10px;">
+            <div class="col-md-offset-5 col-md-1 col-sm-6">
+                <button name = "save" class="btn btn-success">立即发表</button>
+            </div>
+            <div class="col-md-1 col-sm-6">
+                <button class="btn btn-danger">放弃发表</button>
+            </div>
+        </div>
     </div>
-    <div id="description" style="width:90%; height: 400px;"></div>
-    <button id="submit">提交</button>
+    <div name="news_id" style="display:none;">{{ news.id }}</div>
 {% endblock %}
 {% block special_js %}
-
 <script>
-    var id_content = UE.getEditor('description',{'initialFrameWidth': 800, 'initialFrameHeight': 300, 'serverUrl': '/ueditor/controller/?imagePathFormat=img/&filePathFormat=img/'});
-    var submit = document.getElementById("submit");
-    submit.onclick = function(){
-        var productDescription = id_content.getContent();
-        alert(productDescription);
-    };
+    $("[name=save]").on("click", function(){
+        var id_content = UE.getEditor('description');
+        var title = $("[name=newsTitle]").val();
+        var content = id_content.getContent();
+
+        if(title == ""){
+            alert("请填写标题");
+            return;
+        }
+        if(content == ""){
+            alert("请填写内容");
+            return;
+        }
+        console.log(title);
+        console.log(content);
+        var news_id = $("[name=news_id]").html();
+        console.log(news_id);
+
+        var formdata = new FormData();
+        formdata.append("title", title);
+        formdata.append("content", content);
+        formdata.append("news_id", news_id);
+        $.ajax({
+            url: '/admin_document_edit/',
+            type : "POST",
+            cache : false,
+            data : formdata,
+            processData : false,
+            contentType : false
+        }).done(function(res){
+            if(res == "success"){
+                alert("保存成功");
+                window.location.href = "/admin_document_list/";
+            }else{
+                alert("保存失败");
+            }
+        }).fail(function(res){
+            alert("请稍后再试");
+        });
+
+    });
+</script>
+<script>
+    var content = '{{ news.content | safe }}';
+    var w = $("#father").width();
+    console.log(w);
+    var id_content = UE.getEditor('description',{'initialFrameWidth': w, 'initialFrameHeight': 300, 'serverUrl': '/ueditor/controller/?imagePathFormat=newsInfo/&filePathFormat=newsInfo/'});
+    id_content.ready(function(){
+        id_content.setContent(content);
+    });
 </script>
 {% endblock %}

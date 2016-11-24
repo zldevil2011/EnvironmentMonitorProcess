@@ -1,0 +1,64 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}文档列表{% endblock %}
+{% block special_css %}
+    <style>
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+            color: #555;
+            cursor: default;
+            background-color: #57b382;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+        }
+
+    </style>
+{% endblock %}
+{% block body_content %}
+    <div class="clearfix">
+        <div class="col-md-12" style="padding: 0;">
+            <table class="table table-hover table-striped td-vertical-middle">
+                <thead>
+                    <tr>
+                        <th>
+                            编号
+                        </th>
+                        <th>
+                            标题
+                        </th>
+                        <th>
+                            作者
+                        </th>
+                        <th>
+                            日期
+                        </th>
+                        <th>
+                            阅读量
+                        </th>
+                        <th>
+                            操作
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for d in document_list %}
+                    <tr>
+                        <td>{{ d.id }}</td>
+                        <td>{{ d.title }}</td>
+                        <td>{{ d.author }}</td>
+                        <td>{{ d.date }}</td>
+                        <td>{{ d.read_count }}</td>
+                        <td><button class="btn btn-danger btn-block" onclick="window.location.href='/admin_document_edit?nid={{ d.id }}'">编辑</button></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-12" style="margin-top: 10px;">
+        <div class="col-md-offset-6 col-md-6 col-sm-12 text-right" >
+            <button name = "save" class="btn btn-success" style="width: 30%;" onclick="window.location.href='/admin_document_edit/'">新建</button>
+        </div>
+    </div>
+{% endblock %}
+{% block special_js %}
+
+{% endblock %}

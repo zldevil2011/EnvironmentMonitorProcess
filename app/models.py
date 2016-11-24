@@ -12,7 +12,7 @@ class Adminer(models.Model):
 
 class Announcement(models.Model):
 	title = models.CharField(max_length=200)
-	author = models.ForeignKey(Adminer, related_name='announcement')
+	author = models.CharField(max_length=200)
 	date = models.DateField(auto_now_add=True)
 	time = models.TimeField(auto_now_add=True)
 	read_count = models.IntegerField(default=0)
