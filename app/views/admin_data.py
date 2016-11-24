@@ -45,6 +45,8 @@ def admin_data(request):
 		"adminer": adminer,
 		"data": data,
 		"device_list": device_list,
+		"page":page,
+		"total_page":total_page,
 	})
 	# form = ItemUEditorModelForm(instance=item)
 

@@ -110,6 +110,19 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="col-md-12 column" style="text-align: right;">
+                        <ul class="pagination account-pagination" style="">
+                            <li>
+                                 <a href="/admin_data?page={{ page|add:-1 }}">上一页</a>
+                            </li>
+                            <li>
+                                 <a href="#"><span name="page">{{ page }}</span> / <span name="total_page">{{ total_page }}</span></a>
+                            </li>
+                            <li>
+                                 <a href="/admin_data?page={{ page|add:1 }}">下一页</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 {% for d in data %}
                 <div class="modal fade" id="modal-data-{{ d.id }}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
