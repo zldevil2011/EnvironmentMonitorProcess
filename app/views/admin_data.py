@@ -6,6 +6,7 @@ import json
 from app.forms import AnnouncementUEditorForm, AnnouncementUEditorModelForm
 from app.models import Adminer
 import math
+from utils.mySqlUtils import MySQL
 
 def admin_data(request):
 	try:
@@ -17,6 +18,22 @@ def admin_data(request):
 		return HttpResponseRedirect("/admin_data/?page=1")
 	start_num = (page - 1) * 30
 	end_num = page * 30
+	sql = MySQL()
+	sql.connectDB()
+	datas = sql.get_query("data")
+	devices = sql.get_query("device")
+	sql.close_connect()
+	for device in devices:
+		for data in datas:
+			if device["id"] == data["device_id"]:
+				device["latest_time"] = data["time"]
+				break
+	for data in datas:
+		for device in devices:
+			if data["device_id"] == device["id"]:
+				data["name"] = device["name"]
+				break
+	print "--------------------------"
 	datas_list_all = [
 		{"id":"1", "name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-23 12:00:00"},
 		{"id":"2", "name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-23 12:00:00"},
@@ -27,6 +44,8 @@ def admin_data(request):
 		{"id":"7", "name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-23 12:00:00"},
 
 	]
+	datas_list_all = datas
+	# print datas
 	data_len = len(datas_list_all)
 	total_page = int(math.ceil(data_len/30.0))
 	if total_page < 1:
@@ -41,6 +60,7 @@ def admin_data(request):
 		{"id": 2, "name": u"清风大道路", "address": u"新城区", "longitude": 117.2944, "latitude": 30.4027,
 		 "latest_time": "2016-11-22 12:00:00", "install_time": "2016-11-10 12:00:00"},
 	]
+	device_list = devices
 	return render(request, "admin/admin_data.html", {
 		"adminer": adminer,
 		"data": data,

@@ -5,14 +5,42 @@ from dss.Serializer import serializer
 import json
 from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
+from utils.mySqlUtils import MySQL
 
 
 def index(request):
+	sql = MySQL()
+	sql.connectDB()
+	datas = sql.get_query("data")
+	devices = sql.get_query("device")
+	sql.close_connect()
+	datas_list = []
+	for device in devices:
+		for data in datas:
+			if device["id"] == data["device_id"]:
+				tmp = {}
+				tmp["so2"] = data["so2"]
+				tmp["no2"] = data["no2"]
+				tmp["pm10"] = data["pm10"]
+				tmp["co"] = data["co"]
+				tmp["o3"] = data["o3"]
+				tmp["pm25"] = data["pm25"]
+				tmp["time"] = data["time"]
+				tmp["name"] = device["name"]
+				datas_list.append(tmp)
+				break
+	for data in datas:
+		for device in devices:
+			if data["device_id"] == device["id"]:
+				data["name"] = device["name"]
+				data["time"] = str(data["time"])
+				break
+
 	# 获取所有观测点的数据
-	datas_list = [
-		{"name": u"京师方圆","so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158, "time": "2016-11-12 12:00:00"},
-		{"name": u"清风大道路","so2": 33, "no2": 20, "pm10": 20, "co": 2, "o3": 12, "pm25": 12, "time": "2016-11-12 12:00:00"}
-	]
+	# datas_list = [
+	# 	{"name": u"京师方圆","so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158, "time": "2016-11-12 12:00:00"},
+	# 	{"name": u"清风大道路","so2": 33, "no2": 20, "pm10": 20, "co": 2, "o3": 12, "pm25": 12, "time": "2016-11-12 12:00:00"}
+	# ]
 	# data = [
 	# 	{
 	# 		"name":u"京师方圆", "main_pollute": u"细颗粒物(PM2.5)", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33,
@@ -85,6 +113,7 @@ def index(request):
 		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158, "time": "2016-11-23 10:13:00"},
 		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158, "time": "2016-11-23 10:35:00"},
 	]
+	datas_list_12 = datas
 	average_12 = []
 	import time
 	time_now = time.localtime(time.time())

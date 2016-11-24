@@ -6,8 +6,26 @@ import json
 from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
 import time
+from utils.mySqlUtils import MySQL
 
 def station(request):
+	sql = MySQL()
+	sql.connectDB()
+	datas = sql.get_query("data")
+	devices = sql.get_query("device")
+	sql.close_connect()
+	for device in devices:
+		for data in datas:
+			if device["id"] == data["device_id"]:
+				device["latest_time"] = data["time"]
+				device["install_time"] = device["install_time"]
+				break
+	for data in datas:
+		for device in devices:
+			if data["device_id"] == device["id"]:
+				data["name"] = device["name"]
+				data["time"] = str(data["time"])
+				break
 	# 计算站点观测情况排行
 	# 实时排行，昨日排行，一周排行，一月排行
 	datas_list_all = [
@@ -60,11 +78,13 @@ def station(request):
 		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
 		 "time": "2016-11-22 10:35:00"},
 	]
+	datas_list_all = datas
 	# 设备列表
 	device_list = [
 		{"id": 1, "name": u"京师方圆", "address": u"凤凰大道", "longitude": 117.2944, "latitude": 30.4127, "install_time": "2016-11-12 12:00:00"},
 		{"id": 2, "name": u"清风大道路", "address": u"新城区", "longitude": 117.2944, "latitude": 30.4027, "install_time": "2016-11-10 12:00:00"},
 	]
+	device_list = devices
 	# 实时排行
 	time_now = datetime.today()
 	start_time = datetime(time_now.year, time_now.month, time_now.day, 0, 0, 0)
@@ -94,7 +114,7 @@ def station(request):
 		cnt = 0
 		for data in datas_list_all:
 			time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
-			if start_time <= time < end_time:
+			if start_time <= time < end_time and data["name"] == device["name"]:
 				data_tmp["so2"] += data["so2"]
 				data_tmp["no2"] += data["no2"]
 				data_tmp["pm10"] += data["pm10"]
@@ -118,7 +138,7 @@ def station(request):
 			device_info["name"] = device["name"]
 			device_info["AQI"] = cal.AQI_24
 			device_info["classification"] = cal.AQI_info_24["classification"]
-			device_info["pm25"] = data_tmp["pm25"]
+			device_info["pm25"] = round(data_tmp["pm25"], 2)
 			yesterday_time.append(device_info)
 		else:
 			data_tmp["so2"] = u"无数据"
@@ -140,7 +160,7 @@ def station(request):
 		cnt = 0
 		for data in datas_list_all:
 			time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
-			if start_time <= time < end_time:
+			if start_time <= time < end_time and data["name"] == device["name"]:
 				data_tmp["so2"] += data["so2"]
 				data_tmp["no2"] += data["no2"]
 				data_tmp["pm10"] += data["pm10"]
@@ -162,7 +182,7 @@ def station(request):
 			device_info["name"] = device["name"]
 			device_info["AQI"] = cal.AQI_24
 			device_info["classification"] = cal.AQI_info_24["classification"]
-			device_info["pm25"] = data_tmp["pm25"]
+			device_info["pm25"] = round(data_tmp["pm25"], 2)
 			week_time.append(device_info)
 		else:
 			data_tmp["so2"] = u"无数据"
@@ -183,7 +203,7 @@ def station(request):
 		cnt = 0
 		for data in datas_list_all:
 			time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
-			if start_time <= time < end_time:
+			if start_time <= time < end_time and data["name"] == device["name"]:
 				data_tmp["so2"] += data["so2"]
 				data_tmp["no2"] += data["no2"]
 				data_tmp["pm10"] += data["pm10"]
@@ -205,7 +225,7 @@ def station(request):
 			device_info["name"] = device["name"]
 			device_info["AQI"] = cal.AQI_24
 			device_info["classification"] = cal.AQI_info_24["classification"]
-			device_info["pm25"] = data_tmp["pm25"]
+			device_info["pm25"] = round(data_tmp["pm25"], 2)
 			month_time.append(device_info)
 		else:
 			data_tmp["so2"] = u"无数据"

@@ -7,12 +7,29 @@ from app.forms import AnnouncementUEditorForm, AnnouncementUEditorModelForm
 from app.models import Adminer
 from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
+from utils.mySqlUtils import MySQL
 
 def admin_index(request):
 	try:
 		adminer = Adminer.objects.get(username=request.session["username"])
 	except:
 		return HttpResponseRedirect("/admin_login/")
+	sql = MySQL()
+	sql.connectDB()
+	datas = sql.get_query("data")
+	devices = sql.get_query("device")
+	sql.close_connect()
+	for device in devices:
+		for data in datas:
+			if device["id"] == data["device_id"]:
+				device["latest_time"] = data["time"]
+				break
+	for data in datas:
+		for device in devices:
+			if data["device_id"] == device["id"]:
+				data["name"] = device["name"]
+				data["time"] = str(data["time"])
+				break
 	# 统计监测点数量
 	device_list = [
 		{"id": 1, "name": u"京师方圆", "address": u"凤凰大道", "longitude": 117.2944, "latitude": 30.4127,
@@ -20,6 +37,7 @@ def admin_index(request):
 		{"id": 2, "name": u"清风大道路", "address": u"新城区", "longitude": 117.2944, "latitude": 30.4027,
 		 "latest_time": "2016-11-22 12:00:00", "install_time": "2016-11-10 12:00:00"},
 	]
+	device_list = devices
 	device_len = len(device_list)
 
 	# 正常工作点数量
@@ -78,6 +96,7 @@ def admin_index(request):
 		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
 		 "time": "2016-11-23 10:35:00"},
 	]
+	datas_list_12 = datas
 	# 计算各个数据的采集数量
 	today = datetime.today()
 	today_start = datetime(today.year,today.month,today.day,0,0,0)

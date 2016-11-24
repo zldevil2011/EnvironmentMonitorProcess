@@ -1,31 +1,33 @@
 # coding=utf-8
 import MySQLdb
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 class MySQL(object):
 	def __init__(self):
 		self.host = '127.0.0.1'
 		self.user = 'root'
-		self.password = 'xp'
-		self.database = 'python_test'
+		self.password = 'xx'
+		self.database = 'xx'
 		self.db = None
 		self.cursor = None
 
 	def connectDB(self):
-		self.db = MySQLdb.connect(self.host, self.user, self.password, self.database)
+		self.db = MySQLdb.connect(self.host, self.user, self.password, self.database, charset="utf8")
 		self.cursor = self.db.cursor()
 		return self.cursor
 
 	def get_query(self, table_name, query_key = None, query_conn = None, query_val = None, no = None, order_key=None):
 		query_str = "select * from " + table_name
-		if query_key is None and query_val is not None and query_val is not None:
+		if query_key is not None and query_conn is not None and query_val is not None:
 			query_str += " where " + query_key + query_conn + '"' + query_val + '"'
 		if order_key is not None:
 			query_str += " order by " + order_key
 		# 获取列名
 		self.cursor.execute('DESC ' + table_name)
 		columns = self.cursor.fetchall()
-		print columns
+		# print columns
 		columns_list = []
 		for c in columns:
 			columns_list.append(c[0])
@@ -70,7 +72,7 @@ class MySQL(object):
 			left_str = left_str[:-1]
 			left_str += ') VALUES ('
 			for val in insert_val:
-				left_str += ('"' + val + '",')
+				left_str += ('"' + str(val) + '",')
 			left_str = left_str[:-1]
 			left_str += ')'
 			insert_str += left_str
@@ -148,4 +150,35 @@ if __name__ == '__main__':
 	# print sql.get_query("person", "birthday", None, None, None, "birthday")
 	# print sql.update_data("person", data, "1")
 	# print sql.delete_data("person", 2)
+	from datetime import datetime, timedelta
+	import random
+	today = datetime.today()
+	hour1 = timedelta(hours=1)
+	data_list = []
+	# for i in range(100):
+	# 	sql.delete_data("data", i+101)
+		# data = {}
+		# data["device_id"] = 1
+		# data["pm25"] = random.randint(0,500)
+		# data["so2"] = random.randint(0,200)
+		# data["co"] = random.randint(0,200)
+		# data["no2"] = random.randint(0,200)
+		# data["o3"] = random.randint(0,200)
+		# data["pm10"] = random.randint(0,200)
+		# data["time"] = today
+		# today -= hour1
+		# sql.insert_data("data", data)
+	longitude_s = 117.2944
+	latitude_s = 30.4127
+	for i in range(10):
+		# sql.delete_data("device", 41)
+		data = {}
+		data["name"] = u"观测点" + str(i)
+		data["address"] = u"池州"
+		data["longitude"] = longitude_s
+		data["latitude"] = latitude_s
+		longitude_s += 0.001
+		latitude_s += 0.001
+		data["install_time"] = today
+		sql.insert_data("device", data)
 	sql.close_connect()
