@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae365bb0-7d81-4613-ad4a-5ae987cbd3b2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/admin/admin_data.html" afterPath="$PROJECT_DIR$/app/templates/admin/admin_data.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/urls.py" afterPath="$PROJECT_DIR$/app/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin_data.py" afterPath="$PROJECT_DIR$/app/views/admin_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/app/base.html" afterPath="$PROJECT_DIR$/app/templates/app/base.html" />
     </list>
     <ignored path="EMP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,7 +31,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="admin_data.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin_data.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/admin/admin_data.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="171">
@@ -62,9 +61,21 @@
       <file leaf-file-name="admin_data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/admin_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="90" column="51" selection-start-line="90" selection-start-column="51" selection-end-line="90" selection-end-column="51" />
+            <state relative-caret-position="255">
+              <caret line="30" column="46" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/app/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#p#2;n#section#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -237,7 +248,6 @@
         <option value="$PROJECT_DIR$/app_static/css/emp.css" />
         <option value="$PROJECT_DIR$/app/views/utils/admin_login.py" />
         <option value="$PROJECT_DIR$/app/views/historical.py" />
-        <option value="$PROJECT_DIR$/app/templates/app/base.html" />
         <option value="$PROJECT_DIR$/app/views/objects/AqiParameter.py" />
         <option value="$PROJECT_DIR$/app/views/admin_login.py" />
         <option value="$PROJECT_DIR$/app/templates/admin/admin_login.html" />
@@ -260,6 +270,7 @@
         <option value="$PROJECT_DIR$/app/urls.py" />
         <option value="$PROJECT_DIR$/app/views/admin_data.py" />
         <option value="$PROJECT_DIR$/app/templates/admin/admin_data.html" />
+        <option value="$PROJECT_DIR$/app/templates/app/base.html" />
       </list>
     </option>
   </component>
@@ -977,6 +988,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="516">
           <caret line="153" column="4" selection-start-line="153" selection-start-column="4" selection-end-line="154" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -984,14 +996,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="21" column="112" selection-start-line="21" selection-start-column="112" selection-end-line="21" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="60" column="62" selection-start-line="57" selection-start-column="4" selection-end-line="60" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1292,29 +1296,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/document_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="78" selection-start-line="7" selection-start-column="78" selection-end-line="7" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="90" column="51" selection-start-line="90" selection-start-column="51" selection-end-line="90" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -1328,6 +1313,35 @@
             <marker date="1479958191000" expanded="false" signature="1345:1364" ph="..." />
             <marker date="1479958191000" expanded="false" signature="11894:11972" ph="..." />
             <marker date="1479958191000" expanded="false" signature="12032:12051" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/document_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="30" column="46" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#p#2;n#section#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
