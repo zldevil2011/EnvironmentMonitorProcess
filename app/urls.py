@@ -3,7 +3,7 @@ from views.index import index
 from views.station import station
 from views.historical import historical_data, historical_device
 from views.admin_user import admin_login
-from views.admin_user import admin_logout
+from views.admin_user import admin_logout, admin_user_list,admin_user_update
 from views.admin_index import admin_index
 from views.admin_data import admin_data, admin_data_update,admin_device_update
 from views.admin_document import admin_document_list, admin_document_edit, admin_document_info
@@ -28,4 +28,6 @@ urlpatterns += [
 	url(r'^admin_document_edit/$', admin_document_edit, name="admin_document"),
 	url(r'^admin_document_list/$', admin_document_list, name="admin_document"),
 	url(r'^admin_document_info/(?P<news_id>\d+)/$', admin_document_info, name="admin_document_info"),
+	url(r'^admin_user_list/$', admin_user_list, name="admin_user_list"),
+	url(r'^admin_user/update/$', admin_user_update, name="admin_user_update"),
 ]

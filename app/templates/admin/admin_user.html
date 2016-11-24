@@ -1,0 +1,231 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}用户管理{% endblock %}
+{% block special_css %}
+    <style>
+        .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+            color: #555;
+            cursor: default;
+            background-color: #57b382;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+        }
+
+    </style>
+{% endblock %}
+{% block body_content %}
+    <div class="clearfix">
+        <div class="tabbable" id="tabs-971732">
+            <ul class="nav nav-tabs" style="background-color: #ececec;">
+                <li class="active" style="width: 50%;text-align: center;border-right: 1px solid #d1d1d1;">
+                     <a href="#panel-admin-1" data-toggle="tab" style="">一级管理员</a>
+                </li>
+                <li style="width: 50%;text-align: center;border-right: 1px solid #d1d1d1;">
+                     <a href="#panel-admin-2" data-toggle="tab">二级管理员</a>
+                </li>
+            </ul>
+            <div class="tab-content" style="margin-top: 20px;">
+                <div class="tab-pane active" id="panel-admin-1">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-striped td-vertical-middle">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        编号
+                                    </th>
+                                    <th>
+                                        用户名
+                                    </th>
+                                    <th>
+                                        级别
+                                    </th>
+                                    {% if adminer.user.is_staff %}
+                                    <th>
+                                        操作
+                                    </th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for u in user_list_1 %}
+                                <tr>
+                                    <td>{{ u.id }}</td>
+                                    <td>{{ u.username }}</td>
+                                    <td>一级</td>
+                                    {% if adminer.user.is_staff %}
+                                        <td><button class="btn btn-danger btn-block" onclick="deleteAdmin({{ u.id }});">删除</button></td>
+                                    {% endif %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="panel-admin-2">
+                    <div class="col-md-12">
+                        <table class="table table-hover table-striped td-vertical-middle">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        编号
+                                    </th>
+                                    <th>
+                                        用户名
+                                    </th>
+                                    <th>
+                                        级别
+                                    </th>
+                                    {% if adminer.user.is_staff %}
+                                    <th>
+                                        操作
+                                    </th>
+                                    {% endif %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for u in user_list_2 %}
+                                <tr>
+                                    <td>{{ u.id }}</td>
+                                    <td>{{ u.username }}</td>
+                                    <td>二级</td>
+                                    {% if adminer.user.is_staff %}
+                                        <td><button class="btn btn-danger btn-block" onclick="deleteAdmin({{ u.id }});">删除</button></td>
+                                    {% endif %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <p><h3>新建管理员</h3></p>
+            <div class="col-md-6 column">
+                <form class="form-horizontal" role="form" onsubmit="return addAdmin();">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">级别</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" name="level-choice">
+                                <option value="1">一级管理员</option>
+                                <option value="2">二级管理员</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">用户名</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="username" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                         <label for="inputPassword3" class="col-sm-3 control-label">密&nbsp;&nbsp;码</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="password" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                         <label for="inputPassword3" class="col-sm-3 control-label">确认密码</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="rpassword" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                             <button type="submit" class="btn btn-info btn-block">确定</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 column" name="level1-rights">
+                <p>权限：</p>
+                <p>文档：查看，编辑</p>
+                <p>设备：查看，编辑</p>
+                <p>数据：查看，编辑</p>
+                <p>用户：查看，编辑</p>
+            </div>
+            <div class="col-md-6 column" name="level2-rights" style="display: none;">
+                <p>权限：</p>
+                <p>文档：查看，编辑</p>
+                <p>设备：查看，编辑</p>
+                <p>数据：查看</p>
+                <p>用户：无权限</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block special_js %}
+<script>
+    $("[name=level-choice]").on("change", function(){
+        var val = $(this).val();
+        if(val == 1){
+            $("[name=level1-rights]").show();
+            $("[name=level2-rights]").hide();
+        }else{
+            $("[name=level1-rights]").hide();
+            $("[name=level2-rights]").show();
+        }
+    });
+    function addAdmin(){
+
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var level = $("[name=level-choice]").val();
+        if(username == "" || password == ""){
+            alert("请填写完整信息");
+            return false;
+        }
+        var rpassword = $("#rpassword").val();
+        if(password != rpassword){
+            alert("两次密码不一致");
+            return false;
+        }
+        level == 1 ? L_name="一" : L_name="二";
+        var r=confirm("你确认将用户名为" + username +  "添加为" + L_name +  "级管理员吗？");
+        if (r==true){
+            $.ajax({
+                url:'/admin_user/update/',
+                type:'POST',
+                data:{add:1, username:username, password:password, level:level},
+                success:function(res){
+                    if(res == "success"){
+                        alert("创建成功");
+                        window.location.reload();
+                    }else{
+                        alert("创建失败,请稍后再试");
+                    }
+                },
+                error:function(res){
+                    alert("创建失败,请稍后再试");
+                }
+            })
+        }else{
+
+        }
+        return false;
+    }
+    function deleteAdmin(id){
+        var r=confirm("你确认将ID为" + id +  "的管理员移除吗？");
+        if (r==true){
+            $.ajax({
+                url:'/admin_user/update/',
+                type:'POST',
+                data:{delete:1, user_id:id},
+                success:function(res){
+                    if(res == "success"){
+                        alert("删除成功");
+                        window.location.reload();
+                    }else{
+                        alert("删除失败,请稍后再试");
+                    }
+                },
+                error:function(res){
+                    alert("删除失败,请稍后再试");
+                }
+            })
+        }else{
+
+        }
+    }
+</script>
+{% endblock %}
