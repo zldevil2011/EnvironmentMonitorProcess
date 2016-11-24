@@ -99,3 +99,26 @@ def admin_document_edit(request):
 			"news": news,
 		})
 	# form = ItemUEditorModelForm(instance=item)
+
+def admin_document_info(request, news_id):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/admin_login/")
+	news_id = int(news_id)
+	print news_id
+	print type(news_id)
+	if request.method == "POST":
+		return HttpResponse("POST")
+	else:
+		try:
+			news = Announcement.objects.get(pk=news_id)
+			news.read_count += 1
+			news.save()
+		except Announcement.DoesNotExist:
+			return HttpResponse("不存在")
+
+		return render(request, "admin/admin_document_info.html", {
+			"news": news,
+			"adminer": adminer,
+		})

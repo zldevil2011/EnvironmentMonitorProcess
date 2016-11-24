@@ -1,0 +1,70 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}{{ news.title }}{% endblock %}
+{% block special_css %}
+{% endblock %}
+{% block body_content %}
+    <div class="row clearfix">
+        <div class="col-md-12">
+            <div class="horizontal-center-block"  style="width: 100%;">
+                <table class="table table-bordered horizontal-center-block">
+                    <tr>
+                        <td style="text-align: center;">
+                            <h4>{{ news.title }}</h4>
+                            <hr>
+                            <div style="text-align: right;">
+                                <small>阅读次数: {{ news.read_count }}</small>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="father">
+                            文章内容<hr>
+                            {{ news.content | safe }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            作者<hr>
+                            {{ news.author }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 10px;">
+            <div class="col-md-offset-6 col-md-3 col-sm-6 text-right" >
+                <button name = "save" class="btn btn-success" style="width: 100%;" onclick="window.location.href='/admin_document_edit?nid={{ news.id }}'">编辑</button>
+            </div>
+            <div class="col-md-3 col-sm-6 text-right" >
+                <button name = "save" class="btn btn-danger" style="width: 100%;" onclick="deleteNews();">删除</button>
+            </div>
+        </div>
+        <div name="news_id" style="display: none;">{{ news.id }}</div>
+    </div>
+{% endblock %}
+{% block special_js %}
+    <script>
+        function deleteNews(){
+            var news_id = $("[name=news_id]").html();
+            var formdata = new FormData();
+            formdata.append("delete_tag", "true");
+            formdata.append("news_id", news_id);
+            $.ajax({
+                url: '/admin_document_edit/',
+                type : "POST",
+                cache : false,
+                data : formdata,
+                processData : false,
+                contentType : false
+            }).done(function(res){
+                if(res == "success"){
+                    window.location.href = "/admin_document_list/";
+                }else{
+                    alert("请稍后再试");
+                }
+            }).fail(function(res){
+                alert("请稍后再试");
+            })
+        }
+    </script>
+{% endblock %}

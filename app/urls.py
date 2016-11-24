@@ -6,7 +6,7 @@ from views.admin_user import admin_login
 from views.admin_user import admin_logout
 from views.admin_index import admin_index
 from views.admin_data import admin_data
-from views.admin_document import admin_document_list, admin_document_edit
+from views.admin_document import admin_document_list, admin_document_edit, admin_document_info
 from views.platform import information
 urlpatterns = [
 	url(r'^$', index, name="welcome"),
@@ -24,4 +24,5 @@ urlpatterns += [
 	url(r'^admin_data/$', admin_data, name="admin_data"),
 	url(r'^admin_document_edit/$', admin_document_edit, name="admin_document"),
 	url(r'^admin_document_list/$', admin_document_list, name="admin_document"),
+	url('^admin_document_info/(?P<news_id>\d+)/$', admin_document_info, name="admin_document_info"),
 ]

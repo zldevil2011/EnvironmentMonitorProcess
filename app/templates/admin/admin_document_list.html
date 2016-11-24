@@ -33,20 +33,19 @@
                         <th>
                             阅读量
                         </th>
-                        <th>
-                            操作
-                        </th>
+{#                        <th>#}
+{#                            操作#}
+{#                        </th>#}
                     </tr>
                 </thead>
                 <tbody>
                     {% for d in document_list %}
-                    <tr>
+                    <tr onclick="window.location.href='/admin_document_info/{{ d.id }}'" class="hander">
                         <td>{{ d.id }}</td>
                         <td>{{ d.title }}</td>
                         <td>{{ d.author }}</td>
                         <td>{{ d.date }}</td>
                         <td>{{ d.read_count }}</td>
-                        <td><button class="btn btn-danger btn-block" onclick="window.location.href='/admin_document_edit?nid={{ d.id }}'">编辑</button></td>
                     </tr>
                     {% endfor %}
                 </tbody>
