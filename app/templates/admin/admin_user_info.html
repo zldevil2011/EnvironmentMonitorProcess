@@ -1,0 +1,92 @@
+{% extends "admin/admin_base.html" %}
+{% block title %}个人信息{% endblock %}
+{% block special_css %}
+{% endblock %}
+{% block body_content %}
+{#    <div style="position: absolute;">#}
+        <div class="clearfix vertical-center" style="width: 500px;height: 300px;">
+            <div class="col-md-12 column" style="padding: 0;">
+                <div class="row clearfix">
+                    <div class="col-md-offset-2 col-md-8 column">
+                        <form class="form-horizontal" role="form" onsubmit="return updateInfo();">
+                            <div class="form-group">
+                                <label for="pre_password" class="col-sm-4 control-label">原始密码</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="pre_password" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="new_password" class="col-sm-4 control-label">输入新密码</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="new_password" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="re_new_password" class="col-sm-4 control-label">再次输入密码</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="re_new_password" />
+                                </div>
+                            </div>
+{#                            <div class="form-group">#}
+{#                                <label for="secret" class="col-sm-4 control-label">一级密码</label>#}
+{#                                <div class="col-sm-8">#}
+{#                                    <input type="password" class="form-control" id="secret" />#}
+{#                                </div>#}
+{#                            </div>#}
+                            <br>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                     <button type="submit" class="btn btn-info btn-block">确认</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+{#    </div>#}
+        <div id = "user_id" style="display: none;">
+            {{ adminer.id }}
+        </div>
+
+{% endblock %}
+{% block special_js %}
+<script>
+    function updateInfo(){
+        var password = $("#pre_password").val().trim();
+        var new_password = $("#new_password").val().trim();
+        var re_new_password = $("#re_new_password").val().trim();
+        var secret = $("#secret").val().trim();
+        if(password == "" || new_password == "" || re_new_password == "" || secret == ""){
+            alert("前填写完整信息");
+            return false;
+        }
+        if(new_password != re_new_password){
+            alert("两次密码不一致");
+            return false;
+        }
+        var user_id = ($("#user_id").html());
+        var r=confirm("确认修改？");
+        if (r==true){
+            $.ajax({
+                url:'/admin_user/update/',
+                type:'POST',
+                data:{modify:1, password:new_password, user_id:user_id},
+                success:function(res){
+                    if(res == "success"){
+                        alert("更新成功");
+                        window.location.reload();
+                    }else{
+                        alert("更新失败,请稍后再试");
+                    }
+                },
+                error:function(res){
+                    alert("更新失败,请稍后再试");
+                }
+            })
+        }else{
+
+        }
+    }
+</script>
+{% endblock %}

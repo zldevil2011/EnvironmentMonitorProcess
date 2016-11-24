@@ -146,3 +146,14 @@ def admin_user_update(request):
 			return HttpResponse("error")
 	else:
 		return HttpResponse("error")
+
+
+def admin_user_info(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/admin_login/")
+	return render(request, "admin/admin_user_info.html", {
+		"adminer": adminer,
+	})
+
