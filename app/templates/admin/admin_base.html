@@ -42,9 +42,11 @@
                             <li name="admin_document_list">
                                  <a href="/admin_document_list/">文档</a>
                             </li>
+                            {% if adminer.user.is_staff %}
                             <li name="admin_user_list">
                                  <a href="/admin_user_list/">用户管理</a>
                             </li>
+                            {% endif %}
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
 {#                            <li>#}
