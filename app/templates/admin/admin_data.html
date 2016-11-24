@@ -123,68 +123,70 @@
                             </div>
                             <div class="modal-body">
                                 <div class="row clearfix">
-                                <div class="col-md-12 column">
-                                    <form class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <label for="ID" class="col-sm-2 control-label">ID</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="" readonly value="{{ d.id }}"/>
+                                    <div class="col-md-12 column">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label for="ID" class="col-sm-2 control-label">ID</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="" readonly value="{{ d.id }}"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pm25" class="col-sm-2 control-label">PM2.5</label>
-                                            <div class="col-sm-10">
-                                                <input type="number" class="form-control" id="{{ d.id }}_pm25" value="{{ d.pm25 }}" />
+                                            <div class="form-group">
+                                                <label for="pm25" class="col-sm-2 control-label">PM2.5</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" class="form-control" id="{{ d.id }}_pm25" value="{{ d.pm25 }}" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pm10" class="col-sm-2 control-label">PM10</label>
-                                            <div class="col-sm-10">
-                                                <input type="number" class="form-control" id="{{ d.id }}_pm10"  value="{{ d.pm10 }}"/>
+                                            <div class="form-group">
+                                                <label for="pm10" class="col-sm-2 control-label">PM10</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" class="form-control" id="{{ d.id }}_pm10"  value="{{ d.pm10 }}"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="so2" class="col-sm-2 control-label">SO2</label>
-                                            <div class="col-sm-10">
-                                                <input type="number" class="form-control" id="{{ d.id }}_SO2" value="{{ d.so2 }}" />
+                                            <div class="form-group">
+                                                <label for="so2" class="col-sm-2 control-label">SO2</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" class="form-control" id="{{ d.id }}_so2" value="{{ d.so2 }}" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="CO" class="col-sm-2 control-label">CO</label>
-                                            <div class="col-sm-10">
-                                                <input type="number" class="form-control" id="{{ d.id }}_CO" value="{{ d.co }}" />
+                                            <div class="form-group">
+                                                <label for="CO" class="col-sm-2 control-label">CO</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" class="form-control" id="{{ d.id }}_co" value="{{ d.co }}" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="NO2" class="col-sm-2 control-label">NO2</label>
-                                            <div class="col-sm-10">
-                                                <input type="number" class="form-control" id="{{ d.id }}_NO2"  value="{{ d.no2 }}"/>
+                                            <div class="form-group">
+                                                <label for="NO2" class="col-sm-2 control-label">NO2</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" class="form-control" id="{{ d.id }}_no2"  value="{{ d.no2 }}"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="O3" class="col-sm-2 control-label">O3</label>
-                                            <div class="col-sm-10">
-                                                <input type="number" class="form-control" id="{{ d.id }}_O3" value="{{ d.o3 }}" />
+                                            <div class="form-group">
+                                                <label for="O3" class="col-sm-2 control-label">O3</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" class="form-control" id="{{ d.id }}_o3" value="{{ d.o3 }}" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="time" class="col-sm-2 control-label">时间</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="{{ d.id }}_time" value="{{ d.time }}" />
+                                            <div class="form-group">
+                                                <label for="time" class="col-sm-2 control-label">时间</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="{{ d.id }}_time" value="{{ d.time }}" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name" class="col-sm-2 control-label">采集点</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="{{ d.id }}_name" value="{{ d.name }}" readonly/>
+                                            <div class="form-group">
+                                                <label for="name" class="col-sm-2 control-label">采集点</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="{{ d.id }}_name" value="{{ d.name }}" readonly/>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
                             <div class="modal-footer">
-                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" onclick="updateData(this.id);" id="save_{{ d.id }}">保存</button>
+                                <button type="button" class="btn btn-danger" onclick="deleteData(this.id);" id="delete_{{ d.id }}">删除</button>
                             </div>
                         </div>
                     </div>
@@ -293,7 +295,7 @@
                                                 <div class="form-group">
                                                     <label for="time" class="col-sm-2 control-label">时间</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="{{ d.id }}_latest_time" value="{{ d.latest_time }}" />
+                                                        <input type="text" class="form-control" id="{{ d.id }}_latest_time" value="{{ d.latest_time }}" readonly/>
                                                     </div>
                                                 </div>
                                             </form>
@@ -301,7 +303,9 @@
                                     </div>
                                     </div>
                                     <div class="modal-footer">
-                                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        <button type="button" class="btn btn-primary" onclick="updateDevice(this.id)" id="save_{{ d.id }}">保存</button>
+                                        <button type="button" class="btn btn-danger" onclick="deleteDevice(this.id)" id="delete_{{ d.id }}">删除</button>
                                     </div>
                                 </div>
                             </div>
@@ -316,13 +320,99 @@
 {#    <button id="submit">提交</button>#}
 {% endblock %}
 {% block special_js %}
-
-{#<script>#}
-{#    var id_content = UE.getEditor('description',{'initialFrameWidth': 800, 'initialFrameHeight': 300, 'serverUrl': '/ueditor/controller/?imagePathFormat=img/&filePathFormat=img/'});#}
-{#    var submit = document.getElementById("submit");#}
-{#    submit.onclick = function(){#}
-{#        var productDescription = id_content.getContent();#}
-{#        alert(productDescription);#}
-{#    };#}
-{#</script>#}
+<script>
+    function updateData(id){
+        var $this = $("#" + id);
+        var data_id = id.slice(5);
+        var pm25 = $("#" + data_id + "_pm25").val();
+        var pm10 = $("#" + data_id + "_pm10").val();
+        var so2 = $("#" + data_id + "_so2").val();
+        var co = $("#" + data_id + "_co").val();
+        var no2 = $("#" + data_id + "_no2").val();
+        var o3 = $("#" + data_id + "_o3").val();
+        var time = $("#" + data_id + "_time").val();
+        console.log(pm25);
+        console.log(pm10);
+        console.log(so2);
+        console.log(co);
+        console.log(no2);
+        console.log(o3);
+        $.ajax({
+            url: '/admin_data/update/',
+            type: 'POST',
+                data:{data_id:data_id, pm25:pm25, pm10:pm10, so2:so2, co:co, no2:no2, o3:o3, time:time},
+            success:function(res){
+                if(res == "success"){
+                    alert("修改成功");
+                    window.location.reload()
+                }else{
+                    alert("修改失败，请稍后再试");
+                }
+            },
+            error:function(res){
+                alert(res);
+            }
+        })
+    }
+    function deleteData(id){
+        var data_id = id.slice(7);
+        $.ajax({
+            url: '/admin_data/update/',
+            type: 'POST',
+            data:{data_id:data_id, delete_tag:1},
+            success:function(res){
+                if(res == "success"){
+                    alert("删除成功");
+                }else{
+                    alert("删除失败，请稍后再试");
+                }
+            },
+            error:function(res){
+                alert(res);
+            }
+        })
+    }
+    function updateDevice(id){
+        var $this = $("#" + id);
+        var device_id = id.slice(5);
+        var name = $("#" + device_id + "_name").val();
+        var address = $("#" + device_id + "_address").val();
+        var install_time = $("#" + device_id + "_install_time").val();
+        $.ajax({
+            url: '/admin_data/device/update/',
+            type: 'POST',
+            data:{device_id:device_id, name:name, address:address, install_time:install_time},
+            success:function(res){
+                if(res == "success"){
+                    alert("修改成功");
+                    window.location.reload()
+                }else{
+                    alert("修改失败，请稍后再试");
+                }
+            },
+            error:function(res){
+                alert(res);
+            }
+        })
+    }
+    function deleteDevice(id){
+        var device_id = id.slice(7);
+        $.ajax({
+            url: '/admin_data/device/update/',
+            type: 'POST',
+            data:{device_id:device_id, delete_tag:1},
+            success:function(res){
+                if(res == "success"){
+                    alert("删除成功");
+                    window.location.reload();
+                }else{
+                    alert("删除失败，请稍后再试");
+                }
+            },
+            error:function(res){
+                alert(res);
+            }
+        })
+    }
+</script>
 {% endblock %}
