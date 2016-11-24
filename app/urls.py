@@ -7,14 +7,15 @@ from views.admin_user import admin_logout
 from views.admin_index import admin_index
 from views.admin_data import admin_data
 from views.admin_document import admin_document_list, admin_document_edit, admin_document_info
-from views.platform import information
+from views.platform import information, news_info
 urlpatterns = [
 	url(r'^$', index, name="welcome"),
 	url(r'^index/$', index, name="welcome"),
 	url(r'^station/$', station, name="station"),
 	url(r'^historical_device/$', historical_device, name="historical_device"),
 	url(r'^historical_device_data/(?P<device_id>\d+)/$', historical_data, name="historical_data"),
-	url(r'^information/$', information, name="information")
+	url(r'^information/$', information, name="information"),
+	url(r'^document_info/(?P<news_id>\d+)/$', news_info, name="news_info"),
 ]
 
 urlpatterns += [
@@ -24,5 +25,5 @@ urlpatterns += [
 	url(r'^admin_data/$', admin_data, name="admin_data"),
 	url(r'^admin_document_edit/$', admin_document_edit, name="admin_document"),
 	url(r'^admin_document_list/$', admin_document_list, name="admin_document"),
-	url('^admin_document_info/(?P<news_id>\d+)/$', admin_document_info, name="admin_document_info"),
+	url(r'^admin_document_info/(?P<news_id>\d+)/$', admin_document_info, name="admin_document_info"),
 ]

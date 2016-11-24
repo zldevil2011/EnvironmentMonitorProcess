@@ -108,6 +108,19 @@
                 [6] 《燃煤大气污染物对中国孕妇以及儿童发展的影响》
             </div>
         </div>
+        <div class="col-md-12">
+            <hr>
+        </div>
+        <div class="col-md-12" style="border-left: 4px solid #c1c1c1;">
+            <span style="font-weight: bold;color: #888;font-size: 18px;">本站新闻</span>
+        </div>
+        <div class="col-md-12" style="margin-top: 10px;">
+            {% for d in news_list %}
+            <div class="col-md-4 hander" onclick="window.location.href='/document_info/{{ d.id }}'">
+                [{{ forloop.counter }}] {{ d.title }}
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}
