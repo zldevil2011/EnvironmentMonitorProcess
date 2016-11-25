@@ -78,24 +78,24 @@ WSGI_APPLICATION = 'EMP.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'emp',
-        'USER': 'root',
-        'PASSWORD': 'Long@680920',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'emp',
+#         'USER': 'root',
+#         'PASSWORD': 'Long@680920',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Internationalization
@@ -114,14 +114,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-
+import os
 STATIC_URL = '/static/'
 STATIC_ROOT = './static/'
 STATICFILES_DIRS = (
-    ("app/css", os.path.join(STATIC_ROOT, '../app_static/css')),
-    ("app/js", os.path.join(STATIC_ROOT, '../app_static/js')),
-    ("app/img", os.path.join(STATIC_ROOT, '../app_static/img')),
-    ("app/fonts", os.path.join(STATIC_ROOT, '../app_static/fonts')),
+    ("app" + os.sep + "css", os.path.join(STATIC_ROOT, '../app_static/css')),
+    ("app" + os.sep + "js", os.path.join(STATIC_ROOT, '../app_static/js')),
+    ("app" + os.sep + "img", os.path.join(STATIC_ROOT, '../app_static/img')),
+    ("app" + os.sep + "fonts", os.path.join(STATIC_ROOT, '../app_static/fonts')),
 )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = './media/'

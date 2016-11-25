@@ -8,13 +8,13 @@ class MySQL(object):
 	def __init__(self):
 		self.host = '127.0.0.1'
 		self.user = 'root'
-		self.password = 'xx'
-		self.database = 'xxx'
+		self.password = '5868629'
+		# self.database = 'jssf'
 		self.db = None
 		self.cursor = None
 
-	def connectDB(self):
-		self.db = MySQLdb.connect(self.host, self.user, self.password, self.database, charset="utf8")
+	def connectDB(self, dbname):
+		self.db = MySQLdb.connect(self.host, self.user, self.password, dbname, charset="utf8")
 		self.cursor = self.db.cursor()
 		return self.cursor
 
@@ -142,34 +142,35 @@ class MySQL(object):
 if __name__ == '__main__':
 	sql = MySQL()
 	sql.connectDB()
-	data = {}
-	data["number"] = "20150030"
-	data["name"] = "AP"
-	data["birthday"] = "1994-10-23"
+	# data = {}
+	# data["number"] = "20150030"
+	# data["name"] = "AP"
+	# data["birthday"] = "1994-10-23"
 	# print sql.insert_data("person", data)
+	print sql.get_query(u"大气六参数")
 	# print sql.get_query("person", "birthday", None, None, None, "birthday")
 	# print sql.update_data("person", data, "1")
 	# print sql.delete_data("person", 2)
-	from datetime import datetime, timedelta
-	import random
-	today = datetime.today()
-	hour1 = timedelta(hours=1)
-	data_list = []
-	for i in range(9):
+	# from datetime import datetime, timedelta
+	# import random
+	# today = datetime.today()
+	# hour1 = timedelta(hours=1)
+	# data_list = []
+	# for i in range(9):
 	# 	sql.delete_data("data", i+101)
-		data = {}
-		data["device_id"] = 1
-		data["pm25"] = random.randint(0,500)
-		data["so2"] = random.randint(0,200)
-		data["co"] = random.randint(0,200)
-		data["no2"] = random.randint(0,200)
-		data["o3"] = random.randint(0,200)
-		data["pm10"] = random.randint(0,200)
-		data["time"] = today
-		today -= hour1
-		sql.insert_data("data", data)
-	longitude_s = 117.2944
-	latitude_s = 30.4127
+	# 	data = {}
+	# 	data["device_id"] = 1
+	# 	data["pm25"] = random.randint(0,500)
+	# 	data["so2"] = random.randint(0,200)
+	# 	data["co"] = random.randint(0,200)
+	# 	data["no2"] = random.randint(0,200)
+	# 	data["o3"] = random.randint(0,200)
+	# 	data["pm10"] = random.randint(0,200)
+	# 	data["time"] = today
+	# 	today -= hour1
+	# 	sql.insert_data("data", data)
+	# longitude_s = 117.2944
+	# latitude_s = 30.4127
 	# for i in range(10):
 		# sql.delete_data("device", 41)
 		# data = {}

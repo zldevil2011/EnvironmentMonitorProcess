@@ -15,29 +15,54 @@ def admin_index(request):
 	except:
 		return HttpResponseRedirect("/admin_login/")
 	sql = MySQL()
-	sql.connectDB()
-	datas = sql.get_query("data")
-	devices = sql.get_query("device")
+	sql.connectDB("projectmanagement")
+	devices = sql.get_query("projectnodeinfo", "ProjectID", "=", "1")
 	sql.close_connect()
+	device_list = []
 	for device in devices:
-		for data in datas:
+		tmp = {}
+		tmp["id"] = device["NodeNO"]
+		tmp["name"] = device["Description"]
+		tmp["address"] = device["InstallationAddress"]
+		tmp["longitude"] = "117.5436320000"
+		tmp["latitude"] = "30.7078830000"
+		tmp["install_time"] = device["SetTime"]
+		device_list.append(tmp)
+	NOW = datetime.today()
+	start = datetime(NOW.year, NOW.month, NOW.day, 0,0,0)
+	sql.connectDB("jssf")
+	datas = sql.get_query(u"大气六参数", u"紧缩性时间传感器_实时时间", ">", start.strftime("%Y-%m-%d %H:%M:%S"))
+	sql.close_connect()
+	datas_list_12 = []
+	for data in datas:
+		tmp = {}
+		tmp["so2"] = data["SO2_SO2"]
+		tmp["no2"] = data["NO2_NO2"]
+		tmp["pm10"] = data["PM10_PM10"]
+		tmp["co"] = data["CO_CO"]
+		tmp["o3"] = data["O3_O3"]
+		tmp["pm2.5"] = data["PM2.5_PM2.5"]
+		tmp["device_id"] = data[u"项目内节点编号"]
+		datas_list_12.append(tmp)
+	for device in device_list:
+		for data in datas_list_12:
 			if device["id"] == data["device_id"]:
 				device["latest_time"] = data["time"]
 				break
-	for data in datas:
-		for device in devices:
+	for data in datas_list_12:
+		for device in device_list:
 			if data["device_id"] == device["id"]:
 				data["name"] = device["name"]
 				data["time"] = str(data["time"])
 				break
 	# 统计监测点数量
-	device_list = [
-		{"id": 1, "name": u"京师方圆", "address": u"凤凰大道", "longitude": 117.2944, "latitude": 30.4127,
-		 "latest_time": "2016-11-22 12:00:00", "install_time": "2016-11-12 12:00:00"},
-		{"id": 2, "name": u"清风大道路", "address": u"新城区", "longitude": 117.2944, "latitude": 30.4027,
-		 "latest_time": "2016-11-22 12:00:00", "install_time": "2016-11-10 12:00:00"},
-	]
-	device_list = devices
+	# device_list = [
+	# 	{"id": 1, "name": u"京师方圆", "address": u"凤凰大道", "longitude": 117.2944, "latitude": 30.4127,
+	# 	 "latest_time": "2016-11-22 12:00:00", "install_time": "2016-11-12 12:00:00"},
+	# 	{"id": 2, "name": u"清风大道路", "address": u"新城区", "longitude": 117.2944, "latitude": 30.4027,
+	# 	 "latest_time": "2016-11-22 12:00:00", "install_time": "2016-11-10 12:00:00"},
+	# ]
+	# device_list = devices
 	device_len = len(device_list)
 
 	# 正常工作点数量
@@ -46,57 +71,57 @@ def admin_index(request):
 
 	# 计算最近24小时站点均值
 	# 首先获取最近24小时内所有站点的的数据
-	datas_list_12 = [
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 12:00:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 12:10:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 12:20:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 12:30:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 12:40:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 11:00:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 11:57:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 11:13:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 11:35:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 10:57:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 10:13:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 10:35:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 12:00:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 12:10:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 12:20:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 12:30:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 12:40:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 11:00:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 11:57:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 11:13:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 11:35:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 10:57:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 10:13:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-23 10:35:00"},
-	]
-	datas_list_12 = datas
+	# datas_list_12 = [
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 12:00:00"},
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 12:10:00"},
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 12:20:00"},
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 12:30:00"},
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 12:40:00"},
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 11:00:00"},
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 11:57:00"},
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 11:13:00"},
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 11:35:00"},
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 10:57:00"},
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 10:13:00"},
+	# 	{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 10:35:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 12:00:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 12:10:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 12:20:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 12:30:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 12:40:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 11:00:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 11:57:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 11:13:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 11:35:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 10:57:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 10:13:00"},
+	# 	{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
+	# 	 "time": "2016-11-23 10:35:00"},
+	# ]
+	# datas_list_12 = datas
 	# 计算各个数据的采集数量
 	today = datetime.today()
 	today_start = datetime(today.year,today.month,today.day,0,0,0)
