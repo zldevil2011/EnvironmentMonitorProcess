@@ -30,10 +30,10 @@ def index(request):
 				datas_list.append(tmp)
 				break
 	for data in datas:
+		data["time"] = str(data["time"])
 		for device in devices:
 			if data["device_id"] == device["id"]:
 				data["name"] = device["name"]
-				data["time"] = str(data["time"])
 				break
 
 	# 获取所有观测点的数据

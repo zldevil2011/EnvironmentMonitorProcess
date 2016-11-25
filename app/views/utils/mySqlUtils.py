@@ -9,7 +9,7 @@ class MySQL(object):
 		self.host = '127.0.0.1'
 		self.user = 'root'
 		self.password = 'xx'
-		self.database = 'xx'
+		self.database = 'xxx'
 		self.db = None
 		self.cursor = None
 
@@ -155,30 +155,30 @@ if __name__ == '__main__':
 	today = datetime.today()
 	hour1 = timedelta(hours=1)
 	data_list = []
-	# for i in range(100):
+	for i in range(9):
 	# 	sql.delete_data("data", i+101)
-		# data = {}
-		# data["device_id"] = 1
-		# data["pm25"] = random.randint(0,500)
-		# data["so2"] = random.randint(0,200)
-		# data["co"] = random.randint(0,200)
-		# data["no2"] = random.randint(0,200)
-		# data["o3"] = random.randint(0,200)
-		# data["pm10"] = random.randint(0,200)
-		# data["time"] = today
-		# today -= hour1
-		# sql.insert_data("data", data)
+		data = {}
+		data["device_id"] = 1
+		data["pm25"] = random.randint(0,500)
+		data["so2"] = random.randint(0,200)
+		data["co"] = random.randint(0,200)
+		data["no2"] = random.randint(0,200)
+		data["o3"] = random.randint(0,200)
+		data["pm10"] = random.randint(0,200)
+		data["time"] = today
+		today -= hour1
+		sql.insert_data("data", data)
 	longitude_s = 117.2944
 	latitude_s = 30.4127
-	for i in range(10):
+	# for i in range(10):
 		# sql.delete_data("device", 41)
-		data = {}
-		data["name"] = u"观测点" + str(i)
-		data["address"] = u"池州"
-		data["longitude"] = longitude_s
-		data["latitude"] = latitude_s
-		longitude_s += 0.001
-		latitude_s += 0.001
-		data["install_time"] = today
-		sql.insert_data("device", data)
+		# data = {}
+		# data["name"] = u"观测点" + str(i)
+		# data["address"] = u"池州"
+		# data["longitude"] = longitude_s
+		# data["latitude"] = latitude_s
+		# longitude_s += 0.001
+		# latitude_s += 0.001
+		# data["install_time"] = today
+		# sql.insert_data("device", data)
 	sql.close_connect()
