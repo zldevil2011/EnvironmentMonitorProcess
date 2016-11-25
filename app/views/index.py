@@ -27,7 +27,7 @@ def index(request):
 	NOW = datetime.today()
 	start = datetime(NOW.year, NOW.month, NOW.day, 0, 0, 0)
 	sql.connectDB("jssf")
-	datas = sql.get_query(u"大气六参数", u"紧缩性时间传感器_实时时间", ">", start.strftime("%Y-%m-%d %H:%M:%S"))
+	datas = sql.get_query(u"大气六参数", u"紧缩型时间传感器_实时时间", ">", start.strftime("%Y-%m-%d %H:%M:%S"))
 	sql.close_connect()
 	datas_list_briage = []
 	for data in datas:
@@ -101,17 +101,22 @@ def index(request):
 		average_data["co"] += data["co"]
 		average_data["o3"] += data["o3"]
 		average_data["pm25"] += data["pm25"]
-	average_data["so2"] /= len(datas_list)
-	average_data["no2"] /= len(datas_list)
-	average_data["pm10"] /= len(datas_list)
-	average_data["co"] /= len(datas_list)
-	average_data["o3"] /= len(datas_list)
-	average_data["pm25"] /= len(datas_list)
-	calculator = AqiParameter()
-	calculator.get_1_aqi(average_data)
-	average_data["AQI_1"] = calculator.AQI_1
-	average_data["Main_Pollute_1"] = calculator.Main_Pollute_1
-	average_data["AQI_info_1"] = calculator.AQI_info_1
+	if len(datas_list) != 0:
+		average_data["so2"] /= len(datas_list)
+		average_data["no2"] /= len(datas_list)
+		average_data["pm10"] /= len(datas_list)
+		average_data["co"] /= len(datas_list)
+		average_data["o3"] /= len(datas_list)
+		average_data["pm25"] /= len(datas_list)
+		calculator = AqiParameter()
+		calculator.get_1_aqi(average_data)
+		average_data["AQI_1"] = calculator.AQI_1
+		average_data["Main_Pollute_1"] = calculator.Main_Pollute_1
+		average_data["AQI_info_1"] = calculator.AQI_info_1
+	else:
+		average_data["AQI_1"] = u"无数据"
+		average_data["Main_Pollute_1"] = u"无数据"
+		average_data["AQI_info_1"] = u"无数据"
 	# 计算最近24小时站点均值
 	# 首先获取最近24小时内所有站点的的数据
 	datas_list_12 = [

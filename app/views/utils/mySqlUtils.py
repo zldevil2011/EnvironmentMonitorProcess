@@ -140,14 +140,21 @@ class MySQL(object):
 
 
 if __name__ == '__main__':
-	sql = MySQL()
-	sql.connectDB()
+	pass
+	# sql = MySQL()
+	# sql.connectDB("jssf")
+	# from datetime import datetime
+	# NOW = datetime.today()
+	# start = datetime(NOW.year, NOW.month, NOW.day, 0, 0, 0)
+	# datas = sql.get_query(u"大气六参数", u"紧缩性时间传感器_实时时间", ">", start.strftime("%Y-%m-%d %H:%M:%S"))
+	# sql.close_connect()
+	# sql.connectDB()
 	# data = {}
 	# data["number"] = "20150030"
 	# data["name"] = "AP"
 	# data["birthday"] = "1994-10-23"
 	# print sql.insert_data("person", data)
-	print sql.get_query(u"大气六参数")
+	# print sql.get_query(u"大气六参数")
 	# print sql.get_query("person", "birthday", None, None, None, "birthday")
 	# print sql.update_data("person", data, "1")
 	# print sql.delete_data("person", 2)
@@ -182,4 +189,4 @@ if __name__ == '__main__':
 		# latitude_s += 0.001
 		# data["install_time"] = today
 		# sql.insert_data("device", data)
-	sql.close_connect()
+	# sql.close_connect()
