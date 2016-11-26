@@ -38,6 +38,7 @@ def historical_device(request):
 		tmp["o3"] = data["O3_O3"]
 		tmp["pm25"] = data["PM2.5_PM2.5"]
 		tmp["device_id"] = data[u"项目内节点编号"]
+		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
 		datas_list_briage.append(tmp)
 	datas = datas_list_briage
 	for device in devices:
