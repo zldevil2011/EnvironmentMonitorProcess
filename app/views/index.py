@@ -97,7 +97,7 @@ def index(request):
 		print calculator
 		if int(calculator.AQI_1) >= 150:
 			subject = u"污染指数通知"
-			text_content = u"设备" + data["name"] + u")在" + str(data["time"]) + u"AQI值为" + str(calculator.AQI_1) + u",污染程度:" + unicode(calculator.AQI_info_1)
+			text_content = u"设备" + data["name"] + u")在" + str(data["time"]) + u"AQI值为" + str(calculator.AQI_1) + u",污染程度:" + unicode(calculator.AQI_info_1.classification)
 			from_email = settings.EMAIL_HOST_USER
 			to = "929034478@qq.com"
 			try:
