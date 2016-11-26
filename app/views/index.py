@@ -7,7 +7,7 @@ from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
 from utils.mySqlUtils import MySQL
 from django.core.mail import send_mail
-from emp import settings
+from EMP import settings
 
 
 def index(request):
