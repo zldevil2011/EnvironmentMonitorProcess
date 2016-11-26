@@ -36,7 +36,7 @@ def historical_device(request):
 		tmp["pm10"] = data["PM10_PM10"]
 		tmp["co"] = data["CO_CO"]
 		tmp["o3"] = data["O3_O3"]
-		tmp["pm2.5"] = data["PM2.5_PM2.5"]
+		tmp["pm25"] = data["PM2.5_PM2.5"]
 		tmp["device_id"] = data[u"项目内节点编号"]
 		datas_list_briage.append(tmp)
 	datas = datas_list_briage
@@ -57,7 +57,7 @@ def historical_device(request):
 				tmp["co"] = data["co"]
 				tmp["o3"] = data["o3"]
 				tmp["pm25"] = data["pm25"]
-				tmp["time"] = str(data["time"])
+				tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
 				device_data.append(tmp)
 				break
 	# 设备列表
@@ -134,8 +134,9 @@ def historical_data(request,device_id):
 		tmp["pm10"] = data["PM10_PM10"]
 		tmp["co"] = data["CO_CO"]
 		tmp["o3"] = data["O3_O3"]
-		tmp["pm2.5"] = data["PM2.5_PM2.5"]
+		tmp["pm25"] = data["PM2.5_PM2.5"]
 		tmp["device_id"] = data[u"项目内节点编号"]
+		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
 		datas_list_briage.append(tmp)
 	datas = datas_list_briage
 	for data in datas:
