@@ -257,6 +257,12 @@
     <script src= {% static "app/js/highcharts-more.js" %}></script>
     <script src= {% static "app/js/modules/solid-gauge.js" %}></script>
     <script>
+        $(function(){
+            var int=self.setInterval("reload_page()", 60000);
+        });
+        function reload_page() {
+            window.location.reload();
+        }
 {#        $(function () {#}
 {#            var gaugeOptions = {#}
 {#                chart: {#}
