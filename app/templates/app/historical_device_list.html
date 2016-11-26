@@ -20,7 +20,14 @@
                 </thead>
                 <tbody class="tr_hander">
                     {% for device in device_list %}
-                        <tr onclick="window.location.href='/historical_device_data/{{ device.id }}'"><td>{{ device.name }}</td><td>{{ device.address }}</td><td>{{ device.longitude }}</td><td>{{ device.latitude }}</td><td>{{ device.latest_time }}</td><td>{{ device.install_time }}</td></tr>
+                        <tr onclick="window.location.href='/historical_device_data/{{ device.id }}'">
+                            <td>{{ device.name }}</td>
+                            <td>{{ device.address }}</td>
+                            <td>{{ device.longitude }}</td>
+                            <td>{{ device.latitude }}</td>
+                            <td>{{ device.latest_time }}</td>
+                            <td>{{ device.install_time }}</td>
+                        </tr>
                     {% endfor %}
 {#                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>#}
                 </tbody>

@@ -11,12 +11,36 @@ from utils.mySqlUtils import MySQL
 
 def historical_device(request):
 	sql = MySQL()
-	sql.connectDB()
-	datas = sql.get_query("data")
-	devices = sql.get_query("device")
+	sql.connectDB("projectmanagement")
+	devices = sql.get_query("projectnodeinfo", "ProjectID", "=", "1")
 	sql.close_connect()
+	device_list = []
 	for device in devices:
-		device["install_time"] = str(device["install_time"])
+		tmp = {}
+		tmp["id"] = device["NodeNO"]
+		tmp["name"] = device["Description"]
+		tmp["address"] = device["InstallationAddress"]
+		tmp["longitude"] = "117.5436320000"
+		tmp["latitude"] = "30.7078830000"
+		tmp["install_time"] = str(device["SetTime"])
+		device_list.append(tmp)
+	devices = device_list
+	sql.connectDB("jssf")
+	datas = sql.get_query(u"大气六参数")
+	sql.close_connect()
+	datas_list_briage = []
+	for data in datas:
+		tmp = {}
+		tmp["so2"] = data["SO2_SO2"]
+		tmp["no2"] = data["NO2_NO2"]
+		tmp["pm10"] = data["PM10_PM10"]
+		tmp["co"] = data["CO_CO"]
+		tmp["o3"] = data["O3_O3"]
+		tmp["pm2.5"] = data["PM2.5_PM2.5"]
+		tmp["device_id"] = data[u"项目内节点编号"]
+		datas_list_briage.append(tmp)
+	datas = datas_list_briage
+	for device in devices:
 		for data in datas:
 			if device["id"] == data["device_id"]:
 				device["latest_time"] = str(data["time"])
@@ -81,23 +105,39 @@ def historical_data(request,device_id):
 	try:
 		device = {"id": 1, "name": "京师方圆"}
 		sql = MySQL()
-		sql.connectDB()
-		device = sql.get_query("device","id","=",device_id)[0]
-		print device
+		sql.connectDB("projectmanagement")
+		device = sql.get_query("projectnodeinfo", "NodeNo", "=", str(device_id))[0]
 		sql.close_connect()
+		print device
 	except:
 		try:
 			sql = MySQL()
-			sql.connectDB()
-			device = sql.get_query("device")[0]
+			sql.connectDB("projectmanagement")
+			device = sql.get_query("projectnodeinfo", "ProjectID", "=", "1")[0]
 			sql.close_connect()
 		except:
 			return HttpResponse("没有数据")
-	sql = MySQL()
-	sql.connectDB()
-	datas = sql.get_query("data", "device_id", "=", str(device["id"]))
-	print len(datas)
+	device["id"] = device["NodeNO"]
+	device["name"] = device["Description"]
+	device["address"] = device["InstallationAddress"]
+	device["longitude"] = "117.5436320000"
+	device["latitude"] = "30.7078830000"
+	device["install_time"] = str(device["SetTime"])
+	sql.connectDB("jssf")
+	datas = sql.get_query(u"大气六参数",u"项目内节点编号","=", device["id"])
 	sql.close_connect()
+	datas_list_briage = []
+	for data in datas:
+		tmp = {}
+		tmp["so2"] = data["SO2_SO2"]
+		tmp["no2"] = data["NO2_NO2"]
+		tmp["pm10"] = data["PM10_PM10"]
+		tmp["co"] = data["CO_CO"]
+		tmp["o3"] = data["O3_O3"]
+		tmp["pm2.5"] = data["PM2.5_PM2.5"]
+		tmp["device_id"] = data[u"项目内节点编号"]
+		datas_list_briage.append(tmp)
+	datas = datas_list_briage
 	for data in datas:
 		data["name"] = device["name"]
 		data["time"] = str(data["time"])

@@ -18,11 +18,40 @@ def admin_data(request):
 		return HttpResponseRedirect("/admin_data/?page=1")
 	start_num = (page - 1) * 30
 	end_num = page * 30
+
 	sql = MySQL()
-	sql.connectDB()
-	datas = sql.get_query("data")
-	devices = sql.get_query("device")
+	sql.connectDB("projectmanagement")
+	devices = sql.get_query("projectnodeinfo", "ProjectID", "=", "1")
 	sql.close_connect()
+	device_list = []
+	for device in devices:
+		tmp = {}
+		tmp["id"] = device["NodeNO"]
+		tmp["name"] = device["Description"]
+		tmp["address"] = device["InstallationAddress"]
+		tmp["longitude"] = "117.5436320000"
+		tmp["latitude"] = "30.7078830000"
+		tmp["install_time"] = device["SetTime"]
+		device_list.append(tmp)
+	devices = device_list
+	# 连接数据库，获取所有的采集数据
+	sql.connectDB("jssf")
+	datas = sql.get_query(u"大气六参数")
+	sql.close_connect()
+	datas_list_briage = []
+	for data in datas:
+		tmp = {}
+		tmp["so2"] = data["SO2_SO2"]
+		tmp["no2"] = data["NO2_NO2"]
+		tmp["pm10"] = data["PM10_PM10"]
+		tmp["co"] = data["CO_CO"]
+		tmp["o3"] = data["O3_O3"]
+		tmp["pm2.5"] = data["PM2.5_PM2.5"]
+		tmp["device_id"] = data[u"项目内节点编号"]
+		datas_list_briage.append(tmp)
+	datas = datas_list_briage
+
+
 	for device in devices:
 		for data in datas:
 			if device["id"] == data["device_id"]:
