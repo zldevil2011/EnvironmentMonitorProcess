@@ -6,6 +6,8 @@ import json
 from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
 from utils.mySqlUtils import MySQL
+from django.core.mail import send_mail
+from emp import settings
 
 
 def index(request):
@@ -93,6 +95,15 @@ def index(request):
 		data["AQI_info_1"] = calculator.AQI_info_1
 		data_real_time.append(data)
 		print calculator
+		if int(calculator.AQI_1) >= 150:
+			subject = u"污染指数通知"
+			text_content = u"设备" + data["name"] + u")在" + str(data["time"]) + u"AQI值为" + str(calculator.AQI_1) + u",污染程度:" + str(calculator.AQI_info_1)
+			from_email = settings.EMAIL_HOST_USER
+			to = "929034478@qq.com"
+			try:
+				send_mail(subject, text_content, from_email, [to], fail_silently=False)
+			except Exception as e:
+				pass
 	# 计算各个站点实时采集数据的均值在首页的三个环圈显示
 	average_data = {"so2": 0, "no2": 0, "pm10": 0, "co": 0, "o3": 0, "pm25": 0}
 	for data in datas_list:
