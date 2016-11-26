@@ -58,7 +58,7 @@ def historical_device(request):
 				tmp["co"] = data["co"]
 				tmp["o3"] = data["o3"]
 				tmp["pm25"] = data["pm25"]
-				tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
+				tmp["time"] = str(data["time"])
 				device_data.append(tmp)
 				break
 	# 设备列表
