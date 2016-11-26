@@ -27,7 +27,8 @@ def index(request):
 	NOW = datetime.today()
 	start = datetime(NOW.year, NOW.month, NOW.day, 0, 0, 0)
 	sql.connectDB("jssf")
-	datas = sql.get_query(u"大气六参数", u"紧缩型时间传感器_实时时间", ">", start.strftime("%Y-%m-%d %H:%M:%S"))
+	datas = sql.get_query(u"大气六参数", u"紧缩型时间传感器_实时时间", ">", start.strftime("%Y-%m-%d %H:%M:%S"), None, u"紧缩型时间传感器_实时时间")
+	datas.reverse()
 	sql.close_connect()
 	datas_list_briage = []
 	for data in datas:
@@ -63,7 +64,6 @@ def index(request):
 			if data["device_id"] == device["id"]:
 				data["name"] = device["name"]
 				break
-
 	# 获取所有观测点的数据
 	# datas_list = [
 	# 	{"name": u"京师方圆","so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158, "time": "2016-11-12 12:00:00"},

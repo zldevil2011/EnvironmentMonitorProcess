@@ -26,7 +26,8 @@ def historical_device(request):
 		device_list.append(tmp)
 	devices = device_list
 	sql.connectDB("jssf")
-	datas = sql.get_query(u"大气六参数")
+	datas = sql.get_query(u"大气六参数", None, None, None, None, u"紧缩型时间传感器_实时时间")
+	datas.reverse()
 	sql.close_connect()
 	datas_list_briage = []
 	for data in datas:
@@ -125,7 +126,8 @@ def historical_data(request,device_id):
 	device["latitude"] = "30.7078830000"
 	device["install_time"] = str(device["SetTime"])
 	sql.connectDB("jssf")
-	datas = sql.get_query(u"大气六参数",u"项目内节点编号","=", str(device["id"]))
+	datas = sql.get_query(u"大气六参数",u"项目内节点编号","=", str(device["id"]), None, u"紧缩型时间传感器_实时时间")
+	datas.reverse()
 	sql.close_connect()
 	datas_list_briage = []
 	for data in datas:

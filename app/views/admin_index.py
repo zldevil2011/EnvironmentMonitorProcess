@@ -31,7 +31,8 @@ def admin_index(request):
 	NOW = datetime.today()
 	start = datetime(NOW.year, NOW.month, NOW.day, 0,0,0)
 	sql.connectDB("jssf")
-	datas = sql.get_query(u"大气六参数", u"紧缩型时间传感器_实时时间", ">", start.strftime("%Y-%m-%d %H:%M:%S"))
+	datas = sql.get_query(u"大气六参数", u"紧缩型时间传感器_实时时间", ">", start.strftime("%Y-%m-%d %H:%M:%S"), None, u"紧缩型时间传感器_实时时间")
+	datas.reverse()
 	sql.close_connect()
 	datas_list_12 = []
 	for data in datas:

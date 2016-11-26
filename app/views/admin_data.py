@@ -36,7 +36,8 @@ def admin_data(request):
 	devices = device_list
 	# 连接数据库，获取所有的采集数据
 	sql.connectDB("jssf")
-	datas = sql.get_query(u"大气六参数")
+	datas = sql.get_query(u"大气六参数", None, None, None, None, u"紧缩型时间传感器_实时时间")
+	datas.reverse()
 	sql.close_connect()
 	datas_list_briage = []
 	for data in datas:
