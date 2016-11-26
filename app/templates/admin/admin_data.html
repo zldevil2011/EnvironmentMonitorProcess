@@ -93,7 +93,7 @@
                             <tbody>
                                 {% for d in data %}
                                 <tr>
-                                    <td>{{ d.id }}</td>
+                                    <td>{{ forloop.counter }}</td>
                                     <td>{{ d.pm25 }}</td>
                                     <td>{{ d.pm10 }}</td>
                                     <td>{{ d.so2 }}</td>
@@ -103,7 +103,7 @@
                                     <td>{{ d.time }}</td>
                                     <td>{{ d.name }}</td>
                                     {% if adminer.user.is_staff %}
-                                        <td><button class="btn btn-danger btn-block" href="#modal-data-{{ d.id }}" role="button" data-toggle="modal">编辑</button></td>
+                                        <td><button class="btn btn-danger btn-block" href="#modal-data-{{ forloop.counter }}" role="button" data-toggle="modal">编辑</button></td>
                                     {% endif %}
                                 </tr>
                                 {% endfor %}
@@ -131,7 +131,7 @@
                             <div class="modal-header">
                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="modal-title" id="myModalLabel">
-                                    数据ID：{{ d.id }}
+                                    数据ID：{{ forloop.counter }}
                                 </h4>
                             </div>
                             <div class="modal-body">
@@ -141,55 +141,55 @@
                                             <div class="form-group">
                                                 <label for="ID" class="col-sm-2 control-label">ID</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="" readonly value="{{ d.id }}"/>
+                                                    <input type="text" class="form-control" id="" readonly value="{{ forloop.counter }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="pm25" class="col-sm-2 control-label">PM2.5</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" class="form-control" id="{{ d.id }}_pm25" value="{{ d.pm25 }}" />
+                                                    <input type="number" class="form-control" id="{{ forloop.counter }}_pm25" value="{{ d.pm25 }}" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="pm10" class="col-sm-2 control-label">PM10</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" class="form-control" id="{{ d.id }}_pm10"  value="{{ d.pm10 }}"/>
+                                                    <input type="number" class="form-control" id="{{ forloop.counter }}_pm10"  value="{{ d.pm10 }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="so2" class="col-sm-2 control-label">SO2</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" class="form-control" id="{{ d.id }}_so2" value="{{ d.so2 }}" />
+                                                    <input type="number" class="form-control" id="{{ forloop.counter }}_so2" value="{{ d.so2 }}" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="CO" class="col-sm-2 control-label">CO</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" class="form-control" id="{{ d.id }}_co" value="{{ d.co }}" />
+                                                    <input type="number" class="form-control" id="{{ forloop.counter }}_co" value="{{ d.co }}" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="NO2" class="col-sm-2 control-label">NO2</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" class="form-control" id="{{ d.id }}_no2"  value="{{ d.no2 }}"/>
+                                                    <input type="number" class="form-control" id="{{ forloop.counter }}_no2"  value="{{ d.no2 }}"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="O3" class="col-sm-2 control-label">O3</label>
                                                 <div class="col-sm-10">
-                                                    <input type="number" class="form-control" id="{{ d.id }}_o3" value="{{ d.o3 }}" />
+                                                    <input type="number" class="form-control" id="{{ forloop.counter }}_o3" value="{{ d.o3 }}" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="time" class="col-sm-2 control-label">时间</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="{{ d.id }}_time" value="{{ d.time }}" />
+                                                    <input type="text" class="form-control" id="{{ forloop.counter }}_time" value="{{ d.time }}" readonly/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="name" class="col-sm-2 control-label">采集点</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="{{ d.id }}_name" value="{{ d.name }}" readonly/>
+                                                    <input type="text" class="form-control" id="{{ forloop.counter }}_name" value="{{ d.device_id }}" readonly/>
                                                 </div>
                                             </div>
                                         </form>
@@ -198,8 +198,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary" onclick="updateData(this.id);" id="save_{{ d.id }}">保存</button>
-                                <button type="button" class="btn btn-danger" onclick="deleteData(this.id);" id="delete_{{ d.id }}">删除</button>
+                                <button type="button" class="btn btn-primary" onclick="updateData(this.id);" id="save_{{ forloop.counter }}">保存</button>
+                                <button type="button" class="btn btn-danger" onclick="deleteData(this.id);" id="delete_{{ forloop.counter }}">删除</button>
                             </div>
                         </div>
                     </div>
@@ -343,6 +343,7 @@
         var co = $("#" + data_id + "_co").val();
         var no2 = $("#" + data_id + "_no2").val();
         var o3 = $("#" + data_id + "_o3").val();
+        var device_id = $("#" + data_id + "_name").val();
         var time = $("#" + data_id + "_time").val();
         console.log(pm25);
         console.log(pm10);
@@ -353,7 +354,7 @@
         $.ajax({
             url: '/admin_data/update/',
             type: 'POST',
-                data:{data_id:data_id, pm25:pm25, pm10:pm10, so2:so2, co:co, no2:no2, o3:o3, time:time},
+                data:{data_id:data_id, pm25:pm25, pm10:pm10, so2:so2, co:co, no2:no2, o3:o3, time:time, device_id:device_id},
             success:function(res){
                 if(res == "success"){
                     alert("修改成功");
@@ -369,10 +370,12 @@
     }
     function deleteData(id){
         var data_id = id.slice(7);
+        var device_id = $("#" + data_id + "_name").val();
+        var time = $("#" + data_id + "_time").val();
         $.ajax({
             url: '/admin_data/update/',
             type: 'POST',
-            data:{data_id:data_id, delete_tag:1},
+            data:{data_id:data_id, delete_tag:1, time:time, device_id:device_id},
             success:function(res){
                 if(res == "success"){
                     alert("删除成功");

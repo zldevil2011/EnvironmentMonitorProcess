@@ -31,6 +31,7 @@ class MySQL(object):
 		columns_list = []
 		for c in columns:
 			columns_list.append(c[0])
+		columns_list.append("id")
 		# 获取要查询的数据
 		print query_str
 		self.cursor.execute(query_str)
@@ -50,6 +51,7 @@ class MySQL(object):
 					break
 		else:
 			for row in results:
+				print row
 				dic_tmp = {}
 				for idx in range(len(row)):
 					key = columns_list[idx]
@@ -90,8 +92,13 @@ class MySQL(object):
 			print(str(e))
 			return "error"
 
-	def update_data(self, table_name, data, id):
+	def update_data(self, table_name, data, kvs):
 		try:
+			key_name = []
+			key_val = []
+			for k in kvs.keys():
+				key_name.append(k)
+				key_val.append(kvs[k])
 			update_name = []
 			update_val = []
 			for key in data.keys():
@@ -102,8 +109,11 @@ class MySQL(object):
 			for idx in range(len(update_name)):
 				left_str += (update_name[idx] + '="' + update_val[idx] + '",')
 			left_str = left_str[:-1]
-			left_str += " WHERE id = "
-			left_str += str(id)
+			if len(key_name) > 0:
+				left_str += " WHERE "
+				for k in key_name:
+					left_str += k + '="' + kvs[k] + '" and '
+				left_str = left_str[:-5]
 			update_str += left_str
 			print update_str
 			try:
@@ -119,18 +129,25 @@ class MySQL(object):
 			print(str(e))
 			return "error"
 
-	def delete_data(self, table_name, id):
+	def delete_data(self, table_name, kvs):
 		try:
-			delete_str = "DELETE FROM " + table_name + " WHERE id = " + str(id)
+			delete_str = "DELETE FROM " + table_name
+			if len(kvs) > 0:
+				delete_str += " WHERE "
+				for k in kvs.keys():
+					delete_str += k + '="' + kvs[k] + '" and '
+				delete_str = delete_str[:-5]
 			try:
+				print delete_str
 				# 执行sql语句
 				self.cursor.execute(delete_str)
 				# 提交到数据库执行
 				self.db.commit()
+				return "success"
 			except:
 				# Rollback in case there is any error
 				self.db.rollback()
-			return "success"
+				return "error"
 		except Exception, e:
 			print str(e)
 			return "error"
@@ -141,12 +158,22 @@ class MySQL(object):
 
 if __name__ == '__main__':
 	pass
-	# sql = MySQL()
-	# sql.connectDB("jssf")
+	sql = MySQL()
+	sql.connectDB("python_test")
+	data = {}
+	data["number"] = "1111111"
+	data["name"] = "testupdate"
+	data["birthday"] = "2000-01-01 01:01:01"
+	kvs = {}
+	kvs["number"] = "1111111"
+	kvs["name"] = "testupdate"
+	sql.delete_data("person", kvs)
+	sql.close_connect()
 	# from datetime import datetime
 	# NOW = datetime.today()
 	# start = datetime(NOW.year, NOW.month, NOW.day, 0, 0, 0)
-	# datas = sql.get_query(u"大气六参数", u"紧缩性时间传感器_实时时间", ">", start.strftime("%Y-%m-%d %H:%M:%S"))
+	# datas = sql.get_query(u"大气六参数", u"紧缩性时间传感器_实时时间", ">", start.strftime("%Y-%m-%d %H:%M:%S"), None, u"紧缩性时间传感器_实时时间")
+	# print datas
 	# sql.close_connect()
 	# sql.connectDB()
 	# data = {}

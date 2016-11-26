@@ -120,6 +120,7 @@ def admin_data_update(request):
 	no2 = request.POST.get("no2", None)
 	o3 = request.POST.get("o3", None)
 	time = request.POST.get("time", None)
+	device_id = request.POST.get("device_id", None)
 	if delete_tag is None:
 		data = {}
 		data["pm25"] = pm25
@@ -128,10 +129,29 @@ def admin_data_update(request):
 		data["co"] = co
 		data["no2"] = no2
 		data["o3"] = o3
-		data["time"] = time
-		return HttpResponse("success")
+		kvs = {}
+		kvs[u"项目内节点编号"] = device_id
+		kvs[u"紧缩型时间传感器_实时时间"] = time
+		try:
+			sql = MySQL()
+			sql.connectDB("jssf")
+			res = sql.update_data(u"大气六参数", data, kvs)
+			sql.close_connect()
+			return HttpResponse(res)
+		except:
+			return HttpResponse("error")
 	else:
-		return HttpResponse("success")
+		try:
+			kvs = {}
+			kvs[u"项目内节点编号"] = device_id
+			kvs[u"紧缩型时间传感器_实时时间"] = time
+			sql = MySQL()
+			sql.connectDB("jssf")
+			res = sql.delete_data(u"大气六参数", kvs)
+			sql.close_connect()
+			return HttpResponse(res)
+		except:
+			return HttpResponse("error")
 
 
 @csrf_exempt
@@ -145,15 +165,37 @@ def admin_device_update(request):
 	except:
 		return HttpResponse("error")
 	delete_tag = request.POST.get("delete_tag", None)
+	device_id = request.POST.get("device_id", None)
 	name = request.POST.get("name", None)
 	address = request.POST.get("address", None)
 	install_time = request.POST.get("install_time", None)
 	if delete_tag is None:
 		data = {}
-		data["name"] = name
-		data["address"] = address
-		data["install_time"] = install_time
-		return HttpResponse("success")
+		data["Description"] = name
+		data["InstallationAddress"] = address
+		data["SetTime"] = install_time
+		kvs = {}
+		kvs["ProjectID"] = str(1)
+		kvs["NodeNO"] = device_id
+		try:
+			sql = MySQL()
+			sql.connectDB("projectmanagement")
+			res = sql.update_data("projectnodeinfo", data, kvs)
+			sql.close_connect()
+			return HttpResponse(res)
+		except:
+			return HttpResponse("error")
 	else:
-		return HttpResponse("success")
+		try:
+			kvs = {}
+			kvs["ProjectID"] = str(1)
+			kvs["NodeNO"] = device_id
+			sql = MySQL()
+			sql.connectDB("projectmanagement")
+			res = sql.delete_data("projectnodeinfo", kvs)
+			sql.close_connect()
+			return HttpResponse(res)
+		except:
+			return HttpResponse("error")
+
 
