@@ -188,6 +188,7 @@ def index(request):
 				twelve_data_data[factor].append(factor_sum/factor_num)
 				twelve_data_hour.append(str(i) + ":00")
 			except:
+				pass
 				# twelve_data_data[factor].append(0)
 	print twelve_data_hour
 	print twelve_data_data
