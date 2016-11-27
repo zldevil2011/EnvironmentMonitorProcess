@@ -95,7 +95,10 @@ def index(request):
 		data["AQI_info_1"] = calculator.AQI_info_1
 		data_real_time.append(data)
 		print calculator
-		if int(calculator.AQI_1) >= 150:
+		data_collect_time = data["time"]
+		warning_time = datetime.today()
+		warning_time = datetime(warning_time.year, warning_time.month, warning_time.day, warning_time.hour, 0, 0)
+		if int(calculator.AQI_1) >= 150 and data_collect_time > warning_time:
 			subject = u"污染指数通知"
 			text_content = u"观测设备" + data["name"] + u"在" + str(data["time"]) + u"AQI值为" + str(calculator.AQI_1) + u",污染程度:" + unicode(calculator.AQI_info_1["classification"])
 			from_email = settings.EMAIL_HOST_USER
