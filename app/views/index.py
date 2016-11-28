@@ -117,12 +117,12 @@ def index(request):
 		average_data["o3"] += data["o3"]
 		average_data["pm25"] += data["pm25"]
 	if len(datas_list) != 0:
-		average_data["so2"] /= len(datas_list)
-		average_data["no2"] /= len(datas_list)
-		average_data["pm10"] /= len(datas_list)
-		average_data["co"] /= len(datas_list)
-		average_data["o3"] /= len(datas_list)
-		average_data["pm25"] /= len(datas_list)
+		average_data["so2"] = round(average_data["so2"]/len(datas_list), 3)
+		average_data["no2"] = round(average_data["no2"]/len(datas_list), 3)
+		average_data["pm10"] = round(average_data["pm10"]/len(datas_list), 3)
+		average_data["co"] = round(average_data["co"]/len(datas_list), 3)
+		average_data["o3"] = round(average_data["o3"]/len(datas_list),3)
+		average_data["pm25"] = round(average_data["pm25"]/len(datas_list),3)
 		calculator = AqiParameter()
 		calculator.get_1_aqi(average_data)
 		average_data["AQI_1"] = calculator.AQI_1
@@ -186,7 +186,7 @@ def index(request):
 					factor_sum += data[factor]
 					factor_num += 1
 			try:
-				twelve_data_data[factor].append(factor_sum/factor_num)
+				twelve_data_data[factor].append(round(factor_sum/factor_num, 3))
 			except:
 				# pass
 				twelve_data_data[factor].append("null")
