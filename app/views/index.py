@@ -171,6 +171,7 @@ def index(request):
 	twelve_data_data = {"so2":[], "no2":[], "pm10":[], "co":[], "o3":[], "pm25":[]}
 	factors = ["so2", "no2", "pm10", "co", "o3", "pm25"]
 	for i in range(1, time_now_hour + 1):
+		twelve_data_hour.append(str(i) + ":00")
 		time_start = datetime(time_now.tm_year, time_now.tm_mon, time_now.tm_mday, i, 0, 0)
 		time_end = datetime(time_now.tm_year, time_now.tm_mon, time_now.tm_mday, i, 0, 0) + timedelta(hours=1)
 		print "start", time_start
@@ -180,16 +181,15 @@ def index(request):
 			factor_num = 0
 			for data in datas_list_12:
 				time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
-				print time
+				# print time
 				if time_start <= time < time_end:
 					factor_sum += data[factor]
 					factor_num += 1
 			try:
 				twelve_data_data[factor].append(factor_sum/factor_num)
-				twelve_data_hour.append(str(i) + ":00")
 			except:
-				pass
-				# twelve_data_data[factor].append(0)
+				# pass
+				twelve_data_data[factor].append("null")
 	print twelve_data_hour
 	print twelve_data_data
 	twelve_data["twelve_data_hour"] = twelve_data_hour
