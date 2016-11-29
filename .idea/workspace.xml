@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ae365bb0-7d81-4613-ad4a-5ae987cbd3b2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/platform.py" afterPath="$PROJECT_DIR$/app/views/platform.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/utils/mySqlUtils.py" afterPath="$PROJECT_DIR$/app/views/utils/mySqlUtils.py" />
     </list>
     <ignored path="EMP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,7 +63,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="platform.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="platform.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/platform.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
@@ -75,13 +73,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mySqlUtils.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mySqlUtils.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/utils/mySqlUtils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-120">
-              <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+            <state relative-caret-position="75">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
-                <marker date="1480397851000" expanded="true" signature="5397:5765" ph="..." />
+                <marker date="1480398622000" expanded="true" signature="5393:5761" ph="..." />
               </folding>
             </state>
           </provider>
@@ -183,9 +181,9 @@
         <option value="$PROJECT_DIR$/app/views/station.py" />
         <option value="$PROJECT_DIR$/app/views/index.py" />
         <option value="$PROJECT_DIR$/app/views/historical.py" />
-        <option value="$PROJECT_DIR$/app/views/utils/mySqlUtils.py" />
         <option value="$PROJECT_DIR$/app/views/utils/get_news_list.py" />
         <option value="$PROJECT_DIR$/app/views/platform.py" />
+        <option value="$PROJECT_DIR$/app/views/utils/mySqlUtils.py" />
       </list>
     </option>
   </component>
@@ -607,7 +605,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="720" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23424879" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290938" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -616,7 +614,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32961783" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280255" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43949044" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43949044" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1030,16 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/utils/mySqlUtils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-120">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-          <folding>
-            <marker date="1480397851000" expanded="true" signature="5397:5765" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/utils/get_news_list.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1061,6 +1049,16 @@
         <state relative-caret-position="120">
           <caret line="17" column="11" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/utils/mySqlUtils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <marker date="1480398622000" expanded="true" signature="5393:5761" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
