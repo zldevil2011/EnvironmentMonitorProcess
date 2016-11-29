@@ -67,8 +67,18 @@
       <file leaf-file-name="platform.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/platform.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+            <state relative-caret-position="90">
+              <caret line="20" column="54" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="information.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/app/information.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="47" column="81" selection-start-line="47" selection-start-column="81" selection-end-line="47" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -172,7 +182,6 @@
         <option value="$PROJECT_DIR$/app/templates/admin/admin_base.html" />
         <option value="$PROJECT_DIR$/EMP/wsgi.py" />
         <option value="$PROJECT_DIR$/app/templates/app/historical_device_list.html" />
-        <option value="$PROJECT_DIR$/app/templates/app/information.html" />
         <option value="$PROJECT_DIR$/app/templates/admin/admin_data.html" />
         <option value="$PROJECT_DIR$/EMP/settings.py" />
         <option value="$PROJECT_DIR$/app/templates/app/index.html" />
@@ -184,6 +193,7 @@
         <option value="$PROJECT_DIR$/app/views/historical.py" />
         <option value="$PROJECT_DIR$/app/views/utils/get_news_list.py" />
         <option value="$PROJECT_DIR$/app/views/utils/mySqlUtils.py" />
+        <option value="$PROJECT_DIR$/app/templates/app/information.html" />
         <option value="$PROJECT_DIR$/app/views/platform.py" />
       </list>
     </option>
@@ -775,6 +785,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
+          <folding>
+            <marker date="1479894728000" expanded="false" signature="232:246" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -914,13 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/app/information.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/app/historical_device_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -954,6 +960,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="15" column="65" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1011,16 +1018,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/historical.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="896">
-          <caret line="352" column="39" selection-start-line="352" selection-start-column="39" selection-end-line="352" selection-end-column="39" />
-          <folding>
-            <element signature="e#15#86#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/text.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1055,10 +1052,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/historical.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="896">
+          <caret line="352" column="39" selection-start-line="352" selection-start-column="39" selection-end-line="352" selection-end-column="39" />
+          <folding>
+            <element signature="e#15#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/app/information.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="47" column="81" selection-start-line="47" selection-start-column="81" selection-end-line="47" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/platform.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+        <state relative-caret-position="90">
+          <caret line="20" column="54" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
           <folding />
         </state>
       </provider>
