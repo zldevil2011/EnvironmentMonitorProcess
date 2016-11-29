@@ -201,7 +201,10 @@ def index(request):
 				time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 				# print time
 				if time_start <= time < time_end:
-					factor_sum += data[factor]
+					try:
+						factor_sum += data[factor]
+					except:
+						factor_num += 0
 					factor_num += 1
 			try:
 				twelve_data_data[factor].append(round(factor_sum/factor_num, 3))
