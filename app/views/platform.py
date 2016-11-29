@@ -7,11 +7,23 @@ from app.models import Announcement
 from utils.get_news_list import Spider
 
 def information(request):
-	spider = Spider()
-	htmlValue = spider.getHtml()
-	spider.findData(htmlValue)
-	news_data = spider.data
-	print news_data
+	# spider = Spider()
+	# htmlValue = spider.getHtml()
+	# spider.findData(htmlValue)
+	file_object = open('test.txt')
+	news_data = []
+	list_of_all_the_lines = file_object.readlines()
+	file_object.close()
+	# print list_of_all_the_lines
+	idx = 0
+	while idx <= (len(list_of_all_the_lines) - 2):
+		tmp = {}
+		tmp["link"] = list_of_all_the_lines[idx]
+		tmp["name"] = list_of_all_the_lines[idx]
+		news_data.append(tmp)
+		idx += 2
+	# news_data = spider.data
+	# print news_data
 	# 本站新闻
 	news_list = Announcement.objects.all()
 	return render(request, "app/information.html", {
