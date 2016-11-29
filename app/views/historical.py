@@ -218,7 +218,10 @@ def historical_data(request,device_id):
 				aqi = get_aqi(data)
 				time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 				if time_start <= time < time_end:
-					factor_sum += data[factor]
+					try:
+						factor_sum += data[factor]
+					except:
+						factor_sum += 0
 					factor_num += 1
 					if today_data_min_aqi["today_data_min_aqi_val"] == 0:
 						today_data_min_aqi["today_data_min_aqi_val"] = aqi
@@ -255,7 +258,10 @@ def historical_data(request,device_id):
 				aqi = get_aqi(data)
 				time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 				if time_start <= time < time_end:
-					factor_sum += data[factor]
+					try:
+						factor_sum += data[factor]
+					except:
+						factor_sum += 0
 					factor_num += 1
 					if week_data_min_aqi["week_data_min_aqi_val"] == 0:
 						week_data_min_aqi["week_data_min_aqi_val"] = aqi
@@ -297,7 +303,10 @@ def historical_data(request,device_id):
 				aqi = get_aqi(data)
 				time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 				if time_start <= time < time_end:
-					factor_sum += data[factor]
+					try:
+						factor_sum += data[factor]
+					except:
+						factor_sum += 0
 					factor_num += 1
 					if month_data_min_aqi["month_data_min_aqi_val"] == 0:
 						month_data_min_aqi["month_data_min_aqi_val"] = aqi
@@ -338,7 +347,10 @@ def historical_data(request,device_id):
 				aqi = get_aqi(data)
 				time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 				if time_start <= time < time_end:
-					factor_sum += data[factor]
+					try:
+						factor_sum += data[factor]
+					except:
+						factor_sum += 0
 					factor_num += 1
 					if year_data_min_aqi["year_data_min_aqi_val"] == 0:
 						year_data_min_aqi["year_data_min_aqi_val"] = aqi
