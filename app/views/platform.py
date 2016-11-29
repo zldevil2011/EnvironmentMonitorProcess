@@ -18,8 +18,8 @@ def information(request):
 	idx = 0
 	while idx <= (len(list_of_all_the_lines) - 2):
 		tmp = {}
-		tmp["link"] = list_of_all_the_lines[idx]
-		tmp["name"] = list_of_all_the_lines[idx+1]
+		tmp["link"] = list_of_all_the_lines[idx+1]
+		tmp["name"] = list_of_all_the_lines[idx]
 		news_data.append(tmp)
 		idx += 2
 	# news_data = spider.data
