@@ -110,12 +110,30 @@ def index(request):
 	# 计算各个站点实时采集数据的均值在首页的三个环圈显示
 	average_data = {"so2": 0, "no2": 0, "pm10": 0, "co": 0, "o3": 0, "pm25": 0}
 	for data in datas_list:
-		average_data["so2"] += data["so2"]
-		average_data["no2"] += data["no2"]
-		average_data["pm10"] += data["pm10"]
-		average_data["co"] += data["co"]
-		average_data["o3"] += data["o3"]
-		average_data["pm25"] += data["pm25"]
+		try:
+			average_data["so2"] += data["so2"]
+		except:
+			average_data["so2"] += 0
+		try:
+			average_data["no2"] += data["no2"]
+		except:
+			average_data["no2"] += 0
+		try:
+			average_data["pm10"] += data["pm10"]
+		except:
+			average_data["pm10"] += 0
+		try:
+			average_data["co"] += data["co"]
+		except:
+			average_data["co"] += 0
+		try:
+			average_data["o3"] += data["o3"]
+		except:
+			average_data["o3"] += 0
+		try:
+			average_data["pm25"] += data["pm25"]
+		except:
+			average_data["pm25"] += 0
 	if len(datas_list) != 0:
 		average_data["so2"] = round(average_data["so2"]/len(datas_list), 3)
 		average_data["no2"] = round(average_data["no2"]/len(datas_list), 3)
