@@ -38,11 +38,26 @@ def admin_index(request):
 	datas_list_12 = []
 	for data in datas:
 		tmp = {}
-		tmp["so2"] = data["SO2_SO2"] * transform_factor["so2"]
-		tmp["no2"] = data["NO2_NO2"] * transform_factor["no2"]
-		tmp["pm10"] = data["PM10_PM10"]
-		tmp["co"] = data["CO_CO"] * transform_factor["co"]
-		tmp["o3"] = data["O3_O3"] * transform_factor["o3"]
+		try:
+			tmp["so2"] = float(data["SO2_SO2"]) * transform_factor["so2"]
+		except:
+			tmp["so2"] = data["SO2_SO2"]
+		try:
+			tmp["no2"] = float(data["NO2_NO2"]) * transform_factor["no2"]
+		except:
+			tmp["no2"] = data["NO2_NO2"]
+		try:
+			tmp["pm10"] = data["PM10_PM10"]
+		except:
+			tmp["pm10"] = data["PM10_PM10"]
+		try:
+			tmp["co"] = float(data["CO_CO"]) * transform_factor["co"]
+		except:
+			tmp["co"] = data["CO_CO"]
+		try:
+			tmp["o3"] = float(data["O3_O3"]) * transform_factor["o3"]
+		except:
+			tmp["o3"] = data["O3_O3"]
 		tmp["pm25"] = data["PM2_5_PM2_5"]
 		tmp["device_id"] = data[u"项目内节点编号"]
 		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
