@@ -1,5 +1,6 @@
 #coding=utf-8
 import math
+transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1250.4464285714287, "no2": 2054.017857142857}
 class AqiParameter(object):
 	def __init__(self):
 		self.IAQI_24 = []
@@ -43,6 +44,22 @@ class AqiParameter(object):
 		self.AQI_info_standard.reverse()
 
 	def get_24_iaqi(self, data):
+		try:
+			data["so2"] /= transform_factor["so2"]
+		except:
+			pass
+		try:
+			data["co"] /= transform_factor["co"]
+		except:
+			pass
+		try:
+			data["o3"] /= transform_factor["o3"]
+		except:
+			pass
+		try:
+			data["no2"] /= transform_factor["no2"]
+		except:
+			pass
 		for key in data.keys():
 			key = key
 			val = data[key]
@@ -63,6 +80,22 @@ class AqiParameter(object):
 					break
 
 	def get_1_iaqi(self, data):
+		try:
+			data["so2"] /= transform_factor["so2"]
+		except:
+			pass
+		try:
+			data["co"] /= transform_factor["co"]
+		except:
+			pass
+		try:
+			data["o3"] /= transform_factor["o3"]
+		except:
+			pass
+		try:
+			data["no2"] /= transform_factor["no2"]
+		except:
+			pass
 		for key in data.keys():
 			key = key
 			val = data[key]

@@ -221,8 +221,6 @@ def index(request):
 					except:
 						factor_num += 0
 					factor_num += 1
-				elif time >= time_end:
-					break
 			try:
 				twelve_data_data[factor].append(round(factor_sum/factor_num, 3))
 			except:
