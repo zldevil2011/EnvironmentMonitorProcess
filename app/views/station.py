@@ -82,54 +82,30 @@ def station(request):
 	# 计算站点观测情况排行
 	# 实时排行，昨日排行，一周排行，一月排行
 	datas_list_all = [
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 12:00:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 12:10:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 12:20:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 12:30:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 12:40:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 11:00:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 11:57:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 11:13:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 11:35:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 10:57:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 10:13:00"},
-		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 10:35:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 12:00:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 12:10:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 12:20:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 12:30:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 12:40:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 11:00:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 11:57:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 11:13:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 11:35:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 10:57:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 10:13:00"},
-		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,
-		 "time": "2016-11-22 10:35:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 12:00:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 12:10:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 12:20:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 12:30:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 12:40:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 11:00:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 11:57:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 11:13:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 11:35:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 10:57:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 10:13:00"},
+		{"name": u"京师方圆", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 10:35:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 12:00:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 12:10:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 12:20:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 12:30:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 12:40:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 11:00:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 11:57:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 11:13:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 11:35:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 10:57:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 10:13:00"},
+		{"name": u"清风大道路", "so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158,"time": "2016-11-22 10:35:00"},
 	]
 	datas_list_all = datas
 	# 设备列表
@@ -157,6 +133,8 @@ def station(request):
 				device_info["pm25"] = data["pm25"]
 				real_time.append(device_info)
 				break
+			elif time < start_time:
+				break
 	# 昨日排行
 	yesterday_time = []
 	time_now = datetime.today()
@@ -168,13 +146,33 @@ def station(request):
 		for data in datas_list_all:
 			time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 			if start_time <= time < end_time and data["name"] == device["name"]:
-				data_tmp["so2"] += data["so2"]
-				data_tmp["no2"] += data["no2"]
-				data_tmp["pm10"] += data["pm10"]
-				data_tmp["co"] += data["co"]
-				data_tmp["o3"] += data["o3"]
-				data_tmp["pm25"] += data["pm25"]
+				try:
+					data_tmp["so2"] += data["so2"]
+				except:
+					data_tmp["so2"] += 0
+				try:
+					data_tmp["no2"] += data["no2"]
+				except:
+					data_tmp["no2"] += 0
+				try:
+					data_tmp["pm10"] += data["pm10"]
+				except:
+					data_tmp["pm10"] += 0
+				try:
+					data_tmp["co"] += data["co"]
+				except:
+					data_tmp["co"] += 0
+				try:
+					data_tmp["o3"] += data["o3"]
+				except:
+					data_tmp["o3"] += 0
+				try:
+					data_tmp["pm25"] += data["pm25"]
+				except:
+					data_tmp["pm25"] += 0
 				cnt += 1
+			elif time < start_time:
+				break
 		if cnt != 0:
 			print "cnt=", cnt
 			data_tmp["so2"] = (data_tmp["so2"] * 1.0) / cnt
@@ -214,13 +212,33 @@ def station(request):
 		for data in datas_list_all:
 			time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 			if start_time <= time < end_time and data["name"] == device["name"]:
-				data_tmp["so2"] += data["so2"]
-				data_tmp["no2"] += data["no2"]
-				data_tmp["pm10"] += data["pm10"]
-				data_tmp["co"] += data["co"]
-				data_tmp["o3"] += data["o3"]
-				data_tmp["pm25"] += data["pm25"]
+				try:
+					data_tmp["so2"] += data["so2"]
+				except:
+					data_tmp["so2"] += 0
+				try:
+					data_tmp["no2"] += data["no2"]
+				except:
+					data_tmp["no2"] += 0
+				try:
+					data_tmp["pm10"] += data["pm10"]
+				except:
+					data_tmp["pm10"] += 0
+				try:
+					data_tmp["co"] += data["co"]
+				except:
+					data_tmp["co"] += 0
+				try:
+					data_tmp["o3"] += data["o3"]
+				except:
+					data_tmp["o3"] += 0
+				try:
+					data_tmp["pm25"] += data["pm25"]
+				except:
+					data_tmp["pm25"] += 0
 				cnt += 1
+			elif time < start_time:
+				break
 		if cnt != 0:
 			data_tmp["so2"] = (data_tmp["so2"] * 1.0) / cnt
 			data_tmp["no2"] = (data_tmp["no2"] * 1.0) / cnt
@@ -257,13 +275,33 @@ def station(request):
 		for data in datas_list_all:
 			time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 			if start_time <= time < end_time and data["name"] == device["name"]:
-				data_tmp["so2"] += data["so2"]
-				data_tmp["no2"] += data["no2"]
-				data_tmp["pm10"] += data["pm10"]
-				data_tmp["co"] += data["co"]
-				data_tmp["o3"] += data["o3"]
-				data_tmp["pm25"] += data["pm25"]
+				try:
+					data_tmp["so2"] += data["so2"]
+				except:
+					data_tmp["so2"] += 0
+				try:
+					data_tmp["no2"] += data["no2"]
+				except:
+					data_tmp["no2"] += 0
+				try:
+					data_tmp["pm10"] += data["pm10"]
+				except:
+					data_tmp["pm10"] += 0
+				try:
+					data_tmp["co"] += data["co"]
+				except:
+					data_tmp["co"] += 0
+				try:
+					data_tmp["o3"] += data["o3"]
+				except:
+					data_tmp["o3"] += 0
+				try:
+					data_tmp["pm25"] += data["pm25"]
+				except:
+					data_tmp["pm25"] += 0
 				cnt += 1
+			elif time < start_time:
+				break
 		if cnt != 0:
 			data_tmp["so2"] = (data_tmp["so2"] * 1.0) / cnt
 			data_tmp["no2"] = (data_tmp["no2"] * 1.0) / cnt
