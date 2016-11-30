@@ -94,7 +94,7 @@ def index(request):
 		data["Main_Pollute_1"] = calculator.Main_Pollute_1
 		data["AQI_info_1"] = calculator.AQI_info_1
 		data_real_time.append(data)
-		print calculator
+		# print calculator
 		data_collect_time = data["time"]
 		warning_time = datetime.today()
 		warning_time = datetime(warning_time.year, warning_time.month, warning_time.day, warning_time.hour, 0, 0)
@@ -183,7 +183,7 @@ def index(request):
 	import time
 	time_now = time.localtime(time.time())
 	time_now_hour = time.localtime(time.time()).tm_hour
-	print time_now
+	# print time_now
 	twelve_data = {}
 	twelve_data_hour = []
 	twelve_data_data = {"so2":[], "no2":[], "pm10":[], "co":[], "o3":[], "pm25":[]}
@@ -192,8 +192,8 @@ def index(request):
 		twelve_data_hour.append(str(i) + ":00")
 		time_start = datetime(time_now.tm_year, time_now.tm_mon, time_now.tm_mday, i, 0, 0)
 		time_end = datetime(time_now.tm_year, time_now.tm_mon, time_now.tm_mday, i, 0, 0) + timedelta(hours=1)
-		print "start", time_start
-		print "end", time_end
+		# print "start", time_start
+		# print "end", time_end
 		for factor in factors:
 			factor_sum = 0
 			factor_num = 0
@@ -206,13 +206,15 @@ def index(request):
 					except:
 						factor_num += 0
 					factor_num += 1
+				elif time >= time_end:
+					break
 			try:
 				twelve_data_data[factor].append(round(factor_sum/factor_num, 3))
 			except:
 				# pass
 				twelve_data_data[factor].append("null")
-	print twelve_data_hour
-	print twelve_data_data
+	# print twelve_data_hour
+	# print twelve_data_data
 	twelve_data["twelve_data_hour"] = twelve_data_hour
 	twelve_data["twelve_data_data"] = twelve_data_data
 	return render(request, "app/index.html", {

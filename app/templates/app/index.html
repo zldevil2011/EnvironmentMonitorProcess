@@ -523,8 +523,9 @@
 {#            $('#other_SO2 div').width(standard_width);#}
             $('#other_O3').highcharts({
 
+                credits:false,
                 chart: {
-                    type: 'column',
+                    type: 'spline',
                     backgroundColor: 'rgba(80,81,95,0.1)',
                 },
                 title: {
@@ -533,40 +534,24 @@
                 subtitle: {
                     text: '来源：各站点平均值'
                 },
-                credits: false,
                 xAxis: {
-                    categories: twelve_data_hour,
-                    crosshair: true
+                    categories: twelve_data_hour
                 },
                 yAxis: {
-                    min: 0,
                     title: {
-                        text: 'O3浓度(ppm)'
+                        text: 'ppm'
                     }
                 },
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} ppm</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-                },
                 plotOptions: {
-                    column: {
-                        pointPadding: 0.2,
-                        borderWidth: 0
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
                     }
                 },
                 series: [{
-                    zones: [{
-                        value: 100,
-                        color: colors[1]
-                    }, {
-                        value: 150,
-                        color: colors[2]
-                    }],
-                    name: 'O3',
+                    name: '均值',
                     data: twelve_data_o3
                 }]
             });
