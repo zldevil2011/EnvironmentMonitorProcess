@@ -117,7 +117,10 @@ class AqiParameter(object):
 		self.AQI_1 = max(self.IAQI_1)
 
 	def get_1_aqi(self, data):
-		self.get_1_iaqi(data)
+		data_copy = {}
+		for key in data.keys():
+			data_copy[key] = data[key]
+		self.get_1_iaqi(data_copy)
 		self.AQI_1 = max(self.IAQI_1)
 		if self.AQI_1 > 50:
 			pollute_str = ["so2", "no2", "pm10", "co2", "o3", "pm2.5"]
@@ -139,7 +142,10 @@ class AqiParameter(object):
 				break
 
 	def get_24_aqi(self, data):
-		self.get_24_iaqi(data)
+		data_copy = {}
+		for key in data.keys():
+			data_copy[key] = data[key]
+		self.get_24_iaqi(data_copy)
 		self.AQI_24 = max(self.IAQI_24)
 		if self.AQI_24 > 50:
 			pollute_str = ["so2", "no2", "pm10", "co2", "o3", "pm2.5"]
@@ -167,8 +173,9 @@ if __name__ == '__main__':
 	data = {"so2": 32, "no2": 53, "pm10": 294, "co": 2, "o3": 33, "pm25": 158}
 	# aqi.get_24_iaqi(data)
 	aqi.get_1_aqi(data)
-	print aqi.Main_Pollute_1
-	print aqi.AQI_info_1
+	print data
+	# print aqi.Main_Pollute_1
+	# print aqi.AQI_info_1
 	# for i in range(len(aqi.fix_value_24)):
 	# 	print aqi.fix_value_24[i].keys()[0]
 	# 	val = aqi.fix_value_24[i].values()[0]
