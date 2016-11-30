@@ -8,6 +8,7 @@ from app.models import Adminer
 from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
 from utils.mySqlUtils import MySQL
+transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1250.4464285714287, "no2": 2054.017857142857}
 
 def admin_index(request):
 	try:
@@ -37,11 +38,11 @@ def admin_index(request):
 	datas_list_12 = []
 	for data in datas:
 		tmp = {}
-		tmp["so2"] = data["SO2_SO2"]
-		tmp["no2"] = data["NO2_NO2"]
+		tmp["so2"] = data["SO2_SO2"] * transform_factor["so2"]
+		tmp["no2"] = data["NO2_NO2"] * transform_factor["no2"]
 		tmp["pm10"] = data["PM10_PM10"]
-		tmp["co"] = data["CO_CO"]
-		tmp["o3"] = data["O3_O3"]
+		tmp["co"] = data["CO_CO"] * transform_factor["co"]
+		tmp["o3"] = data["O3_O3"] * transform_factor["o3"]
 		tmp["pm25"] = data["PM2_5_PM2_5"]
 		tmp["device_id"] = data[u"项目内节点编号"]
 		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])

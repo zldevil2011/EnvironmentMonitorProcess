@@ -7,7 +7,7 @@ from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
 from objects.AqiParameter import AqiParameter
 from utils.mySqlUtils import MySQL
-
+transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1250.4464285714287, "no2": 2054.017857142857}
 
 def historical_device(request):
 	sql = MySQL()
@@ -32,11 +32,11 @@ def historical_device(request):
 	datas_list_briage = []
 	for data in datas:
 		tmp = {}
-		tmp["so2"] = data["SO2_SO2"]
-		tmp["no2"] = data["NO2_NO2"]
+		tmp["so2"] = data["SO2_SO2"] * transform_factor["so2"]
+		tmp["no2"] = data["NO2_NO2"] * transform_factor["no2"]
 		tmp["pm10"] = data["PM10_PM10"]
-		tmp["co"] = data["CO_CO"]
-		tmp["o3"] = data["O3_O3"]
+		tmp["co"] = data["CO_CO"] * transform_factor["co"]
+		tmp["o3"] = data["O3_O3"] * transform_factor["o3"]
 		tmp["pm25"] = data["PM2_5_PM2_5"]
 		tmp["device_id"] = data[u"项目内节点编号"]
 		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
@@ -110,7 +110,7 @@ def historical_data(request,device_id):
 		sql.connectDB("projectmanagement")
 		device = sql.get_query("projectnodeinfo", "NodeNo", "=", str(device_id))[0]
 		sql.close_connect()
-		print device
+		# print device
 	except:
 		try:
 			sql = MySQL()
@@ -132,11 +132,11 @@ def historical_data(request,device_id):
 	datas_list_briage = []
 	for data in datas:
 		tmp = {}
-		tmp["so2"] = data["SO2_SO2"]
-		tmp["no2"] = data["NO2_NO2"]
+		tmp["so2"] = data["SO2_SO2"] * transform_factor["so2"]
+		tmp["no2"] = data["NO2_NO2"] * transform_factor["no2"]
 		tmp["pm10"] = data["PM10_PM10"]
-		tmp["co"] = data["CO_CO"]
-		tmp["o3"] = data["O3_O3"]
+		tmp["co"] = data["CO_CO"] * transform_factor["no"]
+		tmp["o3"] = data["O3_O3"] * transform_factor["o3"]
 		tmp["pm25"] = data["PM2_5_PM2_5"]
 		tmp["device_id"] = data[u"项目内节点编号"]
 		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
@@ -200,7 +200,7 @@ def historical_data(request,device_id):
 	import time
 	time_now = time.localtime(time.time())
 	time_now_hour = time.localtime(time.time()).tm_hour
-	print time_now
+	# print time_now
 	today_data = {}
 	today_data_hour = []
 	today_data_min_aqi = {"today_data_min_aqi_date": "", "today_data_min_aqi_val": 0}
@@ -232,6 +232,8 @@ def historical_data(request,device_id):
 					if aqi > today_data_max_aqi["today_data_max_aqi_val"]:
 						today_data_max_aqi["today_data_max_aqi_val"] = aqi
 						today_data_max_aqi["today_data_max_aqi_date"] = data["time"]
+				elif time >= time_end:
+					break
 			try:
 				today_data_data[factor].append(factor_sum / factor_num)
 			except:
@@ -272,6 +274,8 @@ def historical_data(request,device_id):
 					if aqi > week_data_max_aqi["week_data_max_aqi_val"]:
 						week_data_max_aqi["week_data_max_aqi_val"] = aqi
 						week_data_max_aqi["week_data_max_aqi_date"] = data["time"]
+				elif time >= time_end:
+					break
 			try:
 				week_data_data[factor].append(factor_sum / factor_num)
 			except:
@@ -317,6 +321,8 @@ def historical_data(request,device_id):
 					if aqi > month_data_max_aqi["month_data_max_aqi_val"]:
 						month_data_max_aqi["month_data_max_aqi_val"] = aqi
 						month_data_max_aqi["month_data_max_aqi_date"] = data["time"]
+				elif time >= time_end:
+					break
 			try:
 				month_data_data[factor].append(factor_sum / factor_num)
 			except:
@@ -361,6 +367,8 @@ def historical_data(request,device_id):
 					if aqi > year_data_max_aqi["year_data_max_aqi_val"]:
 						year_data_max_aqi["year_data_max_aqi_val"] = aqi
 						year_data_max_aqi["year_data_max_aqi_date"] = data["time"]
+				elif time >= time_end:
+					break
 			try:
 				year_data_data[factor].append(factor_sum / factor_num)
 			except:

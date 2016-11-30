@@ -7,6 +7,7 @@ from app.forms import AnnouncementUEditorForm, AnnouncementUEditorModelForm
 from app.models import Adminer
 import math
 from utils.mySqlUtils import MySQL
+transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1250.4464285714287, "no2": 2054.017857142857}
 
 def admin_data(request):
 	try:
@@ -42,11 +43,11 @@ def admin_data(request):
 	datas_list_briage = []
 	for data in datas:
 		tmp = {}
-		tmp["so2"] = data["SO2_SO2"]
-		tmp["no2"] = data["NO2_NO2"]
+		tmp["so2"] = data["SO2_SO2"] * transform_factor["so2"]
+		tmp["no2"] = data["NO2_NO2"] * transform_factor["no2"]
 		tmp["pm10"] = data["PM10_PM10"]
-		tmp["co"] = data["CO_CO"]
-		tmp["o3"] = data["O3_O3"]
+		tmp["co"] = data["CO_CO"] * transform_factor["co"]
+		tmp["o3"] = data["O3_O3"] * transform_factor["o3"]
 		tmp["pm25"] = data["PM2_5_PM2_5"]
 		tmp["device_id"] = data[u"项目内节点编号"]
 		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
