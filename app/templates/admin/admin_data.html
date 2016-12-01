@@ -334,6 +334,12 @@
 {% endblock %}
 {% block special_js %}
 <script>
+    $(function(){
+        var int=self.setInterval("reload_page()", 60000);
+    });
+    function reload_page() {
+        window.location.reload();
+    }
     function updateData(id){
         var $this = $("#" + id);
         var data_id = id.slice(5);
