@@ -181,8 +181,11 @@ def admin_index(request):
 				time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 				print time
 				if time_start <= time < time_end:
-					factor_sum += data[factor]
-					factor_num += 1
+					try:
+						factor_sum += data[factor]
+						factor_num += 1
+					except:
+						pass
 			try:
 				twelve_data_data[factor].append(factor_sum / factor_num)
 			except:
