@@ -28,6 +28,15 @@
 
 {% block body_content %}
     <div class="clearfix" style="background-color: #fdfdfd;">
+        <div class="clearfix">
+            <div class="col-md-12">
+                <h4 class="city_name" style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">
+                    <span name="latest_location">京师方圆</span>&nbsp;
+                    <a id="" href="#point-choice" role="button" class="glyphicon glyphicon-edit hander" data-toggle="modal"
+                    style="font-size: 16px;color: #000;text-decoration: none;"></a>
+                </h4>
+            </div>
+        </div>
         <div class="clearfix" style="margin-top: 30px;margin-bottom: 30px;">
             <div class="col-md-8">
                 <div class="col-md-4" style="margin: 0 auto;">
@@ -40,18 +49,18 @@
                 </div>
                 <div class="col-md-4" style="margin: 0 auto;">
                     <div id="circle" style="text-align: center; line-height: 150px;display: inline-block;">
-                        <p style="font-size: 18px;">{{ average_data.Main_Pollute_1 }}</p>
-                    </div>
-                    <div style="display: inline-block; height: 30px;line-height: 30px;margin-left: -49px;background-color: #ffffff;">
-                        <p style="font-size: 16px;">首要污染物</p>
-                    </div>
-                </div>
-                <div class="col-md-4" style="margin: 0 auto;">
-                    <div id="circle" style="text-align: center; line-height: 150px;display: inline-block;">
                         <p style="font-size: 18px;">{{ average_data.pm25 }}</p>
                     </div>
                     <div style="display: inline-block; height: 30px;line-height: 30px;margin-left: -49px;background-color: #ffffff;">
                         <p style="font-size: 16px;">PM2.5浓度</p>
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin: 0 auto;">
+                    <div id="circle" style="text-align: center; line-height: 150px;display: inline-block;">
+                        <p style="font-size: 18px;">{{ average_data.pm10 }}</p>
+                    </div>
+                    <div style="display: inline-block; height: 30px;line-height: 30px;margin-left: -49px;background-color: #ffffff;">
+                        <p style="font-size: 16px;">PM10浓度</p>
                     </div>
                 </div>
             </div>
@@ -69,44 +78,6 @@
                 <div style="text-align: left;">{{ average_data.AQI_info_1.health }}</div><br>
                 <div style="color:#7db364;text-align: left;">温馨提示:</div>
                 <div style="text-align: left;">{{ average_data.AQI_info_1.step }}</div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">池州 各监测点实时数据</p>
-        </div>
-        <div class="col-md-12">
-            </table>
-            <div style="overflow: auto;">
-                <table class="table table-striped text-center table-td-center">
-                    <thead>
-                        <tr style="background-color: #e8e8e8">
-                            <th class="text-center" style="padding: 15px;">监测站点</th>
-                            <th class="text-center" style="padding: 15px;">首要污染物</th>
-                            <th class="text-center" style="padding: 15px;">PM2.5浓度(ug/m3)</th>
-                            <th class="text-center" style="padding: 15px;">PM10浓度(ug/m3)</th>
-                            <th class="text-center" style="padding: 15px;">空气质量</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for data in data_real_time %}
-                            <tr><td>{{ data.name }}</td><td>{{ data.Main_Pollute_1 }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td></tr>
-                        {% endfor %}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-                    </tbody>
-                </table>
             </div>
         </div>
         <div class="col-md-12">
@@ -133,6 +104,47 @@
                     <div id="other_NO2" style="height:300px;"></div>
                 </div>
 
+            </div>
+        </div>
+        <div class="col-md-12">
+            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">京师方圆监测点实时数据</p>
+        </div>
+        <div class="col-md-12">
+            </table>
+            <div style="overflow: auto;">
+                <table class="table table-striped text-center table-td-center">
+                    <thead>
+                        <tr style="background-color: #e8e8e8">
+                            <th class="text-center" style="padding: 15px;">监测站点</th>
+                            <th class="text-center" style="padding: 15px;">PM2.5浓度</th>
+                            <th class="text-center" style="padding: 15px;">PM10浓度</th>
+                            <th class="text-center" style="padding: 15px;">SO2</th>
+                            <th class="text-center" style="padding: 15px;">NO2</th>
+                            <th class="text-center" style="padding: 15px;">CO</th>
+                            <th class="text-center" style="padding: 15px;">O3</th>
+                            <th class="text-center" style="padding: 15px;">空气质量</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in data_real_time %}
+                            <tr><td>{{ data.name }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td>{{ data.so2 }}</td><td>{{ data.no2 }}</td><td>{{ data.co }}</td><td>{{ data.o3 }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td></tr>
+                        {% endfor %}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
+                    </tbody>
+                </table>
             </div>
         </div>
 {#        <div class="col-md-8">#}
@@ -250,6 +262,28 @@
 {##}
 {#        </div>#}
     </div>
+    <div class="modal fade" id="point-choice" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        请选择站点
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="clearfix">
+{#                        {% for city in city_list %}#}
+                            <div class="horizontal-center col-md-2 img-rounded hander city-choice-item">京师方圆</div>
+{#                        {% endfor %}#}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block special_js %}
     <script src= {% static "app/js/modules/exporting.js" %}></script>
@@ -263,98 +297,6 @@
         function reload_page() {
             window.location.reload();
         }
-{#        $(function () {#}
-{#            var gaugeOptions = {#}
-{#                chart: {#}
-{#                    type: 'solidgauge'#}
-{#                },#}
-{#                title: null,#}
-{#                pane: {#}
-{#                    center: ['50%', '50%'],#}
-{#                    size: '85%',#}
-{#                    startAngle: -90,#}
-{#                    endAngle: 90,#}
-{#                    background: {#}
-{#                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',#}
-{#                        innerRadius: '60%',#}
-{#                        outerRadius: '100%',#}
-{#                        shape: 'arc'#}
-{#                    }#}
-{#                },#}
-{#                tooltip: {#}
-{#                    enabled: false#}
-{#                },#}
-{#                // the value axis#}
-{#                yAxis: {#}
-{#                    stops: [#}
-{#                        [0.1, '#55BF3B'], // green#}
-{#                        [0.5, '#DDDF0D'], // yellow#}
-{#                        [0.9, '#DF5353'] // red#}
-{#                    ],#}
-{#                    lineWidth: 0,#}
-{#                    minorTickInterval: null,#}
-{#                    tickPixelInterval: 400,#}
-{#                    tickWidth: 0,#}
-{#                    title: {#}
-{#                        y: -70#}
-{#                    },#}
-{#                    labels: {#}
-{#                        y: 16#}
-{#                    }#}
-{#                },#}
-{#                plotOptions: {#}
-{#                    solidgauge: {#}
-{#                        dataLabels: {#}
-{#                            y: 5,#}
-{#                            borderWidth: 0,#}
-{#                            useHTML: true#}
-{#                        }#}
-{#                    }#}
-{#                }#}
-{#            };#}
-{#            // The speed gauge#}
-{#            $('#pm25_now').highcharts(Highcharts.merge(gaugeOptions, {#}
-{#                yAxis: {#}
-{#                    min: 0,#}
-{#                    max: 500,#}
-{#                    title: {#}
-{#                        text: 'PM25'#}
-{#                    }#}
-{#                },#}
-{#                credits: {#}
-{#                    enabled: false#}
-{#                },#}
-{#                series: [{#}
-{#                    name: 'Speed',#}
-{#                    data: [480],#}
-{#                    dataLabels: {#}
-{#                        format: '<div style="text-align:center"><span style="font-size:25px;color:' +#}
-{#                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span>' +#}
-{#                        '<span style="font-size:12px;color:silver">ug/m3</span></div>'#}
-{#                    },#}
-{#                    tooltip: {#}
-{#                        valueSuffix: ' wg/m3'#}
-{#                    }#}
-{#                }]#}
-{#            }));#}
-{#            // Bring life to the dials#}
-{#            setInterval(function () {#}
-{#                // Speed#}
-{#                var chart = $('#pm25_now').highcharts(),#}
-{#                    point,#}
-{#                    newVal,#}
-{#                    inc;#}
-{#                if (chart) {#}
-{#                    point = chart.series[0].points[0];#}
-{#                    inc = Math.round((Math.random() - 0.5) * 100);#}
-{#                    newVal = point.y + inc;#}
-{#                    if (newVal < 0 || newVal > 500) {#}
-{#                        newVal = point.y - inc;#}
-{#                    }#}
-{#                    point.update(newVal);#}
-{#                }#}
-{#            }, 2000);#}
-{#        });#}
         $("[name=other_parameters] li").on("click", function(){
             console.log($(this).attr("name"));
             $(this).addClass("active").siblings().removeClass("active");
@@ -364,6 +306,7 @@
         $("[name=PM10]").click();
 
         var twelve_data = {{ twelve_data | safe}};
+{#        console.log(twelve_data);#}
         var twelve_data_hour = twelve_data.twelve_data_hour;
         var twelve_data_data = twelve_data.twelve_data_data;
         var twelve_data_so2 = twelve_data_data.so2;
@@ -373,7 +316,90 @@
         var twelve_data_o3 = twelve_data_data.o3;
         var twelve_data_pm25 = twelve_data_data.pm25;
         $(function () {
+
+            var time_list = twelve_data_hour;
+            var data_list = twelve_data_pm25;
+            var datas = new Array();
+            var len = data_list.length;
+            for(var i = 0;i < len; ++i){
+                var tmp = new Array();
+                var _ = new Date(time_list[i].replace(/-/g, "/"));
+{#                console.log(new Date(_).toString());#}
+                _ = _.getTime() + 8*60*60*1000;
+{#                console.log(new Date(_).toString());#}
+{#                console.log("********************************");#}
+                _ = new Date(_);
+{#                console.log(_.getUTCFullYear(), _.getUTCMonth(), _.getUTCDate(), _.getUTCHours(), _.getUTCMinutes(), _.getUTCSeconds());#}
+                var time = Date.UTC(_.getUTCFullYear(), _.getUTCMonth(), _.getUTCDate(), _.getUTCHours(), _.getUTCMinutes(), _.getUTCSeconds());
+                tmp.push(time);
+                tmp.push(data_list[i]);
+                datas.push(tmp);
+            }
+            var colors = ['#00ff00'];
+            Highcharts.getOptions().colors = Highcharts.map(colors, function (color) {
+                 return {
+                     radialGradient: { cx:0, cy: -0.8,r:2.3 },
+                     stops: [[0, color], [2, Highcharts.Color(color).brighten(14).get('rgb')] // darken
+                     ]
+                 };
+             });
             $('#container').highcharts({
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'rgba(80,81,95,0.1)',
+                },
+                title: {
+                    text: '今日PM2.5监测值',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: '数据来源：京师方圆',
+                    x: -20
+                },
+                xAxis: {
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        millisecond: '%H:%M:%S',
+                        second: '%H:%M:%S',
+                        minute: '%d %H:%M',
+                        hour: '%m-%d %H:%M',
+                        day: '%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y',
+                    },
+                },
+                yAxis: {
+                    title: {
+                        text: 'PM2.5浓度(ug/m³)'
+                    },
+                },
+                tooltip: {
+                    valueSuffix: 'ug/m³',
+                    dateTimeLabelFormats: {
+                        millisecond: '%Y-%m-%d %H:%M:%S',
+                        second: '%Y-%m-%d %H:%M:%S',
+                        minute: '%Y-%m-%d %H:%M:%S',
+                        hour: '%Y-%m-%d %H:%M:%S',
+                        day: '%Y-%m-%d %H:%M:%S',
+                        week: '%Y-%m-%d %H:%M:%S',
+                        month: '%Y-%m-%d %H:%M:%S',
+                        year: '%Y-%m-%d %H:%M:%S',
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0
+                },
+                series: [{
+                    name: 'PM2.5',
+                    data: datas,
+                    color:"#4e505d"
+                }]
+            });
+            $('#container1').highcharts({
                 credits:false,
                 chart: {
                     type: 'spline',
@@ -416,186 +442,554 @@
                      ]
                  };
              });
+            var time_list = twelve_data_hour;
+            var data_list = twelve_data_pm10;
+            var datas = new Array();
+            var len = data_list.length;
+            for(var i = 0;i < len; ++i){
+                var tmp = new Array();
+                var _ = new Date(time_list[i].replace(/-/g, "/"));
+                _ = _.getTime() + 8*60*60*1000;
+                _ = new Date(_);
+                var time = Date.UTC(_.getUTCFullYear(), _.getUTCMonth(), _.getUTCDate(), _.getUTCHours(), _.getUTCMinutes(), _.getUTCSeconds());
+                tmp.push(time);
+                tmp.push(data_list[i]);
+                datas.push(tmp);
+            }
+            var colors = ['#00ff00'];
+            Highcharts.getOptions().colors = Highcharts.map(colors, function (color) {
+                 return {
+                     radialGradient: { cx:0, cy: -0.8,r:2.3 },
+                     stops: [[0, color], [2, Highcharts.Color(color).brighten(14).get('rgb')] // darken
+                     ]
+                 };
+             });
             $('#other_PM10').highcharts({
-
-                credits:false,
                 chart: {
-                    type: 'spline',
+                    type: 'line',
                     backgroundColor: 'rgba(80,81,95,0.1)',
                 },
                 title: {
-                    text: '今日PM10监测值'
+                    text: '今日PM10监测值',
+                    x: -20 //center
                 },
                 subtitle: {
-                    text: '来源：各站点平均值'
+                    text: '数据来源：京师方圆',
+                    x: -20
                 },
                 xAxis: {
-                    categories: twelve_data_hour
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        millisecond: '%H:%M:%S',
+                        second: '%H:%M:%S',
+                        minute: '%d %H:%M',
+                        hour: '%m-%d %H:%M',
+                        day: '%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y',
+                    },
                 },
                 yAxis: {
                     title: {
-                        text: 'PM10(ug/m³)'
+                        text: 'PM10浓度(ug/m³)'
+                    },
+                },
+                tooltip: {
+                    valueSuffix: 'ug/m³',
+                    dateTimeLabelFormats: {
+                        millisecond: '%Y-%m-%d %H:%M:%S',
+                        second: '%Y-%m-%d %H:%M:%S',
+                        minute: '%Y-%m-%d %H:%M:%S',
+                        hour: '%Y-%m-%d %H:%M:%S',
+                        day: '%Y-%m-%d %H:%M:%S',
+                        week: '%Y-%m-%d %H:%M:%S',
+                        month: '%Y-%m-%d %H:%M:%S',
+                        year: '%Y-%m-%d %H:%M:%S',
                     }
                 },
-                plotOptions: {
-                    line: {
-                        dataLabels: {
-                            enabled: true
-                        },
-                        enableMouseTracking: false
-                    }
+                legend: {
+                    layout: 'vertical',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0
                 },
                 series: [{
-                    name: '均值',
-                    data: twelve_data_pm10
+                    name: 'PM10',
+                    data: datas,
+                    color:"#4e505d"
                 }]
             });
+{#            $('#other_PM10').highcharts({#}
+{##}
+{#                credits:false,#}
+{#                chart: {#}
+{#                    type: 'spline',#}
+{#                    backgroundColor: 'rgba(80,81,95,0.1)',#}
+{#                },#}
+{#                title: {#}
+{#                    text: '今日PM10监测值'#}
+{#                },#}
+{#                subtitle: {#}
+{#                    text: '来源：各站点平均值'#}
+{#                },#}
+{#                xAxis: {#}
+{#                    categories: twelve_data_hour#}
+{#                },#}
+{#                yAxis: {#}
+{#                    title: {#}
+{#                        text: 'PM10(ug/m³)'#}
+{#                    }#}
+{#                },#}
+{#                plotOptions: {#}
+{#                    line: {#}
+{#                        dataLabels: {#}
+{#                            enabled: true#}
+{#                        },#}
+{#                        enableMouseTracking: false#}
+{#                    }#}
+{#                },#}
+{#                series: [{#}
+{#                    name: '均值',#}
+{#                    data: twelve_data_pm10#}
+{#                }]#}
+{#            });#}
             var standard_width = $("#other_PM10 div").width();
             $("#other_NO2").width(standard_width);
             $("#other_SO2").width(standard_width);
             $("#other_PM10").width(standard_width);
             $("#other_O3").width(standard_width);
             $("#other_CO").width(standard_width);
-            $('#other_SO2').highcharts({
 
-                credits:false,
+
+            time_list = twelve_data_hour;
+            data_list = twelve_data_so2;
+            datas = new Array();
+            len = data_list.length;
+            for(var i = 0;i < len; ++i){
+                var tmp = new Array();
+                var _ = new Date(time_list[i].replace(/-/g, "/"));
+                _ = _.getTime() + 8*60*60*1000;
+                _ = new Date(_);
+                var time = Date.UTC(_.getUTCFullYear(), _.getUTCMonth(), _.getUTCDate(), _.getUTCHours(), _.getUTCMinutes(), _.getUTCSeconds());
+                tmp.push(time);
+                tmp.push(data_list[i]);
+                datas.push(tmp);
+            }
+            $('#other_SO2').highcharts({
                 chart: {
-                    type: 'spline',
+                    type: 'line',
                     backgroundColor: 'rgba(80,81,95,0.1)',
                 },
                 title: {
-                    text: '今日SO2监测值'
+                    text: '今日SO2监测值',
+                    x: -20 //center
                 },
                 subtitle: {
-                    text: '来源：各站点平均值'
+                    text: '数据来源：京师方圆',
+                    x: -20
                 },
                 xAxis: {
-                    categories: twelve_data_hour
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        millisecond: '%H:%M:%S',
+                        second: '%H:%M:%S',
+                        minute: '%d %H:%M',
+                        hour: '%m-%d %H:%M',
+                        day: '%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y',
+                    },
                 },
                 yAxis: {
                     title: {
                         text: 'SO2浓度(ug/m³)'
+                    },
+                },
+                tooltip: {
+                    valueSuffix: 'ug/m³',
+                    dateTimeLabelFormats: {
+                        millisecond: '%Y-%m-%d %H:%M:%S',
+                        second: '%Y-%m-%d %H:%M:%S',
+                        minute: '%Y-%m-%d %H:%M:%S',
+                        hour: '%Y-%m-%d %H:%M:%S',
+                        day: '%Y-%m-%d %H:%M:%S',
+                        week: '%Y-%m-%d %H:%M:%S',
+                        month: '%Y-%m-%d %H:%M:%S',
+                        year: '%Y-%m-%d %H:%M:%S',
                     }
                 },
-                plotOptions: {
-                    line: {
-                        dataLabels: {
-                            enabled: true
-                        },
-                        enableMouseTracking: false
-                    }
+                legend: {
+                    layout: 'vertical',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0
                 },
                 series: [{
-                    name: '均值',
-                    data: twelve_data_so2
+                    name: 'SO2',
+                    data: datas,
+                    color:"#4e505d"
                 }]
             });
-{#            $('#other_SO2 div').width(standard_width);#}
+{#            $('#other_SO2').highcharts({#}
+{##}
+{#                credits:false,#}
+{#                chart: {#}
+{#                    type: 'spline',#}
+{#                    backgroundColor: 'rgba(80,81,95,0.1)',#}
+{#                },#}
+{#                title: {#}
+{#                    text: '今日SO2监测值'#}
+{#                },#}
+{#                subtitle: {#}
+{#                    text: '来源：各站点平均值'#}
+{#                },#}
+{#                xAxis: {#}
+{#                    categories: twelve_data_hour#}
+{#                },#}
+{#                yAxis: {#}
+{#                    title: {#}
+{#                        text: 'SO2浓度(ug/m³)'#}
+{#                    }#}
+{#                },#}
+{#                plotOptions: {#}
+{#                    line: {#}
+{#                        dataLabels: {#}
+{#                            enabled: true#}
+{#                        },#}
+{#                        enableMouseTracking: false#}
+{#                    }#}
+{#                },#}
+{#                series: [{#}
+{#                    name: '均值',#}
+{#                    data: twelve_data_so2#}
+{#                }]#}
+{#            });#}
+            time_list = twelve_data_hour;
+            data_list = twelve_data_o3;
+            datas = new Array();
+            len = data_list.length;
+            for(var i = 0;i < len; ++i){
+                var tmp = new Array();
+                var _ = new Date(time_list[i].replace(/-/g, "/"));
+                _ = _.getTime() + 8*60*60*1000;
+                _ = new Date(_);
+                var time = Date.UTC(_.getUTCFullYear(), _.getUTCMonth(), _.getUTCDate(), _.getUTCHours(), _.getUTCMinutes(), _.getUTCSeconds());
+                tmp.push(time);
+                tmp.push(data_list[i]);
+                datas.push(tmp);
+            }
             $('#other_O3').highcharts({
-
-                credits:false,
                 chart: {
-                    type: 'spline',
+                    type: 'line',
                     backgroundColor: 'rgba(80,81,95,0.1)',
                 },
                 title: {
-                    text: '今日O3监测值'
+                    text: '今日O3监测值',
+                    x: -20 //center
                 },
                 subtitle: {
-                    text: '来源：各站点平均值'
+                    text: '数据来源：京师方圆',
+                    x: -20
                 },
                 xAxis: {
-                    categories: twelve_data_hour
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        millisecond: '%H:%M:%S',
+                        second: '%H:%M:%S',
+                        minute: '%d %H:%M',
+                        hour: '%m-%d %H:%M',
+                        day: '%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y',
+                    },
                 },
                 yAxis: {
                     title: {
                         text: 'O3浓度(ug/m³)'
+                    },
+                },
+                tooltip: {
+                    valueSuffix: 'ug/m³',
+                    dateTimeLabelFormats: {
+                        millisecond: '%Y-%m-%d %H:%M:%S',
+                        second: '%Y-%m-%d %H:%M:%S',
+                        minute: '%Y-%m-%d %H:%M:%S',
+                        hour: '%Y-%m-%d %H:%M:%S',
+                        day: '%Y-%m-%d %H:%M:%S',
+                        week: '%Y-%m-%d %H:%M:%S',
+                        month: '%Y-%m-%d %H:%M:%S',
+                        year: '%Y-%m-%d %H:%M:%S',
                     }
                 },
-                plotOptions: {
-                    line: {
-                        dataLabels: {
-                            enabled: true
-                        },
-                        enableMouseTracking: false
-                    }
+                legend: {
+                    layout: 'vertical',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0
                 },
                 series: [{
-                    name: '均值',
-                    data: twelve_data_o3
+                    name: 'O3',
+                    data: datas,
+                    color:"#4e505d"
                 }]
             });
-{#            $('#other_O3 div').width(standard_width);#}
-            $('#other_CO').highcharts({
+{#            $('#other_O3').highcharts({#}
+{##}
+{#                credits:false,#}
+{#                chart: {#}
+{#                    type: 'spline',#}
+{#                    backgroundColor: 'rgba(80,81,95,0.1)',#}
+{#                },#}
+{#                title: {#}
+{#                    text: '今日O3监测值'#}
+{#                },#}
+{#                subtitle: {#}
+{#                    text: '来源：各站点平均值'#}
+{#                },#}
+{#                xAxis: {#}
+{#                    categories: twelve_data_hour#}
+{#                },#}
+{#                yAxis: {#}
+{#                    title: {#}
+{#                        text: 'O3浓度(ug/m³)'#}
+{#                    }#}
+{#                },#}
+{#                plotOptions: {#}
+{#                    line: {#}
+{#                        dataLabels: {#}
+{#                            enabled: true#}
+{#                        },#}
+{#                        enableMouseTracking: false#}
+{#                    }#}
+{#                },#}
+{#                series: [{#}
+{#                    name: '均值',#}
+{#                    data: twelve_data_o3#}
+{#                }]#}
+{#            });#}
 
-                credits:false,
+
+
+            time_list = twelve_data_hour;
+            data_list = twelve_data_co;
+            datas = new Array();
+            len = data_list.length;
+            for(var i = 0;i < len; ++i){
+                var tmp = new Array();
+                var _ = new Date(time_list[i].replace(/-/g, "/"));
+                _ = _.getTime() + 8*60*60*1000;
+                _ = new Date(_);
+                var time = Date.UTC(_.getUTCFullYear(), _.getUTCMonth(), _.getUTCDate(), _.getUTCHours(), _.getUTCMinutes(), _.getUTCSeconds());
+                tmp.push(time);
+                tmp.push(data_list[i]);
+                datas.push(tmp);
+            }
+            $('#other_CO').highcharts({
                 chart: {
-                    type: 'spline',
+                    type: 'line',
                     backgroundColor: 'rgba(80,81,95,0.1)',
                 },
                 title: {
-                    text: '今日CO监测值'
+                    text: '今日CO监测值',
+                    x: -20 //center
                 },
                 subtitle: {
-                    text: '来源：各站点平均值'
+                    text: '数据来源：京师方圆',
+                    x: -20
                 },
                 xAxis: {
-                    categories: twelve_data_hour
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        millisecond: '%H:%M:%S',
+                        second: '%H:%M:%S',
+                        minute: '%d %H:%M',
+                        hour: '%m-%d %H:%M',
+                        day: '%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y',
+                    },
                 },
                 yAxis: {
                     title: {
                         text: 'CO浓度(ug/m³)'
+                    },
+                },
+                tooltip: {
+                    valueSuffix: 'ug/m³',
+                    dateTimeLabelFormats: {
+                        millisecond: '%Y-%m-%d %H:%M:%S',
+                        second: '%Y-%m-%d %H:%M:%S',
+                        minute: '%Y-%m-%d %H:%M:%S',
+                        hour: '%Y-%m-%d %H:%M:%S',
+                        day: '%Y-%m-%d %H:%M:%S',
+                        week: '%Y-%m-%d %H:%M:%S',
+                        month: '%Y-%m-%d %H:%M:%S',
+                        year: '%Y-%m-%d %H:%M:%S',
                     }
                 },
-                plotOptions: {
-                    line: {
-                        dataLabels: {
-                            enabled: true
-                        },
-                        enableMouseTracking: false
-                    }
+                legend: {
+                    layout: 'vertical',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0
                 },
                 series: [{
-                    name: '均值',
-                    data: twelve_data_co
+                    name: 'CO',
+                    data: datas,
+                    color:"#4e505d"
                 }]
             });
-{#            $('#other_CO div').width(standard_width);#}
-            $('#other_NO2').highcharts({
 
-                credits:false,
+{#            $('#other_CO').highcharts({#}
+{##}
+{#                credits:false,#}
+{#                chart: {#}
+{#                    type: 'spline',#}
+{#                    backgroundColor: 'rgba(80,81,95,0.1)',#}
+{#                },#}
+{#                title: {#}
+{#                    text: '今日CO监测值'#}
+{#                },#}
+{#                subtitle: {#}
+{#                    text: '来源：各站点平均值'#}
+{#                },#}
+{#                xAxis: {#}
+{#                    categories: twelve_data_hour#}
+{#                },#}
+{#                yAxis: {#}
+{#                    title: {#}
+{#                        text: 'CO浓度(ug/m³)'#}
+{#                    }#}
+{#                },#}
+{#                plotOptions: {#}
+{#                    line: {#}
+{#                        dataLabels: {#}
+{#                            enabled: true#}
+{#                        },#}
+{#                        enableMouseTracking: false#}
+{#                    }#}
+{#                },#}
+{#                series: [{#}
+{#                    name: '均值',#}
+{#                    data: twelve_data_co#}
+{#                }]#}
+{#            });#}
+
+
+
+
+
+            time_list = twelve_data_hour;
+            data_list = twelve_data_no2;
+            datas = new Array();
+            len = data_list.length;
+            for(var i = 0;i < len; ++i){
+                var tmp = new Array();
+                var _ = new Date(time_list[i].replace(/-/g, "/"));
+                _ = _.getTime() + 8*60*60*1000;
+                _ = new Date(_);
+                var time = Date.UTC(_.getUTCFullYear(), _.getUTCMonth(), _.getUTCDate(), _.getUTCHours(), _.getUTCMinutes(), _.getUTCSeconds());
+                tmp.push(time);
+                tmp.push(data_list[i]);
+                datas.push(tmp);
+            }
+            $('#other_NO2').highcharts({
                 chart: {
-                    type: 'spline',
+                    type: 'line',
                     backgroundColor: 'rgba(80,81,95,0.1)',
                 },
                 title: {
-                    text: '今日NO2监测值'
+                    text: '今日NO2监测值',
+                    x: -20 //center
                 },
                 subtitle: {
-                    text: '来源：各站点平均值'
+                    text: '数据来源：京师方圆',
+                    x: -20
                 },
                 xAxis: {
-                    categories: twelve_data_hour
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        millisecond: '%H:%M:%S',
+                        second: '%H:%M:%S',
+                        minute: '%d %H:%M',
+                        hour: '%m-%d %H:%M',
+                        day: '%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y',
+                    },
                 },
                 yAxis: {
                     title: {
                         text: 'NO2浓度(ug/m³)'
+                    },
+                },
+                tooltip: {
+                    valueSuffix: 'ug/m³',
+                    dateTimeLabelFormats: {
+                        millisecond: '%Y-%m-%d %H:%M:%S',
+                        second: '%Y-%m-%d %H:%M:%S',
+                        minute: '%Y-%m-%d %H:%M:%S',
+                        hour: '%Y-%m-%d %H:%M:%S',
+                        day: '%Y-%m-%d %H:%M:%S',
+                        week: '%Y-%m-%d %H:%M:%S',
+                        month: '%Y-%m-%d %H:%M:%S',
+                        year: '%Y-%m-%d %H:%M:%S',
                     }
                 },
-                plotOptions: {
-                    line: {
-                        dataLabels: {
-                            enabled: true
-                        },
-                        enableMouseTracking: false
-                    }
+                legend: {
+                    layout: 'vertical',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0
                 },
                 series: [{
-                    name: '均值',
-                    data: twelve_data_no2
+                    name: 'NO2',
+                    data: datas,
+                    color:"#4e505d"
                 }]
             });
-{#            $('#other_NO2 div').width(standard_width);#}
+
+
+
+{#            $('#other_NO2').highcharts({#}
+{##}
+{#                credits:false,#}
+{#                chart: {#}
+{#                    type: 'spline',#}
+{#                    backgroundColor: 'rgba(80,81,95,0.1)',#}
+{#                },#}
+{#                title: {#}
+{#                    text: '今日NO2监测值'#}
+{#                },#}
+{#                subtitle: {#}
+{#                    text: '来源：各站点平均值'#}
+{#                },#}
+{#                xAxis: {#}
+{#                    categories: twelve_data_hour#}
+{#                },#}
+{#                yAxis: {#}
+{#                    title: {#}
+{#                        text: 'NO2浓度(ug/m³)'#}
+{#                    }#}
+{#                },#}
+{#                plotOptions: {#}
+{#                    line: {#}
+{#                        dataLabels: {#}
+{#                            enabled: true#}
+{#                        },#}
+{#                        enableMouseTracking: false#}
+{#                    }#}
+{#                },#}
+{#                series: [{#}
+{#                    name: '均值',#}
+{#                    data: twelve_data_no2#}
+{#                }]#}
+{#            });#}
         });
 
     </script>

@@ -18,10 +18,15 @@ class MySQL(object):
 		self.cursor = self.db.cursor()
 		return self.cursor
 
-	def get_query(self, table_name, query_key = None, query_conn = None, query_val = None, no = None, order_key=None):
+	def get_query(self, table_name,  data = None, no = None, order_key=None):
 		query_str = "select * from " + table_name
-		if query_key is not None and query_conn is not None and query_val is not None:
-			query_str += " where " + query_key + query_conn + '"' + query_val + '"'
+		if data is not None:
+			query_str += " where "
+			for k in data.keys():
+				query_str += k + data[k]["conn"] + '"' + data[k]["val"] + '"' + " and "
+		# if query_key is not None and query_conn is not None and query_val is not None:
+		# 	query_str += " where " + query_key + query_conn + '"' + query_val + '"'
+			query_str = query_str[:-5]
 		if order_key is not None:
 			query_str += " order by " + order_key
 		# 获取列名
