@@ -8,7 +8,9 @@ from datetime import datetime, timedelta
 from utils.mySqlUtils import MySQL
 from django.core.mail import send_mail
 from EMP import settings
+import math
 transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1250.4464285714287, "no2": 2054.017857142857}
+
 
 def index(request):
 	try:
@@ -23,6 +25,7 @@ def index(request):
 		sql.close_connect()
 	except:
 		try:
+			device_id = 1
 			sql = MySQL()
 			sql.connectDB("projectmanagement")
 			data = {}
@@ -43,7 +46,37 @@ def index(request):
 			return render(request, "app/index.html", {
 				"average_data": average_data,
 			})
+	try:
+		page = int(request.GET.get("page"))
+	except Exception as e:
+		print str(e)
+		page = 1
+	print "page", page
+	if page < 1:
+		return HttpResponseRedirect("/?device_id=" + device_id + "&page=1")
+
 	sql = MySQL()
+	# 获取设备列表
+	sql.connectDB("projectmanagement")
+	data = {}
+	data["ProjectID"] = {}
+	data["ProjectID"]["conn"] = "="
+	data["ProjectID"]["val"] = str(1)
+	device_list = sql.get_query("projectnodeinfo", data, None)
+	sql.close_connect()
+	print device_list
+	device_list_briage = []
+	for device in device_list:
+		tmp = {}
+		tmp["name"] = device["Description"]
+		tmp["id"] = device["NodeNO"]
+		tmp["address"] = device["InstallationAddress"]
+		tmp["longitude"] = "117.5436320000"
+		tmp["latitude"] = "30.7078830000"
+		tmp["install_time"] = device["SetTime"]
+		device_list_briage.append(tmp)
+	device_list = device_list_briage
+
 	device_tmp = {}
 	device_tmp["id"] = device["NodeNO"]
 	device_tmp["name"] = device["Description"]
@@ -96,7 +129,15 @@ def index(request):
 		tmp["name"] = device["name"]
 		datas_list_briage.append(tmp)
 	datas_list = datas_list_briage
-	data_list_20 = datas_list[0:20]
+
+	total_page = int(math.ceil(len(datas_list) / 20.0))
+
+	if page > total_page:
+		return HttpResponseRedirect("/?device_id=" + device_id + "&page=" + str(total_page))
+
+	start_num = (page - 1) * 20
+	end_num = page * 20
+	data_list_20 = datas_list[start_num:end_num]
 	for data in datas_list:
 		calculator = AqiParameter()
 		calculator.get_1_aqi(data)
@@ -174,4 +215,8 @@ def index(request):
 		"twelve_data": twelve_data,
 		"average_data": average_data,
 		"data_real_time": data_list_20,
+		"device_list": device_list,
+		"page": page,
+		"total_page": total_page,
+		"device": device,
 	})

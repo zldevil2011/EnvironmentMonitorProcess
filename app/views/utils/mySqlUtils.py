@@ -8,7 +8,7 @@ class MySQL(object):
 	def __init__(self):
 		self.host = '127.0.0.1'
 		self.user = 'root'
-		self.password = '5868629'
+		self.password = 'Long@680920'
 		# self.database = 'jssf'
 		self.db = None
 		self.cursor = None

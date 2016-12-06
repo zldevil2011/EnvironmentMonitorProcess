@@ -31,7 +31,7 @@
         <div class="clearfix">
             <div class="col-md-12">
                 <h4 class="city_name" style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">
-                    <span name="latest_location">京师方圆</span>&nbsp;
+                    <span name="latest_location">{{ device.name }}</span>&nbsp;
                     <a id="" href="#point-choice" role="button" class="glyphicon glyphicon-edit hander" data-toggle="modal"
                     style="font-size: 16px;color: #000;text-decoration: none;"></a>
                 </h4>
@@ -107,10 +107,9 @@
             </div>
         </div>
         <div class="col-md-12">
-            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">京师方圆监测点实时数据</p>
+            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">{{ device.name }}监测点实时数据</p>
         </div>
         <div class="col-md-12">
-            </table>
             <div style="overflow: auto;">
                 <table class="table table-striped text-center table-td-center">
                     <thead>
@@ -123,144 +122,32 @@
                             <th class="text-center" style="padding: 15px;">CO</th>
                             <th class="text-center" style="padding: 15px;">O3</th>
                             <th class="text-center" style="padding: 15px;">空气质量</th>
+                            <th class="text-center" style="padding: 15px;">采集时间</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for data in data_real_time %}
-                            <tr><td>{{ data.name }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td>{{ data.so2 }}</td><td>{{ data.no2 }}</td><td>{{ data.co }}</td><td>{{ data.o3 }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td></tr>
+                            <tr><td>{{ data.name }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td>{{ data.so2 }}</td><td>{{ data.no2 }}</td><td>{{ data.co }}</td><td>{{ data.o3 }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td><td>{{ data.time }}</td></tr>
                         {% endfor %}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>细颗粒物(PM2.5)</td><td>88</td><td>71</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
                     </tbody>
                 </table>
             </div>
         </div>
-{#        <div class="col-md-8">#}
-{#            <div class="clearfix" style=" border: 1px solid #bbbaba; ">#}
-{#                <div class="col-md-offset-1 col-md-5 col-sm-12">#}
-{#                    <div class="clearfix">#}
-{#                        <div class="clearfix">#}
-{#                            <div class="col-md-12" style="float: left;"><bold>北京</bold></div>#}
-{#                        </div>#}
-{#                        <div class="clearfix">#}
-{#                            <div class="col-md-12" style="float: left;">09:45发布</div>#}
-{#                        </div>#}
-{#                        <div class="clearfix">#}
-{#                            <div class="col-md-12" style="margin: 0 auto;text-align: center;">#}
-{#                                <h2>3° / 霾</h2>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="clearfix" style="text-align: center;">#}
-{#                            <div class="col-md-4">#}
-{#                                SO2#}
-{#                                <h4>60</h4>#}
-{#                            </div>#}
-{#                            <div class="col-md-4">#}
-{#                                O3#}
-{#                                <h4>30</h4>#}
-{#                            </div>#}
-{#                            <div class="col-md-4">#}
-{#                                PM10#}
-{#                                <h4>123</h4>#}
-{#                            </div>#}
-{##}
-{#                            <div class="col-md-12"><hr/></div>#}
-{#                            <div class="col-md-4">#}
-{#                                东北风#}
-{#                                <h4>2级</h4>#}
-{#                            </div>#}
-{#                            <div class="col-md-4">#}
-{#                                污染指数#}
-{#                                <h4>158</h4>#}
-{#                            </div>#}
-{#                            <div class="col-md-4">#}
-{#                                相对湿度#}
-{#                                <h4>62%</h4>#}
-{#                            </div>#}
-{#                            <div class="col-md-12"><hr/></div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="col-md-6 col-sm-12">#}
-{#                    <div id="pm25_now" style="min-width:100%;height:300px;margin: 0 auto;"></div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="clearfix" style="margin-top: 20px;">#}
-{#                <div id="container" style="min-width:100%;height:300px; border: 1px solid #bbbaba;"></div>#}
-{#            </div>#}
-{#            <div class="clearfix" style="margin-top: 20px;">#}
-{#                <div class="col-md-12" style="width: 100%; height: auto !important; min-height: 30px;font-size: 14px;#}
-{#                background-color: #f4f4f4; overflow: hidden;line-height: 30px;">#}
-{#                    <span class="glyphicon glyphicon-th-list"></span>#}
-{#                    <ul style="display: inline-block;margin-bottom: 0px;!important; float: right; " class="li-tab">#}
-{#                        <li class="li-round-sm active" style="display: inline-block;">SO2</li>#}
-{#                        <li class="li-round-sm" style="display: inline-block;">O3</li>#}
-{#                        <li class="li-round-sm" style="display: inline-block;">CO</li>#}
-{#                        <li class="li-round-sm" style="display: inline-block;">NO2</li>#}
-{#                        <li class="li-round-sm" style="display: inline-block;">PM10</li>#}
-{#                    </ul>#}
-{#                </div>#}
-{#                <div id="other_parameter" style="min-width:100%;height:300px; border: 1px solid #bbbaba;"></div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="col-md-4" style="">#}
-{#            <table class="table table-striped text-center">#}
-{#                <tr>#}
-{#                    <th class="text-center">监测站点</th>#}
-{#                    <th class="text-center">PM2.5值(ug/m3)</th>#}
-{#                    <th class="text-center">空气质量</th>#}
-{#                </tr>#}
-{#            </table>#}
-{#            <div style="height:900px; overflow: auto;">#}
-{#                <table class="table table-striped text-center table-td-center">#}
-{#                    <tbody>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                        <tr><td>张家湾</td><td>88</td><td style="vertical-align: middle;"><span>优</span><span class="level1"></span></td></tr>#}
-{#                    </tbody>#}
-{#                </table>#}
-{#            </div>#}
-{##}
-{#        </div>#}
+        <div class="col-md-12" style="text-align: right;">
+            <ul class="pagination account-pagination" style="">
+                <li class="hander">
+                     <a href="/?device_id=1&page={{ page|add:-1 }}">上一页</a>
+                </li>
+                <li>
+                     <a href="#">
+                         <span name="page">{{ page }}</span> / <span name="total_page">{{ total_page }}</span>
+                     </a>
+                </li>
+                <li class="hander">
+                     <a href="/?device_id=1&page={{ page|add:1 }}">下一页</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="modal fade" id="point-choice" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -273,13 +160,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="clearfix">
-{#                        {% for city in city_list %}#}
-                            <div class="horizontal-center col-md-2 img-rounded hander city-choice-item">京师方圆</div>
-{#                        {% endfor %}#}
+                        {% for device in device_list %}
+                            <div class="horizontal-center col-md-2 img-rounded hander city-choice-item"
+                            onclick="window.location.href='/?device_id={{ device.id }}'">{{ device.name }}</div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="modal-footer">
-                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">确认</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>
@@ -353,7 +241,7 @@
                     x: -20 //center
                 },
                 subtitle: {
-                    text: '数据来源：京师方圆',
+                    text: '数据来源:' + '{{ device.name }}' + '观测点',
                     x: -20
                 },
                 xAxis: {
@@ -474,7 +362,7 @@
                     x: -20 //center
                 },
                 subtitle: {
-                    text: '数据来源：京师方圆',
+                    text: '数据来源:' + '{{ device.name }}' + '观测点',
                     x: -20
                 },
                 xAxis: {
@@ -586,7 +474,7 @@
                     x: -20 //center
                 },
                 subtitle: {
-                    text: '数据来源：京师方圆',
+                    text: '数据来源:' + '{{ device.name }}' + '观测点',
                     x: -20
                 },
                 xAxis: {
@@ -690,7 +578,7 @@
                     x: -20 //center
                 },
                 subtitle: {
-                    text: '数据来源：京师方圆',
+                    text: '数据来源:' + '{{ device.name }}' + '观测点',
                     x: -20
                 },
                 xAxis: {
@@ -797,7 +685,7 @@
                     x: -20 //center
                 },
                 subtitle: {
-                    text: '数据来源：京师方圆',
+                    text: '数据来源:' + '{{ device.name }}' + '观测点',
                     x: -20
                 },
                 xAxis: {
@@ -907,7 +795,7 @@
                     x: -20 //center
                 },
                 subtitle: {
-                    text: '数据来源：京师方圆',
+                    text: '数据来源:' + '{{ device.name }}' + '观测点',
                     x: -20
                 },
                 xAxis: {
