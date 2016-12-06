@@ -1,0 +1,88 @@
+{% extends "app/base.html" %}
+{% load static from staticfiles %}
+{% block title %}历史数据{% endblock %}
+{% block special_css %}
+    <style>
+        #circle {
+            width: 150px;
+            height: 150px;
+            background-color: #ffffff; /* Can be set to transparent */
+            border-width: 12px;
+            border-color:#bfaeae;
+            animation:mymove 6s infinite;
+            animation-timing-function:ease;
+            border-style:solid;
+            -webkit-border-radius: 100px;
+        }
+        @keyframes mymove
+        {
+            0% { border-color:#68cb00;}
+            20% { border-color:#f6e200;}
+            40% { border-color:#fb890f;}
+            60% { border-color:#df2d00;}
+            80% { border-color:#b414bb;}
+            100% { border-color:#b414bb;}
+        }
+    </style>
+{% endblock %}
+
+{% block body_content %}
+    <div class="clearfix" style="background-color: #fdfdfd;">
+        <div class="col-md-12">
+            <div id="container" style="min-width:100%;height:300px;margin: 0 auto;"></div>
+        </div>
+        <div class="col-md-12">
+            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">{{ device.name }}监测点历史数据</p>
+        </div>
+        <div class="col-md-12">
+            <div style="overflow: auto;">
+                <table class="table table-striped text-center table-td-center">
+                    <thead>
+                        <tr style="background-color: #e8e8e8">
+                            <th class="text-center" style="padding: 15px;">监测站点</th>
+                            <th class="text-center" style="padding: 15px;">PM2.5浓度</th>
+                            <th class="text-center" style="padding: 15px;">PM10浓度</th>
+                            <th class="text-center" style="padding: 15px;">SO2</th>
+                            <th class="text-center" style="padding: 15px;">NO2</th>
+                            <th class="text-center" style="padding: 15px;">CO</th>
+                            <th class="text-center" style="padding: 15px;">O3</th>
+                            <th class="text-center" style="padding: 15px;">空气质量</th>
+                            <th class="text-center" style="padding: 15px;">采集时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in data_real_time %}
+                            <tr><td>{{ data.name }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td>{{ data.so2 }}</td><td>{{ data.no2 }}</td><td>{{ data.co }}</td><td>{{ data.o3 }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td><td>{{ data.time }}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: right;">
+            <ul class="pagination account-pagination" style="">
+                <li class="hander">
+                     <a href="/?device_id=1&page={{ page|add:-1 }}">上一页</a>
+                </li>
+                <li>
+                     <a href="#">
+                         <span name="page">{{ page }}</span> / <span name="total_page">{{ total_page }}</span>
+                     </a>
+                </li>
+                <li class="hander">
+                     <a href="/?device_id=1&page={{ page|add:1 }}">下一页</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
+{% block special_js %}
+    <script src= {% static "app/js/modules/exporting.js" %}></script>
+{#    <script src= "http://cdn.hcharts.cn/highcharts/highcharts-more.js"></script>#}
+    <script src= {% static "app/js/highcharts-more.js" %}></script>
+    <script src= {% static "app/js/modules/solid-gauge.js" %}></script>
+    <script>
+
+
+    </script>
+{% endblock %}

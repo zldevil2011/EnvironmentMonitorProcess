@@ -1,7 +1,7 @@
 from django.conf.urls import include, url
 from views.index import index
 from views.station import station
-from views.historical import historical_data, historical_device
+from views.historical import historical_data_analysis, historical_device, historical_data_list
 from views.admin_user import admin_login
 from views.admin_user import admin_logout, admin_user_list,admin_user_update,admin_user_info
 from views.admin_index import admin_index
@@ -13,7 +13,8 @@ urlpatterns = [
 	url(r'^index/$', index, name="welcome"),
 	url(r'^station/$', station, name="station"),
 	url(r'^historical_device/$', historical_device, name="historical_device"),
-	url(r'^historical_device_data/(?P<device_id>\d+)/$', historical_data, name="historical_data"),
+	url(r'^historical_device_analysis/(?P<device_id>\d+)/$', historical_data_analysis, name="historical_data_analysis"),
+	url(r'^historical_device_data_list/(?P<device_id>\d+)/$', historical_data_list, name="historical_data_list"),
 	url(r'^information/$', information, name="information"),
 	url(r'^document_info/(?P<news_id>\d+)/$', news_info, name="news_info"),
 ]

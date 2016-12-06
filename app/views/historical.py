@@ -7,6 +7,7 @@ from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
 from objects.AqiParameter import AqiParameter
 from utils.mySqlUtils import MySQL
+import math
 transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1250.4464285714287, "no2": 2054.017857142857}
 
 def historical_device(request):
@@ -122,7 +123,147 @@ def get_aqi(data):
 	return cal.AQI_1
 
 
-def historical_data(request,device_id):
+def historical_data_list(request,device_id):
+	try:
+		sql = MySQL()
+		sql.connectDB("projectmanagement")
+		data = {}
+		data["NodeNo"] = {}
+		data["NodeNo"]["conn"] = "="
+		data["NodeNo"]["val"] = str(device_id)
+		device = sql.get_query("projectnodeinfo", data)[0]
+		sql.close_connect()
+	except Exception as e:
+		print str(e)
+		return HttpResponse("没有数据")
+	device["id"] = device["NodeNO"]
+	device["name"] = device["Description"]
+	device["address"] = device["InstallationAddress"]
+	device["longitude"] = "117.5436320000"
+	device["latitude"] = "30.7078830000"
+	device["install_time"] = str(device["SetTime"])
+	try:
+		page = int(request.GET.get("page"))
+	except:
+		page = 1
+	# 所有数据
+
+	data = {}
+	data[u"项目内节点编号"] = {}
+	data[u"项目内节点编号"]["conn"] = "="
+	data[u"项目内节点编号"]["val"] = str(device["id"])
+	datas = sql.get_query(u"大气六参数", data, None, u"紧缩型时间传感器_实时时间")
+	sql.close_connect()
+	datas_list_briage = []
+	for data in datas:
+		tmp = {}
+		try:
+			tmp["so2"] = float(data["SO2_SO2"]) * transform_factor["so2"]
+		except:
+			tmp["so2"] = data["SO2_SO2"]
+		try:
+			tmp["no2"] = float(data["NO2_NO2"]) * transform_factor["no2"]
+		except:
+			tmp["no2"] = data["NO2_NO2"]
+		try:
+			tmp["pm10"] = data["PM10_PM10"]
+		except:
+			tmp["pm10"] = data["PM10_PM10"]
+		try:
+			tmp["co"] = float(data["CO_CO"]) * transform_factor["co"]
+		except:
+			tmp["co"] = data["CO_CO"]
+		try:
+			tmp["o3"] = float(data["O3_O3"]) * transform_factor["o3"]
+		except:
+			tmp["o3"] = data["O3_O3"]
+		tmp["pm25"] = data["PM2_5_PM2_5"]
+		tmp["device_id"] = data[u"项目内节点编号"]
+		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
+		datas_list_briage.append(tmp)
+	datas = datas_list_briage
+	for data in datas:
+		data["name"] = device["name"]
+		data["time"] = str(data["time"])
+
+	# 页码
+	if page < 1:
+		return HttpResponseRedirect("historical_device_data_list/1")
+	# 时间
+	try:
+		start_time = request.GET.get("data_time", None)
+		today = datetime.today()
+		if start_time is None:
+			start_time = datetime(today.year, today.month, today.day, 0, 0, 0)
+			end_time = start_time + timedelta(days=1)
+		else:
+			start_time = datetime.strptime(start_time, "%Y-%m-%d %H:%M:%S")
+			end_time = start_time + timedelta(days=1)
+		sql = MySQL()
+		sql.connectDB("projectmanagement")
+		data = {}
+		data[u"项目内节点编号"] = {}
+		data[u"项目内节点编号"]["conn"] = "="
+		data[u"项目内节点编号"]["val"] = str(device["id"])
+		data[u"紧缩型时间传感器_实时时间"] = {}
+		data[u"紧缩型时间传感器_实时时间"]["conn"] = ">"
+		data[u"紧缩型时间传感器_实时时间"]["val"] = str(start_time)
+		data[u"紧缩型时间传感器_实时时间"] = {}
+		data[u"紧缩型时间传感器_实时时间"]["conn"] = "<"
+		data[u"紧缩型时间传感器_实时时间"]["val"] = str(end_time)
+		datas = sql.get_query(u"大气六参数", data, None, u"紧缩型时间传感器_实时时间")
+		sql.close_connect()
+		datas_list_briage = []
+		for data in datas:
+			tmp = {}
+			try:
+				tmp["so2"] = float(data["SO2_SO2"]) * transform_factor["so2"]
+			except:
+				tmp["so2"] = data["SO2_SO2"]
+			try:
+				tmp["no2"] = float(data["NO2_NO2"]) * transform_factor["no2"]
+			except:
+				tmp["no2"] = data["NO2_NO2"]
+			try:
+				tmp["pm10"] = data["PM10_PM10"]
+			except:
+				tmp["pm10"] = data["PM10_PM10"]
+			try:
+				tmp["co"] = float(data["CO_CO"]) * transform_factor["co"]
+			except:
+				tmp["co"] = data["CO_CO"]
+			try:
+				tmp["o3"] = float(data["O3_O3"]) * transform_factor["o3"]
+			except:
+				tmp["o3"] = data["O3_O3"]
+			tmp["pm25"] = data["PM2_5_PM2_5"]
+			tmp["device_id"] = data[u"项目内节点编号"]
+			tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
+			datas_list_briage.append(tmp)
+		datas = datas_list_briage
+		for data in datas:
+			data["name"] = device["name"]
+			data["time"] = str(data["time"])
+	except:
+		pass
+	total_page = int(math.ceil(len(datas)/20.0))
+	if page > total_page:
+		return HttpResponseRedirect("historical_device_data_list/" + str(total_page))
+	# 参数
+	try:
+		parameter = request.GET.get("parameter")
+	except:
+		parameter = "pm25"
+	return render(request, "app/historical_data_list.html", {
+		"page": page,
+		"total_page": total_page,
+		"data_time": start_time,
+		"data_list": datas,
+		"parameter": parameter,
+	})
+
+
+def historical_data_analysis(request,device_id):
 	try:
 		device = {"id": 1, "name": "京师方圆"}
 		sql = MySQL()
