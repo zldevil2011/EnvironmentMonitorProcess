@@ -17,7 +17,11 @@ def admin_index(request):
 		return HttpResponseRedirect("/admin_login/")
 	sql = MySQL()
 	sql.connectDB("projectmanagement")
-	devices = sql.get_query("projectnodeinfo", "ProjectID", "=", "1")
+	data = {}
+	data["ProjectID"] = {}
+	data["ProjectID"]["conn"] = "="
+	data["ProjectID"]["val"] = str(1)
+	devices = sql.get_query("projectnodeinfo", data)
 	sql.close_connect()
 	device_list = []
 	for device in devices:
@@ -32,7 +36,11 @@ def admin_index(request):
 	NOW = datetime.today()
 	start = datetime(NOW.year, NOW.month, NOW.day, 0,0,0)
 	sql.connectDB("jssf")
-	datas = sql.get_query(u"大气六参数", u"紧缩型时间传感器_实时时间", ">", start.strftime("%Y-%m-%d %H:%M:%S"), None, u"紧缩型时间传感器_实时时间")
+	data = {}
+	data["紧缩型时间传感器_实时时间"] = {}
+	data["紧缩型时间传感器_实时时间"]["conn"] = ">"
+	data["紧缩型时间传感器_实时时间"]["val"] = start.strftime("%Y-%m-%d %H:%M:%S")
+	datas = sql.get_query(u"大气六参数", data, None, u"紧缩型时间传感器_实时时间")
 	datas.reverse()
 	sql.close_connect()
 	datas_list_12 = []
