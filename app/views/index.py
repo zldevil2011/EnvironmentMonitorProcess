@@ -98,7 +98,6 @@ def index(request):
 	data[u"项目内节点编号"]["conn"] = "="
 	data[u"项目内节点编号"]["val"] = str(device["id"])
 	datas = sql.get_query(u"大气六参数", data, None, u"紧缩型时间传感器_实时时间")
-	# datas.reverse()
 	sql.close_connect()
 	datas_list_briage = []
 	for data in datas:
@@ -129,11 +128,12 @@ def index(request):
 		tmp["name"] = device["name"]
 		datas_list_briage.append(tmp)
 	datas_list = datas_list_briage
-
+	datas_list.reverse()
 	total_page = int(math.ceil(len(datas_list) / 20.0))
-
+	if total_page < 1:
+		total_page = 1
 	if page > total_page:
-		return HttpResponseRedirect("/?device_id=" + device_id + "&page=" + str(total_page))
+		return HttpResponseRedirect("/?device_id=" + str(device_id) + "&page=" + str(total_page))
 
 	start_num = (page - 1) * 20
 	end_num = page * 20
@@ -147,15 +147,7 @@ def index(request):
 		# data_collect_time = data["time"]
 		# warning_time = datetime.today()
 		# warning_time = datetime(warning_time.year, warning_time.month, warning_time.day, warning_time.hour, 0, 0)
-		# if int(calculator.AQI_1) >= 150: # and data_collect_time > warning_time:
-		# 	subject = u"污染指数通知"
-		# 	text_content = u"观测设备" + data["name"] + u"在" + str(data["time"]) + u"AQI值为" + str(calculator.AQI_1) + u",污染程度:" + unicode(calculator.AQI_info_1["classification"])
-		# 	from_email = settings.EMAIL_HOST_USER
-		# 	to = "34985488@qq.com"
-		# 	try:
-		# 		send_mail(subject, text_content, from_email, [to], fail_silently=False)
-		# 	except Exception as e:
-		# 		pass
+
 
 	# 计算当前站点实时采集数据的实时数据显示在首页的三个环圈显示
 	average_data = {"so2": 0, "no2": 0, "pm10": 0, "co": 0, "o3": 0, "pm25": 0}
@@ -191,6 +183,15 @@ def index(request):
 		average_data["AQI_1"] = calculator.AQI_1
 		average_data["Main_Pollute_1"] = calculator.Main_Pollute_1
 		average_data["AQI_info_1"] = calculator.AQI_info_1
+		if int(calculator.AQI_1) >= 150:
+			subject = u"污染指数通知"
+			text_content = u"观测设备" + data["name"] + u"在" + str(data["time"]) + u"AQI值为" + str(calculator.AQI_1) + u",污染程度:" + unicode(calculator.AQI_info_1["classification"])
+			from_email = settings.EMAIL_HOST_USER
+			to = "929034478@qq.com"
+			try:
+				send_mail(subject, text_content, from_email, [to], fail_silently=False)
+			except Exception as e:
+				pass
 	else:
 		average_data["AQI_1"] = u"无数据"
 		average_data["Main_Pollute_1"] = u"无数据"
