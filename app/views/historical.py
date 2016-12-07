@@ -396,6 +396,8 @@ def historical_data_analysis(request,device_id):
 					if aqi > today_data_max_aqi["today_data_max_aqi_val"]:
 						today_data_max_aqi["today_data_max_aqi_val"] = aqi
 						today_data_max_aqi["today_data_max_aqi_date"] = data["time"]
+				elif time < time_start:
+					break
 			try:
 				today_data_data[factor].append(factor_sum / factor_num)
 			except:
@@ -436,6 +438,8 @@ def historical_data_analysis(request,device_id):
 					if aqi > week_data_max_aqi["week_data_max_aqi_val"]:
 						week_data_max_aqi["week_data_max_aqi_val"] = aqi
 						week_data_max_aqi["week_data_max_aqi_date"] = data["time"]
+				elif time < time_start:
+					break
 			try:
 				week_data_data[factor].append(factor_sum / factor_num)
 			except:
@@ -481,6 +485,8 @@ def historical_data_analysis(request,device_id):
 					if aqi > month_data_max_aqi["month_data_max_aqi_val"]:
 						month_data_max_aqi["month_data_max_aqi_val"] = aqi
 						month_data_max_aqi["month_data_max_aqi_date"] = data["time"]
+				elif time < time_start:
+					break
 			try:
 				month_data_data[factor].append(factor_sum / factor_num)
 			except:
@@ -525,6 +531,8 @@ def historical_data_analysis(request,device_id):
 					if aqi > year_data_max_aqi["year_data_max_aqi_val"]:
 						year_data_max_aqi["year_data_max_aqi_val"] = aqi
 						year_data_max_aqi["year_data_max_aqi_date"] = data["time"]
+				elif time < time_start:
+					break
 			try:
 				year_data_data[factor].append(factor_sum / factor_num)
 			except:
