@@ -187,7 +187,7 @@ def index(request):
 			subject = u"污染指数通知"
 			text_content = u"观测设备" + data["name"] + u"在" + str(data["time"]) + u"AQI值为" + str(calculator.AQI_1) + u",污染程度:" + unicode(calculator.AQI_info_1["classification"])
 			from_email = settings.EMAIL_HOST_USER
-			to = "929034478@qq.com"
+			to = "34985488@qq.com"
 			try:
 				send_mail(subject, text_content, from_email, [to], fail_silently=False)
 			except Exception as e:

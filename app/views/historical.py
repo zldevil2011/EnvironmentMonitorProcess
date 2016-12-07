@@ -38,11 +38,11 @@ def historical_device(request):
 	for data in datas:
 		tmp = {}
 		try:
-			tmp["so2"] = float(data["SO2_SO2"]) * transform_factor["so2"]
+			tmp["so2"] = round(float(data["SO2_SO2"]) * transform_factor["so2"],3)
 		except:
 			tmp["so2"] = data["SO2_SO2"]
 		try:
-			tmp["no2"] = float(data["NO2_NO2"]) * transform_factor["no2"]
+			tmp["no2"] = round(float(data["NO2_NO2"]) * transform_factor["no2"],3)
 		except:
 			tmp["no2"] = data["NO2_NO2"]
 		try:
@@ -50,11 +50,11 @@ def historical_device(request):
 		except:
 			tmp["pm10"] = data["PM10_PM10"]
 		try:
-			tmp["co"] = float(data["CO_CO"]) * transform_factor["co"]
+			tmp["co"] = round(float(data["CO_CO"]) * transform_factor["co"],3)
 		except:
 			tmp["co"] = data["CO_CO"]
 		try:
-			tmp["o3"] = float(data["O3_O3"]) * transform_factor["o3"]
+			tmp["o3"] = round(float(data["O3_O3"]) * transform_factor["o3"],3)
 		except:
 			tmp["o3"] = data["O3_O3"]
 		tmp["pm25"] = data["PM2_5_PM2_5"]
