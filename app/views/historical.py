@@ -236,6 +236,7 @@ def historical_data_list(request,device_id):
 		"data_list": datas,
 		"parameter": parameter,
 		"device": device,
+		"today_data": today_data,
 	})
 
 

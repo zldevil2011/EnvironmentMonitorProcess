@@ -29,7 +29,7 @@
 {% block body_content %}
     <div class="clearfix" style="background-color: #fdfdfd;">
         <div class="col-md-12">
-            <div id="container" style="min-width:100%;height:300px;margin: 0 auto;"></div>
+            <div id="parameter_data" style="min-width:100%;height:300px;margin: 0 auto;"></div>
         </div>
         <div class="col-md-12">
             <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">{{ device.name }}监测点历史数据</p>
@@ -82,7 +82,95 @@
     <script src= {% static "app/js/highcharts-more.js" %}></script>
     <script src= {% static "app/js/modules/solid-gauge.js" %}></script>
     <script>
-
+        $(function () {
+            var today_data = {{ today_data | safe }};
+            var today_data_time = today_data.today_data_time;
+            var today_data_data = today_data.today_data_data;
+            var today_data_so2 = today_data_data.so2;
+            var today_data_pm10 = today_data_data.pm10;
+            var today_data_no2 = today_data_data.no2;
+            var today_data_co = today_data_data.co;
+            var today_data_o3 = today_data_data.o3;
+            var today_data_pm25 = today_data_data.pm25;
+            var time_list = today_data_time;
+            var data_list = today_data_pm25;
+            var datas = new Array();
+            var len = data_list.length;
+            for(var i = 0;i < len; ++i){
+                var tmp = new Array();
+                var _ = new Date(time_list[i].replace(/-/g, "/"));
+                _ = _.getTime() + 8*60*60*1000;
+                _ = new Date(_);
+                var time = Date.UTC(_.getUTCFullYear(), _.getUTCMonth(), _.getUTCDate(), _.getUTCHours(), _.getUTCMinutes(), _.getUTCSeconds());
+                tmp.push(time);
+                tmp.push(data_list[i]);
+                datas.push(tmp);
+            }
+            var colors = ['#00ff00'];
+            Highcharts.getOptions().colors = Highcharts.map(colors, function (color) {
+                 return {
+                     radialGradient: { cx:0, cy: -0.8,r:2.3 },
+                     stops: [[0, color], [2, Highcharts.Color(color).brighten(14).get('rgb')] // darken
+                     ]
+                 };
+             });
+            $('#parameter_data').highcharts({
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'rgba(80,81,95,0.1)',
+                },
+                title: {
+                    text: '今日PM2.5监测值',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: '数据来源:' + '{{ device.name }}' + '观测点',
+                    x: -20
+                },
+                xAxis: {
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        millisecond: '%H:%M:%S',
+                        second: '%H:%M:%S',
+                        minute: '%d %H:%M',
+                        hour: '%m-%d %H:%M',
+                        day: '%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y',
+                    },
+                },
+                yAxis: {
+                    title: {
+                        text: 'PM2.5浓度(ug/m³)'
+                    },
+                },
+                tooltip: {
+                    valueSuffix: 'ug/m³',
+                    dateTimeLabelFormats: {
+                        millisecond: '%Y-%m-%d %H:%M:%S',
+                        second: '%Y-%m-%d %H:%M:%S',
+                        minute: '%Y-%m-%d %H:%M:%S',
+                        hour: '%Y-%m-%d %H:%M:%S',
+                        day: '%Y-%m-%d %H:%M:%S',
+                        week: '%Y-%m-%d %H:%M:%S',
+                        month: '%Y-%m-%d %H:%M:%S',
+                        year: '%Y-%m-%d %H:%M:%S',
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0
+                },
+                series: [{
+                    name: 'PM2.5',
+                    data: datas,
+                    color:"#4e505d"
+                }]
+            });
+        });
 
     </script>
 {% endblock %}
