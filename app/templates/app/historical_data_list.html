@@ -110,7 +110,8 @@
             </ul>
         </div>
         <div class="col-md-offset-9 col-md-3 col-sm-12" style="text-align: right;margin-bottom: 10px;">
-            <button class="btn btn-info btn-block" onclick="window.open('/historical_device_analysis/{{ device.id }}')">数据统计</button>
+{#            <button class="btn btn-info btn-block" onclick="window.open('/historical_device_analysis/{{ device.id }}')">数据统计</button>#}
+            <button class="btn btn-info btn-block" onclick="infoTip();">数据统计</button>
         </div>
     </div>
 
@@ -121,6 +122,9 @@
     <script src= {% static "app/js/highcharts-more.js" %}></script>
     <script src= {% static "app/js/modules/solid-gauge.js" %}></script>
     <script>
+        function infoTip(){
+            alert("即将开放,敬请期待");
+        }
         $(function(){
             var data_time = "{{ data_time | safe }}";
             $("#data_time").val(data_time.slice(0, 10));
