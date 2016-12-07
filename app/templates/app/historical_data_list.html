@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label for="" class="col-sm-3 control-label">日期</label>
                             <div class="col-sm-9">
-                                <input name = "data_time" type="date" class="form-control" id="" />
+                                <input name = "" type="date" class="form-control" id="data_time" />
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
         </div>
         <div class="col-md-12">
             <div style="overflow: auto;">
-                <table class="table table-striped text-center table-td-center">
+                <table class="table table-striped text-center table-td-center table-condensed">
                     <thead>
                         <tr style="background-color: #e8e8e8">
                             <th class="text-center" style="padding: 15px;">监测站点</th>
@@ -118,6 +118,13 @@
     <script src= {% static "app/js/highcharts-more.js" %}></script>
     <script src= {% static "app/js/modules/solid-gauge.js" %}></script>
     <script>
+        $(function(){
+            var data_time = "{{ data_time | safe }}";
+            $("#data_time").val(data_time.slice(0, 10));
+        });
+    </script>
+    <script>
+        var device_name;
         $(function () {
             var today_data = {{ today_data | safe }};
             var today_data_time = today_data.today_data_time;
@@ -128,8 +135,56 @@
             var today_data_co = today_data_data.co;
             var today_data_o3 = today_data_data.o3;
             var today_data_pm25 = today_data_data.pm25;
-            var time_list = today_data_time;
-            var data_list = today_data_pm25;
+            device_name = "{{ device.name }}";
+            get_graph(today_data_time, today_data_pm25, "PM2.5", device_name);
+            var dic = {}
+            dic["pm25"] = {};
+            dic["pm10"] = {};
+            dic["so2"] = {};
+            dic["co"] = {};
+            dic["no2"] = {};
+            dic["o3"] = {};
+            dic["pm25"]["name"] = "PM2.5";
+            dic["pm25"]["val"] = today_data_pm25;
+            dic["pm10"]["name"] = "PM10";
+            dic["pm10"]["val"] = today_data_pm10;
+            dic["so2"]["name"] = "SO2";
+            dic["so2"]["val"] = today_data_so2;
+            dic["co"]["name"] = "CO";
+            dic["co"]["val"] = today_data_co;
+            dic["no2"]["name"] = "NO2";
+            dic["no2"]["val"] = today_data_no2;
+            dic["o3"]["name"] = "O3";
+            dic["o3"]["val"] = today_data_o3;
+            $("[name=data_type]").on("change", function(){
+                var val = $(this).val();
+                var name = dic[val]["name"];
+                var data = dic[val]["val"];
+                get_graph(today_data_time, data, name, device_name);
+            });
+            $("[name=filter_data_type]").on("click", function(){
+                var date = new Date();
+                var today_time_str = date.getFullYear() +"-"+ (date.getMonth() + 1) +"-";
+                if(date.getDate() < 10){
+                    today_time_str += "0" + date.getDate();
+                }else{
+                    today_time_str += date.getDate();
+                };
+                var time_val = $("#data_time").val();
+                if(time_val > today_time_str ){
+                    alert("请选择合法日期");
+                    return false;
+                }else{
+                    var pre_url = window.location.pathname;
+                    window.location.href=pre_url + "?data_time=" + time_val;
+                }
+            });
+        });
+
+        function get_graph(data_time, data_data, name, device_name){
+            $('#parameter_data').html("");
+            var time_list = data_time;
+            var data_list = data_data;
             var datas = new Array();
             var len = data_list.length;
             for(var i = 0;i < len; ++i){
@@ -156,11 +211,11 @@
                     backgroundColor: 'rgba(80,81,95,0.1)',
                 },
                 title: {
-                    text: '今日PM2.5监测值',
+                    text: '今日' + name + '监测值',
                     x: -20 //center
                 },
                 subtitle: {
-                    text: '数据来源:' + '{{ device.name }}' + '观测点',
+                    text: '数据来源:' + device_name + '观测点',
                     x: -20
                 },
                 xAxis: {
@@ -178,7 +233,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'PM2.5浓度(ug/m³)'
+                        text: name + '浓度(ug/m³)'
                     },
                 },
                 tooltip: {
@@ -201,12 +256,11 @@
                     borderWidth: 0
                 },
                 series: [{
-                    name: 'PM2.5',
+                    name: name,
                     data: datas,
                     color:"#4e505d"
                 }]
             });
-        });
-
+        }
     </script>
 {% endblock %}

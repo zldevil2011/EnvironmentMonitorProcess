@@ -157,6 +157,7 @@ def historical_data_list(request,device_id):
 			start_time = datetime(today.year, today.month, today.day, 0, 0, 0)
 			end_time = start_time + timedelta(days=1)
 		else:
+			start_time += " 00:00:00"
 			start_time = datetime.strptime(start_time, "%Y-%m-%d %H:%M:%S")
 			end_time = start_time + timedelta(days=1)
 		sql = MySQL()
@@ -203,6 +204,8 @@ def historical_data_list(request,device_id):
 		print str(e)
 		pass
 	total_page = int(math.ceil(len(datas)/20.0))
+	if total_page < 1:
+		total_page = 1
 	if page > total_page:
 		return HttpResponseRedirect("historical_device_data_list/" + str(total_page))
 	today_data = {}
