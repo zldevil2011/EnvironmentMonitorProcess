@@ -51,7 +51,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for data in data_real_time %}
+                        {% for data in data_list %}
                             <tr><td>{{ data.name }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td>{{ data.so2 }}</td><td>{{ data.no2 }}</td><td>{{ data.co }}</td><td>{{ data.o3 }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td><td>{{ data.time }}</td></tr>
                         {% endfor %}
                     </tbody>
@@ -61,7 +61,7 @@
         <div class="col-md-12" style="text-align: right;">
             <ul class="pagination account-pagination" style="">
                 <li class="hander">
-                     <a href="/?device_id=1&page={{ page|add:-1 }}">上一页</a>
+                     <a href="/historical_device_data_list/1?page={{ page|add:-1 }}">上一页</a>
                 </li>
                 <li>
                      <a href="#">
@@ -69,7 +69,7 @@
                      </a>
                 </li>
                 <li class="hander">
-                     <a href="/?device_id=1&page={{ page|add:1 }}">下一页</a>
+                     <a href="/historical_device_data_list/1?page={{ page|add:1 }}">下一页</a>
                 </li>
             </ul>
         </div>

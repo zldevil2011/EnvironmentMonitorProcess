@@ -157,6 +157,49 @@ class MySQL(object):
 			print str(e)
 			return "error"
 
+	def get_query_s_e_time(self, table_name,  key = None, start_time = None, end_time = None, no=None, order_key=None):
+		query_str = "select * from " + table_name
+		if key is not None and start_time is not None and end_time is not None:
+			query_str += " where "
+			query_str += key + '>= "' + start_time + '" and ' + key + '<= "' + end_time + '"'
+		if order_key is not None:
+			query_str += " order by " + order_key
+		# 获取列名
+		self.cursor.execute('DESC ' + table_name)
+		columns = self.cursor.fetchall()
+		# print columns
+		columns_list = []
+		for c in columns:
+			columns_list.append(c[0])
+		columns_list.append("id")
+		# 获取要查询的数据
+		print query_str
+		self.cursor.execute(query_str)
+		results = self.cursor.fetchall()
+		query_result = []
+		if no is not None:
+			add = 0
+			for row in results:
+				dic_tmp = {}
+				for idx in range(len(row)):
+					key = columns_list[idx]
+					val = row[idx]
+					dic_tmp[key] = val
+				query_result.append(dic_tmp)
+				add += 1
+				if add == no:
+					break
+		else:
+			for row in results:
+				# print row
+				dic_tmp = {}
+				for idx in range(len(row)):
+					key = columns_list[idx]
+					val = row[idx]
+					dic_tmp[key] = val
+				query_result.append(dic_tmp)
+		return query_result
+
 	def close_connect(self):
 		self.db.close()
 

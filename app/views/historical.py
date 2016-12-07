@@ -146,46 +146,6 @@ def historical_data_list(request,device_id):
 		page = int(request.GET.get("page"))
 	except:
 		page = 1
-	# 所有数据
-
-	data = {}
-	data[u"项目内节点编号"] = {}
-	data[u"项目内节点编号"]["conn"] = "="
-	data[u"项目内节点编号"]["val"] = str(device["id"])
-	datas = sql.get_query(u"大气六参数", data, None, u"紧缩型时间传感器_实时时间")
-	sql.close_connect()
-	datas_list_briage = []
-	for data in datas:
-		tmp = {}
-		try:
-			tmp["so2"] = float(data["SO2_SO2"]) * transform_factor["so2"]
-		except:
-			tmp["so2"] = data["SO2_SO2"]
-		try:
-			tmp["no2"] = float(data["NO2_NO2"]) * transform_factor["no2"]
-		except:
-			tmp["no2"] = data["NO2_NO2"]
-		try:
-			tmp["pm10"] = data["PM10_PM10"]
-		except:
-			tmp["pm10"] = data["PM10_PM10"]
-		try:
-			tmp["co"] = float(data["CO_CO"]) * transform_factor["co"]
-		except:
-			tmp["co"] = data["CO_CO"]
-		try:
-			tmp["o3"] = float(data["O3_O3"]) * transform_factor["o3"]
-		except:
-			tmp["o3"] = data["O3_O3"]
-		tmp["pm25"] = data["PM2_5_PM2_5"]
-		tmp["device_id"] = data[u"项目内节点编号"]
-		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
-		datas_list_briage.append(tmp)
-	datas = datas_list_briage
-	for data in datas:
-		data["name"] = device["name"]
-		data["time"] = str(data["time"])
-
 	# 页码
 	if page < 1:
 		return HttpResponseRedirect("historical_device_data_list/1")
@@ -200,28 +160,18 @@ def historical_data_list(request,device_id):
 			start_time = datetime.strptime(start_time, "%Y-%m-%d %H:%M:%S")
 			end_time = start_time + timedelta(days=1)
 		sql = MySQL()
-		sql.connectDB("projectmanagement")
-		data = {}
-		data[u"项目内节点编号"] = {}
-		data[u"项目内节点编号"]["conn"] = "="
-		data[u"项目内节点编号"]["val"] = str(device["id"])
-		data[u"紧缩型时间传感器_实时时间"] = {}
-		data[u"紧缩型时间传感器_实时时间"]["conn"] = ">"
-		data[u"紧缩型时间传感器_实时时间"]["val"] = str(start_time)
-		data[u"紧缩型时间传感器_实时时间"] = {}
-		data[u"紧缩型时间传感器_实时时间"]["conn"] = "<"
-		data[u"紧缩型时间传感器_实时时间"]["val"] = str(end_time)
-		datas = sql.get_query(u"大气六参数", data, None, u"紧缩型时间传感器_实时时间")
+		sql.connectDB("jssf")
+		datas = sql.get_query_s_e_time(u"大气六参数", u"紧缩型时间传感器_实时时间", str(start_time), str(end_time), None, u"紧缩型时间传感器_实时时间")
 		sql.close_connect()
 		datas_list_briage = []
 		for data in datas:
 			tmp = {}
 			try:
-				tmp["so2"] = float(data["SO2_SO2"]) * transform_factor["so2"]
+				tmp["so2"] = round(float(data["SO2_SO2"]) * transform_factor["so2"],3)
 			except:
 				tmp["so2"] = data["SO2_SO2"]
 			try:
-				tmp["no2"] = float(data["NO2_NO2"]) * transform_factor["no2"]
+				tmp["no2"] = round(float(data["NO2_NO2"]) * transform_factor["no2"],3)
 			except:
 				tmp["no2"] = data["NO2_NO2"]
 			try:
@@ -229,11 +179,11 @@ def historical_data_list(request,device_id):
 			except:
 				tmp["pm10"] = data["PM10_PM10"]
 			try:
-				tmp["co"] = float(data["CO_CO"]) * transform_factor["co"]
+				tmp["co"] = round(float(data["CO_CO"]) * transform_factor["co"],3)
 			except:
 				tmp["co"] = data["CO_CO"]
 			try:
-				tmp["o3"] = float(data["O3_O3"]) * transform_factor["o3"]
+				tmp["o3"] = round(float(data["O3_O3"]) * transform_factor["o3"],3)
 			except:
 				tmp["o3"] = data["O3_O3"]
 			tmp["pm25"] = data["PM2_5_PM2_5"]
@@ -244,22 +194,48 @@ def historical_data_list(request,device_id):
 		for data in datas:
 			data["name"] = device["name"]
 			data["time"] = str(data["time"])
-	except:
+			calculator = AqiParameter()
+			calculator.get_1_aqi(data)
+			data["AQI_1"] = calculator.AQI_1
+			data["Main_Pollute_1"] = calculator.Main_Pollute_1
+			data["AQI_info_1"] = calculator.AQI_info_1
+	except Exception as e:
+		print str(e)
 		pass
 	total_page = int(math.ceil(len(datas)/20.0))
 	if page > total_page:
 		return HttpResponseRedirect("historical_device_data_list/" + str(total_page))
+	today_data = {}
+	today_data_time = []
+	today_data_data = {"so2": [], "no2": [], "pm10": [], "co": [], "o3": [], "pm25": []}
+	factors = ["so2", "no2", "pm10", "co", "o3", "pm25"]
+	for data in datas:
+		today_data_time.append(data["time"])
+		for factor in factors:
+			try:
+				today_data_data[factor].append(float(data[factor]))
+			except:
+				pass
+	today_data["today_data_time"] = today_data_time
+	today_data["today_data_data"] = today_data_data
+
+	# 获取当前数据的每20条
+	start_num = (page - 1) * 20
+	end_num = page * 20
+	datas = datas[start_num:end_num]
 	# 参数
 	try:
 		parameter = request.GET.get("parameter")
 	except:
 		parameter = "pm25"
+
 	return render(request, "app/historical_data_list.html", {
 		"page": page,
 		"total_page": total_page,
 		"data_time": start_time,
 		"data_list": datas,
 		"parameter": parameter,
+		"device": device,
 	})
 
 
