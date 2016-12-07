@@ -28,6 +28,42 @@
 
 {% block body_content %}
     <div class="clearfix" style="background-color: #fdfdfd;">
+        <div class="col-md-12" style="margin-top: 20px;">
+            <div class="form-group">
+                <form class="form-horizontal" role="form" onsubmit="return false;">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-sm-4 control-label">类型</label>
+                            <div class="col-sm-8">
+                                <select class="btn-block form-control" name="data_type">
+                                    <option value="pm25">PM25</option>
+                                    <option value="pm10">PM10</option>
+                                    <option value="so2">SO2</option>
+                                    <option value="co">CO</option>
+                                    <option value="no2">NO2</option>
+                                    <option value="o3">O3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="" class="col-sm-3 control-label">日期</label>
+                            <div class="col-sm-9">
+                                <input name = "data_time" type="date" class="form-control" id="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button class="btn btn-block btn-success" name="filter_data_type">查找</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="col-md-12">
             <div id="parameter_data" style="min-width:100%;height:300px;margin: 0 auto;"></div>
         </div>
