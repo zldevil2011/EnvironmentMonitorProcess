@@ -201,6 +201,8 @@ def index(request):
 				except Exception as e:
 					pass
 				pre_alarm_time = datetime.strftime(alarm_now, "%Y-%m-%d %H:%M:%S")
+			else:
+				pre_alarm_time = datetime.strftime(pre_alarm_time, "%Y-%m-%d %H:%M:%S")
 		else:
 			pre_alarm_time = ""
 	else:
