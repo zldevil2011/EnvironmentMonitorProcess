@@ -186,9 +186,9 @@
             var pre_alarm_time = "{{ pre_alarm_time }}";
             var link = window.location.href;
             if(link.indexOf("?") > 0){
-                link += "&pre_alarm_time" + pre_alarm_time;
+                link += "&pre_alarm_time=" + pre_alarm_time;
             }else{
-                link += "?pre_alarm_time" + pre_alarm_time;
+                link += "?pre_alarm_time=" + pre_alarm_time;
             }
             window.location.href = link;
         }
