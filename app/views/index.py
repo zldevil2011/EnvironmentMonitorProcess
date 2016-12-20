@@ -9,6 +9,7 @@ from utils.mySqlUtils import MySQL
 from django.core.mail import send_mail
 from EMP import settings
 import math
+from datetime import datetime
 transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1250.4464285714287, "no2": 2054.017857142857}
 
 
@@ -183,15 +184,25 @@ def index(request):
 		average_data["AQI_1"] = calculator.AQI_1
 		average_data["Main_Pollute_1"] = calculator.Main_Pollute_1
 		average_data["AQI_info_1"] = calculator.AQI_info_1
-		if int(calculator.AQI_1) >= 150:
-			subject = u"污染指数通知"
-			text_content = u"观测设备" + data["name"] + u"在" + str(data["time"]) + u"AQI值为" + str(calculator.AQI_1) + u",污染程度:" + unicode(calculator.AQI_info_1["classification"])
-			from_email = settings.EMAIL_HOST_USER
-			to = "34985488@qq.com"
+		if int(calculator.AQI_1) >= 450:
 			try:
-				send_mail(subject, text_content, from_email, [to], fail_silently=False)
-			except Exception as e:
-				pass
+				pre_alarm_time = request.GET.get("pre_alarm_time")
+				pre_alarm_time = datetime.strptime(pre_alarm_time, "%Y-%m-%d %H:%M:%S")
+			except:
+				pre_alarm_time = datetime.strptime("1997-07-01 00:00:00", "%Y-%m-%d %H:%M:%S")
+			alarm_now = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
+			if alarm_now > pre_alarm_time:
+				subject = u"污染指数通知"
+				text_content = u"观测设备" + data["name"] + u"在" + str(data["time"]) + u"AQI值为" + str(calculator.AQI_1) + u",污染程度:" + unicode(calculator.AQI_info_1["classification"])
+				from_email = settings.EMAIL_HOST_USER
+				to = "929034478@qq.com"
+				try:
+					send_mail(subject, text_content, from_email, [to], fail_silently=False)
+				except Exception as e:
+					pass
+				pre_alarm_time = datetime.strftime(alarm_now, "%Y-%m-%d %H:%M:%S")
+		else:
+			pre_alarm_time = ""
 	else:
 		average_data["AQI_1"] = u"无数据"
 		average_data["Main_Pollute_1"] = u"无数据"
@@ -213,6 +224,7 @@ def index(request):
 	twelve_data["twelve_data_hour"] = twelve_data_hour
 	twelve_data["twelve_data_data"] = twelve_data_data
 	return render(request, "app/index.html", {
+		"pre_alarm_time": pre_alarm_time,
 		"twelve_data": twelve_data,
 		"average_data": average_data,
 		"data_real_time": data_list_20,

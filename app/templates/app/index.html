@@ -180,10 +180,17 @@
     <script src= {% static "app/js/modules/solid-gauge.js" %}></script>
     <script>
         $(function(){
-            var int=self.setInterval("reload_page()", 3*60000);
+            var int =self.setInterval("reload_page()", 3*60000);
         });
         function reload_page() {
-            window.location.reload();
+            var pre_alarm_time = "{{ pre_alarm_time }}";
+            var link = window.location.href;
+            if(link.indexOf("?") > 0){
+                link += "&pre_alarm_time" + pre_alarm_time;
+            }else{
+                link += "?pre_alarm_time" + pre_alarm_time;
+            }
+            window.location.href = link;
         }
         $("[name=other_parameters] li").on("click", function(){
             console.log($(this).attr("name"));
