@@ -226,7 +226,7 @@ def index(request):
 	twelve_data["twelve_data_hour"] = twelve_data_hour
 	twelve_data["twelve_data_data"] = twelve_data_data
 	return render(request, "app/index.html", {
-		"pre_alarm_time": pre_alarm_time,
+		# "pre_alarm_time": pre_alarm_time,
 		"twelve_data": twelve_data,
 		"average_data": average_data,
 		"data_real_time": data_list_20,
