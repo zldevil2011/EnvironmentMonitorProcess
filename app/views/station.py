@@ -127,18 +127,21 @@ def station(request):
 		device_info = {}
 		for data in datas_list_all:
 			time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
-			if data["name"] == device["name"] and start_time <= time < end_time:
-				cal = AqiParameter()
-				cal.get_1_aqi(data)
-				device_info["level"] = cal.AQI_info_1["level_no"]
-				device_info["name"] = device["name"]
-				device_info["AQI"] = cal.AQI_1
-				device_info["classification"] = cal.AQI_info_1["classification"]
-				device_info["pm25"] = data["pm25"]
-				real_time.append(device_info)
-				break
-			elif time < start_time:
-				break
+			try:
+				if data["name"] == device["name"] and start_time <= time < end_time:
+					cal = AqiParameter()
+					cal.get_1_aqi(data)
+					device_info["level"] = cal.AQI_info_1["level_no"]
+					device_info["name"] = device["name"]
+					device_info["AQI"] = cal.AQI_1
+					device_info["classification"] = cal.AQI_info_1["classification"]
+					device_info["pm25"] = data["pm25"]
+					real_time.append(device_info)
+					break
+				elif time < start_time:
+					break
+			except Exception as e:
+				print(str(e))
 	# 昨日排行
 	yesterday_time = []
 	time_now = datetime.today()
