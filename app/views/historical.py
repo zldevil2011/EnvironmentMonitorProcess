@@ -204,6 +204,7 @@ def historical_data_list(request,device_id):
 			data["AQI_info_1"] = calculator.AQI_info_1
 	except Exception as e:
 		print str(e)
+		datas = []
 		pass
 	total_page = int(math.ceil(len(datas)/20.0))
 	if total_page < 1:
