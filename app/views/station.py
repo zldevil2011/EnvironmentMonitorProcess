@@ -142,6 +142,7 @@ def station(request):
 					break
 			except Exception as e:
 				print(str(e))
+	real_time = sorted(real_time, key=lambda e: e.__getitem__('AQI'))
 	# 昨日排行
 	yesterday_time = []
 	time_now = datetime.today()
@@ -205,7 +206,7 @@ def station(request):
 			data_tmp["co"] = u"无数据"
 			data_tmp["o3"] = u"无数据"
 			data_tmp["pm25"] = u"无数据"
-
+	yesterday_time = sorted(yesterday_time, key=lambda e: e.__getitem__('AQI'))
 
 	# 一周排行
 	week_time = []
@@ -269,7 +270,7 @@ def station(request):
 			data_tmp["co"] = u"无数据"
 			data_tmp["o3"] = u"无数据"
 			data_tmp["pm25"] = u"无数据"
-
+	week_time = sorted(week_time, key=lambda e: e.__getitem__('AQI'))
 	# 一月排行
 	month_time = []
 	time_now = datetime.today()
@@ -332,7 +333,7 @@ def station(request):
 			data_tmp["co"] = u"无数据"
 			data_tmp["o3"] = u"无数据"
 			data_tmp["pm25"] = u"无数据"
-
+	month_time = sorted(month_time, key=lambda e: e.__getitem__('AQI'))
 	return render(request, "app/stations.html", {
 		"real_time":real_time,
 		"yesterday_time":yesterday_time,
