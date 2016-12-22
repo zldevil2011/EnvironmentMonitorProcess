@@ -24,7 +24,8 @@ def index(request):
 		data["NodeNO"]["val"] = str(device_id)
 		device = sql.get_query("projectnodeinfo", data)[0]
 		sql.close_connect()
-	except:
+	except Exception as e:
+		print(str(e))
 		try:
 			device_id = 1
 			sql = MySQL()
@@ -67,14 +68,14 @@ def index(request):
 	sql.close_connect()
 	print device_list
 	device_list_briage = []
-	for device in device_list:
+	for device_t in device_list:
 		tmp = {}
-		tmp["name"] = device["Description"]
-		tmp["id"] = device["NodeNO"]
-		tmp["address"] = device["InstallationAddress"]
+		tmp["name"] = device_t["Description"]
+		tmp["id"] = device_t["NodeNO"]
+		tmp["address"] = device_t["InstallationAddress"]
 		tmp["longitude"] = "117.5436320000"
 		tmp["latitude"] = "30.7078830000"
-		tmp["install_time"] = device["SetTime"]
+		tmp["install_time"] = device_t["SetTime"]
 		device_list_briage.append(tmp)
 	device_list = device_list_briage
 
