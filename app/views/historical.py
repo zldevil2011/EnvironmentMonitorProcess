@@ -164,7 +164,7 @@ def historical_data_list(request,device_id):
 			end_time = start_time + timedelta(days=1)
 		sql = MySQL()
 		sql.connectDB("jssf")
-		datas = sql.get_query_s_e_time(u"大气六参数", u"紧缩型时间传感器_实时时间", str(start_time), str(end_time), None, u"紧缩型时间传感器_实时时间")
+		datas = sql.get_query_s_e_time(u"大气六参数", str(device["id"]), u"紧缩型时间传感器_实时时间", str(start_time), str(end_time), None, u"紧缩型时间传感器_实时时间")
 		sql.close_connect()
 		datas_list_briage = []
 		for data in datas:
