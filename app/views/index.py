@@ -19,9 +19,9 @@ def index(request):
 		sql = MySQL()
 		sql.connectDB("projectmanagement")
 		data = {}
-		data["ProjectID"] = {}
-		data["ProjectID"]["conn"] = "="
-		data["ProjectID"]["val"] = str(device_id)
+		data["NodeNO"] = {}
+		data["NodeNO"]["conn"] = "="
+		data["NodeNO"]["val"] = str(device_id)
 		device = sql.get_query("projectnodeinfo", data)[0]
 		sql.close_connect()
 	except:
