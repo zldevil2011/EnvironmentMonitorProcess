@@ -7,7 +7,7 @@ from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
 import time
 from utils.mySqlUtils import MySQL
-transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1250.4464285714287, "no2": 2054.017857142857}
+transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1.2504464285714287, "no2": 2054.017857142857}
 
 def station(request):
 	# sql = MySQL()
