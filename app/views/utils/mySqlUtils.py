@@ -161,7 +161,7 @@ class MySQL(object):
 		query_str = "select * from " + table_name
 		if key is not None and start_time is not None and end_time is not None:
 			query_str += " where "
-			query_str += key + '>= "' + start_time + '" and ' + key + '<= "' + end_time + '"' + '" and ' + ' 项目内节点编号 = ' + device_id
+			query_str += key + '>= "' + start_time + '" and ' + key + '<= "' + end_time + '" ' + '" and ' + ' 项目内节点编号 = "' + device_id + '"'
 		if order_key is not None:
 			query_str += " order by " + order_key
 		# 获取列名
