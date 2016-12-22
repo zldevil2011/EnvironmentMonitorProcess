@@ -20,15 +20,17 @@ def historical_device(request):
 	devices = sql.get_query("projectnodeinfo", data)
 	sql.close_connect()
 	device_list = []
+	tp = 1
 	for device in devices:
 		tmp = {}
 		tmp["id"] = device["NodeNO"]
 		tmp["name"] = device["Description"]
 		tmp["address"] = device["InstallationAddress"]
-		tmp["longitude"] = "117.5436320000"
-		tmp["latitude"] = "30.7078830000"
+		tmp["longitude"] = str(117.5436320000 + tp * 0.01)
+		tmp["latitude"] = str(30.7078830000 + tp * 0.02)
 		tmp["install_time"] = str(device["SetTime"])
 		device_list.append(tmp)
+		tp += 1
 	devices = device_list
 	sql.connectDB("jssf")
 	datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
