@@ -153,34 +153,37 @@ def station(request):
 		cnt = 0
 		for data in datas_list_all:
 			time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
-			if start_time <= time < end_time and data["name"] == device["name"]:
-				try:
-					data_tmp["so2"] += data["so2"]
-				except:
-					data_tmp["so2"] += 0
-				try:
-					data_tmp["no2"] += data["no2"]
-				except:
-					data_tmp["no2"] += 0
-				try:
-					data_tmp["pm10"] += data["pm10"]
-				except:
-					data_tmp["pm10"] += 0
-				try:
-					data_tmp["co"] += data["co"]
-				except:
-					data_tmp["co"] += 0
-				try:
-					data_tmp["o3"] += data["o3"]
-				except:
-					data_tmp["o3"] += 0
-				try:
-					data_tmp["pm25"] += data["pm25"]
-				except:
-					data_tmp["pm25"] += 0
-				cnt += 1
-			elif time < start_time:
-				break
+			try:
+				if start_time <= time < end_time and data["name"] == device["name"]:
+					try:
+						data_tmp["so2"] += data["so2"]
+					except:
+						data_tmp["so2"] += 0
+					try:
+						data_tmp["no2"] += data["no2"]
+					except:
+						data_tmp["no2"] += 0
+					try:
+						data_tmp["pm10"] += data["pm10"]
+					except:
+						data_tmp["pm10"] += 0
+					try:
+						data_tmp["co"] += data["co"]
+					except:
+						data_tmp["co"] += 0
+					try:
+						data_tmp["o3"] += data["o3"]
+					except:
+						data_tmp["o3"] += 0
+					try:
+						data_tmp["pm25"] += data["pm25"]
+					except:
+						data_tmp["pm25"] += 0
+					cnt += 1
+				elif time < start_time:
+					break
+			except Exception as e:
+				print(str(e))
 		if cnt != 0:
 			print "cnt=", cnt
 			data_tmp["so2"] = (data_tmp["so2"] * 1.0) / cnt
@@ -219,34 +222,37 @@ def station(request):
 		cnt = 0
 		for data in datas_list_all:
 			time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
-			if start_time <= time < end_time and data["name"] == device["name"]:
-				try:
-					data_tmp["so2"] += data["so2"]
-				except:
-					data_tmp["so2"] += 0
-				try:
-					data_tmp["no2"] += data["no2"]
-				except:
-					data_tmp["no2"] += 0
-				try:
-					data_tmp["pm10"] += data["pm10"]
-				except:
-					data_tmp["pm10"] += 0
-				try:
-					data_tmp["co"] += data["co"]
-				except:
-					data_tmp["co"] += 0
-				try:
-					data_tmp["o3"] += data["o3"]
-				except:
-					data_tmp["o3"] += 0
-				try:
-					data_tmp["pm25"] += data["pm25"]
-				except:
-					data_tmp["pm25"] += 0
-				cnt += 1
-			elif time < start_time:
-				break
+			try:
+				if start_time <= time < end_time and data["name"] == device["name"]:
+					try:
+						data_tmp["so2"] += data["so2"]
+					except:
+						data_tmp["so2"] += 0
+					try:
+						data_tmp["no2"] += data["no2"]
+					except:
+						data_tmp["no2"] += 0
+					try:
+						data_tmp["pm10"] += data["pm10"]
+					except:
+						data_tmp["pm10"] += 0
+					try:
+						data_tmp["co"] += data["co"]
+					except:
+						data_tmp["co"] += 0
+					try:
+						data_tmp["o3"] += data["o3"]
+					except:
+						data_tmp["o3"] += 0
+					try:
+						data_tmp["pm25"] += data["pm25"]
+					except:
+						data_tmp["pm25"] += 0
+					cnt += 1
+				elif time < start_time:
+					break
+			except Exception as e:
+				print(str(e))
 		if cnt != 0:
 			data_tmp["so2"] = (data_tmp["so2"] * 1.0) / cnt
 			data_tmp["no2"] = (data_tmp["no2"] * 1.0) / cnt
@@ -282,34 +288,37 @@ def station(request):
 		cnt = 0
 		for data in datas_list_all:
 			time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
-			if start_time <= time < end_time and data["name"] == device["name"]:
-				try:
-					data_tmp["so2"] += data["so2"]
-				except:
-					data_tmp["so2"] += 0
-				try:
-					data_tmp["no2"] += data["no2"]
-				except:
-					data_tmp["no2"] += 0
-				try:
-					data_tmp["pm10"] += data["pm10"]
-				except:
-					data_tmp["pm10"] += 0
-				try:
-					data_tmp["co"] += data["co"]
-				except:
-					data_tmp["co"] += 0
-				try:
-					data_tmp["o3"] += data["o3"]
-				except:
-					data_tmp["o3"] += 0
-				try:
-					data_tmp["pm25"] += data["pm25"]
-				except:
-					data_tmp["pm25"] += 0
-				cnt += 1
-			elif time < start_time:
-				break
+			try:
+				if start_time <= time < end_time and data["name"] == device["name"]:
+					try:
+						data_tmp["so2"] += data["so2"]
+					except:
+						data_tmp["so2"] += 0
+					try:
+						data_tmp["no2"] += data["no2"]
+					except:
+						data_tmp["no2"] += 0
+					try:
+						data_tmp["pm10"] += data["pm10"]
+					except:
+						data_tmp["pm10"] += 0
+					try:
+						data_tmp["co"] += data["co"]
+					except:
+						data_tmp["co"] += 0
+					try:
+						data_tmp["o3"] += data["o3"]
+					except:
+						data_tmp["o3"] += 0
+					try:
+						data_tmp["pm25"] += data["pm25"]
+					except:
+						data_tmp["pm25"] += 0
+					cnt += 1
+				elif time < start_time:
+					break
+			except Exception as e:
+				print(str(e))
 		if cnt != 0:
 			data_tmp["so2"] = (data_tmp["so2"] * 1.0) / cnt
 			data_tmp["no2"] = (data_tmp["no2"] * 1.0) / cnt
