@@ -7,6 +7,7 @@ from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
 from utils.mySqlUtils import MySQL
 from django.core.mail import send_mail
+from app.models import Adminer
 from EMP import settings
 import math
 from datetime import datetime
@@ -14,6 +15,10 @@ transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1.
 
 
 def index(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	try:
 		device_id = request.GET.get("device_id")
 		sql = MySQL()

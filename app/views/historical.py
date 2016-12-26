@@ -5,12 +5,17 @@ from dss.Serializer import serializer
 import json
 from objects.AqiParameter import AqiParameter
 from datetime import datetime, timedelta
+from app.models import Adminer
 from objects.AqiParameter import AqiParameter
 from utils.mySqlUtils import MySQL
 import math
 transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1.2504464285714287, "no2": 2054.017857142857}
 import random
 def historical_device(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	sql = MySQL()
 	sql.connectDB("projectmanagement")
 	data = {}
@@ -141,6 +146,10 @@ def get_aqi(data):
 
 def historical_data_list(request,device_id):
 	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
+	try:
 		sql = MySQL()
 		sql.connectDB("projectmanagement")
 		data = {}
@@ -263,6 +272,10 @@ def historical_data_list(request,device_id):
 
 
 def historical_data_analysis(request,device_id):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	try:
 		device = {"id": 1, "name": "京师方圆"}
 		sql = MySQL()

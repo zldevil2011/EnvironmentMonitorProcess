@@ -1,12 +1,17 @@
 # coding=utf-8
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
+from app.models import Adminer
 from dss.Serializer import serializer
 import json
 from app.models import Announcement
 from utils.get_news_list import Spider
 
 def information(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	# spider = Spider()
 	# htmlValue = spider.getHtml()
 	# spider.findData(htmlValue)
@@ -35,6 +40,10 @@ def information(request):
 
 
 def news_info(request, news_id):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	news_id = int(news_id)
 	print news_id
 	print type(news_id)

@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from views.index import index
+from views.user import user_login, user_logout
 from views.station import station
 from views.historical import historical_data_analysis, historical_device, historical_data_list
 from views.admin_user import admin_login
@@ -17,6 +18,8 @@ urlpatterns = [
 	url(r'^historical_device_data_list/(?P<device_id>\d+)/$', historical_data_list, name="historical_data_list"),
 	url(r'^information/$', information, name="information"),
 	url(r'^document_info/(?P<news_id>\d+)/$', news_info, name="news_info"),
+	url(r'^user_login/$', user_login, name="user_login"),
+	url(r'^user_logout/$', user_logout, name="user_logout"),
 ]
 
 urlpatterns += [
