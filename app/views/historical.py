@@ -25,8 +25,24 @@ def historical_device(request):
 		tmp["id"] = device["NodeNO"]
 		tmp["name"] = device["Description"]
 		tmp["address"] = device["InstallationAddress"]
-		tmp["longitude"] = str(117.5436320000 + 0.01 * random.randint(-2, 2))
-		tmp["latitude"] = str(30.7078830000 + 0.01 * random.randint(-3, 3))
+		if int(tmp["id"]) == 1:
+			tmp["longitude"] = str(117.5379210000)
+			tmp["latitude"] = str(30.6916740000)
+		elif int(tmp["id"]) == 2:
+			tmp["longitude"] = str(117.5433630000)
+			tmp["latitude"] = str(30.7021370000)
+		elif int(tmp["id"]) == 3:
+			tmp["longitude"] = str(117.5442090000)
+			tmp["latitude"] = str(30.7166530000)
+		elif int(tmp["id"]) == 4:
+			tmp["longitude"] = str(117.5497670000)
+			tmp["latitude"] = str(30.7098570000)
+		elif int(tmp["id"]) == 5:
+			tmp["longitude"] = str(117.5619360000)
+			tmp["latitude"] = str(30.7385770000)
+		else:
+			tmp["longitude"] = str(117.5436320000 + 0.01 * random.randint(-2, 2))
+			tmp["latitude"] = str(30.7078830000 + 0.01 * random.randint(-3, 3))
 		tmp["install_time"] = str(device["SetTime"])
 		device_list.append(tmp)
 	devices = device_list
