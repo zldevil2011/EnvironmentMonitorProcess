@@ -256,7 +256,7 @@ def historical_data_list(request,device_id):
 	datas = datas[start_num:end_num]
 	# 参数
 	try:
-		parameter = request.GET.get("parameter")
+		parameter = request.GET.get("parameter", "pm25")
 	except:
 		parameter = "pm25"
 
