@@ -231,6 +231,11 @@ def index(request):
 				# twelve_data_data[factor].append("null")
 	twelve_data["twelve_data_hour"] = twelve_data_hour
 	twelve_data["twelve_data_data"] = twelve_data_data
+	# 参数
+	try:
+		parameter = request.GET.get("parameter", "PM10")
+	except:
+		parameter = "PM10"
 	return render(request, "app/index.html", {
 		# "pre_alarm_time": pre_alarm_time,
 		"twelve_data": twelve_data,
@@ -240,4 +245,5 @@ def index(request):
 		"page": page,
 		"total_page": total_page,
 		"device": device,
+		"parameter": parameter,
 	})
