@@ -185,9 +185,8 @@
         function reload_page() {
             var pre_alarm_time = "{{ pre_alarm_time }}";
             var link = window.location.href;
-            var $parameter = $("[name=other_parameters] li .active");
+            var $parameter = $("[name=other_parameters] .active");
             var parameter = $parameter.attr("name");
-            $(this).addClass("active").siblings().removeClass("active");
             if(link.indexOf("?") > 0){
                 if(link.indexOf(parameter) > 0){
                 }else{
