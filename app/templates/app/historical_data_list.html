@@ -147,6 +147,7 @@
     <script>
         var device_name;
         $(function () {
+            var parameter = "{{ parameter }}";
             var today_data = {{ today_data | safe }};
             var today_data_time = today_data.today_data_time;
             var today_data_data = today_data.today_data_data;
@@ -157,8 +158,8 @@
             var today_data_o3 = today_data_data.o3;
             var today_data_pm25 = today_data_data.pm25;
             device_name = "{{ device.name }}";
-            get_graph(today_data_time, today_data_pm25, "PM2.5", device_name);
-            var dic = {}
+{#            get_graph(today_data_time, today_data_pm25, "PM2.5", device_name);#}
+            var dic = {};
             dic["pm25"] = {};
             dic["pm10"] = {};
             dic["so2"] = {};
@@ -177,6 +178,11 @@
             dic["no2"]["val"] = today_data_no2;
             dic["o3"]["name"] = "O3";
             dic["o3"]["val"] = today_data_o3;
+
+            var name = dic[parameter]["name"];
+            var data = dic[parameter]["val"];
+            get_graph(today_data_time, data, name, device_name);
+            $("[name=data_type]").val(parameter);
             $("[name=data_type]").on("change", function(){
                 var val = $(this).val();
                 var name = dic[val]["name"];
