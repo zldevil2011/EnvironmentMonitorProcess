@@ -201,10 +201,7 @@
             var id = "other_" + $(this).attr("name");
             $("#" + id).css("display", "block").siblings().css("display", "none");
         });
-        var parameter = "{{ parameter }}";
         $("[name=PM10]").click();
-{#        $("[name=" + parameter + "]").click();#}
-
         var twelve_data = {{ twelve_data | safe}};
 {#        console.log(twelve_data);#}
         var twelve_data_hour = twelve_data.twelve_data_hour;
@@ -939,6 +936,8 @@
 {#                    data: twelve_data_no2#}
 {#                }]#}
 {#            });#}
+            var parameter = "{{ parameter }}";
+            $("[name=" + parameter + "]").click();
         });
 
     </script>
