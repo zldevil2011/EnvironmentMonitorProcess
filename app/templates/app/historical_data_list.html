@@ -207,7 +207,8 @@
                     return false;
                 }else{
                     var pre_url = window.location.pathname;
-                    window.location.href=pre_url + "?data_time=" + time_val;
+                    var parameter = $("[name=data_type]").val();
+                    window.location.href=pre_url + "?data_time=" + time_val + "&parameter=" + parameter;
                 }
             });
         });
