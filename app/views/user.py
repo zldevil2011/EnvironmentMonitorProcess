@@ -26,6 +26,7 @@ def user_login(request):
 				if check_password(password, user.password):
 					adminer = Adminer.objects.get(user=user)
 					request.session["username"] = username
+					request.session.set_expiry(0)
 					return HttpResponse("success")
 				else:
 					return HttpResponse("error")
