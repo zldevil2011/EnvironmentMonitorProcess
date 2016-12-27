@@ -201,7 +201,7 @@
             var id = "other_" + $(this).attr("name");
             $("#" + id).css("display", "block").siblings().css("display", "none");
         });
-        var parameter = "{{ parameter }}";
+        var parameter = "PM10";
         $("[name=" + parameter + "]").click();
 
         var twelve_data = {{ twelve_data | safe}};
