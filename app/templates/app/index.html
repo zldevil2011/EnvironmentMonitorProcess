@@ -189,9 +189,15 @@
             var parameter = $parameter.attr("name");
             $(this).addClass("active").siblings().removeClass("active");
             if(link.indexOf("?") > 0){
-                link += "&parameter=" + parameter;
+                if(link.indexOf(parameter) > 0){
+                }else{
+                    link += "&parameter=" + parameter;
+                }
             }else{
-                link += "?parameter=" + parameter;
+                if(link.indexOf(parameter) > 0){
+                }else {
+                    link += "?parameter=" + parameter;
+                }
             }
             window.location.href = link;
         }
