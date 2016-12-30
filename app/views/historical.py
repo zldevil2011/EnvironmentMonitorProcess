@@ -45,6 +45,9 @@ def historical_device(request):
 		elif int(tmp["id"]) == 5:
 			tmp["longitude"] = str(117.5619360000)
 			tmp["latitude"] = str(30.7385770000)
+		elif int(tmp["id"]) == 6:
+			tmp["longitude"] = str(118.3440090000)
+			tmp["latitude"] = str(30.9235910000)
 		else:
 			tmp["longitude"] = str(117.5436320000 + 0.01 * random.randint(-2, 2))
 			tmp["latitude"] = str(30.7078830000 + 0.01 * random.randint(-3, 3))
