@@ -476,6 +476,7 @@ def index_48(request):
 			try:
 				twelve_data_data[factor].append(round(tp/cnt, 3))
 			except:
+				twelve_data_data[factor].append(0)
 				pass
 	twelve_data["twelve_data_hour"] = twelve_data_hour
 	twelve_data["twelve_data_data"] = twelve_data_data
