@@ -457,12 +457,13 @@ def index_48(request):
 	twelve_data_data = {"so2":[], "no2":[], "pm10":[], "co":[], "o3":[], "pm25":[]}
 	factors = ["so2", "no2", "pm10", "co", "o3", "pm25"]
 	start_time_0 = datetime(NOW.year, NOW.month, NOW.day, 0, 0, 0)
-	twelve_data_hour.append(start_time_0)
+	twelve_data_hour.append(datetime.strftime(start_time_0, "%Y-%m-%d %H:%M:%S"))
 	for i in range(48):
 		start_time_0 += timedelta(minutes=30)
-		twelve_data_hour.append(start_time_0)
+		twelve_data_hour.append(datetime.strftime(start_time_0, "%Y-%m-%d %H:%M:%S"))
 	print len(twelve_data_hour)
 	for end_time in twelve_data_hour:
+		end_time = datetime.strptime(end_time, "%Y-%m-%d %H:%M:%S")
 		start_time = end_time - timedelta(minutes=30)
 		for factor in factors:
 			tp = 0
