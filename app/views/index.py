@@ -468,7 +468,7 @@ def index_48(request):
 			tp = 0
 			cnt = 0
 			for data in datas_list_today:
-				data_time = datetime.strftime(data["time"], "%Y-%m-%d %H:%M:%S")
+				data_time = datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S")
 				if start_time < data_time <= end_time:
 					tp += float(data[factor])
 					cnt += 1
