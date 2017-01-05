@@ -473,8 +473,6 @@ def index_48(request):
 				if start_time < data_time <= end_time:
 					tp += float(data[factor])
 					cnt += 1
-				elif data_time > end_time:
-					break
 			try:
 				twelve_data_data[factor].append(tp/cnt)
 			except:
