@@ -78,6 +78,8 @@
             console.log('close the page');
             var a_n = window.event.screenX - window.screenLeft;
             var a_b = a_n > document.documentElement.scrollWidth-20;
+            console.log(a_b);
+            console.log(window.event.clientY);
             if(a_b && window.event.clientY< 0 || window.event.altKey){
                 $.ajax({
                     url : '/user_logout/',
