@@ -82,7 +82,7 @@ def index_average(request):
 		tmp["longitude"] = "117.5436320000"
 		tmp["latitude"] = "30.7078830000"
 		tmp["install_time"] = device_t["SetTime"]
-		if tmp["id"] in admin_ndoe_list:
+		if unicode(tmp["id"]) in admin_ndoe_list:
 			device_list_briage.append(tmp)
 	device_list = device_list_briage
 
