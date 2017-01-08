@@ -20,7 +20,10 @@ def index_average(request):
 	except:
 		return HttpResponseRedirect("/user_login/")
 	try:
+		adminer_node = adminer.admin_node.split(',')
 		device_id = request.GET.get("device_id")
+		if unicode(device_id) not in adminer_node:
+			device_id = int(adminer_node[0])
 		sql = MySQL()
 		sql.connectDB("projectmanagement")
 		data = {}
@@ -39,7 +42,7 @@ def index_average(request):
 			data = {}
 			data["ProjectID"] = {}
 			data["ProjectID"]["conn"] = "="
-			data["ProjectID"]["val"] = str(1)
+			data["ProjectID"]["val"] = str(device_id)
 			device = sql.get_query("projectnodeinfo", data)[0]
 			sql.close_connect()
 		except:
