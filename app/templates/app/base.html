@@ -74,20 +74,29 @@
 
     </script>
     <script>
-        $(window).on('beforeunload',function(){
-            console.log('close the page');
-            $.ajax({
-                url : '/user_logout/',
-                type: 'POST',
-                data: {},
-                success:function(res){
-                    console.log(res);
-                },
-                error:function(res){
-                    console.log(res);
+        window.onunload = function(){
+            var a_n = window.event.screenX - window.screenLeft;
+            var a_b = a_n > document.documentElement.scrollWidth-20;
+            if(a_b && window.event.clientY< 0 || window.event.altKey){
+                      alert('关闭页面行为');
+            }else{
+                      alert('跳转或者刷新页面行为');
                 }
-            });
-        });
+        };
+{#        $(window).on('beforeunload',function(){#}
+{#            console.log('close the page');#}
+{#            $.ajax({#}
+{#                url : '/user_logout/',#}
+{#                type: 'POST',#}
+{#                data: {},#}
+{#                success:function(res){#}
+{#                    console.log(res);#}
+{#                },#}
+{#                error:function(res){#}
+{#                    console.log(res);#}
+{#                }#}
+{#            });#}
+{#        });#}
     </script>
 </body>
 </html>

@@ -10,10 +10,10 @@ from views.admin_data import admin_data, admin_data_update,admin_device_update
 from views.admin_document import admin_document_list, admin_document_edit, admin_document_info
 from views.platform import information, news_info
 urlpatterns = [
-	url(r'^$', index, name="welcome"),
-	url(r'^index/$', index, name="welcome"),
+	url(r'^$', index_average, name="index_average"),
+	url(r'^index/$', index_average, name="index_average"),
 	url(r'^index2/$', index_48, name="welcome_48"),
-	url(r'^index3/$', index_average, name="index_average"),
+	url(r'^index_old/$', index, name="index"),
 	url(r'^station/$', station, name="station"),
 	url(r'^historical_device/$', historical_device, name="historical_device"),
 	url(r'^historical_device_analysis/(?P<device_id>\d+)/$', historical_data_analysis, name="historical_data_analysis"),
