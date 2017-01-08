@@ -1,5 +1,5 @@
 from django.conf.urls import include, url
-from views.index import index, index_48, index_average
+from views.index import index_all, index_48, index_average
 from views.user import user_login, user_logout
 from views.station import station
 from views.historical import historical_data_analysis, historical_device, historical_data_list
@@ -13,7 +13,7 @@ urlpatterns = [
 	url(r'^$', index_average, name="index_average"),
 	url(r'^index/$', index_average, name="index_average"),
 	url(r'^index2/$', index_48, name="welcome_48"),
-	url(r'^index_old/$', index, name="index"),
+	url(r'^index_old/$', index_all, name="index_all"),
 	url(r'^station/$', station, name="station"),
 	url(r'^historical_device/$', historical_device, name="historical_device"),
 	url(r'^historical_device_analysis/(?P<device_id>\d+)/$', historical_data_analysis, name="historical_data_analysis"),
