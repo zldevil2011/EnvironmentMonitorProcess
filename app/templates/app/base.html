@@ -74,7 +74,8 @@
 
     </script>
     <script>
-        window.onunload = function(){
+        $(window).on('beforeunload',function(){
+            console.log('close the page');
             var a_n = window.event.screenX - window.screenLeft;
             var a_b = a_n > document.documentElement.scrollWidth-20;
             if(a_b && window.event.clientY< 0 || window.event.altKey){
@@ -82,9 +83,6 @@
             }else{
                       alert('跳转或者刷新页面行为');
                 }
-        };
-{#        $(window).on('beforeunload',function(){#}
-{#            console.log('close the page');#}
 {#            $.ajax({#}
 {#                url : '/user_logout/',#}
 {#                type: 'POST',#}
@@ -96,7 +94,7 @@
 {#                    console.log(res);#}
 {#                }#}
 {#            });#}
-{#        });#}
+        });
     </script>
 </body>
 </html>
