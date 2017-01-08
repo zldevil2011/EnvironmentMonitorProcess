@@ -56,7 +56,7 @@ class MySQL(object):
 					break
 		else:
 			for row in results:
-				print row
+				# print row
 				dic_tmp = {}
 				for idx in range(len(row)):
 					key = columns_list[idx]
