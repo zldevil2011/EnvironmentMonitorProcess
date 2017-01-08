@@ -74,13 +74,13 @@
 
     </script>
     <script>
-        $(window).on('beforeunload',function(){
+        $(window).on('beforeunload',function(event){
             console.log('close the page');
-            var a_n = window.event.screenX - window.screenLeft;
+            var a_n = event.screenX - window.screenLeft;
             var a_b = a_n > document.documentElement.scrollWidth-20;
             console.log(a_b);
-            console.log(window.event.clientY);
-            if(a_b && window.event.clientY< 0 || window.event.altKey){
+            console.log(event.clientY);
+            if(a_b && event.clientY< 0 || event.altKey){
                 $.ajax({
                     url : '/user_logout/',
                     type: 'POST',
