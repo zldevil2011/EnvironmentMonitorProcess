@@ -470,7 +470,7 @@ def index_average(request):
 						pass
 				tmp += float(data[factor])
 				cnt += 1
-				twelve_data_data[factor].append(float(tmp / cnt))
+				twelve_data_data[factor].append(round(float(tmp / cnt),3))
 				# twelve_data_data[factor].append(float(data[factor]))
 			except:
 				pass
