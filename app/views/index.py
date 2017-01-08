@@ -32,7 +32,8 @@ def index_average(request):
 	except Exception as e:
 		print(str(e))
 		try:
-			device_id = 1
+			adminer_node = int(adminer.admin_node.split(',')[0])
+			device_id = adminer_node
 			sql = MySQL()
 			sql.connectDB("projectmanagement")
 			data = {}
