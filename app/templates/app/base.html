@@ -76,6 +76,17 @@
     <script>
         $(window).on('beforeunload',function(){
             console.log('close the page');
+            $.ajax({
+                url : '/user_logout/',
+                type: 'POST',
+                data: {},
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(res){
+                    console.log(res);
+                }
+            });
         });
     </script>
 </body>
