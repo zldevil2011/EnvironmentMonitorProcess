@@ -68,3 +68,5 @@ db.sqlite3
 #log
 monitor/*.png
 .DS_Store
+.idea/workspace.xml
+db.sqlite3
