@@ -26,6 +26,8 @@ def historical_device(request):
 	sql.close_connect()
 	device_list = []
 	admin_ndoe_list = adminer.admin_node.split(',')
+	print "admin_node_list"
+	print admin_ndoe_list
 	for device in devices:
 		tmp = {}
 		tmp["id"] = device["NodeNO"]
@@ -53,8 +55,7 @@ def historical_device(request):
 			tmp["longitude"] = str(117.5436320000 + 0.01 * random.randint(-2, 2))
 			tmp["latitude"] = str(30.7078830000 + 0.01 * random.randint(-3, 3))
 		tmp["install_time"] = str(device["SetTime"])
-		if int(tmp["id"]) in admin_ndoe_list:
-			device_list.append(tmp)
+		device_list.append(tmp)
 	devices = device_list
 	sql.connectDB("jssf")
 	datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
