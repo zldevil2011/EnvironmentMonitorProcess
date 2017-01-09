@@ -209,6 +209,50 @@
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WZVN4DbW3hfB9MSgMmwVQBHU8ZV8jRxW"></script>
     <script async src="http://c.cnzz.com/core.php"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>
+    <script>
+        var w;
+        var target_js = "{% static "app/js/station_ranking.js" %}";
+        if(typeof(Worker)!=="undefined"){
+            try{
+               if(typeof(w)=="undefined"){
+                    w=new Worker(target_js);
+                }
+                w.onmessage = function (event) {
+                    var ret = event.data;
+                    if(ret == "error"){
+                        get_station_ranking();
+                    }else{
+                        showData(ret);
+                    }
+                };
+            }catch (e){
+                console.log("check");
+            }
+        }else{
+            document.getElementById("result").innerHTML="Sorry, your browserdoes not support Web Workers...";
+        }
+        function get_station_ranking(){
+            $.ajax({
+                url: '/station_ranking/',
+                type: 'GET',
+                success:function(res){
+                    showData(JSON.parse(res));
+                },
+                error:function(res){
+                }
+            });
+        }
+        function showData(data){
+            var real_time = data["real_time"];
+            var yesterday_time = data["yesterday_time"];
+            var week_time = data["week_time"];
+            var month_time = data["month_time"];
+            console.log(month_time);
+            var month_tbody = $("#panel-month tbody");
+
+            console.log(month_tbody);
+        }
+    </script>
 {#    <script>#}
 {#        var map = new BMap.Map("map");          // 创建地图实例#}
 {#        var point = new BMap.Point(117.533683,30.699859);  // 创建点坐标#}
