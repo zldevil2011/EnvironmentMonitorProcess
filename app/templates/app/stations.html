@@ -247,13 +247,33 @@
             var yesterday_time = data["yesterday_time"];
             var week_time = data["week_time"];
             var month_time = data["month_time"];
-            console.log(month_time);
-            var month_tbody = $("#panel-month tbody");
-            var len_month = month_time.length;
-            for(var i = 0; i < len_month; ++i){
+            var table_body = $("#panel-realTime tbody");
+            var data_len = real_time.length;
+            for(var i = 0; i < data_len; ++i){
+                var data = real_time[i];
+                var item = "<tr><td>" + (i+1) + "</td><td><span class=\"level" + data["level"] + "_background\" style=\"padding:3px 25px;\">" + data["classification"] + "</span></td><td>" + data["name"] + "</td><td>" + data["pm25"] + "μg/m³</td><td>" + data["AQI"] + "</td></tr>";
+                table_body.append(item);
+            }
+            table_body = $("#panel-yesterday tbody");
+            data_len = yesterday_time.length;
+            for(var i = 0; i < data_len; ++i){
+                var data = yesterday_time[i];
+                var item = "<tr><td>" + (i+1) + "</td><td><span class=\"level" + data["level"] + "_background\" style=\"padding:3px 25px;\">" + data["classification"] + "</span></td><td>" + data["name"] + "</td><td>" + data["pm25"] + "μg/m³</td><td>" + data["AQI"] + "</td></tr>";
+                table_body.append(item);
+            }
+            table_body = $("#panel-week tbody");
+            data_len = week_time.length;
+            for(var i = 0; i < data_len; ++i){
+                var data = week_time[i];
+                var item = "<tr><td>" + (i+1) + "</td><td><span class=\"level" + data["level"] + "_background\" style=\"padding:3px 25px;\">" + data["classification"] + "</span></td><td>" + data["name"] + "</td><td>" + data["pm25"] + "μg/m³</td><td>" + data["AQI"] + "</td></tr>";
+                table_body.append(item);
+            }
+            table_body = $("#panel-month tbody");
+            data_len = month_time.length;
+            for(var i = 0; i < data_len; ++i){
                 var data = month_time[i];
                 var item = "<tr><td>" + (i+1) + "</td><td><span class=\"level" + data["level"] + "_background\" style=\"padding:3px 25px;\">" + data["classification"] + "</span></td><td>" + data["name"] + "</td><td>" + data["pm25"] + "μg/m³</td><td>" + data["AQI"] + "</td></tr>";
-                month_tbody.append(item);
+                table_body.append(item);
             }
         }
     </script>
