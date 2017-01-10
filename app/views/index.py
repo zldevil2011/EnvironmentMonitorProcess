@@ -233,7 +233,7 @@ def index_average(request):
 			try:
 				tmp = 0
 				cnt = 0
-				for i in range(0, 2):
+				for i in range(1, 3):
 					try:
 						tmp += float(datas_list_today[idx - i][factor])
 						cnt += 1
