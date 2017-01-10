@@ -233,15 +233,15 @@ def index_average(request):
 			try:
 				tmp = 0
 				cnt = 0
-				for i in range(1, 3):
+				for i in range(0, 3):
 					try:
 						tmp += float(datas_list_today[idx - i][factor])
 						cnt += 1
 					except:
 						pass
-				tmp += float(data[factor])
-				cnt += 1
-				twelve_data_data[factor].append(round(float(tmp / cnt),3))
+				# tmp += float(data[factor])
+				# cnt += 1
+				twelve_data_data[factor].append(round(float(tmp / cnt), 3))
 				# twelve_data_data[factor].append(float(data[factor]))
 			except:
 				pass
