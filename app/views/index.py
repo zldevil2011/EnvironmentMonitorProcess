@@ -235,7 +235,7 @@ def index_average(request):
 				cnt = 0
 				for i in range(0, 5):
 					try:
-						tmp += float(datas_list_today[idx - i][factor])
+						tmp += float(datas_list_today[idx + i][factor])
 						cnt += 1
 					except:
 						pass
