@@ -738,7 +738,7 @@ def historical_voltage_list(request):
 	datas = datas[start_num:end_num]
 	# 参数
 	try:
-		parameter = request.GET.get("parameter", "pm25")
+		parameter = request.GET.get("parameter", "voltage")
 	except:
 		parameter = "voltage"
 
