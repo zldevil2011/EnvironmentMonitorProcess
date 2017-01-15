@@ -662,7 +662,7 @@ def historical_voltage_list(request):
 		if start_time is None:
 			start_time = datetime(today.year, today.month, today.day, 0, 0, 0)
 			start_time = str(start_time)[0:10]
-			return HttpResponseRedirect("/voltage/?device_id=" + str(device["id"]) + "?data_time=" + start_time)
+			return HttpResponseRedirect("/voltage/?device_id=" + str(device["id"]) + "&data_time=" + start_time)
 			end_time = start_time + timedelta(days=1)
 		else:
 			start_time += " 00:00:00"
