@@ -717,7 +717,7 @@ def historical_voltage_list(request):
 	if total_page < 1:
 		total_page = 1
 	if page > total_page:
-		return HttpResponseRedirect("/voltage/?device_id=" + device["id"] + str(total_page))
+		return HttpResponseRedirect("/voltage/?device_id=" + device["id"] + "&total_page=" + str(total_page))
 	today_data = {}
 	today_data_time = []
 	today_data_data = {"so2": [], "no2": [], "pm10": [], "co": [], "o3": [], "pm25": [], "voltage": []}
