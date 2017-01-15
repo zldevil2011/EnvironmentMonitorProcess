@@ -1,0 +1,200 @@
+{% extends "app/base.html" %}
+{% load static from staticfiles %}
+{% block title %}电池电压统计{% endblock %}
+{% block special_css %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block body_content %}
+    <div class="clearfix" style="background-color: #fdfdfd;">
+        <div class="clearfix">
+            <div class="col-md-12">
+                <h4 class="city_name" style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">
+                    <span name="latest_location">{{ device.name }}</span>&nbsp;
+                    <a id="" href="#point-choice" role="button" class="glyphicon glyphicon-edit hander" data-toggle="modal"
+                    style="font-size: 16px;color: #000;text-decoration: none;"></a>
+                </h4>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div id="container" style="min-width:100%;height:300px;margin: 0 auto;"></div>
+        </div>
+
+        <div class="col-md-12">
+            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">{{ device.name }}监测点实时数据</p>
+        </div>
+        <div class="col-md-12">
+            <div style="overflow: auto;">
+                <table class="table table-striped text-center table-td-center">
+                    <thead>
+                        <tr style="background-color: #e8e8e8">
+                            <th class="text-center" style="padding: 15px;">监测站点</th>
+                            <th class="text-center" style="padding: 15px;">PM2.5浓度</th>
+                            <th class="text-center" style="padding: 15px;">PM10浓度</th>
+                            <th class="text-center" style="padding: 15px;">SO2</th>
+                            <th class="text-center" style="padding: 15px;">NO2</th>
+                            <th class="text-center" style="padding: 15px;">CO</th>
+                            <th class="text-center" style="padding: 15px;">O3</th>
+                            <th class="text-center" style="padding: 15px;">空气质量</th>
+                            <th class="text-center" style="padding: 15px;">电压</th>
+                            <th class="text-center" style="padding: 15px;">采集时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in data_real_time %}
+                            <tr><td>{{ data.name }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td>{{ data.so2 }}</td><td>{{ data.no2 }}</td><td>{{ data.co }}</td><td>{{ data.o3 }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td><td>{{ data.voltage }}</td><td>{{ data.time }}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12" style="text-align: right;">
+            <ul class="pagination account-pagination" style="">
+                <li class="hander">
+                     <a href="/?device_id=1&page={{ page|add:-1 }}">上一页</a>
+                </li>
+                <li>
+                     <a href="#">
+                         <span name="page">{{ page }}</span> / <span name="total_page">{{ total_page }}</span>
+                     </a>
+                </li>
+                <li class="hander">
+                     <a href="/?device_id=1&page={{ page|add:1 }}">下一页</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal fade" id="point-choice" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        请选择站点
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="clearfix">
+                        {% for device in device_list %}
+                            <div class="horizontal-center col-md-2 img-rounded hander city-choice-item"
+                            onclick="window.location.href='/?device_id={{ device.id }}'" style="padding: 10px;">{{ device.name }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block special_js %}
+    <script src= {% static "app/js/modules/exporting.js" %}></script>
+{#    <script src= "http://cdn.hcharts.cn/highcharts/highcharts-more.js"></script>#}
+    <script src= {% static "app/js/highcharts-more.js" %}></script>
+    <script src= {% static "app/js/modules/solid-gauge.js" %}></script>
+    <script>
+        $(function(){
+            var int =self.setInterval("reload_page()", 3*600000);
+        });
+        function reload_page() {
+            var link = window.location.href;
+            window.location.href = link;
+        }
+        var twelve_data = {{ twelve_data | safe}};
+        var twelve_data_hour = twelve_data.twelve_data_hour;
+        var twelve_data_data = twelve_data.twelve_data_data;
+        var twelve_data_voltage = twelve_data_data.voltage;
+        $(function () {
+            var time_list = twelve_data_hour;
+            var data_list = twelve_data_voltage;
+            var datas = new Array();
+            var len = data_list.length;
+            for(var i = 0;i < len; ++i){
+                var tmp = new Array();
+                var _ = new Date(time_list[i].replace(/-/g, "/"));
+                _ = _.getTime() + 8*60*60*1000;
+                _ = new Date(_);
+                var time = Date.UTC(_.getUTCFullYear(), _.getUTCMonth(), _.getUTCDate(), _.getUTCHours(), _.getUTCMinutes(), _.getUTCSeconds());
+                tmp.push(time);
+                tmp.push(data_list[i]);
+                datas.push(tmp);
+            }
+            var colors = ['#00ff00'];
+            Highcharts.getOptions().colors = Highcharts.map(colors, function (color) {
+                 return {
+                     radialGradient: { cx:0, cy: -0.8,r:2.3 },
+                     stops: [[0, color], [2, Highcharts.Color(color).brighten(14).get('rgb')] // darken
+                     ]
+                 };
+             });
+            $('#container').highcharts({
+                chart: {
+                    type: 'line',
+                    backgroundColor: 'rgba(80,81,95,0.1)',
+                },
+                title: {
+                    text: '今日电压监测值',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: '数据来源:' + '{{ device.name }}' + '观测点',
+                    x: -20
+                },
+                xAxis: {
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        millisecond: '%H:%M:%S',
+                        second: '%H:%M:%S',
+                        minute: '%d %H:%M',
+                        hour: '%m-%d %H:%M',
+                        day: '%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y',
+                    },
+                },
+                yAxis: {
+                    min:0, // 定义最小值
+                    title: {
+                        text: '设备电压(V)'
+                    },
+                },
+                tooltip: {
+                    valueSuffix: 'V',
+                    dateTimeLabelFormats: {
+                        millisecond: '%Y-%m-%d %H:%M:%S',
+                        second: '%Y-%m-%d %H:%M:%S',
+                        minute: '%Y-%m-%d %H:%M:%S',
+                        hour: '%Y-%m-%d %H:%M:%S',
+                        day: '%Y-%m-%d %H:%M:%S',
+                        week: '%Y-%m-%d %H:%M:%S',
+                        month: '%Y-%m-%d %H:%M:%S',
+                        year: '%Y-%m-%d %H:%M:%S',
+                    }
+                },
+                plotOptions: {
+                    series: {
+                        marker: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0
+                },
+                series: [{
+                    name: 'PM2.5',
+                    data: datas,
+                    color:"#4e505d"
+                }]
+            });
+        });
+    </script>
+{% endblock %}
