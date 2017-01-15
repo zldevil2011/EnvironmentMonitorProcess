@@ -1,8 +1,8 @@
 from django.conf.urls import include, url
-from views.index import index_all, index_48, index_average, index_voltage
+from views.index import index_all, index_48, index_average
 from views.user import user_login, user_logout
 from views.station import station, station_ranking
-from views.historical import historical_data_analysis, historical_device, historical_data_list
+from views.historical import historical_data_analysis, historical_device, historical_data_list, historical_voltage_list
 from views.admin_user import admin_login
 from views.admin_user import admin_logout, admin_user_list,admin_user_update,admin_user_info
 from views.admin_index import admin_index
@@ -12,7 +12,7 @@ from views.platform import information, news_info
 urlpatterns = [
 	url(r'^$', index_average, name="index_average"),
 	url(r'^index/$', index_average, name="index_average"),
-	url(r'^voltage/$', index_voltage, name="index_voltage"),
+	url(r'^voltage/$', historical_voltage_list, name="historical_voltage_list"),
 	url(r'^index2/$', index_48, name="welcome_48"),
 	url(r'^index_old/$', index_all, name="index_all"),
 	url(r'^station/$', station, name="station"),

@@ -1,10 +1,7 @@
 {% extends "app/base.html" %}
 {% load static from staticfiles %}
-{% block title %}电池电压统计{% endblock %}
+{% block title %}电压历史数据{% endblock %}
 {% block special_css %}
-    <style>
-
-    </style>
 {% endblock %}
 
 {% block body_content %}
@@ -18,17 +15,46 @@
                 </h4>
             </div>
         </div>
-
-        <div class="col-md-12">
-            <div id="container" style="min-width:100%;height:300px;margin: 0 auto;"></div>
+        <div class="col-md-12" style="margin-top: 20px;">
+            <div class="form-group">
+                <form class="form-horizontal" role="form" onsubmit="return false;">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="" class="col-sm-4 control-label">类型</label>
+                            <div class="col-sm-8">
+                                <select class="btn-block form-control" name="data_type">
+                                    <option value="voltage">电压</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="" class="col-sm-3 control-label">日期</label>
+                            <div class="col-sm-9">
+                                <input name = "" type="date" class="form-control" id="data_time" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button class="btn btn-block btn-success" name="filter_data_type">查找</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-
         <div class="col-md-12">
-            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">{{ device.name }}监测点实时数据</p>
+            <div id="parameter_data" style="min-width:100%;height:300px;margin: 0 auto;"></div>
+        </div>
+        <div class="col-md-12">
+            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">{{ device.name }}监测点历史数据</p>
         </div>
         <div class="col-md-12">
             <div style="overflow: auto;">
-                <table class="table table-striped text-center table-td-center">
+                <table class="table table-striped text-center table-td-center table-condensed">
                     <thead>
                         <tr style="background-color: #e8e8e8">
                             <th class="text-center" style="padding: 15px;">监测站点</th>
@@ -44,8 +70,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for data in data_real_time %}
-                            <tr><td>{{ data.name }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td>{{ data.so2 }}</td><td>{{ data.no2 }}</td><td>{{ data.co }}</td><td>{{ data.o3 }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td><td>{{ data.voltage }}</td><td>{{ data.time }}</td></tr>
+                        {% for data in data_list %}
+                            <tr><td>{{ data.name }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td>{{ data.so2 }}</td><td>{{ data.no2 }}</td><td>{{ data.co }}</td><td>{{ data.o3 }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td><td>{{ data.time }}</td></tr>
                         {% endfor %}
                     </tbody>
                 </table>
@@ -54,7 +80,7 @@
         <div class="col-md-12" style="text-align: right;">
             <ul class="pagination account-pagination" style="">
                 <li class="hander">
-                     <a href="/?device_id=1&page={{ page|add:-1 }}">上一页</a>
+                     <a onclick="pre();">上一页</a>
                 </li>
                 <li>
                      <a href="#">
@@ -62,11 +88,12 @@
                      </a>
                 </li>
                 <li class="hander">
-                     <a href="/?device_id=1&page={{ page|add:1 }}">下一页</a>
+                     <a onclick="next();">下一页</a>
                 </li>
             </ul>
         </div>
     </div>
+
     <div class="modal fade" id="point-choice" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -97,20 +124,73 @@
     <script src= {% static "app/js/highcharts-more.js" %}></script>
     <script src= {% static "app/js/modules/solid-gauge.js" %}></script>
     <script>
-        $(function(){
-            var int =self.setInterval("reload_page()", 3*600000);
-        });
-        function reload_page() {
-            var link = window.location.href;
-            window.location.href = link;
+        function pre(){
+            var preUrl = window.location.href;
+            var current_page = parseInt($("[name=page]").html()) - 1;
+            url = preUrl + "&page=" + current_page;
+            window.location.href=url;
         }
-        var twelve_data = {{ twelve_data | safe}};
-        var twelve_data_hour = twelve_data.twelve_data_hour;
-        var twelve_data_data = twelve_data.twelve_data_data;
-        var twelve_data_voltage = twelve_data_data.voltage;
+        function next(){
+            var preUrl = window.location.href;
+            var current_page = parseInt($("[name=page]").html()) + 1;
+            url = preUrl + "&page=" + current_page;
+            window.location.href=url;
+        }
+    </script>
+    <script>
+        $(function(){
+            var data_time = "{{ data_time | safe }}";
+            $("#data_time").val(data_time.slice(0, 10));
+        });
+    </script>
+    <script>
+        var device_name;
         $(function () {
-            var time_list = twelve_data_hour;
-            var data_list = twelve_data_voltage;
+            var parameter = "{{ parameter }}";
+            var today_data = {{ today_data | safe }};
+            var today_data_time = today_data.today_data_time;
+            var today_data_data = today_data.today_data_data;
+            var today_data_voltage = today_data_data.voltage;
+            device_name = "{{ device.name }}";
+            var dic = {};
+            dic["voltage"] = {};
+            dic["voltage"]["name"] = "电压";
+            dic["voltage"]["val"] = today_data_voltage;
+
+            var name = dic[parameter]["name"];
+            var data = dic[parameter]["val"];
+            get_graph(today_data_time, data, name, device_name);
+            $("[name=data_type]").val(parameter);
+            $("[name=data_type]").on("change", function(){
+                var val = $(this).val();
+                var name = dic[val]["name"];
+                var data = dic[val]["val"];
+                get_graph(today_data_time, data, name, device_name);
+            });
+            $("[name=filter_data_type]").on("click", function(){
+                var date = new Date();
+                var today_time_str = date.getFullYear() +"-"+ (date.getMonth() + 1) +"-";
+                if(date.getDate() < 10){
+                    today_time_str += "0" + date.getDate();
+                }else{
+                    today_time_str += date.getDate();
+                };
+                var time_val = $("#data_time").val();
+                if(time_val > today_time_str ){
+                    alert("请选择合法日期");
+                    return false;
+                }else{
+                    var pre_url = window.location.pathname;
+                    var parameter = $("[name=data_type]").val();
+                    window.location.href=pre_url + "?data_time=" + time_val + "&parameter=" + parameter;
+                }
+            });
+        });
+
+        function get_graph(data_time, data_data, name, device_name){
+            $('#parameter_data').html("");
+            var time_list = data_time;
+            var data_list = data_data;
             var datas = new Array();
             var len = data_list.length;
             for(var i = 0;i < len; ++i){
@@ -131,17 +211,17 @@
                      ]
                  };
              });
-            $('#container').highcharts({
+            $('#parameter_data').highcharts({
                 chart: {
                     type: 'line',
                     backgroundColor: 'rgba(80,81,95,0.1)',
                 },
                 title: {
-                    text: '今日电压监测值',
+                    text: '今日' + name + '监测值',
                     x: -20 //center
                 },
                 subtitle: {
-                    text: '数据来源:' + '{{ device.name }}' + '观测点',
+                    text: '数据来源:' + device_name + '观测点',
                     x: -20
                 },
                 xAxis: {
@@ -160,7 +240,7 @@
                 yAxis: {
                     min:0, // 定义最小值
                     title: {
-                        text: '设备电压(V)'
+                        text: name + '电压(V)'
                     },
                 },
                 tooltip: {
@@ -190,11 +270,11 @@
                     borderWidth: 0
                 },
                 series: [{
-                    name: 'PM2.5',
+                    name: name,
                     data: datas,
                     color:"#4e505d"
                 }]
             });
-        });
+        }
     </script>
 {% endblock %}

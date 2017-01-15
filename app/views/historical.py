@@ -590,3 +590,165 @@ def historical_data_analysis(request,device_id):
 		"data": json.dumps(data),
 		"device": device,
 	})
+
+
+def historical_voltage_list(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
+	try:
+		adminer_node = adminer.admin_node.split(',')
+		device_id = request.GET.get("device_id")
+		if unicode(device_id) not in adminer_node:
+			device_id = int(adminer_node[0])
+	except Exception as e:
+		print(str(e))
+		adminer_node = int(adminer.admin_node.split(',')[0])
+		device_id = adminer_node
+	sql = MySQL()
+	# 获取设备列表
+	sql.connectDB("projectmanagement")
+	data = {}
+	data["ProjectID"] = {}
+	data["ProjectID"]["conn"] = "="
+	data["ProjectID"]["val"] = str(1)
+	device_list = sql.get_query("projectnodeinfo", data, None)
+	sql.close_connect()
+	print device_list
+	device_list_briage = []
+	admin_ndoe_list = adminer.admin_node.split(',')
+	for device_t in device_list:
+		tmp = {}
+		tmp["name"] = device_t["Description"]
+		tmp["id"] = device_t["NodeNO"]
+		tmp["address"] = device_t["InstallationAddress"]
+		tmp["longitude"] = "117.5436320000"
+		tmp["latitude"] = "30.7078830000"
+		tmp["install_time"] = device_t["SetTime"]
+		if unicode(tmp["id"]) in admin_ndoe_list:
+			device_list_briage.append(tmp)
+	device_list = device_list_briage
+
+	try:
+		sql = MySQL()
+		sql.connectDB("projectmanagement")
+		data = {}
+		data["NodeNo"] = {}
+		data["NodeNo"]["conn"] = "="
+		data["NodeNo"]["val"] = str(device_id)
+		device = sql.get_query("projectnodeinfo", data)[0]
+		sql.close_connect()
+	except Exception as e:
+		print str(e)
+		return HttpResponse("没有数据")
+	device["id"] = device["NodeNO"]
+	device["name"] = device["Description"]
+	device["address"] = device["InstallationAddress"]
+	device["longitude"] = "117.5436320000"
+	device["latitude"] = "30.7078830000"
+	device["install_time"] = str(device["SetTime"])
+	try:
+		page = int(request.GET.get("page"))
+	except:
+		page = 1
+	# 页码
+	if page < 1:
+		return HttpResponseRedirect("/voltage/?device_id=1")
+	# 时间
+	try:
+		start_time = request.GET.get("data_time", None)
+		today = datetime.today()
+		if start_time is None:
+			start_time = datetime(today.year, today.month, today.day, 0, 0, 0)
+			start_time = str(start_time)[0:10]
+			return HttpResponseRedirect("/voltage/?device_id=" + str(device["id"]) + "?data_time=" + start_time)
+			end_time = start_time + timedelta(days=1)
+		else:
+			start_time += " 00:00:00"
+			start_time = datetime.strptime(start_time, "%Y-%m-%d %H:%M:%S")
+			end_time = start_time + timedelta(days=1)
+		sql = MySQL()
+		sql.connectDB("jssf")
+		datas = sql.get_query_s_e_time(u"大气六参数", str(device["id"]), u"紧缩型时间传感器_实时时间", str(start_time), str(end_time), None, u"紧缩型时间传感器_实时时间")
+		sql.close_connect()
+		datas_list_briage = []
+		for data in datas:
+			tmp = {}
+			try:
+				tmp["so2"] = round(float(data["SO2_SO2"]) * transform_factor["so2"],3)
+			except:
+				tmp["so2"] = data["SO2_SO2"]
+			try:
+				tmp["no2"] = round(float(data["NO2_NO2"]) * transform_factor["no2"],3)
+			except:
+				tmp["no2"] = data["NO2_NO2"]
+			try:
+				tmp["pm10"] = data["PM10_PM10"]
+			except:
+				tmp["pm10"] = data["PM10_PM10"]
+			try:
+				tmp["co"] = round(float(data["CO_CO"]) * transform_factor["co"],3)
+			except:
+				tmp["co"] = data["CO_CO"]
+			try:
+				tmp["o3"] = round(float(data["O3_O3"]) * transform_factor["o3"],3)
+			except:
+				tmp["o3"] = data["O3_O3"]
+			tmp["pm25"] = data["PM2_5_PM2_5"]
+			tmp["voltage"] = data[u"电池电压传感器_电压"]
+			tmp["device_id"] = data[u"项目内节点编号"]
+			tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
+			datas_list_briage.append(tmp)
+		datas = datas_list_briage
+		for data in datas:
+			data["name"] = device["name"]
+			data["time"] = str(data["time"])
+			calculator = AqiParameter()
+			calculator.get_1_aqi(data)
+			data["AQI_1"] = calculator.AQI_1
+			data["Main_Pollute_1"] = calculator.Main_Pollute_1
+			data["AQI_info_1"] = calculator.AQI_info_1
+	except Exception as e:
+		print str(e)
+		datas = []
+		pass
+	total_page = int(math.ceil(len(datas)/20.0))
+	if total_page < 1:
+		total_page = 1
+	if page > total_page:
+		return HttpResponseRedirect("/voltage/?device_id=" + device["id"] + str(total_page))
+	today_data = {}
+	today_data_time = []
+	today_data_data = {"so2": [], "no2": [], "pm10": [], "co": [], "o3": [], "pm25": [], "voltage": []}
+	factors = ["so2", "no2", "pm10", "co", "o3", "pm25", "voltage"]
+	for data in datas:
+		today_data_time.append(data["time"])
+		for factor in factors:
+			try:
+				today_data_data[factor].append(float(data[factor]))
+			except:
+				pass
+	today_data["today_data_time"] = today_data_time
+	today_data["today_data_data"] = today_data_data
+
+	# 获取当前数据的每20条
+	start_num = (page - 1) * 20
+	end_num = page * 20
+	datas = datas[start_num:end_num]
+	# 参数
+	try:
+		parameter = request.GET.get("parameter", "pm25")
+	except:
+		parameter = "pm25"
+
+	return render(request, "app/historical_voltage_list.html", {
+		"page": page,
+		"total_page": total_page,
+		"data_time": start_time,
+		"data_list": datas,
+		"parameter": parameter,
+		"device": device,
+		"today_data": today_data,
+		"device_list": device_list,
+	})
