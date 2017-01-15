@@ -740,7 +740,7 @@ def historical_voltage_list(request):
 	try:
 		parameter = request.GET.get("parameter", "pm25")
 	except:
-		parameter = "pm25"
+		parameter = "voltage"
 
 	return render(request, "app/historical_voltage_list.html", {
 		"page": page,
