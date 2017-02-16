@@ -9,6 +9,13 @@ from views.admin_index import admin_index
 from views.admin_data import admin_data, admin_data_update,admin_device_update
 from views.admin_document import admin_document_list, admin_document_edit, admin_document_info
 from views.platform import information, news_info
+from views.msp_server import msp_login
+from views.msp_server import msp_logout
+from views.msp_server import msp_sendto
+from views.msp_server import msp_receive_data
+from views.msp_server import msp_receive_log
+
+
 urlpatterns = [
 	url(r'^$', index_average, name="index_average"),
 	url(r'^index/$', index_average, name="index_average"),
@@ -39,4 +46,12 @@ urlpatterns += [
 	url(r'^admin_user/info/$', admin_user_info, name="admin_user_info"),
 	url(r'^admin_user_list/$', admin_user_list, name="admin_user_list"),
 	url(r'^admin_user/update/$', admin_user_update, name="admin_user_update"),
+]
+
+urlpatterns += [
+	url(r'^msp_login/$', msp_login, name="msp_login"),
+	url(r'^msp_logout/$', msp_logout, name="msp_logout"),
+	url(r'^msp_sendto/$', msp_sendto, name="msp_sendto"),
+	url(r'^msp_receive_data/$', msp_receive_data, name="msp_receive_data"),
+	url(r'^msp_receive_log/$', msp_receive_log, name="msp_receive_log"),
 ]
