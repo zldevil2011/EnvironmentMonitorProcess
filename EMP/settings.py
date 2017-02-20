@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'p90d3*=zlg%(d8eroxu%0vsahjj3^t39bn+hs__+6ho^9#29(p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '112.123.252.200',
@@ -139,22 +139,22 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = './media/'
 
 
-SESSION_ENGINE = 'redis_sessions.session'
-
-SESSION_REDIS_PREFIX = 'session'
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.static',
-    'django.core.context_processors.request',
-    'ws4redis.context_processors.default',
-)
-
-WEBSOCKET_URL = '/ws/'
-WS4REDIS_CONNECTION = {
-    'host': '127.0.0.1',
-    'port': 6379,
-    'db': 17,
-    'password': '',
-}
-WS4REDIS_EXPIRE = 7200
+# SESSION_ENGINE = 'redis_sessions.session'
+#
+# SESSION_REDIS_PREFIX = 'session'
+#
+# TEMPLATE_CONTEXT_PROCESSORS = (
+#     'django.contrib.auth.context_processors.auth',
+#     'django.core.context_processors.static',
+#     'django.core.context_processors.request',
+#     'ws4redis.context_processors.default',
+# )
+#
+# WEBSOCKET_URL = '/ws/'
+# WS4REDIS_CONNECTION = {
+#     'host': '127.0.0.1',
+#     'port': 6379,
+#     'db': 17,
+#     'password': '',
+# }
+# WS4REDIS_EXPIRE = 7200
