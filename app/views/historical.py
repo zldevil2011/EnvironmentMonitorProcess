@@ -11,6 +11,7 @@ from utils.mySqlUtils import MySQL
 import math
 transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1.2504464285714287, "no2": 2054.017857142857}
 import random
+# 设备列表
 def historical_device(request):
 	try:
 		adminer = Adminer.objects.get(username=request.session["username"])
@@ -150,7 +151,7 @@ def get_aqi(data):
 	cal.get_1_aqi(data)
 	return cal.AQI_1
 
-
+# 设备历史数据
 def historical_data_list(request,device_id):
 	try:
 		adminer = Adminer.objects.get(username=request.session["username"])

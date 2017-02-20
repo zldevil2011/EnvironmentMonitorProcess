@@ -14,6 +14,8 @@ from views.msp_server import msp_logout
 from views.msp_server import msp_sendto
 from views.msp_server import msp_receive_data
 from views.msp_server import msp_receive_log
+from views.utils.data_export import historical_device_data_export
+from views.utils.data_export import historical_device_data_export_function
 
 
 urlpatterns = [
@@ -31,6 +33,11 @@ urlpatterns = [
 	url(r'^document_info/(?P<news_id>\d+)/$', news_info, name="news_info"),
 	url(r'^user_login/$', user_login, name="user_login"),
 	url(r'^user_logout/$', user_logout, name="user_logout"),
+
+	url(r'^historical_device_data_export/$', historical_device_data_export, name="historical_device_data_export"),
+	url(r'^historical_device_data_export/(?P<device_id>\d+)/$', historical_device_data_export_function, name="historical_device_data_export_function"),
+
+
 ]
 
 urlpatterns += [

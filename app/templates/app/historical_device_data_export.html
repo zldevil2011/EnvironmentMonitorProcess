@@ -1,0 +1,49 @@
+{% extends "app/base.html" %}
+{% load static from staticfiles %}
+{% block title %}站点日（小时）平均数据{% endblock %}
+{% block body_content %}
+    <div class="clearfix" style="background-color: #fdfdfd;">
+        <div class="col-md-12">
+            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">池州 观测点分布</p>
+        </div>
+        <div class="col-md-12" style="padding: 0;">
+            <table class="table table-striped text-center table-td-center">
+                <thead>
+                    <tr style="background-color: #e8e8e8;">
+                        <th class="text-center" style="padding: 15px;">监测站点</th>
+                        <th class="text-center" style="padding: 15px;">安装地址</th>
+                        <th class="text-center" style="padding: 15px;">安装时间</th>
+                        <th class="text-center" style="padding: 15px;">选择导出日期</th>
+                        <th class="text-center" style="padding: 15px;">操作</th>
+                    </tr>
+                </thead>
+                <tbody class="tr_hander">
+                    {% for device in device_list %}
+                        <tr>
+                            <td>{{ device.name }}</td>
+                            <td>{{ device.address }}</td>
+                            <td>{{ device.install_time }}</td>
+                            <td><input name = "export_data" type="date" class="btn btn-block"></td>
+                            <td><button id = "{{ device.id }}" class="btn btn-success btn-block" onclick="data_export(this.id);">导出数据</button></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block special_js %}
+<script>
+    function data_export(device_id){
+        var device_id = device_id;
+        var export_data = $($("#" + device_id).parent().prev().children().get(0)).val();
+        if(export_data == ""){
+            alert("请选择日期");
+            $("#" + device_id).parent().prev().children().get(0).focus();
+            return false;
+        }
+        console.log(export_data);
+        window.location.href = '/historical_device_data_export/1?data_date=' + export_data;
+    }
+</script>
+{% endblock %}

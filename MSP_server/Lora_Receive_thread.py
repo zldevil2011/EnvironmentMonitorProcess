@@ -47,20 +47,20 @@ sensor_database_config = {
 	'14': 'HData',
 }
 sensor_config_parameter = {
-	'1': 1,
-	'2': 1,
-	'3': 1,
-	'4': 1,
-	'5': 1,
-	'6': 1,
-	'7': 1,
-	'8': 1,
-	'9': 1,
-	'10': 1,
-	'11': 1,
-	'12': 1,
-	'13': 1,
-	'14': 1,
+	'1': 1000,
+	'2': 1000,
+	'3': 1000,
+	'4': 1000,
+	'5': 1000,
+	'6': 1000,
+	'7': 1000,
+	'8': 1000,
+	'9': 1000,
+	'10': 1000,
+	'11': 1000,
+	'12': 1000,
+	'13': 1000,
+	'14': 1000,
 }
 sensor_devEui_map = {
 	"4A770203000002": "1"
@@ -139,9 +139,9 @@ class ReceiveThread(threading.Thread):
 					# self.parse_save_to_db(device_id, payload)
 					with open('./' + "receive.log", 'a') as destination:
 						print "iiiiii"
-						destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "DevEUI: " + DevEUI + " Data: " + payload + "\n")
+						destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "DevEUI: " + DevEUI + " Data: " + self.str_encode(payload) + "\n")
 					self.log_thread.send_data(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(
-						time.time())) + "DevEUI: " + DevEUI + " Data: " + payload + "\n")
+						time.time())) + "DevEUI: " + DevEUI + " Data: " + self.str_encode(payload) + "\n")
 				else:
 					with open('./' + "receive.log", 'a') as destination:
 						destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "Wrong AppEUI" + "\n")
@@ -169,7 +169,7 @@ class ReceiveThread(threading.Thread):
 				datas_in[idx] = i
 				idx += 1
 			api = ll('./transform.so')
-			api.arrtest(datas_in, datas_out, data_len)
+			api.StringToHex(datas_in, datas_out, data_len)
 			out_str = ""
 			for t in datas_out:
 				print t
@@ -185,14 +185,15 @@ class ReceiveThread(threading.Thread):
 
 			if crc_result == 0:
 				Head = self.bin_decode(bin_str[0:8])
-				config = bin_str[8:24]
+				device_id_bin = self.bin_decode(bin_str[8:24])
+				config = bin_str[24:40]
 				config.reverse()
-				time_year = self.bin2dec(self.bin_decode(bin_str[24:30]))
-				time_month = self.bin2dec(self.bin_decode(bin_str[30:34]))
-				time_date = self.bin2dec(self.bin_decode(bin_str[34:39]))
-				time_hour = self.bin2dec(self.bin_decode(bin_str[39:44]))
-				time_min = self.bin2dec(self.bin_decode(bin_str[44:50]))
-				time_sec = self.bin2dec(self.bin_decode(bin_str[50:56]))
+				time_year = self.bin2dec(self.bin_decode(bin_str[40:46]))
+				time_month = self.bin2dec(self.bin_decode(bin_str[46:50]))
+				time_date = self.bin2dec(self.bin_decode(bin_str[50:55]))
+				time_hour = self.bin2dec(self.bin_decode(bin_str[55:60]))
+				time_min = self.bin2dec(self.bin_decode(bin_str[60:66]))
+				time_sec = self.bin2dec(self.bin_decode(bin_str[66:72]))
 				collect_time = "20" + str(time_year) + "-" + str(time_month) + "-" + str(time_date) + " " + str(time_hour) + ":" + str(time_min) + ":" + str(time_sec)
 				sql = MySQL()
 				sql.connectDB("jssf")
@@ -204,16 +205,16 @@ class ReceiveThread(threading.Thread):
 				data[u"紧缩型时间传感器_实时时间"] = collect_time
 				data[u"电池电压传感器_电压"] = 1
 				data[u"太阳能电压传感器_电压"] = 1
-				data["O3_O3"] = "12"
-				data["CO_CO"] = "13"
-				data["SO2_SO2"] = "14"
-				data["NO2_NO2"] = "15"
-				data["PM2_5_PM2_5"] = "16"
-				data["PM10_PM10"] = "17"
+				data["O3_O3"] = "0"
+				data["CO_CO"] = "0"
+				data["SO2_SO2"] = "0"
+				data["NO2_NO2"] = "0"
+				data["PM2_5_PM2_5"] = "0"
+				data["PM10_PM10"] = "0"
 				for idx, tag in enumerate(config):
 					if int(tag) == 1:
 						print(sensor_config[str(idx+1)]), " has data"
-						data_bin = bin_str[56 + int(idx) * 16:56 + int(idx + 1) * 16]
+						data_bin = bin_str[72 + int(idx) * 16:72 + int(idx + 1) * 16]
 						data_dec = self.bin2dec(data_bin) / sensor_config_parameter[str(idx+1)]
 						try:
 							data[sensor_database_config[str(idx+1)]] = float(data_dec)
@@ -231,6 +232,7 @@ class ReceiveThread(threading.Thread):
 					print("Save Failed")
 				sql.close_connect()
 			else:
+				print("CRC 校验失败")
 				return 0
 
 		except Exception as e:
