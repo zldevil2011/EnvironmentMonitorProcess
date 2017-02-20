@@ -11,18 +11,35 @@ from django.core.mail import send_mail
 @csrf_exempt
 def historical_device_data_export(request):
 	if request.method == "GET":
+		sql = MySQL()
+		sql.connectDB("projectmanagement")
+		data = {}
+		data["ProjectID"] = {}
+		data["ProjectID"]["conn"] = "="
+		data["ProjectID"]["val"] = str(1)
+		devices = sql.get_query("projectnodeinfo", data)
+		sql.close_connect()
 		device_list = []
-		for device in range(10):
+		for device in devices:
 			tmp = {}
 			tmp["id"] = device["NodeNO"]
-			# tmp["id"] = device
 			tmp["name"] = device["Description"]
-			# tmp["name"] = "创业园"
 			tmp["address"] = device["InstallationAddress"]
-			# tmp["address"] = "电子信息产业园"
 			tmp["install_time"] = str(device["SetTime"])
-			# tmp["install_time"] = "2017-01-07 12:23:23"
 			device_list.append(tmp)
+
+		# device_list = []
+		# for device in range(10):
+		# 	tmp = {}
+		# 	tmp["id"] = device["NodeNO"]
+		# 	# tmp["id"] = device
+		# 	tmp["name"] = device["Description"]
+		# 	# tmp["name"] = "创业园"
+		# 	tmp["address"] = device["InstallationAddress"]
+		# 	# tmp["address"] = "电子信息产业园"
+		# 	tmp["install_time"] = str(device["SetTime"])
+		# 	# tmp["install_time"] = "2017-01-07 12:23:23"
+		# 	device_list.append(tmp)
 		return render(request, "app/historical_device_data_export.html", {
 			"device_list": device_list,
 		})
