@@ -14,14 +14,14 @@ def historical_device_data_export(request):
 		device_list = []
 		for device in range(10):
 			tmp = {}
-			# tmp["id"] = device["NodeNO"]
-			tmp["id"] = device
-			# tmp["name"] = device["Description"]
-			tmp["name"] = "创业园"
-			# tmp["address"] = device["InstallationAddress"]
-			tmp["address"] = "电子信息产业园"
-			# tmp["install_time"] = str(device["SetTime"])
-			tmp["install_time"] = "2017-01-07 12:23:23"
+			tmp["id"] = device["NodeNO"]
+			# tmp["id"] = device
+			tmp["name"] = device["Description"]
+			# tmp["name"] = "创业园"
+			tmp["address"] = device["InstallationAddress"]
+			# tmp["address"] = "电子信息产业园"
+			tmp["install_time"] = str(device["SetTime"])
+			# tmp["install_time"] = "2017-01-07 12:23:23"
 			device_list.append(tmp)
 		return render(request, "app/historical_device_data_export.html", {
 			"device_list": device_list,
