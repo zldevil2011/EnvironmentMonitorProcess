@@ -139,9 +139,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = './media/'
 
 
-# SESSION_ENGINE = 'redis_sessions.session'
-#
-# SESSION_REDIS_PREFIX = 'session'
+SESSION_ENGINE = 'redis_sessions.session'
+
+SESSION_REDIS_PREFIX = 'session'
 #
 # TEMPLATE_CONTEXT_PROCESSORS = (
 #     'django.contrib.auth.context_processors.auth',
@@ -150,7 +150,7 @@ MEDIA_ROOT = './media/'
 #     'ws4redis.context_processors.default',
 # )
 #
-# WEBSOCKET_URL = '/ws/'
+WEBSOCKET_URL = '/ws/'
 # WS4REDIS_CONNECTION = {
 #     'host': '127.0.0.1',
 #     'port': 6379,
