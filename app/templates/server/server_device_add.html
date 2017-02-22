@@ -1,0 +1,71 @@
+{% extends "server/server_base.html" %}
+{% block title %}设备添加{% endblock %}
+{% block special_css %}
+    <style>
+        .ipt {
+            display: inline-block;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .ipt-block{
+            display: block;
+            width: 100%;
+        }
+        .device-info div{
+            margin-bottom: 40px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block content_body %}
+    <div class = "device-add" style="padding-top: 120px;">
+        <div class="clearfix device-info">
+            <div class="col-md-2">
+                编号
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="ipt ipt-block">
+            </div>
+            <div class="col-md-2">
+                名称
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="ipt ipt-block">
+            </div>
+            <div class="col-md-2">
+                地址
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="ipt ipt-block">
+            </div>
+            <div class="col-md-2">
+                安装时间
+            </div>
+            <div class="col-md-4">
+                <input type="date" class="ipt ipt-block" style="line-height: inherit;">
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-block btn-success">添加</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block special_js %}
+<script>
+</script>
+{% endblock %}

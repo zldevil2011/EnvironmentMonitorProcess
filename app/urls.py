@@ -18,6 +18,7 @@ from views.utils.data_export import historical_device_data_export
 from views.utils.data_export import historical_device_data_export_function
 
 from views.server import server_index
+from views.server import server_device_add
 
 
 urlpatterns = [
@@ -67,4 +68,5 @@ urlpatterns += [
 
 urlpatterns += [
 	url(r'^server_index/$', server_index, name="server_index"),
+	url(r'^server_device_add/$', server_device_add, name="server_device_add"),
 ]

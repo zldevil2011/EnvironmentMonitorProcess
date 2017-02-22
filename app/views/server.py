@@ -29,3 +29,10 @@ def server_index(request):
 	return render(request, "server/server_index.html",{
 		# "device_list": device_list,
 	})
+
+
+@csrf_exempt
+def server_device_add(request):
+	return render(request, "server/server_device_add.html", {
+
+	})
