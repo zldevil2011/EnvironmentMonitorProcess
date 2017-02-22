@@ -168,10 +168,15 @@ def historical_device_data_export_function(request, device_id):
 			cnt = 0
 			for data in datas:
 				if start_time_t <= datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S") < end_time_t:
-					factor_sum += data[factor]
-					cnt += 1
+					try:
+						factor_sum += data[factor]
+						cnt += 1
+					except:
+						pass
 				# elif datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S") > end_time:
 				# 	break
+			if factor_sum == 0 and cnt == 1:
+				calculate_result[str(i)][factor] = "无数据"
 			try:
 				calculate_result[str(i)][factor] = round(float(factor_sum / cnt), 3)
 			except ZeroDivisionError:

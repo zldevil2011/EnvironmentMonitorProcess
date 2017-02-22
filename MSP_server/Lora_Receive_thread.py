@@ -63,7 +63,22 @@ sensor_config_parameter = {
 	'14': 1000,
 }
 sensor_devEui_map = {
-	"4A770203000002": "1"
+	"4A770203000002": "1",
+	"4A770203000003": "1",
+	"4A770203000004": "1",
+	"4A770203000005": "1",
+	"4A770203000006": "1",
+	"4A770203000007": "1",
+	"4A770203000008": "1",
+	"4A770203000009": "1",
+	"4A77020300000A": "1",
+	"4A77020300000B": "1",
+	"4A77020300000C": "1",
+	"4A77020300000D": "1",
+	"4A77020300000E": "1",
+	"4A77020300000F": "1",
+	"4A770203000010": "1",
+	"4A770203000011": "1",
 }
 from MSP_server.TCP_Link import TCP
 
@@ -136,7 +151,7 @@ class ReceiveThread(threading.Thread):
 					# 找到对应的设备并对设备的数据进行解析存储
 					print("payload")
 					print (payload)
-					# self.parse_save_to_db(device_id, payload)
+					self.parse_save_to_db(device_id, payload)
 					with open('./' + "receive.log", 'a') as destination:
 						print "iiiiii"
 						destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "DevEUI: " + DevEUI + " Data: " + self.str_encode(payload) + "\n")
@@ -195,8 +210,8 @@ class ReceiveThread(threading.Thread):
 				time_min = self.bin2dec(self.bin_decode(bin_str[60:66]))
 				time_sec = self.bin2dec(self.bin_decode(bin_str[66:72]))
 				collect_time = "20" + str(time_year) + "-" + str(time_month) + "-" + str(time_date) + " " + str(time_hour) + ":" + str(time_min) + ":" + str(time_sec)
-				sql = MySQL()
-				sql.connectDB("jssf")
+				# sql = MySQL()
+				# sql.connectDB("jssf")
 				data = {}
 				data[u"设备类型编号"] = 1
 				data[u"设备编号"] = int(device_id)
@@ -225,12 +240,12 @@ class ReceiveThread(threading.Thread):
 
 				# 存入数据库
 				print(data)
-				result = sql.insert_data(u"大气六参数", data)
-				if result == "success":
-					print("Save success")
-				else:
-					print("Save Failed")
-				sql.close_connect()
+				# result = sql.insert_data(u"大气六参数", data)
+				# if result == "success":
+				# 	print("Save success")
+				# else:
+				# 	print("Save Failed")
+				# sql.close_connect()
 			else:
 				print("CRC 校验失败")
 				return 0
