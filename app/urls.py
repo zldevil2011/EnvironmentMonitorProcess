@@ -17,6 +17,8 @@ from views.msp_server import msp_receive_log
 from views.utils.data_export import historical_device_data_export
 from views.utils.data_export import historical_device_data_export_function
 
+from views.server import server_index
+
 
 urlpatterns = [
 	url(r'^$', index_average, name="index_average"),
@@ -61,4 +63,8 @@ urlpatterns += [
 	url(r'^msp_sendto/$', msp_sendto, name="msp_sendto"),
 	url(r'^msp_receive_data/$', msp_receive_data, name="msp_receive_data"),
 	url(r'^msp_receive_log/$', msp_receive_log, name="msp_receive_log"),
+]
+
+urlpatterns += [
+	url(r'^server_index/$', server_index, name="server_index"),
 ]

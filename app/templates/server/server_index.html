@@ -1,0 +1,114 @@
+{% extends "server/server_base.html" %}
+{% block title %}设备列表{% endblock %}
+{% block special_css %}
+    <style>
+        .production-item .thumbnail{
+            background-color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+        }
+        .production-item .thumbnail:hover{
+            border: 1px solid black;
+        }
+    </style>
+{% endblock %}
+{% block content_body %}
+    <div class = "device-list" style="padding-top: 20px;">
+        <div class="col-md-3 col-xs-12 production-item">
+            <div class="thumbnail">
+                <div class="product-info">
+                    <h5 class="product-title">
+                        环境参数采集器
+                    </h5>
+                    <p class="product-address">
+                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
+                    </p>
+                    <p class="product-online-time">
+                        2016-12-12 12:12:12
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-12 production-item">
+            <div class="thumbnail">
+                <div class="product-info">
+                    <h5 class="product-title">
+                        环境参数采集器
+                    </h5>
+                    <p class="product-address">
+                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
+                    </p>
+                    <p class="product-online-time">
+                        2016-12-12 12:12:12
+                    </p>
+                </div>
+            </div>
+        </div>
+    <div class="col-md-3 col-xs-12 production-item">
+            <div class="thumbnail">
+                <div class="product-info">
+                    <h5 class="product-title">
+                        环境参数采集器
+                    </h5>
+                    <p class="product-address">
+                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
+                    </p>
+                    <p class="product-online-time">
+                        2016-12-12 12:12:12
+                    </p>
+                </div>
+            </div>
+        </div>
+    <div class="col-md-3 col-xs-12 production-item">
+            <div class="thumbnail">
+                <div class="product-info">
+                    <h5 class="product-title">
+                        环境参数采集器
+                    </h5>
+                    <p class="product-address">
+                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
+                    </p>
+                    <p class="product-online-time">
+                        2016-12-12 12:12:12
+                    </p>
+                </div>
+            </div>
+        </div>
+    <div class="col-md-3 col-xs-12 production-item">
+            <div class="thumbnail">
+                <div class="product-info">
+                    <h5 class="product-title">
+                        环境参数采集器
+                    </h5>
+                    <p class="product-address">
+                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
+                    </p>
+                    <p class="product-online-time">
+                        2016-12-12 12:12:12
+                    </p>
+                </div>
+            </div>
+        </div>
+    <div class="col-md-3 col-xs-12 production-item">
+            <div class="thumbnail">
+                <div class="product-info">
+                    <h5 class="product-title">
+                        环境参数采集器
+                    </h5>
+                    <p class="product-address">
+                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
+                    </p>
+                    <p class="product-online-time">
+                        2016-12-12 12:12:12
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block special_js %}
+<script>
+    $(".production-item").on("click", function(){
+        window.location.href = "/device/1/";
+    });
+</script>
+{% endblock %}

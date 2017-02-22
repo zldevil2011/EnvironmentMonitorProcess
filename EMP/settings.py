@@ -134,6 +134,7 @@ STATICFILES_DIRS = (
     ("app" + os.sep + "js", os.path.join(STATIC_ROOT, '../app_static/js')),
     ("app" + os.sep + "img", os.path.join(STATIC_ROOT, '../app_static/img')),
     ("app" + os.sep + "fonts", os.path.join(STATIC_ROOT, '../app_static/fonts')),
+    ("app" + os.sep + "font-awesome", os.path.join(STATIC_ROOT, '../app_static/font-awesome')),
 )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = './media/'
