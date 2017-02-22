@@ -10,24 +10,24 @@ from app.models import Sensor, SensorConfigParameter, SensorDatabaseConfig, Proj
 # 配置首页
 @csrf_exempt
 def server_index(request):
-	# sql = MySQL()
-	# sql.connectDB("projectmanagement")
-	# data = {}
-	# data["ProjectID"] = {}
-	# data["ProjectID"]["conn"] = "="
-	# data["ProjectID"]["val"] = str(1)
-	# devices = sql.get_query("projectnodeinfo", data)
-	# sql.close_connect()
-	# device_list = []
-	# for device in devices:
-	# 	tmp = {}
-	# 	tmp["id"] = device["NodeNO"]
-	# 	tmp["name"] = device["Description"]
-	# 	tmp["address"] = device["InstallationAddress"]
-	# 	tmp["install_time"] = str(device["SetTime"])
-	# 	device_list.append(tmp)
+	sql = MySQL()
+	sql.connectDB("projectmanagement")
+	data = {}
+	data["ProjectID"] = {}
+	data["ProjectID"]["conn"] = "="
+	data["ProjectID"]["val"] = str(1)
+	devices = sql.get_query("projectnodeinfo", data)
+	sql.close_connect()
+	device_list = []
+	for device in devices:
+		tmp = {}
+		tmp["id"] = device["NodeNO"]
+		tmp["name"] = device["Description"]
+		tmp["address"] = device["InstallationAddress"]
+		tmp["install_time"] = str(device["SetTime"])
+		device_list.append(tmp)
 	return render(request, "server/server_index.html",{
-		# "device_list": device_list,
+		"device_list": device_list,
 	})
 
 
@@ -40,9 +40,25 @@ def server_device_add(request):
 
 @csrf_exempt
 def server_device_parameter(request):
-	return render(request, "server/server_device_parameter.html", {
-
-	})
+	project = Project.objects.get(name=u"大气六参数")
+	project_sensor_list = SensorConfigParameter.objects.filter(project_id=project.id)
+	if request.method == "GET":
+		return render(request, "server/server_device_parameter.html", {
+			"project_sensor_list":project_sensor_list,
+		})
+	else:
+		parameter_dic = request.POST.get("paramater_data", None)
+		print parameter_dic
+		try:
+			parameter_dic = eval(parameter_dic)
+			for k in parameter_dic.keys():
+				scp = SensorConfigParameter.objects.get(id = int(k))
+				scp.val = float(parameter_dic[k])
+				scp.save()
+		except Exception as e:
+			print(str(e))
+			return HttpResponse("error")
+		return HttpResponse("success")
 
 @csrf_exempt
 def server_project_sensor_config(request):

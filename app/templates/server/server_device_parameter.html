@@ -50,49 +50,48 @@
             <div class="col-md-12">
                 解析系数设定
             </div>
-            <div class="col-md-2">
-                PM2.5
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="ipt ipt-block" style="text-align: start;">
-            </div>
-            <div class="col-md-2">
-                PM10
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="ipt ipt-block" style="text-align: start;">
-            </div>
-            <div class="col-md-2">
-                SO2
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="ipt ipt-block" style="text-align: start;">
-            </div>
-            <div class="col-md-2">
-                NO2
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="ipt ipt-block" style="text-align: start;">
-            </div>
-            <div class="col-md-2">
-                CO
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="ipt ipt-block" style="text-align: start;">
-            </div>
-            <div class="col-md-2">
-                O3
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="ipt ipt-block" style="text-align: start;">
-            </div>
+            {% for sensor in project_sensor_list %}
+                <div class="col-md-2">
+                    {{ sensor.name }}
+                </div>
+                <div class="col-md-4">
+                    <input id = "{{ sensor.id }}" type="text" class="sensor-parameter ipt ipt-block" style="text-align: start;" value="{{ sensor.val }}">
+                </div>
+            {% endfor %}
             <div class="col-md-12">
-                <button class="btn btn-block btn-success">更新</button>
+                <button class="btn btn-block btn-success" id="updateSensorParameter">更新</button>
             </div>
         </div>
     </div>
 {% endblock %}
 {% block special_js %}
 <script>
+    $("#updateSensorParameter").on("click", function(){
+        if(confirm("确认更新吗？")){
+            var $sensorParameterList = $(".sensor-parameter");
+            var parameter_dic = {};
+            $sensorParameterList.each(function(){
+                parameter_dic[$(this).attr("id")] = $(this).val();
+            });
+            $.ajax({
+                url: '/server_device_parameter/',
+                type: 'POST',
+                data: {paramater_data:JSON.stringify(parameter_dic)},
+                success:function(res){
+                    if(res == "success"){
+                        alert("更新成功");
+                        window.location = "/server_device_parameter/";
+                    }else{
+                        alert("更新失败，请稍后再试");
+                    }
+                },
+                error:function(res){
+                    alert("更新失败，请稍后再试");
+                }
+            });
+        }else{
+
+        }
+    });
 </script>
 {% endblock %}

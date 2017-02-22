@@ -13,97 +13,23 @@
 {% endblock %}
 {% block content_body %}
     <div class = "device-list" style="padding-top: 20px;">
+        {% for device in device_list %}
         <div class="col-md-3 col-xs-12 production-item">
             <div class="thumbnail">
                 <div class="product-info">
                     <h5 class="product-title">
-                        环境参数采集器
+                        {{ device.name }}
                     </h5>
                     <p class="product-address">
-                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
+                        {{ device.address }}
                     </p>
                     <p class="product-online-time">
-                        2016-12-12 12:12:12
+                        {{ device.install_time }}
                     </p>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-xs-12 production-item">
-            <div class="thumbnail">
-                <div class="product-info">
-                    <h5 class="product-title">
-                        环境参数采集器
-                    </h5>
-                    <p class="product-address">
-                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
-                    </p>
-                    <p class="product-online-time">
-                        2016-12-12 12:12:12
-                    </p>
-                </div>
-            </div>
-        </div>
-    <div class="col-md-3 col-xs-12 production-item">
-            <div class="thumbnail">
-                <div class="product-info">
-                    <h5 class="product-title">
-                        环境参数采集器
-                    </h5>
-                    <p class="product-address">
-                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
-                    </p>
-                    <p class="product-online-time">
-                        2016-12-12 12:12:12
-                    </p>
-                </div>
-            </div>
-        </div>
-    <div class="col-md-3 col-xs-12 production-item">
-            <div class="thumbnail">
-                <div class="product-info">
-                    <h5 class="product-title">
-                        环境参数采集器
-                    </h5>
-                    <p class="product-address">
-                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
-                    </p>
-                    <p class="product-online-time">
-                        2016-12-12 12:12:12
-                    </p>
-                </div>
-            </div>
-        </div>
-    <div class="col-md-3 col-xs-12 production-item">
-            <div class="thumbnail">
-                <div class="product-info">
-                    <h5 class="product-title">
-                        环境参数采集器
-                    </h5>
-                    <p class="product-address">
-                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
-                    </p>
-                    <p class="product-online-time">
-                        2016-12-12 12:12:12
-                    </p>
-                </div>
-            </div>
-        </div>
-    <div class="col-md-3 col-xs-12 production-item">
-            <div class="thumbnail">
-                <div class="product-info">
-                    <h5 class="product-title">
-                        环境参数采集器
-                    </h5>
-                    <p class="product-address">
-                        陕西省宝鸡市岐山县陕西省宝鸡市岐山县
-                    </p>
-                    <p class="product-online-time">
-                        2016-12-12 12:12:12
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+        {% endfor %}
 {% endblock %}
 {% block special_js %}
 <script>
