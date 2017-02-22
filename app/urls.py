@@ -19,6 +19,8 @@ from views.utils.data_export import historical_device_data_export_function
 
 from views.server import server_index
 from views.server import server_device_add
+from views.server import server_device_parameter
+from views.server import server_project_sensor_config
 
 
 urlpatterns = [
@@ -69,4 +71,6 @@ urlpatterns += [
 urlpatterns += [
 	url(r'^server_index/$', server_index, name="server_index"),
 	url(r'^server_device_add/$', server_device_add, name="server_device_add"),
+	url(r'^server_device_parameter/$', server_device_parameter, name="server_device_parameter"),
+	url(r'^server_project_sensor_config/$', server_project_sensor_config, name="server_project_sensor_config"),
 ]

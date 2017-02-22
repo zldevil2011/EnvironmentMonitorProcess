@@ -12,6 +12,8 @@ from app.views.utils.mySqlUtils import MySQL
 import base64
 import time
 import crc16
+from app.models import Project, SensorConfigParameter, SensorDatabaseConfig
+
 
 ll = ctypes.cdll.LoadLibrary
 sensor_config = {
@@ -30,38 +32,7 @@ sensor_config = {
 	'13': 'LuxData',
 	'14': 'HData',
 }
-sensor_database_config = {
-	'1': 'Time',
-	'2': u'电池电压传感器_电压',
-	'3': u'太阳能电压传感器_电压',
-	'4': 'O3_O3',
-	'5': 'CO_CO',
-	'6': 'SO2_SO2',
-	'7': 'NO2_NO2',
-	'8': 'PM2_5_PM2_5',
-	'9': 'PM10_PM10',
-	'10': 'TData',
-	'11': 'PData',
-	'12': 'HumData',
-	'13': 'LuxData',
-	'14': 'HData',
-}
-sensor_config_parameter = {
-	'1': 1000,
-	'2': 1000,
-	'3': 1000,
-	'4': 1000,
-	'5': 1000,
-	'6': 1000,
-	'7': 1000,
-	'8': 1000,
-	'9': 1000,
-	'10': 1000,
-	'11': 1000,
-	'12': 1000,
-	'13': 1000,
-	'14': 1000,
-}
+
 sensor_devEui_map = {
 	"4A770203000002": "1",
 	"4A770203000003": "1",
@@ -226,6 +197,49 @@ class ReceiveThread(threading.Thread):
 				data["NO2_NO2"] = "0"
 				data["PM2_5_PM2_5"] = "0"
 				data["PM10_PM10"] = "0"
+				try:
+					sensor_database_config = {}
+					sensor_config_parameter = {}
+					project = Project.objects.get(name=u"大气六参数")
+					sensor_config_parameter_list = SensorConfigParameter.objects.filter(project_id=project.pk).order_by('code')
+					for scp in sensor_config_parameter_list:
+						sensor_config_parameter[str(scp.code)] = scp.val
+					sensor_database_config_list = SensorDatabaseConfig.objects.filter(project_id=project.pk).order_by('code')
+					for sdc in sensor_database_config_list:
+						sensor_database_config[str(sdc.code)] = sdc.val
+				except:
+					sensor_database_config = {
+						'1': 'Time',
+						'2': u'电池电压传感器_电压',
+						'3': u'太阳能电压传感器_电压',
+						'4': 'O3_O3',
+						'5': 'CO_CO',
+						'6': 'SO2_SO2',
+						'7': 'NO2_NO2',
+						'8': 'PM2_5_PM2_5',
+						'9': 'PM10_PM10',
+						'10': 'TData',
+						'11': 'PData',
+						'12': 'HumData',
+						'13': 'LuxData',
+						'14': 'HData',
+					}
+					sensor_config_parameter = {
+						'1': 1000,
+						'2': 1000,
+						'3': 1000,
+						'4': 1000,
+						'5': 1000,
+						'6': 1000,
+						'7': 1000,
+						'8': 1000,
+						'9': 1000,
+						'10': 1000,
+						'11': 1000,
+						'12': 1000,
+						'13': 1000,
+						'14': 1000,
+					}
 				for idx, tag in enumerate(config):
 					if int(tag) == 1:
 						print(sensor_config[str(idx+1)]), " has data"

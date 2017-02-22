@@ -1,5 +1,5 @@
 {% extends "server/server_base.html" %}
-{% block title %}设备添加{% endblock %}
+{% block title %}参数配置{% endblock %}
 {% block special_css %}
     <style>
         .ipt {
@@ -33,34 +33,61 @@
     </style>
 {% endblock %}
 {% block content_body %}
-    <div class = "device-add" style="padding-top: 120px;">
-        <div class="clearfix device-info">
+
+    <div class = "device-add" style="padding-top: 20px;">
+        <div class="project-info" style="padding-left: 20px;">
+            <div class="clearfix">
+                <p>
+                    项目名称：多参数数据采集
+                </p>
+                <p>
+                    项目编号：JS1
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="clearfix device-info" style="margin-top: 20px;">
+            <div class="col-md-12">
+                解析系数设定
+            </div>
             <div class="col-md-2">
-                编号
+                PM2.5
             </div>
             <div class="col-md-4">
                 <input type="text" class="ipt ipt-block" style="text-align: start;">
             </div>
             <div class="col-md-2">
-                名称
+                PM10
             </div>
             <div class="col-md-4">
                 <input type="text" class="ipt ipt-block" style="text-align: start;">
             </div>
             <div class="col-md-2">
-                地址
+                SO2
             </div>
             <div class="col-md-4">
                 <input type="text" class="ipt ipt-block" style="text-align: start;">
             </div>
             <div class="col-md-2">
-                安装时间
+                NO2
             </div>
             <div class="col-md-4">
-                <input type="date" class="ipt ipt-block" style="line-height: inherit;">
+                <input type="text" class="ipt ipt-block" style="text-align: start;">
+            </div>
+            <div class="col-md-2">
+                CO
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="ipt ipt-block" style="text-align: start;">
+            </div>
+            <div class="col-md-2">
+                O3
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="ipt ipt-block" style="text-align: start;">
             </div>
             <div class="col-md-12">
-                <button class="btn btn-block btn-success">添加</button>
+                <button class="btn btn-block btn-success">更新</button>
             </div>
         </div>
     </div>
