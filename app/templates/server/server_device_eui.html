@@ -1,0 +1,100 @@
+{% extends "server/server_base.html" %}
+{% block title %}EUI配置{% endblock %}
+{% block special_css %}
+    <style>
+        .ipt {
+            display: inline-block;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .ipt-block{
+            display: block;
+            width: 100%;
+        }
+        .device-info div{
+{#            margin-bottom: 40px;#}
+            text-align: center;
+        }
+        .table-horizontal-center thead tr th, .table-horizontal-center tbody tr td{
+            text-align: center;
+        }
+        .table-vertical-center thead tr th, .table-vertical-center tbody tr td{
+            vertical-align: middle;
+        }
+    </style>
+{% endblock %}
+{% block content_body %}
+
+    <div class = "sensor-list" style="padding-top: 20px;">
+        <div class="clearfix device-info" style="margin-top: 20px;">
+            <div class="col-md-12">
+                设备EUI配置
+            </div>
+            <div class="col-md-12">
+                <table id="data_list" class="table table-horizontal-center table-vertical-center">
+                    <thead>
+                        <tr>
+                            <th>设备名称</th>
+                            <th>设备ID</th>
+                            <th>设备DevEUI</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for device in device_list %}
+                        <tr>
+                            <td>{{ device.name }}</td>
+                            <td>{{ device.num }}</td>
+                            <td><input value="{{ device.dev_eui }}" class="ipt ipt-block"></td>
+                            <td><button id = "{{ device.num }}" class="btn btn-success btn-block" onclick="updateDeviceEui(this.id);">更新</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block special_js %}
+    <script>
+        function updateDeviceEui(id){
+            var devEui = $($("#" + id).parent().prev().children().get(0)).val();
+            if(confirm("确认更新？")){
+                $.ajax({
+                    url:'/server_device_eui/',
+                    type: 'POST',
+                    data:{device_id:id, deveui:devEui},
+                    success:function(res){
+                        if(res == "success"){
+                            alert("更新成功");
+                            window.location.reload();
+                        }else{
+                            alert("更新失败");
+                        }
+
+                    },
+                    error:function(res){
+                        alert("更新失败");
+                    }
+                })
+            }else{
+
+            }
+        }
+    </script>
+{% endblock %}

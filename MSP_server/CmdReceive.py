@@ -2,7 +2,7 @@
 import threading
 import time
 import json
-import crc16
+# import crc16
 import SocketServer
 from SocketServer import StreamRequestHandler
 from setting import AppEUI
@@ -130,10 +130,10 @@ class CmdReceive(StreamRequestHandler):
 			pre_data = bin_str[0:400]
 			src_data = bin_str[400:408]
 
-			CRC_Tool = crc16()
-			crc_str = CRC_Tool.createarray(pre_data)
-			crc_result = CRC_Tool.calcrc(src_data)
-
+			# CRC_Tool = crc16()
+			# crc_str = CRC_Tool.createarray(pre_data)
+			# crc_result = CRC_Tool.calcrc(src_data)
+			crc_result = 0
 			if crc_result == 0:
 				Head = self.bin_decode(bin_str[0:8])
 				config = bin_str[8:24]

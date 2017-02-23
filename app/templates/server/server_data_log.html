@@ -1,0 +1,19 @@
+{% extends "server/server_base.html" %}
+{% block title %}接收日记{% endblock %}
+{% block special_css %}
+    <style>
+
+    </style>
+{% endblock %}
+{% block content_body %}
+    <div class = "log-list" style="padding-top: 20px;">
+        <textarea style="width: 100%;min-height: 600px;">{% for log in receive_log %}{{ log }}{% endfor %}</textarea>
+    </div>
+{% endblock %}
+{% block special_js %}
+<script>
+    $(".production-item").on("click", function(){
+        window.location.href = "/server_device_info/?device_id=" + $(this).attr("id");
+    });
+</script>
+{% endblock %}

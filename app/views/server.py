@@ -322,3 +322,45 @@ def server_device_info(request):
 		except Exception as e:
 			print(str(e))
 			return HttpResponse("error")
+
+@csrf_exempt
+def server_data_log(request):
+
+	receive_log = list()
+	try:
+		with open('./' + "receive.log", 'r') as destination:
+			line = destination.readline()  # 调用文件的 readline()方法
+			while line:
+				receive_log.append(line)
+				line = destination.readline()
+	except:
+		pass
+	return render(request, "server/server_data_log.html", {
+		"receive_log": receive_log,
+	})
+
+
+@csrf_exempt
+def server_device_eui(request):
+	if request.method == "GET":
+		project = Project.objects.get(name=u"大气六参数")
+		device_list = Device.objects.filter(project_id=project.id)
+
+		return render(request, "server/server_device_eui.html", {
+			"device_list": device_list,
+		})
+	else:
+		device_id = request.POST.get("device_id", None)
+		deveui = request.POST.get("deveui", None)
+		print(device_id)
+		print(deveui)
+		if device_id is None or deveui is None:
+			return HttpResponse("error")
+		try:
+			device = Device.objects.get(num=int(device_id))
+			device.dev_eui = deveui
+			device.save()
+			return HttpResponse("success")
+		except Exception as e:
+			print(str(e))
+			return HttpResponse("error")

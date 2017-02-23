@@ -24,6 +24,8 @@ from views.server import server_project_sensor_config
 from views.server import server_device_data
 from views.server import server_sensor_list
 from views.server import server_device_info
+from views.server import server_data_log
+from views.server import server_device_eui
 
 
 urlpatterns = [
@@ -79,4 +81,6 @@ urlpatterns += [
 	url(r'^server_device_data/$', server_device_data, name="server_device_data"),
 	url(r'^server_sensor_list/$', server_sensor_list, name="server_sensor_list"),
 	url(r'^server_device_info/$', server_device_info, name="server_device_info"),
+	url(r'^server_data_log/$', server_data_log, name="server_data_log"),
+	url(r'^server_device_eui/$', server_device_eui, name="server_device_eui"),
 ]

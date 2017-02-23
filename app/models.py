@@ -38,6 +38,10 @@ class Device(models.Model):
 	address = models.CharField(max_length=500, null=True)
 	install_time = models.DateTimeField(null=True)
 	project_id = models.IntegerField(default=0)
+	dev_eui = models.CharField(max_length=200, null=True)
+
+	def __unicode__(self):
+		return str(self.num)
 
 
 # 参数数据库配置
