@@ -130,6 +130,7 @@ def server_device_add(request):
 			if device_id is None or name is None or address is None or install_time is None:
 				return HttpResponse("error")
 			install_time = datetime.strptime(install_time, "%Y-%m-%d")
+
 			device = Device()
 			device.num = device_id
 			device.name = name
@@ -137,6 +138,12 @@ def server_device_add(request):
 			device.install_time = install_time
 			device.save()
 
+			itp = str(install_time)
+			itp = itp.replace('-', '/')
+			itp_pre = itp.split(' ')[0].split('/')
+			if len(itp_pre[1]) == 2 and int(itp_pre[1]) < 10:
+				itp_pre[1] = itp_pre[1][1]
+			install_time = itp_pre[0] + "/" + itp_pre[1] + "/" + itp_pre[2] + " " + itp.split(' ')[1]
 
 			data = {}
 			data["ManagementID"] = str(device_id)
@@ -254,7 +261,16 @@ def server_device_info(request):
 			device["id"] = device["NodeNO"]
 			device["name"] = device["Description"]
 			device["address"] = device["InstallationAddress"]
-			device["install_time"] = str(device["SetTime"])[0:10]
+			itp = str(device["SetTime"]).split(' ')[0].split('/')
+			str_year = itp[0]
+			str_month = itp[1]
+			str_day = itp[2]
+			if len(str_month) < 2:
+				str_month = "0" + str_month
+			if len(str_day) < 2:
+				str_day = "0" + str_day
+			device["install_time"] = str_year + "-" + str_month + "-" + str_day
+
 		except Exception as e:
 			print(str(e))
 			return HttpResponse("设备不存在")
@@ -286,6 +302,12 @@ def server_device_info(request):
 			datas = {}
 			datas["name"] = name
 			datas["address"] = address
+			itp = str(install_time)
+			itp = itp.replace('-', '/')
+			itp_pre = itp.split(' ')[0].split('/')
+			if len(itp_pre[1]) == 2 and int(itp_pre[1]) < 10:
+				itp_pre[1] = itp_pre[1][1]
+			install_time = itp_pre[0] + "/" + itp_pre[1] + "/" + itp_pre[2] + " " + itp.split(' ')[1]
 			datas["install_time"] = str(install_time)
 			keys = {}
 			keys["NodeNo"] = str(device_id)
