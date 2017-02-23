@@ -27,6 +27,14 @@ def server_index(request):
 		tmp["address"] = device["InstallationAddress"]
 		tmp["install_time"] = str(device["SetTime"])
 		device_list.append(tmp)
+	# for i in range(10):
+	# 	tmp = {}
+	# 	tmp["id"] = random.randint(10,20)
+	# 	tmp["name"] = random.randint(10,20)
+	# 	tmp["address"] = "InstallationAddress"
+	# 	tmp["install_time"] = "2017-12-12 12:12:12"
+	# 	device_list.append(tmp)
+
 	return render(request, "server/server_index.html",{
 		"device_list": device_list,
 	})
@@ -225,3 +233,70 @@ def server_sensor_list(request):
 	return render(request, "server/server_sensor_list.html", {
 		"sensor_list": sensor_list,
 	})
+
+
+@csrf_exempt
+def server_device_info(request):
+	if request.method == "GET":
+		try:
+			device_id = int(request.GET.get("device_id"))
+			# 获取SQLite数据存储的数据
+			'''待实现'''
+			# 获取Mysql数据库存储的数据
+			sql = MySQL()
+			sql.connectDB("projectmanagement")
+			data = {}
+			data["NodeNo"] = {}
+			data["NodeNo"]["conn"] = "="
+			data["NodeNo"]["val"] = str(device_id)
+			device = sql.get_query("projectnodeinfo", data)[0]
+			sql.close_connect()
+			device["id"] = device["NodeNO"]
+			device["name"] = device["Description"]
+			device["address"] = device["InstallationAddress"]
+			device["install_time"] = str(device["SetTime"])[0:10]
+		except Exception as e:
+			print(str(e))
+			return HttpResponse("设备不存在")
+		# device = {}
+		# device["id"] = 1
+		# device["name"] = "Description"
+		# device["address"] = "InstallationAddress"
+		# device["install_time"] = str("2016-12-12")[0:10]
+		return render(request, "server/server_device_info.html", {
+			"device": device,
+		})
+	else:
+		try:
+			device_id = int(request.POST.get("device_id"))
+			name = request.POST.get("name", None)
+			address = request.POST.get("address", None)
+			install_time = request.POST.get("install_time", None)
+			print device_id, name, address, install_time
+			# return HttpResponse("error")
+			if name is None or address is None or install_time is None:
+				return HttpResponse("error")
+			install_time = datetime.strptime(install_time, "%Y-%m-%d")
+			# 更新SQLite数据存储的数据
+			'''待实现'''
+
+			# 更新Mysql数据库存储的数据
+			sql = MySQL()
+			sql.connectDB("projectmanagement")
+			datas = {}
+			datas["name"] = name
+			datas["address"] = address
+			datas["install_time"] = str(install_time)
+			keys = {}
+			keys["NodeNo"] = str(device_id)
+			result = sql.update_data("projectnodeinfo", datas, keys)
+			sql.close_connect()
+
+			if result == "success":
+				return HttpResponse("success")
+			else:
+				return HttpResponse("error")
+
+		except Exception as e:
+			print(str(e))
+			return HttpResponse("error")

@@ -14,9 +14,12 @@
 {% block content_body %}
     <div class = "device-list" style="padding-top: 20px;">
         {% for device in device_list %}
-        <div class="col-md-3 col-xs-12 production-item">
+        <div class="col-md-3 col-xs-12 production-item" id="{{ device.id }}">
             <div class="thumbnail">
                 <div class="product-info">
+                    <h5 class="product-id">
+                        ID: {{ device.id }}
+                    </h5>
                     <h5 class="product-title">
                         {{ device.name }}
                     </h5>
@@ -34,7 +37,7 @@
 {% block special_js %}
 <script>
     $(".production-item").on("click", function(){
-        window.location.href = "/device/1/";
+        window.location.href = "/server_device_info/?device_id=" + $(this).attr("id");
     });
 </script>
 {% endblock %}
