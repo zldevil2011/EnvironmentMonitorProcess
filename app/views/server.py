@@ -6,6 +6,7 @@ from EMP import settings
 from django.core.mail import send_mail
 from app.views.utils.mySqlUtils import MySQL
 from app.models import Sensor, SensorConfigParameter, SensorDatabaseConfig, Project
+import random
 
 # 配置首页
 @csrf_exempt
@@ -28,6 +29,80 @@ def server_index(request):
 		device_list.append(tmp)
 	return render(request, "server/server_index.html",{
 		"device_list": device_list,
+	})
+
+
+@csrf_exempt
+def server_device_data(request):
+	# 获取设备列表
+	sql = MySQL()
+	sql.connectDB("projectmanagement")
+	data = {}
+	data["ProjectID"] = {}
+	data["ProjectID"]["conn"] = "="
+	data["ProjectID"]["val"] = str(1)
+	devices = sql.get_query("projectnodeinfo", data)
+	sql.close_connect()
+	device_list = []
+	for device in devices:
+		tmp = {}
+		tmp["id"] = device["NodeNO"]
+		tmp["name"] = device["Description"]
+		tmp["address"] = device["InstallationAddress"]
+		tmp["install_time"] = str(device["SetTime"])
+		device_list.append(tmp)
+	# 获取数据
+	sql.connectDB("jssf")
+	datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
+	sql.close_connect()
+
+	datas_list = []
+
+	for data in datas:
+		tmp = {}
+		tmp["so2"] = data["SO2_SO2"]
+		tmp["no2"] = data["NO2_NO2"]
+		tmp["pm10"] = data["PM10_PM10"]
+		tmp["co"] = data["CO_CO"]
+		tmp["o3"] = data["O3_O3"]
+		tmp["pm25"] = data["PM2_5_PM2_5"]
+		tmp["device_id"] = data[u"项目内节点编号"]
+		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
+		for device in device_list:
+			if device["id"] == tmp["device_id"]:
+				tmp["name"] = device["name"]
+				break
+		datas_list.append(tmp)
+	# for i in range(10):
+	# 	tmp = {}
+	# 	tmp["so2"] = random.randint(10,20)
+	# 	tmp["no2"] = random.randint(5,20)
+	# 	tmp["pm10"] = random.randint(1,20)
+	# 	tmp["co"] = random.randint(10,50)
+	# 	tmp["o3"] = random.randint(10,201)
+	# 	tmp["pm25"] = random.randint(10,30)
+	# 	tmp["device_id"] = random.randint(10,20)
+	# 	tmp["time"] = "2017-12-12 12:00:00"
+	# 	tmp["name"] = "京师方圆"
+	# 	datas_list.append(tmp)
+	try:
+		page = int(request.GET.get("page", 1))
+		if page < 1:
+			return HttpResponseRedirect("/server_device_data?page=" + str(1))
+	except:
+		page = 1
+	total_page = int(len(datas_list)/30)
+	if total_page < 1:
+		total_page = 1
+	if page > total_page:
+		return HttpResponseRedirect("/server_device_data?page=" + str(total_page))
+	start_num = (page - 1) * 30
+	end_num = page * 30
+	datas_list = datas_list[start_num:end_num]
+	return render(request, "server/server_device_data.html", {
+		"datas_list": datas_list,
+		"page": page,
+		"total_page": total_page,
 	})
 
 
@@ -103,3 +178,11 @@ def server_project_sensor_config(request):
 		except Exception as e:
 			print(str(e))
 			return HttpResponse("error")
+
+
+@csrf_exempt
+def server_sensor_list(request):
+	sensor_list = Sensor.objects.all()
+	return render(request, "server/server_sensor_list.html", {
+		"sensor_list": sensor_list,
+	})

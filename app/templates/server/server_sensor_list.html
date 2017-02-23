@@ -1,0 +1,67 @@
+{% extends "server/server_base.html" %}
+{% block title %}传感器列表{% endblock %}
+{% block special_css %}
+    <style>
+        .ipt {
+            display: inline-block;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .ipt-block{
+            display: block;
+            width: 100%;
+        }
+        .device-info div{
+{#            margin-bottom: 40px;#}
+            text-align: center;
+        }
+        .table-horizontal-center thead tr th, .table-horizontal-center tbody tr td{
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block content_body %}
+
+    <div class = "sensor-list" style="padding-top: 20px;">
+        <div class="clearfix device-info" style="margin-top: 20px;">
+            <div class="col-md-12">
+                传感器信息
+            </div>
+            <div class="col-md-12">
+                <table id="data_list" class="table table-horizontal-center">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>存储位置</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sensor in sensor_list %}
+                        <tr>
+                            <td>{{ sensor.name }}</td>
+                            <td>{{ sensor.code }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block special_js %}
+{% endblock %}

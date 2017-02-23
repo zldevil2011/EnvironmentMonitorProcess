@@ -113,11 +113,11 @@
         <div class="pure-menu custom-restricted-width">
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="/server_index/" class="pure-menu-link"><i class="fa fa-address-book pure-menu-item-icon"></i>设备列表</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link"><i class="fa fa-bandcamp pure-menu-item-icon"></i>数据列表</a></li>
+                <li class="pure-menu-item"><a href="/server_device_data/" class="pure-menu-link"><i class="fa fa-bandcamp pure-menu-item-icon"></i>数据列表</a></li>
                 <li class="pure-menu-item"><a href="/server_device_add/" class="pure-menu-link"><i class="fa fa-free-code-camp pure-menu-item-icon"></i>新增设备</a></li>
                 <li class="pure-menu-item"><a href="/server_project_sensor_config/" class="pure-menu-link"><i class="fa fa-ravelry pure-menu-item-icon"></i>传感器配置</a></li>
                 <li class="pure-menu-item"><a href="/server_device_parameter/" class="pure-menu-link"><i class="fa fa-anchor pure-menu-item-icon"></i>解析系数配置</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link"><i class="fa fa-window-maximize pure-menu-item-icon"></i>传感器表</a></li>
+                <li class="pure-menu-item"><a href="/server_sensor_list/" class="pure-menu-link"><i class="fa fa-window-maximize pure-menu-item-icon"></i>传感器表</a></li>
             </ul>
         </div>
     </div>
@@ -155,7 +155,12 @@
         var link = window.location;
         var link_name = link.pathname.split("/")[1];
         var dic = {};
-        dic["index"] = "首页";
+        dic["server_index"] = "设备列表";
+        dic["server_device_data"] = "数据列表";
+        dic["server_device_add"] = "新增设备";
+        dic["server_project_sensor_config"] = "传感器配置";
+        dic["server_device_parameter"] = "解析系数配置";
+        dic["server_sensor_list"] = "传感器表";
         if(link_name != "index"){
             $("[name=current_item]").html(dic[link_name]);
             $("[name=current_item]").attr("href",link);

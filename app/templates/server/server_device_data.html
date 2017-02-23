@@ -1,0 +1,111 @@
+{% extends "server/server_base.html" %}
+{% block title %}数据列表{% endblock %}
+{% block special_css %}
+    <style>
+        .ipt {
+            display: inline-block;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .ipt-block{
+            display: block;
+            width: 100%;
+        }
+        .device-info div{
+{#            margin-bottom: 40px;#}
+            text-align: center;
+        }
+        .table-horizontal-center thead tr th, .table-horizontal-center tbody tr td{
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block content_body %}
+
+    <div class = "device-data" style="padding-top: 20px;">
+        <div class="project-info" style="padding-left: 20px;">
+            <div class="clearfix">
+                <p>
+                    项目名称：多参数数据采集
+                </p>
+                <p>
+                    项目编号：JS1
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="clearfix device-info" style="margin-top: 20px;">
+            <div class="col-md-12">
+                接收到的原始数据
+            </div>
+            <div class="col-md-12">
+                <table id="data_list" class="table table-horizontal-center">
+                    <thead>
+                        <tr>
+                            <th>观测点</th>
+                            <th>设备ID</th>
+                            <th>PM2.5</th>
+                            <th>PM10</th>
+                            <th>SO2</th>
+                            <th>NO2</th>
+                            <th>CO</th>
+                            <th>O3</th>
+                            <th>观测时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in datas_list %}
+                        <tr>
+                            <td>{{ data.name }}</td>
+                            <td>{{ data.device_id }}</td>
+                            <td>{{ data.pm25 }}</td>
+                            <td>{{ data.pm10 }}</td>
+                            <td>{{ data.so2 }}</td>
+                            <td>{{ data.no2 }}</td>
+                            <td>{{ data.co }}</td>
+                            <td>{{ data.o3 }}</td>
+                            <td>{{ data.time }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-11 column" style="text-align: right;">
+                <ul class="pagination">
+                    <li>
+                         <a href="/server_device_data/?page={{ page|add:-1}}">前一页</a>
+                    </li>
+                    <li>
+                         <a href="#">{{ page }}&nbsp;/&nbsp;{{ total_page }}</a>
+                    </li>
+                    <li>
+                         <a href="/server_device_data/?page={{ page|add:1}}">后一页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block special_js %}
+    <script src="https://cdn.bootcss.com/jquery.tablesorter/2.28.5/js/jquery.tablesorter.min.js"></script>
+    <script>
+        $("#data_list").tablesorter();
+    </script>
+{% endblock %}
