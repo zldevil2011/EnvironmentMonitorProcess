@@ -136,6 +136,7 @@ def server_device_add(request):
 			device.name = name
 			device.address = address
 			device.install_time = install_time
+			device.project_id = project.pk
 			device.save()
 
 			itp = str(install_time)
