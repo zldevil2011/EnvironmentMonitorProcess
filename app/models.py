@@ -31,6 +31,15 @@ class Project(models.Model):
 		return str(self.pk)
 
 
+# 设备信息
+class Device(models.Model):
+	num = models.IntegerField(default=0)
+	name = models.CharField(max_length=200, null=True)
+	address = models.CharField(max_length=500, null=True)
+	install_time = models.DateTimeField(null=True)
+	project_id = models.IntegerField(default=0)
+
+
 # 参数数据库配置
 class SensorDatabaseConfig(models.Model):
 	project_id = models.IntegerField(default=0)

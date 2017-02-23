@@ -39,33 +39,75 @@
                 编号
             </div>
             <div class="col-md-4">
-                <input type="text" class="ipt ipt-block" style="text-align: start;">
+                <input type="text" id = "device_id" class="ipt ipt-block" style="text-align: start;">
             </div>
             <div class="col-md-2">
                 名称
             </div>
             <div class="col-md-4">
-                <input type="text" class="ipt ipt-block" style="text-align: start;">
+                <input type="text" id = "name" class="ipt ipt-block" style="text-align: start;">
             </div>
             <div class="col-md-2">
                 地址
             </div>
             <div class="col-md-4">
-                <input type="text" class="ipt ipt-block" style="text-align: start;">
+                <input type="text" id = "address" class="ipt ipt-block" style="text-align: start;">
             </div>
             <div class="col-md-2">
                 安装时间
             </div>
             <div class="col-md-4">
-                <input type="date" class="ipt ipt-block" style="line-height: inherit;">
+                <input type="date" id = "install_time" class="ipt ipt-block" style="line-height: inherit;">
             </div>
             <div class="col-md-12">
-                <button class="btn btn-block btn-success">添加</button>
+                <button class="btn btn-block btn-success" id="addDevice">添加</button>
             </div>
         </div>
     </div>
 {% endblock %}
 {% block special_js %}
 <script>
+$("#addDevice").on("click", function(){
+    var device_id = $.trim($("#device_id").val());
+    if(device_id == ""){
+        $("#device_id").focus();
+        return;
+    }
+    var name = $.trim($("#name").val());
+    if(name == ""){
+        $("#name").focus();
+        return;
+    }
+    var address = $.trim($("#address").val());
+    if(address == ""){
+        $("#address").focus();
+        return;
+    }
+    var install_time = $.trim($("#install_time").val());
+    if(install_time == ""){
+        $("#install_time").focus();
+        return;
+    }
+    if(confirm("确认添加？")){
+        $.ajax({
+            url:'/server_device_add/',
+            type: 'POST',
+            data:{device_id:device_id, name:name, address:address, install_time:install_time},
+            success:function(res){
+                if(res == "success"){
+                    alert("添加成功");
+                }else{
+                    alert("添加失败");
+                }
+
+            },
+            error:function(res){
+                alert("添加失败");
+            }
+        })
+    }else{
+
+    }
+});
 </script>
 {% endblock %}

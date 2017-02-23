@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from EMP import settings
 from django.core.mail import send_mail
 from app.views.utils.mySqlUtils import MySQL
-from app.models import Sensor, SensorConfigParameter, SensorDatabaseConfig, Project
+from app.models import Sensor, SensorConfigParameter, SensorDatabaseConfig, Project, Device
 import random
 
 # 配置首页
@@ -108,9 +108,48 @@ def server_device_data(request):
 
 @csrf_exempt
 def server_device_add(request):
-	return render(request, "server/server_device_add.html", {
+	if request.method == "GET":
+		return render(request, "server/server_device_add.html", {
 
-	})
+		})
+	else:
+		try:
+			project = Project.objects.get(name = u"大气六参数")
+			device_id = request.POST.get("device_id", None)
+			name = request.POST.get("name", None)
+			address = request.POST.get("address", None)
+			install_time = request.POST.get("install_time", None)
+			if device_id is None or name is None or address is None or install_time is None:
+				return HttpResponse("error")
+			install_time = datetime.strptime(install_time, "%Y-%m-%d")
+			device = Device()
+			device.num = device_id
+			device.name = name
+			device.address = address
+			device.install_time = install_time
+			device.save()
+
+
+			data = {}
+			data["ManagementID"] = str(device_id)
+			data["ProjectID"] = str(project.pk)
+			data["NodeNO"] = str(device_id)
+			data["NodeName"] = str(name)
+			data["InstallationAddress"] = str(address)
+			data["MathinID"] = str(device_id)
+			data["SetTime"] = str(install_time)
+			data["Description"] = str(name)
+			sql = MySQL()
+			sql.connectDB("projectmanagement")
+			result = sql.insert_data("projectnodeinfo", data)
+			sql.close_connect()
+			if result == "success":
+				return HttpResponse("success")
+			else:
+				return HttpResponse("error")
+		except Exception as e:
+			print(str(e))
+			return HttpResponse("error")
 
 
 @csrf_exempt
