@@ -96,6 +96,7 @@ $("#addDevice").on("click", function(){
             success:function(res){
                 if(res == "success"){
                     alert("添加成功");
+                    window.location.href = "/server_index/";
                 }else{
                     alert("添加失败");
                 }
