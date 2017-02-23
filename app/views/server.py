@@ -57,7 +57,7 @@ def server_device_data(request):
 	sql.close_connect()
 
 	datas_list = []
-
+	datas.reverse()
 	for data in datas:
 		tmp = {}
 		tmp["so2"] = data["SO2_SO2"]
@@ -91,13 +91,13 @@ def server_device_data(request):
 			return HttpResponseRedirect("/server_device_data?page=" + str(1))
 	except:
 		page = 1
-	total_page = int(len(datas_list)/30)
+	total_page = int(len(datas_list)/100)
 	if total_page < 1:
 		total_page = 1
 	if page > total_page:
 		return HttpResponseRedirect("/server_device_data?page=" + str(total_page))
-	start_num = (page - 1) * 30
-	end_num = page * 30
+	start_num = (page - 1) * 100
+	end_num = page * 100
 	datas_list = datas_list[start_num:end_num]
 	return render(request, "server/server_device_data.html", {
 		"datas_list": datas_list,
