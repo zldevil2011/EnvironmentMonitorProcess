@@ -300,15 +300,15 @@ def server_device_info(request):
 			sql = MySQL()
 			sql.connectDB("projectmanagement")
 			datas = {}
-			datas["name"] = name
-			datas["address"] = address
+			datas["Description"] = name
+			datas["InstallationAddress"] = address
 			itp = str(install_time)
 			itp = itp.replace('-', '/')
 			itp_pre = itp.split(' ')[0].split('/')
 			if len(itp_pre[1]) == 2 and int(itp_pre[1]) < 10:
 				itp_pre[1] = itp_pre[1][1]
 			install_time = itp_pre[0] + "/" + itp_pre[1] + "/" + itp_pre[2] + " " + itp.split(' ')[1]
-			datas["install_time"] = str(install_time)
+			datas["SetTime"] = str(install_time)
 			keys = {}
 			keys["NodeNo"] = str(device_id)
 			result = sql.update_data("projectnodeinfo", datas, keys)
