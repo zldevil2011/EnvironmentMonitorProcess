@@ -29,32 +29,64 @@ def historical_device(request):
 	admin_ndoe_list = adminer.admin_node.split(',')
 	print "admin_node_list"
 	print admin_ndoe_list
+	longitude_dic = {
+		"1": {"name": "齐山医药", "val": 117.5286111111111},
+		"2": {"name": "赛威机械", "val": 117.5325000000000},
+		"3": {"name": "创业园",   "val": 117.5379210000000},
+		"4": {"name": "太平鸟",   "val": 117.5598140000000},
+		"5": {"name": "池州港",   "val": 117.4800630000000},
+		"6": {"name": "6号节点",  "val": 117.5286111111111},
+		"7": {"name": "望华楼",   "val": 117.5472020000000},
+		"8": {"name": "老干部局", "val": 117.4914460000000},
+		"9": {"name": "创业园2",  "val": 117.5379210000000},
+		"10": {"name": "帽式01",  "val": 117.5436320000000},
+		"11": {"name": "帽式02",  "val": 117.5436320000000},
+		"12": {"name": "帽式03",  "val": 117.5436320000000},
+		"13": {"name": "帽式04",  "val": 117.5436320000000},
+	}
+	latitude_dic = {
+		"1": {"name": "齐山医药", "val": 30.710833333333333},
+		"2": {"name": "赛威机械", "val": 30.700000000000000},
+		"3": {"name": "创业园",   "val": 30.691674000000000},
+		"4": {"name": "太平鸟",   "val": 30.705204000000000},
+		"5": {"name": "池州港",   "val": 30.682560000000000},
+		"6": {"name": "6号节点",  "val": 30.710833333333333},
+		"7": {"name": "望华楼",   "val": 30.665855000000000},
+		"8": {"name": "老干部局", "val": 30.649073000000000},
+		"9": {"name": "创业园2",  "val": 30.691674000000000},
+		"10": {"name": "帽式01",  "val": 30.707883000000000},
+		"11": {"name": "帽式02",  "val": 30.707883000000000},
+		"12": {"name": "帽式03",  "val": 30.707883000000000},
+		"13": {"name": "帽式04",  "val": 30.707883000000000},
+	}
 	for device in devices:
 		tmp = {}
 		tmp["id"] = device["NodeNO"]
 		tmp["name"] = device["Description"]
 		tmp["address"] = device["InstallationAddress"]
-		if int(tmp["id"]) == 3:
-			tmp["longitude"] = str(117.5379210000)
-			tmp["latitude"] = str(30.6916740000)
-		elif int(tmp["id"]) == 2:
-			tmp["longitude"] = str(117.5433630000)
-			tmp["latitude"] = str(30.7021370000)
-		elif int(tmp["id"]) == 1:
-			tmp["longitude"] = str(117.5442090000)
-			tmp["latitude"] = str(30.7166530000)
-		elif int(tmp["id"]) == 4:
-			tmp["longitude"] = str(117.5497670000)
-			tmp["latitude"] = str(30.7098570000)
-		elif int(tmp["id"]) == 5:
-			tmp["longitude"] = str(117.5619360000)
-			tmp["latitude"] = str(30.7385770000)
-		elif int(tmp["id"]) == 6:
-			tmp["longitude"] = str(118.3440090000)
-			tmp["latitude"] = str(30.9235910000)
-		else:
-			tmp["longitude"] = str(117.5436320000 + 0.01 * random.randint(-2, 2))
-			tmp["latitude"] = str(30.7078830000 + 0.01 * random.randint(-3, 3))
+		tmp["longitude"] = longitude_dic[str(tmp["id"])]["val"]
+		tmp["latitude"]  = latitude_dic[str(tmp["id"])]["val"]
+		# if int(tmp["id"]) == 3:
+		# 	tmp["longitude"] = str(117.5379210000)
+		# 	tmp["latitude"] = str(30.6916740000)
+		# elif int(tmp["id"]) == 2:
+		# 	tmp["longitude"] = str(117.5433630000)
+		# 	tmp["latitude"] = str(30.7021370000)
+		# elif int(tmp["id"]) == 1:
+		# 	tmp["longitude"] = str(117.5442090000)
+		# 	tmp["latitude"] = str(30.7166530000)
+		# elif int(tmp["id"]) == 4:
+		# 	tmp["longitude"] = str(117.5497670000)
+		# 	tmp["latitude"] = str(30.7098570000)
+		# elif int(tmp["id"]) == 5:
+		# 	tmp["longitude"] = str(117.5619360000)
+		# 	tmp["latitude"] = str(30.7385770000)
+		# elif int(tmp["id"]) == 6:
+		# 	tmp["longitude"] = str(118.3440090000)
+		# 	tmp["latitude"] = str(30.9235910000)
+		# else:
+		# 	tmp["longitude"] = str(117.5436320000 + 0.01 * random.randint(-2, 2))
+		# 	tmp["latitude"] = str(30.7078830000 + 0.01 * random.randint(-3, 3))
 		tmp["install_time"] = str(device["SetTime"])
 		if unicode(tmp["id"]) in admin_ndoe_list:
 			device_list.append(tmp)
