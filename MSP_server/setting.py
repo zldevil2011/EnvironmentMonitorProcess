@@ -1,5 +1,5 @@
 # address = '139.129.207.135'
-address = 'msp02.claaiot.com'
+address = 'msp10.claaiot.com'
 port = 30002
 AppEUI = '2C26C50203000001'
 AppKey = '00112233445566778899AABBCCDDEEFF'

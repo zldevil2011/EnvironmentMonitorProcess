@@ -115,6 +115,65 @@ def server_device_data(request):
 
 
 @csrf_exempt
+def server_device_data_list(request):
+	try:
+		device_id = int(request.GET.get("device_id"))
+		sql = MySQL()
+		sql.connectDB("projectmanagement")
+		data = {}
+		data["NodeNo"] = {}
+		data["NodeNo"]["conn"] = "="
+		data["NodeNo"]["val"] = str(device_id)
+		device = sql.get_query("projectnodeinfo", data)[0]
+		sql.close_connect()
+	except:
+		return HttpResponse("设备不存在")
+	device["id"] = device["NodeNO"]
+	device["name"] = device["Description"]
+	device["address"] = device["InstallationAddress"]
+	device["install_time"] = str(device["SetTime"])
+	# 获取数据
+	sql.connectDB("jssf")
+	datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
+	sql.close_connect()
+
+	datas_list = []
+	datas.reverse()
+	for data in datas:
+		tmp = {}
+		tmp["so2"] = data["SO2_SO2"]
+		tmp["no2"] = data["NO2_NO2"]
+		tmp["pm10"] = data["PM10_PM10"]
+		tmp["co"] = data["CO_CO"]
+		tmp["o3"] = data["O3_O3"]
+		tmp["pm25"] = data["PM2_5_PM2_5"]
+		tmp["device_id"] = data[u"项目内节点编号"]
+		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
+		if device["id"] == tmp["device_id"]:
+			tmp["name"] = device["name"]
+		datas_list.append(tmp)
+	try:
+		page = int(request.GET.get("page", 1))
+		if page < 1:
+			return HttpResponseRedirect("/server_device_data_list?page=" + str(1))
+	except:
+		page = 1
+	total_page = int(len(datas_list)/100)
+	if total_page < 1:
+		total_page = 1
+	if page > total_page:
+		return HttpResponseRedirect("/server_device_data_list?page=" + str(total_page))
+	start_num = (page - 1) * 100
+	end_num = page * 100
+	datas_list = datas_list[start_num:end_num]
+	return render(request, "server/server_device_data.html", {
+		"datas_list": datas_list,
+		"page": page,
+		"total_page": total_page,
+	})
+
+
+@csrf_exempt
 def server_device_add(request):
 	if request.method == "GET":
 		return render(request, "server/server_device_add.html", {
@@ -284,6 +343,7 @@ def server_device_info(request):
 			"device": device,
 		})
 	else:
+		# 更新设备信息
 		try:
 			device_id = int(request.POST.get("device_id"))
 			name = request.POST.get("name", None)
@@ -296,11 +356,17 @@ def server_device_info(request):
 			install_time = datetime.strptime(install_time, "%Y-%m-%d")
 			# 更新SQLite数据存储的数据
 			'''待实现'''
+			device_object = Device.objects.get(num=device_id)
+			device_object.name = name
+			device_object.address = address
+			device_object.install_time = install_time
+			device_object.save()
 
 			# 更新Mysql数据库存储的数据
 			sql = MySQL()
 			sql.connectDB("projectmanagement")
 			datas = {}
+			datas["NodeName"] = name
 			datas["Description"] = name
 			datas["InstallationAddress"] = address
 			itp = str(install_time)
