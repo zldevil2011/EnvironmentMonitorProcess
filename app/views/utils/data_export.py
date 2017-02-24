@@ -192,7 +192,7 @@ def historical_device_data_export_function(request, device_id):
 		calculator.get_1_aqi(data_tmp)
 		calculate_result[str(i)]["AQI_1"] = calculator.AQI_1
 		calculate_result[str(i)]["Main_Pollute_1"] = calculator.Main_Pollute_1
-		calculate_result[str(i)]["classification"] = calculator.AQI_info_1.classification
+		calculate_result[str(i)]["classification"] = calculator.AQI_info_1["classification"]
 	# print calculate_result
 	# 写入excel文件
 	try:
