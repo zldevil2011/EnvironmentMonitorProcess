@@ -1,6 +1,8 @@
 # coding=utf-8
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
+
+from app.views.objects.AqiParameter import AqiParameter
 from mySqlUtils import MySQL
 from datetime import datetime, timedelta
 from variables import transform_factor
@@ -153,6 +155,7 @@ def historical_device_data_export_function(request, device_id):
 		tmp["device_id"] = data[u"项目内节点编号"]
 		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
 		datas_list_briage.append(tmp)
+
 	datas = datas_list_briage
 	# 计算小时日平均数据
 	# 计算思路：从1点开始，依次使用当前时间减去一个小时的时间作为起点，当前时间作为终点，获取中间时刻的数据加和求平均
@@ -163,6 +166,7 @@ def historical_device_data_export_function(request, device_id):
 		int_i = int(i)
 		end_time_t = start_time + timedelta(hours=int_i)
 		start_time_t = end_time_t - timedelta(hours=1)
+		data_tmp = {}
 		for factor in factors:
 			factor_sum = 0
 			cnt = 0
@@ -175,12 +179,20 @@ def historical_device_data_export_function(request, device_id):
 						pass
 				# elif datetime.strptime(data["time"], "%Y-%m-%d %H:%M:%S") > end_time:
 				# 	break
-			if factor_sum == 0 and cnt == 1:
+			if factor_sum == 0 and cnt == 0:
 				calculate_result[str(i)][factor] = "无数据"
+				data_tmp[factor] = None
 			try:
 				calculate_result[str(i)][factor] = round(float(factor_sum / cnt), 3)
+				data_tmp[factor] = calculate_result[str(i)][factor]
 			except ZeroDivisionError:
 				calculate_result[str(i)][factor] = "无数据"
+				data_tmp[factor] = None
+		calculator = AqiParameter()
+		calculator.get_1_aqi(data_tmp)
+		calculate_result[str(i)]["AQI_1"] = calculator.AQI_1
+		calculate_result[str(i)]["Main_Pollute_1"] = calculator.Main_Pollute_1
+		calculate_result[str(i)]["classification"] = calculator.AQI_info_1.classification
 	# print calculate_result
 	# 写入excel文件
 	try:
@@ -189,11 +201,11 @@ def historical_device_data_export_function(request, device_id):
 		workbook = xlwt.Workbook(encoding='utf-8')# 创建工作簿
 		mysheet = workbook.add_sheet(device_info["name"] + str(data_date) + u'1小时平均数据')# 创建工作页
 		cols = 7 #每行的列
-		cols_name = ['时间','O3平均值(ug/m3)','CO平均值(mg/m3)','SO2平均值(ug/m3)','NO2平均值(ug/m3)','PM2.5平均值(ug/m3)','PM10平均值(ug/m3)']#表头名
+		cols_name = ['时间','O3平均值(ug/m3)','CO平均值(mg/m3)','SO2平均值(ug/m3)','NO2平均值(ug/m3)','PM2.5平均值(ug/m3)','PM10平均值(ug/m3)','AQI','污染等级']#表头名
 		for c in range(len(cols_name)):
 			mysheet.write(0, c, cols_name[c])
 
-		factors = ["o3", "co", "so2", "no2", "pm25", "pm10"]
+		factors = ["o3", "co", "so2", "no2", "pm25", "pm10", "AQI_1", "classification"]
 		for r in range(0, 24):#对行进行遍历
 			mysheet.write(r + 1, 0, str(r+1) + "点")
 			for c in range(len(factors)): #对列进行遍历
