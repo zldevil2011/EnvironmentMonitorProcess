@@ -151,7 +151,7 @@ def server_device_data_list(request):
 		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
 		if device["id"] == tmp["device_id"]:
 			tmp["name"] = device["name"]
-		datas_list.append(tmp)
+			datas_list.append(tmp)
 	try:
 		page = int(request.GET.get("page", 1))
 		if page < 1:
