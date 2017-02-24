@@ -72,10 +72,10 @@ def msp_receive_data(request):
 	# res = msp.sendto_cs()
 
 
-	log_thread = Th()
-	log_thread.start()
+	# log_thread = Th()
+	# log_thread.start()
 
-	new_thread = ReceiveThread(1, log_thread)
+	new_thread = ReceiveThread(1, 1)
 	new_thread.start()
 	res = 1
 	if res == 1:
