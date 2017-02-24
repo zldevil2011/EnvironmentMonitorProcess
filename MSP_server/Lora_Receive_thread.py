@@ -85,7 +85,7 @@ class ReceiveThread(threading.Thread):
 
 		data = receive_tcp_sock.recv(1024)
 		print "The Server Response: ", repr(data), "\n"
-
+		print "out of line"
 		while True:
 			try:
 				data = receive_tcp_sock.recv(1024)
@@ -117,7 +117,10 @@ class ReceiveThread(threading.Thread):
 					DevEUI = data_json["DevEUI"]
 					print DevEUI
 					payload = data_json["payload"]
+
 					print payload
+					print self.decode_base64(payload)
+					payload = self.decode_base64(payload)
 					device_id = sensor_devEui_map[DevEUI.upper()]
 					try:
 						dev_eui = DevEUI.upper()
@@ -129,7 +132,7 @@ class ReceiveThread(threading.Thread):
 						# 新建对应的设备
 						project = Project.objects.get(name=u"大气六参数")
 						try:
-							device_list = Device.objects.filter(project_id=project.pk).order_by('-Num')
+							device_list = Device.objects.filter(project_id=project.pk).order_by('-num')
 							device_id = device_list[0].num + 1
 						except:
 							device_id = 1
@@ -174,6 +177,8 @@ class ReceiveThread(threading.Thread):
 					with open('./' + "receive.log", 'a') as destination:
 						print "iiiiii"
 						destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "DevEUI: " + DevEUI + " Data: " + self.str_encode(payload) + "\n")
+					print(self.log_thread)
+					print(type(self.log_thread))
 					self.log_thread.send_data(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(
 						time.time())) + "DevEUI: " + DevEUI + " Data: " + self.str_encode(payload) + "\n")
 				else:
@@ -190,24 +195,25 @@ class ReceiveThread(threading.Thread):
 			print(str(e))
 
 	def parse_save_to_db(self, device_id, data):
-		# data = decode_base64(data)
+		# data = self.decode_base64(data)
 		# data is the str which length is 52
 		try:
 			data_len = len(data)
 			print(data_len)
-			array_type_in = ctypes.c_char * data_len
-			array_type_out = ctypes.c_char * data_len
-			datas_out = array_type_in()
-			datas_in = array_type_out()
-			idx = 0
-			for i in data:
-				datas_in[idx] = i
-				idx += 1
-			api = ll('./transform.so')
-			api.StringToHex(datas_in, datas_out, data_len)
-			out_str = ""
-			for t in datas_out:
-				out_str += str(t)
+			# array_type_in = ctypes.c_char * data_len
+			# array_type_out = ctypes.c_char * data_len
+			# datas_out = array_type_in()
+			# datas_in = array_type_out()
+			# idx = 0
+			# for i in data:
+			# 	datas_in[idx] = i
+			# 	idx += 1
+			# api = ll('./transform.so')
+			# api.StringToHex(datas_in, datas_out, data_len)
+			# out_str = ""
+			# for t in datas_out:
+			# 	out_str += str(t)
+			out_str = data
 			bin_str = self.str_encode(out_str)
 			pre_data = bin_str[0:400]
 			src_data = bin_str[400:408]
