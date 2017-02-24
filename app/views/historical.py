@@ -34,13 +34,13 @@ def historical_device(request):
 		tmp["id"] = device["NodeNO"]
 		tmp["name"] = device["Description"]
 		tmp["address"] = device["InstallationAddress"]
-		if int(tmp["id"]) == 1:
+		if int(tmp["id"]) == 3:
 			tmp["longitude"] = str(117.5379210000)
 			tmp["latitude"] = str(30.6916740000)
 		elif int(tmp["id"]) == 2:
 			tmp["longitude"] = str(117.5433630000)
 			tmp["latitude"] = str(30.7021370000)
-		elif int(tmp["id"]) == 3:
+		elif int(tmp["id"]) == 1:
 			tmp["longitude"] = str(117.5442090000)
 			tmp["latitude"] = str(30.7166530000)
 		elif int(tmp["id"]) == 4:
