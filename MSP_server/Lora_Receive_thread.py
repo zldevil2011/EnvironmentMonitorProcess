@@ -252,7 +252,7 @@ class ReceiveThread(threading.Thread):
 				time_hour = self.bin2dec((time_str[12:17]))
 				time_min = self.bin2dec((time_str[6:12]))
 				time_sec = self.bin2dec((time_str[0:6]))
-				collect_time = "200" + str(time_year) + "-" + str(time_month) + "-" + str(time_date) + " " + str(
+				collect_time = "201" + str(time_year) + "-" + str(time_month) + "-" + str(time_date) + " " + str(
 					time_hour) + ":" + str(time_min) + ":" + str(time_sec)
 				print(collect_time)
 
