@@ -179,13 +179,19 @@ class ReceiveThread(threading.Thread):
 						destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "DevEUI: " + DevEUI + " Data: " + self.str_encode(payload) + "\n")
 					print(self.log_thread)
 					print(type(self.log_thread))
-					# self.log_thread.send_data(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(
-					# 	time.time())) + "DevEUI: " + DevEUI + " Data: " + self.str_encode(payload) + "\n")
+					try:
+						self.log_thread.send_data(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(
+							time.time())) + "DevEUI: " + DevEUI + " Data: " + self.str_encode(payload) + "\n")
+					except:
+						pass
 				else:
 					with open('./' + "receive.log", 'a') as destination:
 						destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "Wrong AppEUI" + "\n")
-					# self.log_thread.send_data(
-					# 	time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "Wrong AppEUI" + "\n")
+					try:
+						self.log_thread.send_data(
+							time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "Wrong AppEUI" + "\n")
+					except:
+						pass
 			else:
 				with open('./' + "receive.log", 'a') as destination:
 					destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "Wrong Code" + "\n")

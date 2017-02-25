@@ -86,8 +86,12 @@ def historical_device(request):
 		tmp["id"] = device["NodeNO"]
 		tmp["name"] = device["Description"]
 		tmp["address"] = device["InstallationAddress"]
-		tmp["longitude"] = longitude_dic[str(tmp["id"])]["val"]
-		tmp["latitude"]  = latitude_dic[str(tmp["id"])]["val"]
+		try:
+			tmp["longitude"] = longitude_dic[str(tmp["id"])]["val"]
+			tmp["latitude"]  = latitude_dic[str(tmp["id"])]["val"]
+		except:
+			tmp["longitude"] = "117.5436320000000"
+			tmp["latitude"] = "30.707883000000000"
 		# if int(tmp["id"]) == 3:
 		# 	tmp["longitude"] = str(117.5379210000)
 		# 	tmp["latitude"] = str(30.6916740000)
