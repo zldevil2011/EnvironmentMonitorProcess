@@ -313,10 +313,24 @@ class ReceiveThread(threading.Thread):
 							data[sensor_database_config[str(idx + 2)]] = float(0)
 				# 需要计算插入数据库的SQL语句
 				# 存入数据库
-				print(data)
+				data_t = {}
+				data_t[u"设备类型编号"] = 1
+				data_t[u"设备编号"] = int(device_id)
+				data_t[u"项目内节点编号"] = int(device_id)
+				data_t[u"传感器配置表"] = 1
+				data_t[u"紧缩型时间传感器_实时时间"] = collect_time
+				data_t[u"电池电压传感器_电压"] = data[u"电池电压传感器_电压"]
+				data_t[u"太阳能电压传感器_电压"] = data[u"太阳能电压传感器_电压"]
+				data_t["O3_O3"] = data["O3_O3"]
+				data_t["CO_CO"] = data["CO_CO"]
+				data_t["SO2_SO2"] = data["SO2_SO2"]
+				data_t["NO2_NO2"] = data["NO2_NO2"]
+				data_t["PM2_5_PM2_5"] = data["PM2_5_PM2_5"]
+				data_t["PM10_PM10"] = data["PM10_PM10"]
+				print(data_t)
 				sql = MySQL()
 				sql.connectDB("jssf")
-				result = sql.insert_data(u"大气六参数", data)
+				result = sql.insert_data(u"大气六参数", data_t)
 				if result == "success":
 					print("Save success")
 				else:
