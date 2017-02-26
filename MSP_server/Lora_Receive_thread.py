@@ -61,11 +61,10 @@ class ReceiveThread(threading.Thread):
 		self.pid = pid
 		self.log_thread = log_thread
 
-
 	def run(self):
 		receive_tcp_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		host = (address, port)
-		receive_tcp_sock.settimeout(5)
+		# receive_tcp_sock.settimeout(5)
 
 		receive_tcp_sock.connect(host)
 
@@ -85,9 +84,11 @@ class ReceiveThread(threading.Thread):
 
 		data = receive_tcp_sock.recv(1024)
 		print "The Server Response: ", repr(data), "\n"
-		print "out of line"
+		print "we have join the msp server"
 		while True:
+			print("waiting data")
 			try:
+				receive_tcp_sock.send("ACK")
 				data = receive_tcp_sock.recv(1024)
 				print "The Server Response: ", repr(data), "\n"
 				# res_str = str(json.loads(data))
