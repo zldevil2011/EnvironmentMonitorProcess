@@ -188,11 +188,16 @@ def historical_device_data_export_function(request, device_id):
 			except ZeroDivisionError:
 				calculate_result[str(i)][factor] = "无数据"
 				data_tmp[factor] = None
-		calculator = AqiParameter()
-		calculator.get_1_aqi(data_tmp)
-		calculate_result[str(i)]["AQI_1"] = calculator.AQI_1
-		calculate_result[str(i)]["Main_Pollute_1"] = calculator.Main_Pollute_1
-		calculate_result[str(i)]["classification"] = calculator.AQI_info_1["classification"]
+		try:
+			calculator = AqiParameter()
+			calculator.get_1_aqi(data_tmp)
+			calculate_result[str(i)]["AQI_1"] = calculator.AQI_1
+			calculate_result[str(i)]["Main_Pollute_1"] = calculator.Main_Pollute_1
+			calculate_result[str(i)]["classification"] = calculator.AQI_info_1["classification"]
+		except Exception as e:
+			calculate_result[str(i)]["AQI_1"] = "无数据"
+			calculate_result[str(i)]["Main_Pollute_1"] = "无数据"
+			calculate_result[str(i)]["classification"] = "无数据"
 	# print calculate_result
 	# 写入excel文件
 	try:
