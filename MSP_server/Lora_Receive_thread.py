@@ -64,7 +64,7 @@ class ReceiveThread(threading.Thread):
 	def run(self):
 		receive_tcp_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		host = (address, port)
-		# receive_tcp_sock.settimeout(5)
+		receive_tcp_sock.settimeout(5)
 
 		receive_tcp_sock.connect(host)
 
