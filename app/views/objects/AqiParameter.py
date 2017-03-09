@@ -107,7 +107,7 @@ class AqiParameter(object):
 					level_data.reverse()
 					for level in level_data:
 						cnt += 1
-						if val > level["level"]:
+						if val >= level["level"]:
 							# print level
 							# print self.start_point[cnt]
 							iaqi = round((val - level["level"]) * level["value"] + self.start_point[cnt])
