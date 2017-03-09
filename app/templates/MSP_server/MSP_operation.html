@@ -121,7 +121,8 @@
                     console.log("Disconnected");
                  }
                  function onMessage(evt) {
-                     $("[name=receiveData]").val(evt.data);
+                     var pre_val = $("[name=receiveData]").val();
+                     $("[name=receiveData]").val(pre_val + "\n" + evt.data);
                      console.log('Retrieved data from server: ' + evt.data);
                  }
                  function onError(evt) {

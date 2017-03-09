@@ -299,6 +299,7 @@ class ReceiveThread(threading.Thread):
 					except:
 						sensor_config_parameter[str(idx)] = 1
 						pass
+				config = config[1:]
 				for idx, tag in enumerate(config):
 					if int(tag) == 1:
 						print(sensor_config[str(idx + 2)]), " has data"
