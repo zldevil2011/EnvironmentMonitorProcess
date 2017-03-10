@@ -68,8 +68,8 @@ class ReceiveThread(threading.Thread):
 
 		receive_tcp_sock.connect(host)
 		while True:
-			time.sleep(5)
 			try:
+				time.sleep(5)
 				json_cmd = {}
 				json_cmd["CMD"] = "JOIN"
 				json_cmd["CmdSeq"] = 123
