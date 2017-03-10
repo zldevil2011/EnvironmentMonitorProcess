@@ -97,11 +97,14 @@ class ReceiveThread(threading.Thread):
 				receive_tcp_sock.send("ACK")
 				data = receive_tcp_sock.recv(1024)
 				print "The Server Response: ", repr(data), "\n"
+				with open('./' + "receive.log", 'a') as destination:
+					destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "The Server Response: " + repr(data) + "\n")
 				# res_str = str(json.loads(data))
 				data = data.split('\n')[2]
 				self.parase_data(data)
 			except Exception as e:
 				print "here"
+
 				print(str(e))
 			# res_str = str(json.loads(data))
 

@@ -402,6 +402,7 @@ def server_data_log(request):
 				line = destination.readline()
 	except:
 		pass
+	receive_log.reverse()
 	return render(request, "server/server_data_log.html", {
 		"receive_log": receive_log,
 	})
