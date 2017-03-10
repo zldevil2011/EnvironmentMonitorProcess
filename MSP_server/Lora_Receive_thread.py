@@ -64,7 +64,7 @@ class ReceiveThread(threading.Thread):
 	def run(self):
 		receive_tcp_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		host = (address, port)
-		# receive_tcp_sock.settimeout(5)
+		receive_tcp_sock.settimeout(5)
 
 		receive_tcp_sock.connect(host)
 		while True:
@@ -304,6 +304,7 @@ class ReceiveThread(threading.Thread):
 					except:
 						sensor_config_parameter[str(idx)] = 1
 						pass
+				config = config[1:]
 				for idx, tag in enumerate(config):
 					if int(tag) == 1:
 						print(sensor_config[str(idx + 2)]), " has data"

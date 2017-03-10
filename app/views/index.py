@@ -152,11 +152,16 @@ def index_average(request):
 	end_num = page * 20
 	data_list_20 = datas_list[start_num:end_num]
 	for data in datas_list:
-		calculator = AqiParameter()
-		calculator.get_1_aqi(data)
-		data["AQI_1"] = calculator.AQI_1
-		data["Main_Pollute_1"] = calculator.Main_Pollute_1
-		data["AQI_info_1"] = calculator.AQI_info_1
+		try:
+			calculator = AqiParameter()
+			calculator.get_1_aqi(data)
+			data["AQI_1"] = calculator.AQI_1
+			data["Main_Pollute_1"] = calculator.Main_Pollute_1
+			data["AQI_info_1"] = calculator.AQI_info_1
+		except:
+			data["AQI_1"] = u"无数据"
+			data["Main_Pollute_1"] = u"无数据"
+			data["AQI_info_1"] = u"无数据"
 		# data_collect_time = data["time"]
 		# warning_time = datetime.today()
 		# warning_time = datetime(warning_time.year, warning_time.month, warning_time.day, warning_time.hour, 0, 0)
