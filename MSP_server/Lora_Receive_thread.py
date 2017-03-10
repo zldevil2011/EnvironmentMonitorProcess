@@ -68,6 +68,7 @@ class ReceiveThread(threading.Thread):
 
 		receive_tcp_sock.connect(host)
 		while True:
+			time.sleep(5)
 			try:
 				json_cmd = {}
 				json_cmd["CMD"] = "JOIN"
