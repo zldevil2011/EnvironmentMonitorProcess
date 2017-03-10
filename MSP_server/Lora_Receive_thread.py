@@ -238,6 +238,7 @@ class ReceiveThread(threading.Thread):
 				tmp_1 = bin_str[0:8]
 				tmp_2 = bin_str[8:16]
 				device_id_bin = self.bin2dec(tmp_2 + tmp_1)
+				device_id = self.bin2dec(device_id_bin)
 				'''转换配置表'''
 				print bin_str[16:32]
 				tmp_1 = bin_str[16:24]
