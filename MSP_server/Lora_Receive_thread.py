@@ -67,24 +67,29 @@ class ReceiveThread(threading.Thread):
 		# receive_tcp_sock.settimeout(5)
 
 		receive_tcp_sock.connect(host)
+		while True:
+			try:
+				json_cmd = {}
+				json_cmd["CMD"] = "JOIN"
+				json_cmd["CmdSeq"] = 123
+				json_cmd["AppEUI"] = "2c26c50203000001"
+				json_cmd["AppNonce"] = "123"
+				json_cmd["Challenge"] = "2c26c50203000001"
+				json_cmd = json.JSONEncoder().encode(json_cmd)
+				json_len = len(json_cmd)
+				cmd_str = str(json_len)
+				cmd_str += "\n"
+				cmd_str += json_cmd
+				cmd_str += "\n"
+				receive_tcp_sock.send(cmd_str)
 
-		json_cmd = {}
-		json_cmd["CMD"] = "JOIN"
-		json_cmd["CmdSeq"] = 123
-		json_cmd["AppEUI"] = "2c26c50203000001"
-		json_cmd["AppNonce"] = "123"
-		json_cmd["Challenge"] = "2c26c50203000001"
-		json_cmd = json.JSONEncoder().encode(json_cmd)
-		json_len = len(json_cmd)
-		cmd_str = str(json_len)
-		cmd_str += "\n"
-		cmd_str += json_cmd
-		cmd_str += "\n"
-		receive_tcp_sock.send(cmd_str)
-
-		data = receive_tcp_sock.recv(1024)
-		print "The Server Response: ", repr(data), "\n"
-		print "we have join the msp server"
+				data = receive_tcp_sock.recv(1024)
+				print "The Server Response: ", repr(data), "\n"
+				print "we have join the msp server"
+				break
+			except:
+				print(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "Join Failed!" + "\n")
+				pass
 		while True:
 			print("waiting data")
 			try:
