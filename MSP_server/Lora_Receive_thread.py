@@ -61,20 +61,20 @@ class ReceiveThread(threading.Thread):
 		self.pid = pid
 		self.log_thread = log_thread
 
-	def run(self):
-		receive_tcp_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		host = (address, port)
-		receive_tcp_sock.settimeout(5)
+		self.receive_tcp_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		self.receive_tcp_sock.settimeout(5)
+		self.receive_tcp_sock.connect((address, port))
+		self.AppEUI = "2c26c50203000001"
 
-		receive_tcp_sock.connect(host)
+	def run(self):
 		while True:
 			try:
 				time.sleep(5)
 				json_cmd = {}
 				json_cmd["CMD"] = "JOIN"
 				json_cmd["CmdSeq"] = 123
-				json_cmd["AppEUI"] = "2c26c50203000001"
-				json_cmd["AppNonce"] = "123"
+				json_cmd["AppEUI"] = self.AppEUI
+				json_cmd["AppNonce"] = str(int(time.time()))
 				json_cmd["Challenge"] = "2c26c50203000001"
 				json_cmd = json.JSONEncoder().encode(json_cmd)
 				json_len = len(json_cmd)
@@ -82,9 +82,9 @@ class ReceiveThread(threading.Thread):
 				cmd_str += "\n"
 				cmd_str += json_cmd
 				cmd_str += "\n"
-				receive_tcp_sock.send(cmd_str)
+				self.receive_tcp_sock.send(cmd_str)
 
-				data = receive_tcp_sock.recv(1024)
+				data = self.receive_tcp_sock.recv(1024)
 				print "The Server Response: ", repr(data), "\n"
 				print "we have join the msp server"
 				break
@@ -94,8 +94,8 @@ class ReceiveThread(threading.Thread):
 		while True:
 			print("waiting data")
 			try:
-				receive_tcp_sock.send("ACK")
-				data = receive_tcp_sock.recv(1024)
+				self.receive_tcp_sock.send("ACK")
+				data = self.receive_tcp_sock.recv(1024)
 				print "The Server Response: ", repr(data), "\n"
 				with open('./' + "receive.log", 'a') as destination:
 					destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "The Server Response: " + repr(data) + "\n")
@@ -104,8 +104,35 @@ class ReceiveThread(threading.Thread):
 				self.parase_data(data)
 			except Exception as e:
 				print "here"
-
 				print(str(e))
+				time_today = datetime.today()
+				time_min = int(time_today.minute)
+				time_sec = int(time_today.second)
+				if time_min == 0 and time_sec == 0:
+					while True:
+						try:
+							time.sleep(5)
+							json_cmd = {}
+							json_cmd["CMD"] = "JOIN"
+							json_cmd["CmdSeq"] = 123
+							json_cmd["AppEUI"] = self.AppEUI
+							json_cmd["AppNonce"] = str(int(time.time()))
+							json_cmd["Challenge"] = "2c26c50203000001"
+							json_cmd = json.JSONEncoder().encode(json_cmd)
+							json_len = len(json_cmd)
+							cmd_str = str(json_len)
+							cmd_str += "\n"
+							cmd_str += json_cmd
+							cmd_str += "\n"
+							self.receive_tcp_sock.send(cmd_str)
+							data = self.receive_tcp_sock.recv(1024)
+							print "The Server Response: ", repr(data), "\n"
+							print "we have join the msp server"
+							break
+						except:
+							print(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "Join Failed!" + "\n")
+							pass
+
 			# res_str = str(json.loads(data))
 
 	def parase_data(self, data):
@@ -183,7 +210,7 @@ class ReceiveThread(threading.Thread):
 					# 找到对应的设备并对设备的数据进行解析存储
 					print("payload")
 					print (payload)
-					self.parse_save_to_db(device_id, payload)
+					self.parse_save_to_db(DevEUI.upper(), device_id, payload)
 					with open('./' + "receive.log", 'a') as destination:
 						print "iiiiii"
 						destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "DevEUI: " + DevEUI + " Data: " + self.str_encode(payload) + "\n")
@@ -210,7 +237,7 @@ class ReceiveThread(threading.Thread):
 				destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + str(e) + "\n")
 			print(str(e))
 
-	def parse_save_to_db(self, device_id, data):
+	def parse_save_to_db(self, DevEUI, device_id, data):
 		# data = self.decode_base64(data)
 		# data is the str which length is 52
 		try:
@@ -323,6 +350,27 @@ class ReceiveThread(threading.Thread):
 						except Exception as e:
 							print(str(e))
 							data[sensor_database_config[str(idx + 2)]] = float(0)
+
+				# 计算该条数据的编码
+				# data_pk_bin = bin_str[368:384]
+				# data_pk_bin = data_pk_bin[8:16] + data_pk_bin[0:8]
+				# cmd_sendto = CmdSendTo()
+				# json_cmd = {}
+				# json_cmd["CMD"] = "SENDTO"
+				# json_cmd["AppEUI"] = self.AppEUI
+				# json_cmd["CmdSeq"] = int(time.time())
+				# json_cmd["DevEUI"] = DevEUI
+				# json_cmd["Confirm"] = False
+				# json_cmd["payload"] = data_pk_bin
+				# client_msg = cmd_sendto.create_cmd_sendto(json_cmd)
+				# try:
+				# 	self.receive_tcp_sock.send(client_msg)
+				# 	print("Send to success")
+				# except Exception as e:
+				# 	print(str(e))
+				# 	print("SendTo Information Failed\n")
+
+
 				# 需要计算插入数据库的SQL语句
 				# 存入数据库
 				data_t = {}
