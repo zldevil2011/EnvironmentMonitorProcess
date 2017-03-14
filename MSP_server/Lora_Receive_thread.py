@@ -109,6 +109,9 @@ class ReceiveThread(threading.Thread):
 				time_min = int(time_today.minute)
 				time_sec = int(time_today.second)
 				if time_min == 0 and time_sec == 0:
+					self.receive_tcp_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+					self.receive_tcp_sock.settimeout(5)
+					self.receive_tcp_sock.connect((address, port))
 					while True:
 						try:
 							time.sleep(5)
