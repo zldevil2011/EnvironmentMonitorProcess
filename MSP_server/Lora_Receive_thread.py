@@ -348,6 +348,10 @@ class ReceiveThread(threading.Thread):
 						tmp1 = bin_str[64 + int(step_position) * 16:64 + int(step_position + 1) * 16][0:8]
 						tmp2 = bin_str[64 + int(step_position) * 16:64 + int(step_position + 1) * 16][8:16]
 						data_bin = tmp2 + tmp1
+						print "step_position: ", step_position
+						print 64 + int(step_position) * 16
+						print 64 + int(step_position + 1) * 16
+						print data_bin
 						data_dec = self.bin2dec(data_bin) / sensor_config_parameter[str(idx + 2)]
 						print(data_dec)
 						try:
