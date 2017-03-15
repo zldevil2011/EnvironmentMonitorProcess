@@ -345,8 +345,8 @@ class ReceiveThread(threading.Thread):
 					if int(tag) == 1:
 						step_position += 1
 						print(sensor_config[str(idx + 2)]), " has data"
-						tmp1 = bin_str[64 + int(step_postion) * 16:64 + int(step_postion + 1) * 16][0:8]
-						tmp2 = bin_str[64 + int(step_postion) * 16:64 + int(step_postion + 1) * 16][8:16]
+						tmp1 = bin_str[64 + int(step_position) * 16:64 + int(step_position + 1) * 16][0:8]
+						tmp2 = bin_str[64 + int(step_position) * 16:64 + int(step_position + 1) * 16][8:16]
 						data_bin = tmp2 + tmp1
 						data_dec = self.bin2dec(data_bin) / sensor_config_parameter[str(idx + 2)]
 						print(data_dec)
