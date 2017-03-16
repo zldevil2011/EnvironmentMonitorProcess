@@ -259,6 +259,8 @@ class ReceiveThread(threading.Thread):
 			# out_str = ""
 			# for t in datas_out:
 			# 	out_str += str(t)
+
+
 			out_str = data
 			bin_str = self.str_encode(out_str)
 			pre_data = bin_str[0:400]
@@ -267,62 +269,149 @@ class ReceiveThread(threading.Thread):
 			# crc_str = CRC_Tool.createarray(pre_data)
 			crc_result = 0
 			if crc_result == 0:
-				'''转换设备ID'''
-				tmp_1 = bin_str[0:8]
-				tmp_2 = bin_str[8:16]
-				device_id_bin = (tmp_2 + tmp_1)
-				device_id = self.bin2dec(device_id_bin)
-				'''转换配置表'''
-				print bin_str[16:32]
-				tmp_1 = bin_str[16:24]
-				tmp_2 = bin_str[24:32]
-				config = tmp_2 + tmp_1  # bin_str[24:40]
-				'''反转配置表，从低位对应传感器'''
-				config = config[::-1]
-
-				'''转换时间'''
-				time_str = bin_str[32:64]
-				s1 = bin_str[32:40]
-				s2 = bin_str[40:48]
-				s3 = bin_str[48:56]
-				s4 = bin_str[56:64]
-				time_str = s4 + s3 + s2 + s1
-				time_year = self.bin2dec((time_str[26:32]))
-				time_month = self.bin2dec((time_str[22:26]))
-				time_date = self.bin2dec((time_str[17:22]))
-				time_hour = self.bin2dec((time_str[12:17]))
-				time_min = self.bin2dec((time_str[6:12]))
-				time_sec = self.bin2dec((time_str[0:6]))
-				collect_time = "201" + str(time_year) + "-" + str(time_month) + "-" + str(time_date) + " " + str(
-					time_hour) + ":" + str(time_min) + ":" + str(time_sec)
-				print(collect_time)
-
-				'''计算存入数据库的SQL需要的参数内容'''
-				data = {}
-				data[u"设备类型编号"] = 1
-				data[u"设备编号"] = int(device_id)
-				data[u"项目内节点编号"] = int(device_id)
-				data[u"传感器配置表"] = 1
-				data[u"紧缩型时间传感器_实时时间"] = collect_time
-				data[u"电池电压传感器_电压"] = 1
-				data[u"太阳能电压传感器_电压"] = 1
-				data["O3_O3"] = "0"
-				data["CO_CO"] = "0"
-				data["SO2_SO2"] = "0"
-				data["NO2_NO2"] = "0"
-				data["PM2_5_PM2_5"] = "0"
-				data["PM10_PM10"] = "0"
-
+				'''1.0版本---计算并生成插入数据库的SQL语句'''
+				# '''转换设备ID'''
+				# tmp_1 = bin_str[0:8]
+				# tmp_2 = bin_str[8:16]
+				# device_id_bin = (tmp_2 + tmp_1)
+				# device_id = self.bin2dec(device_id_bin)
+				# '''转换配置表'''
+				# print bin_str[16:32]
+				# tmp_1 = bin_str[16:24]
+				# tmp_2 = bin_str[24:32]
+				# config = tmp_2 + tmp_1  # bin_str[24:40]
+				# '''反转配置表，从低位对应传感器'''
+				# config = config[::-1]
+				#
+				# '''转换时间'''
+				# time_str = bin_str[32:64]
+				# s1 = bin_str[32:40]
+				# s2 = bin_str[40:48]
+				# s3 = bin_str[48:56]
+				# s4 = bin_str[56:64]
+				# time_str = s4 + s3 + s2 + s1
+				# time_year = self.bin2dec((time_str[26:32]))
+				# time_month = self.bin2dec((time_str[22:26]))
+				# time_date = self.bin2dec((time_str[17:22]))
+				# time_hour = self.bin2dec((time_str[12:17]))
+				# time_min = self.bin2dec((time_str[6:12]))
+				# time_sec = self.bin2dec((time_str[0:6]))
+				# collect_time = "201" + str(time_year) + "-" + str(time_month) + "-" + str(time_date) + " " + str(
+				# 	time_hour) + ":" + str(time_min) + ":" + str(time_sec)
+				# print(collect_time)
+				#
+				# '''计算存入数据库的SQL需要的参数内容'''
+				# data = {}
+				# data[u"设备类型编号"] = 1
+				# data[u"设备编号"] = int(device_id)
+				# data[u"项目内节点编号"] = int(device_id)
+				# data[u"传感器配置表"] = 1
+				# data[u"紧缩型时间传感器_实时时间"] = collect_time
+				# data[u"电池电压传感器_电压"] = 1
+				# data[u"太阳能电压传感器_电压"] = 1
+				# data["O3_O3"] = "0"
+				# data["CO_CO"] = "0"
+				# data["SO2_SO2"] = "0"
+				# data["NO2_NO2"] = "0"
+				# data["PM2_5_PM2_5"] = "0"
+				# data["PM10_PM10"] = "0"
+				#
+				# sensor_database_config = {
+				# 	'1': 'Time',
+				# 	'2': u'电池电压传感器_电压',
+				# 	'3': u'太阳能电压传感器_电压',
+				# 	'4': 'O3_O3',
+				# 	'5': 'CO_CO',
+				# 	'6': 'SO2_SO2',
+				# 	'7': 'NO2_NO2',
+				# 	'8': 'PM2_5_PM2_5',
+				# 	'9': 'PM10_PM10',
+				# 	'10': 'TData',
+				# 	'11': 'PData',
+				# 	'12': 'HumData',
+				# 	'13': 'LuxData',
+				# 	'14': 'HData',
+				# }
+				# # 获取解析参数
+				# sensor_config_parameter = {}
+				# for i in range(14):
+				# 	idx = int(i) + 1
+				# 	try:
+				# 		sensor = SensorConfigParameter.objects.get(code=idx)
+				# 		sensor_config_parameter[str(idx)] = sensor.val
+				# 	except:
+				# 		sensor_config_parameter[str(idx)] = 1
+				# 		pass
+				# config = config[1:]
+				# step_position = -1
+				# for idx, tag in enumerate(config):
+				# 	if int(tag) == 1:
+				# 		step_position += 1
+				# 		print(sensor_config[str(idx + 2)]), " has data"
+				# 		tmp1 = bin_str[64 + int(step_position) * 16:64 + int(step_position + 1) * 16][0:8]
+				# 		tmp2 = bin_str[64 + int(step_position) * 16:64 + int(step_position + 1) * 16][8:16]
+				# 		data_bin = tmp2 + tmp1
+				# 		print "step_position: ", step_position
+				# 		print 64 + int(step_position) * 16
+				# 		print 64 + int(step_position + 1) * 16
+				# 		print data_bin
+				# 		data_dec = self.bin2dec(data_bin) / sensor_config_parameter[str(idx + 2)]
+				# 		print(data_dec)
+				# 		try:
+				# 			data[sensor_database_config[str(idx + 2)]] = float(data_dec)
+				# 		except Exception as e:
+				# 			print(str(e))
+				# 			data[sensor_database_config[str(idx + 2)]] = float(0)
+				#
+				# # 计算该条数据的编码
+				# # data_pk_bin = bin_str[368:384]
+				# # data_pk_bin = data_pk_bin[8:16] + data_pk_bin[0:8]
+				# # cmd_sendto = CmdSendTo()
+				# # json_cmd = {}
+				# # json_cmd["CMD"] = "SENDTO"
+				# # json_cmd["AppEUI"] = self.AppEUI
+				# # json_cmd["CmdSeq"] = int(time.time())
+				# # json_cmd["DevEUI"] = DevEUI
+				# # json_cmd["Confirm"] = False
+				# # json_cmd["payload"] = data_pk_bin
+				# # client_msg = cmd_sendto.create_cmd_sendto(json_cmd)
+				# # try:
+				# # 	self.receive_tcp_sock.send(client_msg)
+				# # 	print("Send to success")
+				# # except Exception as e:
+				# # 	print(str(e))
+				# # 	print("SendTo Information Failed\n")
+				# # 需要计算插入数据库的SQL语句
+				# # 存入数据库
+				# data_t = {}
+				# data_t[u"设备类型编号"] = 1
+				# data_t[u"设备编号"] = int(device_id)
+				# data_t[u"项目内节点编号"] = int(device_id)
+				# data_t[u"传感器配置表"] = 1
+				# data_t[u"紧缩型时间传感器_实时时间"] = collect_time
+				# data_t[u"电池电压传感器_电压"] = data[u"电池电压传感器_电压"]
+				# data_t[u"太阳能电压传感器_电压"] = data[u"太阳能电压传感器_电压"]
+				# data_t["O3_O3"] = data["O3_O3"]
+				# data_t["CO_CO"] = data["CO_CO"]
+				# data_t["SO2_SO2"] = data["SO2_SO2"]
+				# data_t["NO2_NO2"] = data["NO2_NO2"]
+				# data_t["PM2_5_PM2_5"] = data["PM2_5_PM2_5"]
+				# data_t["PM10_PM10"] = data["PM10_PM10"]
+				# print(data_t)
+				'''2.0版本解析数据并计算插入数据库的SQL语句'''
+				data_transform = self.payload2val(data)
+				collect_time = "201" + str(data_transform[0]) + "-" + str(data_transform[1]) + "-" + str(data_transform[2]) + " " + str(
+					data_transform[3]) + ":" + str(data_transform[4]) + ":" + str(data_transform[5])
 				sensor_database_config = {
-					'1': 'Time',
-					'2': u'电池电压传感器_电压',
-					'3': u'太阳能电压传感器_电压',
-					'4': 'O3_O3',
-					'5': 'CO_CO',
-					'6': 'SO2_SO2',
-					'7': 'NO2_NO2',
-					'8': 'PM2_5_PM2_5',
-					'9': 'PM10_PM10',
+					'1': 'time',
+					'2': 'voltage',
+					'3': 'solar_voltage',
+					'4': 'o3',
+					'5': 'co',
+					'6': 'so2',
+					'7': 'no2',
+					'8': 'pm25',
+					'9': 'pm10',
 					'10': 'TData',
 					'11': 'PData',
 					'12': 'HumData',
@@ -335,68 +424,38 @@ class ReceiveThread(threading.Thread):
 					idx = int(i) + 1
 					try:
 						sensor = SensorConfigParameter.objects.get(code=idx)
-						sensor_config_parameter[str(idx)] = sensor.val
+						sensor_config_parameter[sensor_database_config[str(idx)]] = sensor.val
 					except:
-						sensor_config_parameter[str(idx)] = 1
+						sensor_config_parameter[sensor_database_config[str(idx)]] = 1
 						pass
-				config = config[1:]
-				step_position = -1
-				for idx, tag in enumerate(config):
-					if int(tag) == 1:
-						step_position += 1
-						print(sensor_config[str(idx + 2)]), " has data"
-						tmp1 = bin_str[64 + int(step_position) * 16:64 + int(step_position + 1) * 16][0:8]
-						tmp2 = bin_str[64 + int(step_position) * 16:64 + int(step_position + 1) * 16][8:16]
-						data_bin = tmp2 + tmp1
-						print "step_position: ", step_position
-						print 64 + int(step_position) * 16
-						print 64 + int(step_position + 1) * 16
-						print data_bin
-						data_dec = self.bin2dec(data_bin) / sensor_config_parameter[str(idx + 2)]
-						print(data_dec)
-						try:
-							data[sensor_database_config[str(idx + 2)]] = float(data_dec)
-						except Exception as e:
-							print(str(e))
-							data[sensor_database_config[str(idx + 2)]] = float(0)
-
-				# 计算该条数据的编码
-				# data_pk_bin = bin_str[368:384]
-				# data_pk_bin = data_pk_bin[8:16] + data_pk_bin[0:8]
-				# cmd_sendto = CmdSendTo()
-				# json_cmd = {}
-				# json_cmd["CMD"] = "SENDTO"
-				# json_cmd["AppEUI"] = self.AppEUI
-				# json_cmd["CmdSeq"] = int(time.time())
-				# json_cmd["DevEUI"] = DevEUI
-				# json_cmd["Confirm"] = False
-				# json_cmd["payload"] = data_pk_bin
-				# client_msg = cmd_sendto.create_cmd_sendto(json_cmd)
-				# try:
-				# 	self.receive_tcp_sock.send(client_msg)
-				# 	print("Send to success")
-				# except Exception as e:
-				# 	print(str(e))
-				# 	print("SendTo Information Failed\n")
-
-
-				# 需要计算插入数据库的SQL语句
-				# 存入数据库
+				device_id = data_transform[6]
+				voltage = float(data_transform[7])
+				solar_voltage = float(data_transform[8])
+				o3 = float(data_transform[9])
+				co = float(data_transform[10])
+				so2 = float(data_transform[11])
+				no2 = float(data_transform[12])
+				pm25 = float(data_transform[13])
+				pm10 = float(data_transform[14])
+				temperature = float(data_transform[15])
+				par = float(data_transform[16])
+				humidity = float(data_transform[17])
 				data_t = {}
 				data_t[u"设备类型编号"] = 1
 				data_t[u"设备编号"] = int(device_id)
 				data_t[u"项目内节点编号"] = int(device_id)
 				data_t[u"传感器配置表"] = 1
 				data_t[u"紧缩型时间传感器_实时时间"] = collect_time
-				data_t[u"电池电压传感器_电压"] = data[u"电池电压传感器_电压"]
-				data_t[u"太阳能电压传感器_电压"] = data[u"太阳能电压传感器_电压"]
-				data_t["O3_O3"] = data["O3_O3"]
-				data_t["CO_CO"] = data["CO_CO"]
-				data_t["SO2_SO2"] = data["SO2_SO2"]
-				data_t["NO2_NO2"] = data["NO2_NO2"]
-				data_t["PM2_5_PM2_5"] = data["PM2_5_PM2_5"]
-				data_t["PM10_PM10"] = data["PM10_PM10"]
-				print(data_t)
+				data_t[u"电池电压传感器_电压"] = voltage / sensor_config_parameter["voltage"]
+				data_t[u"太阳能电压传感器_电压"] = solar_voltage / sensor_config_parameter["solar_voltage"]
+				data_t["O3_O3"] = o3 / sensor_config_parameter["o3"]
+				data_t["CO_CO"] = co / sensor_config_parameter["co"]
+				data_t["SO2_SO2"] = so2 / sensor_config_parameter["so2"]
+				data_t["NO2_NO2"] = no2 / sensor_config_parameter["no2"]
+				data_t["PM2_5_PM2_5"] = pm25 / sensor_config_parameter["pm25"]
+				data_t["PM10_PM10"] = pm10 / sensor_config_parameter["pm10"]
+
+				'''插入数据库'''
 				sql = MySQL()
 				sql.connectDB("jssf")
 				result = sql.insert_data(u"大气六参数", data_t)
@@ -442,6 +501,24 @@ class ReceiveThread(threading.Thread):
 			data += b'=' * missing_padding
 		print data
 		return base64.decodestring(data)
+
+	# 将输入的payload转换成对应的数值的数组
+	def payload2val(self, payload):
+		d_len = len(payload)
+		array_type_in = ctypes.c_char * d_len
+		array_type_out = ctypes.c_int16 * d_len
+		datas_in = array_type_in()
+		datas_out = array_type_out()
+		idx = 0
+		for i in range(len(payload)):
+			datas_in[idx] = payload[i]
+			idx += 1
+		api = ll('./transform_data.so')
+		api.AnalyzeData(datas_in, datas_out)
+		out_list = []
+		for t in datas_out:
+			out_list.append(str(t))
+		return out_list
 
 # new_thread = ReceiveThread(1)
 # new_thread.start()
