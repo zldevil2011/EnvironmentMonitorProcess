@@ -216,7 +216,7 @@ class ReceiveThread(threading.Thread):
 					self.parse_save_to_db(DevEUI.upper(), device_id, payload)
 					with open('./' + "receive.log", 'a') as destination:
 						print "iiiiii"
-						destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "DevEUI: " + DevEUI + " Data: " + self.str_encode(payload) + "\n")
+						destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "DevEUI: " + DevEUI + " Data: " + hexlify(payload) + "\n")
 					print(self.log_thread)
 					print(type(self.log_thread))
 					try:

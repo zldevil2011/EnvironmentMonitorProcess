@@ -394,11 +394,15 @@ def server_device_info(request):
 def server_data_log(request):
 
 	receive_log = list()
+	cnt = 0
 	try:
 		with open('./' + "receive.log", 'r') as destination:
 			line = destination.readline()  # 调用文件的 readline()方法
 			while line:
 				receive_log.append(line)
+				cnt += 1
+				if cnt == 30:
+					break
 				line = destination.readline()
 	except:
 		pass
