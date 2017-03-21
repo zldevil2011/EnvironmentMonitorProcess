@@ -89,7 +89,8 @@ class MySQL(object):
 				self.cursor.execute(insert_str)
 				# 提交到数据库执行
 				self.db.commit()
-			except:
+			except Exception as e:
+				print(str(e))
 				# Rollback in case there is any error
 				self.db.rollback()
 			return "success"

@@ -306,7 +306,7 @@ class ReceiveThread(threading.Thread):
 				data[u"设备类型编号"] = 1
 				data[u"设备编号"] = int(device_id)
 				data[u"项目内节点编号"] = int(device_id)
-				data[u"传感器配置表"] = 1
+				data[u"传感器配置表"] = self.bin2dec(config)
 				data[u"紧缩型时间传感器_实时时间"] = collect_time
 				data[u"电池电压传感器_电压"] = 0
 				data[u"太阳能电压传感器_电压"] = 0
@@ -355,10 +355,10 @@ class ReceiveThread(threading.Thread):
 						tmp1 = bin_str[64 + int(step_position) * 16:64 + int(step_position + 1) * 16][0:8]
 						tmp2 = bin_str[64 + int(step_position) * 16:64 + int(step_position + 1) * 16][8:16]
 						data_bin = tmp2 + tmp1
-						print "step_position: ", step_position
-						print 64 + int(step_position) * 16
-						print 64 + int(step_position + 1) * 16
-						print data_bin
+						# print "step_position: ", step_position
+						# print 64 + int(step_position) * 16
+						# print 64 + int(step_position + 1) * 16
+						# print data_bin
 						data_dec = self.bin2dec(data_bin) / sensor_config_parameter[str(idx + 2)]
 						print(data_dec)
 						try:
@@ -391,7 +391,7 @@ class ReceiveThread(threading.Thread):
 				data_t[u"设备类型编号"] = 1
 				data_t[u"设备编号"] = int(device_id)
 				data_t[u"项目内节点编号"] = int(device_id)
-				data_t[u"传感器配置表"] = 1
+				data_t[u"传感器配置表"] = self.bin2dec(config)
 				data_t[u"紧缩型时间传感器_实时时间"] = collect_time
 				data_t[u"电池电压传感器_电压"] = data[u"电池电压传感器_电压"]
 				data_t[u"太阳能电压传感器_电压"] = data[u"太阳能电压传感器_电压"]
