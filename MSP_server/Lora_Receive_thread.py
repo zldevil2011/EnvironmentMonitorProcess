@@ -308,17 +308,17 @@ class ReceiveThread(threading.Thread):
 				data[u"项目内节点编号"] = int(device_id)
 				data[u"传感器配置表"] = 1
 				data[u"紧缩型时间传感器_实时时间"] = collect_time
-				data[u"电池电压传感器_电压"] = 1
-				data[u"太阳能电压传感器_电压"] = 1
-				data["O3_O3"] = "null"
-				data["CO_CO"] = "null"
-				data["SO2_SO2"] = "null"
-				data["NO2_NO2"] = "null"
-				data["PM2_5_PM2_5"] = "null"
-				data["PM10_PM10"] = "null"
-				data["Temperature"] = "null"
-				data["Humidity"] = "null"
-				data["Pressure"] = "null"
+				data[u"电池电压传感器_电压"] = 0
+				data[u"太阳能电压传感器_电压"] = 0
+				data["O3_O3"] = "0"
+				data["CO_CO"] = "0"
+				data["SO2_SO2"] = "0"
+				data["NO2_NO2"] = "0"
+				data["PM2_5_PM2_5"] = "0"
+				data["PM10_PM10"] = "0"
+				data["Temperature"] = "0"
+				data["Humidity"] = "0"
+				data["Pressure"] = "0"
 
 				sensor_database_config = {
 					'1': 'Time',
