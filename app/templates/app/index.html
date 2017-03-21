@@ -140,13 +140,16 @@
                             <th class="text-center" style="padding: 15px;">NO2</th>
                             <th class="text-center" style="padding: 15px;">CO</th>
                             <th class="text-center" style="padding: 15px;">O3</th>
+                            <th class="text-center" style="padding: 15px;">温度</th>
+                            <th class="text-center" style="padding: 15px;">大气压</th>
+                            <th class="text-center" style="padding: 15px;">湿度</th>
                             <th class="text-center" style="padding: 15px;">空气质量</th>
                             <th class="text-center" style="padding: 15px;">采集时间</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for data in data_real_time %}
-                            <tr><td>{{ data.name }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td>{{ data.so2 }}</td><td>{{ data.no2 }}</td><td>{{ data.co }}</td><td>{{ data.o3 }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td><td>{{ data.time }}</td></tr>
+                            <tr><td>{{ data.name }}</td><td>{{ data.pm25 }}</td><td>{{ data.pm10 }}</td><td>{{ data.so2 }}</td><td>{{ data.no2 }}</td><td>{{ data.co }}</td><td>{{ data.o3 }}</td><td>{{ data.Temperature }}</td><td>{{ data.Pressure }}</td><td>{{ data.Humidity }}</td><td style="vertical-align: middle;"><span>{{ data.AQI_info_1.classification }}</span><span class="level{{ data.AQI_info_1.level_no }}"></span></td><td>{{ data.time }}</td></tr>
                         {% endfor %}
                     </tbody>
                 </table>
