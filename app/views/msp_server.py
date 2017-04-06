@@ -9,6 +9,7 @@ from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
 from MSP_server.Lora_Receive_thread import ReceiveThread
+from MSP_server.Lora_Receive_thread_msp02 import ReceiveThreadMSP02
 from MSP_server.main import MSP
 from MSP_server.setting import AppEUI
 from MSP_server.web_socket_server import Th
@@ -77,6 +78,9 @@ def msp_receive_data(request):
 
 	new_thread = ReceiveThread(1, log_thread)
 	new_thread.start()
+
+	new_thread_02 = ReceiveThreadMSP02(1, log_thread)
+	new_thread_02.start()
 	res = 1
 	if res == 1:
 		return HttpResponse("success")

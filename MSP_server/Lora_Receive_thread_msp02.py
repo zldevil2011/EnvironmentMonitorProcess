@@ -3,7 +3,6 @@ import threading
 import SocketServer
 from CmdReceive import CmdReceive
 import json
-from setting import address
 from setting import port
 from setting import AppEUI
 import socket
@@ -15,7 +14,7 @@ from datetime import datetime
 import binascii
 # import crc16
 from app.models import Project, SensorConfigParameter, SensorDatabaseConfig,Device
-
+address = 'msp02.claaiot.com'
 
 ll = ctypes.cdll.LoadLibrary
 sensor_config = {
@@ -56,7 +55,7 @@ sensor_devEui_map = {
 from MSP_server.TCP_Link import TCP
 
 
-class ReceiveThread(threading.Thread):
+class ReceiveThreadMSP02(threading.Thread):
 	def __init__(self, pid,log_thread):
 		threading.Thread.__init__(self)
 		self.pid = pid
@@ -214,7 +213,7 @@ class ReceiveThread(threading.Thread):
 					# 找到对应的设备并对设备的数据进行解析存储
 					print("payload")
 					print (payload)
-					self.parse_save_to_db(DevEUI.upper(), device_id, payload, time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
+					self.parse_save_to_db(DevEUI.upper(), device_id, payload,time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
 					with open('./' + "receive.log", 'a') as destination:
 						print "iiiiii"
 						destination.write(time.strftime('%Y-%m-%d %H:%M:%S  ', time.localtime(time.time())) + "DevEUI: " + DevEUI + " Data: " + binascii.hexlify(payload) + "\n")
