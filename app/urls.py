@@ -2,7 +2,7 @@ from django.conf.urls import include, url
 from views.index import index_all, index_48, index_average
 from views.user import user_login, user_logout
 from views.station import station, station_ranking
-from views.historical import historical_data_analysis, historical_device, historical_data_list, historical_voltage_list
+from views.historical import historical_data_analysis, historical_device, historical_data_list, historical_voltage_list,device_data_map
 from views.admin_user import admin_login
 from views.admin_user import admin_logout, admin_user_list,admin_user_update,admin_user_info
 from views.admin_index import admin_index
@@ -38,6 +38,7 @@ urlpatterns = [
 	url(r'^station/$', station, name="station"),
 	url(r'^station_ranking/$', station_ranking, name="station_ranking"),
 	url(r'^historical_device/$', historical_device, name="historical_device"),
+	url(r'^device_data_map/$', device_data_map, name="device_data_map"),
 	url(r'^historical_device_analysis/(?P<device_id>\d+)/$', historical_data_analysis, name="historical_data_analysis"),
 	url(r'^historical_device_data_list/(?P<device_id>\d+)/$', historical_data_list, name="historical_data_list"),
 	url(r'^information/$', information, name="information"),

@@ -1,0 +1,137 @@
+{% extends "app/base.html" %}
+{% load static from staticfiles %}
+{% block title %}设备列表{% endblock %}
+{% block body_content %}
+    <div class="clearfix" style="background-color: #fdfdfd;">
+        <div class="col-md-12">
+            <p style="font-size: 20px;color: #555;margin: 10px 0px 20px 0px;text-indent: 20px;">池州 观测点分布</p>
+        </div>
+        <div class="col-md-12" style="padding: 0;">
+            <table class="table table-striped text-center table-td-center">
+                <thead>
+                    <tr style="background-color: #e8e8e8;">
+                        <th class="text-center" style="padding: 15px;">监测站点</th>
+                        <th class="text-center" style="padding: 15px;">安装地址</th>
+                        <th class="text-center" style="padding: 15px;">经度</th>
+                        <th class="text-center" style="padding: 15px;">纬度</th>
+                        <th class="text-center" style="padding: 15px;">最后更新时间</th>
+                        <th class="text-center" style="padding: 15px;">安装时间</th>
+                    </tr>
+                </thead>
+                <tbody class="tr_hander">
+                    {% for device in device_list %}
+                        <tr onclick="window.location.href='/historical_device_data_list/{{ device.id }}'">
+                            <td>{{ device.name }}</td>
+                            <td>{{ device.address }}</td>
+                            <td>{{ device.longitude }}</td>
+                            <td>{{ device.latitude }}</td>
+                            <td>{{ device.latest_time }}</td>
+                            <td>{{ device.install_time }}</td>
+                        </tr>
+                    {% endfor %}
+{#                    <tr onclick="window.location.href='/historical_device_data/'"><td>张家湾</td><td>张家湾</td><td>183.66</td><td>67.77</td><td>2016-11-18 12:00:00</td><td>2016-11-17 12:00:00</td></tr>#}
+                </tbody>
+            </table>
+        </div>
+        <div class="clearfix">
+            <div id="map" style="width:100%;height:800px; border: 1px solid rgba(0, 0, 0, 0.04); border-radius: 6px;"></div>
+        </div>
+        <div class="clearfix">
+            <div class="col-md-offset-8 col-md-4 col-sm-12">
+                <div class="button btn-success" onclick="window.location.href='/device_data_map/'">渲染</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block special_js %}
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WZVN4DbW3hfB9MSgMmwVQBHU8ZV8jRxW"></script>
+    <script async src="http://c.cnzz.com/core.php"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/LuShu/1.2/src/LuShu_min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2E92C953574c3fa5f86de9c14501c0ea"></script>
+    <script src= {% static "app/js/GeoUtils.js" %}></script>
+    <script src= {% static "app/js/spatialmap.js" %}></script>
+    <script>
+        var map = new BMap.Map("map", {
+                maxZoom : 19,
+                minZoom:13,
+                mapType : BMAP_NORMAL_MAP
+            });// 默认卫星地图BMAP_SATELLITE_MAP
+        var point = new BMap.Point(117.541916, 30.703908);// 地图的中心点
+        map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+        map.centerAndZoom(point, 13);
+
+        var device_list_data = {{ device_list_data | safe}};
+        console.log(device_list_data);
+        console.log(typeof(device_list_data));
+        var point_list = [];
+        for(var i = 0; i < device_list_data.length; ++i) {
+            console.log(device_list_data[i].name);
+            var data = device_list_data[i];
+            var node = {};
+            node["name"] = data.name;
+            node["longitude"] = data.longitude;
+            node["latitude"] = data.latitude;
+            node["pm25"] = data.pm25;
+            point_list.push(node);
+        }
+        var markerArr = new Array();
+        var infoWindowArr = new Array();
+        for(var i = 0; i < device_list_data.length; ++i) {
+            console.log(device_list_data[i].name);
+            var data = device_list_data[i];
+            var point = new BMap.Point(data.longitude, data.latitude);  // 创建点坐标
+            var sContent =
+                    "<div><h4>" + data.name + "</h4>" +
+                    "<h4>PM2.5:" + data.pm25 + "</h4>" +
+                    "<h4>SO2:" + data.so2 + "</h4>" +
+                    "<h4>PM10:" + data.pm10 + "</h4>" +
+                    "<h4>AQI:" + data.AQI + "<a href='/historical_device_data_list/" + data.id + "'>查看历史数据</a></h4>" +
+                    "</div>";
+            var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+            var marker = new BMap.Marker(point);
+            infoWindowArr.push(infoWindow);
+            markerArr.push(marker);
+        }
+
+        for(var i = 0; i < infoWindowArr.length; ++i){
+            map.addOverlay(markerArr[i]);
+            var ope = new markerClick(i);
+            markerArr[i].addEventListener("click", ope.clickFunc);
+        }
+        function markerClick(i){
+            this.clickFunc = function() {
+                console.log(i);
+                this.openInfoWindow(infoWindowArr[i]);
+            }
+        }
+        var opts = {// 添加控制控件
+			type : BMAP_NAVIGATION_CONTROL_SMALL,
+			showZoomInfo : true
+		};
+		map.addControl(new BMap.NavigationControl(opts));
+		map.enableScrollWheelZoom(); // 启动鼠标滚轮操作
+		map.enableContinuousZoom(); // 开启连续缩放效果
+		map.enableInertialDragging(); // 开启惯性拖拽效果
+		var maxResult = 40;
+		var jsonresult = [{'lat': 30.7137, 'count': 26.3, 'lng': 117.5396}, {'lat': 30.7039, 'count': 22.5, 'lng': 117.5419}, {'lat': 30.6916, 'count': 21.6, 'lng': 117.5379}, {'lat': 30.7052, 'count': 20.4, 'lng': 117.5598}, {'lat': 30.7393, 'count': 22.1, 'lng': 117.5641}, {'lat': 30.6658, 'count': 18, 'lng': 117.5472}];
+
+		var unitResult = "ug";
+		var name = "污染物浓度";
+		var spatialMapData={
+				max  : maxResult,
+				data : jsonresult,
+				unit : unitResult,
+		};
+		var config={
+			alpha : 0.5,
+	        legend: {
+	            title: name+'-空间分布图',
+	            offset: '20'
+	        }
+		};
+
+		var childSpatialmap = new SpatialmapOverlay(map, config);
+		map.addOverlay(childSpatialmap);
+		childSpatialmap.setDataSet(spatialMapData);
+    </script>
+{% endblock %}
