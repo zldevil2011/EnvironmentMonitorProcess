@@ -59,6 +59,7 @@
         console.log(device_list_data);
         console.log(typeof(device_list_data));
         var point_list = [];
+        var maxResult = -1;
         for(var i = 0; i < device_list_data.length; ++i) {
             console.log(device_list_data[i].name);
             var data = device_list_data[i];
@@ -66,6 +67,9 @@
             node["lng"] = data.longitude;
             node["lat"] = data.latitude;
             node["count"] = data.pm25;
+            if(node["count"] > maxResult){
+                maxResult = node["count"] + 5;
+            }
             point_list.push(node);
         }
         var markerArr = new Array();
@@ -106,7 +110,7 @@
 		map.enableScrollWheelZoom(); // 启动鼠标滚轮操作
 		map.enableContinuousZoom(); // 开启连续缩放效果
 		map.enableInertialDragging(); // 开启惯性拖拽效果
-		var maxResult = 40;
+{#		var maxResult = 40;#}
 		var jsonresult = [{'lat': 30.7137, 'count': 26.3, 'lng': 117.5396}, {'lat': 30.7039, 'count': 22.5, 'lng': 117.5419}, {'lat': 30.6916, 'count': 21.6, 'lng': 117.5379}, {'lat': 30.7052, 'count': 20.4, 'lng': 117.5598}, {'lat': 30.7393, 'count': 22.1, 'lng': 117.5641}, {'lat': 30.6658, 'count': 18, 'lng': 117.5472}];
         jsonresult = point_list;
 		var unitResult = "ug";
