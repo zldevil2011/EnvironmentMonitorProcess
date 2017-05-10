@@ -20,6 +20,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('app.urls')),
+    url(r'^app/', include('app.app_urls')),
     url(r'^ueditor/', include('DjangoUeditor.urls')),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^msp/$', TemplateView.as_view(template_name="MSP_server/MSP_operation.html")),

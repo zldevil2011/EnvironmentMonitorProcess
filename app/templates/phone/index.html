@@ -1,0 +1,260 @@
+{% extends "phone/base.html" %}
+{% load static from staticfiles %}
+{% block title %}首页{% endblock %}
+{% block special_css %}
+    <style>
+        #header{
+            text-align: center;
+            color:white;
+            margin-bottom:10px;
+        }
+        #address{
+            text-align: center;
+            color:white;
+            margin-bottom: 10px;
+        }
+        #realAQI{
+            text-align: center;
+            color:white;
+        }
+        .leve1{
+            width: 50px;
+            height: 10px;
+            background: greenyellow;
+            padding:5px 20px;
+            border-radius: 5px;
+
+        }
+        .AQI-info{
+            background: rgba(30, 144, 255, 1);
+            color:white;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+        .aqi-color-father{
+            margin: 0 auto;
+        }
+        .aqi-color{
+            width: 16%;
+            display: inline-block;
+            height: 10px;
+        }
+        .color-1{  background: green;  }
+        .color-2{  background: greenyellow;  }
+        .color-3{  background: orange;  }
+        .color-4{  background: orangered;  }
+        .color-5{  background: indianred;  }
+        .color-6{  background: darkred;  }
+        .aqi-number{
+            display: inline-block;
+            height: 10px;
+            text-align: center;
+        }
+        .number-1{  width: 15%;  }
+        .number-2{  width: 15%;  }
+        .number-3{  width: 15%;  }
+        .number-4{  width: 15%;  }
+        .number-5{  width: 15%;  }
+        .number-6{  width: 15%;  }
+        .six-list{
+            background: rgba(30, 144, 255, 1);
+            color:white;
+            margin-top: 10px;
+        }
+        .six-list .six-item{
+            text-align: center;
+            margin: 25px 0px;
+            font-size: 1rem;
+        }
+        .level-info{
+            background: rgba(30, 144, 255, 1);
+            color:white;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+        .level-info-text{
+            font-size: 1rem;
+        }
+        .today-data-title{
+            color:white;
+            font-size: 1rem;
+        }
+        .data-select{
+            float: right;
+            background: rgba(30, 144, 255, 1);
+        }
+        .data-select option{
+            padding: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block body_content %}
+    <div id="header">
+        <p>空气质量</p>
+    </div>
+    <div id="address">
+        池州市
+    </div>
+    <div id="realAQI">
+        AQI
+        <div class="">
+            <div class="col-md-12" style="text-align: center;">
+                <span class="leve1">121</span>
+            </div>
+        </div>
+    </div>
+    <div class="AQI-info">
+        空气质量AQI
+        <div class="aqi-color-father">
+            <span class="aqi-color color-1"></span>
+            <span class="aqi-color color-2"></span>
+            <span class="aqi-color color-3"></span>
+            <span class="aqi-color color-4"></span>
+            <span class="aqi-color color-5"></span>
+            <span class="aqi-color color-6"></span>
+        </div>
+        <div class="aqi-color-number">
+            <span class="aqi-number number-1">50</span>
+            <span class="aqi-number number-2">100</span>
+            <span class="aqi-number number-3">150</span>
+            <span class="aqi-number number-4">200</span>
+            <span class="aqi-number number-5">300</span>
+            <span class="aqi-number number-6">500</span>
+        </div>
+    </div>
+    <div class="six-list">
+        <div class="">
+            <div class="six-item col-md-4 col-sm-4 col-xs-4">
+                <div class="col-md-12">
+                    12ug/m3
+                </div>
+                <div class="col-md-12">
+                    PM2.5
+                </div>
+                <div class="col-md-12">
+                    细颗粒物
+                </div>
+            </div>
+            <div class="six-item col-md-4 col-sm-4 col-xs-4">
+                <div class="col-md-12">
+                    12ug/m3
+                </div>
+                <div class="col-md-12">
+                    PM10
+                </div>
+                <div class="col-md-12">
+                    可进入颗粒物
+                </div>
+            </div>
+            <div class="six-item col-md-4 col-sm-4 col-xs-4">
+                <div class="col-md-12">
+                    12ug/m3
+                </div>
+                <div class="col-md-12">
+                    O3
+                </div>
+                <div class="col-md-12">
+                    臭氧
+                </div>
+            </div>
+            <div class="six-item col-md-4 col-sm-4 col-xs-4">
+                <div class="col-md-12">
+                    12ug/m3
+                </div>
+                <div class="col-md-12">
+                    SO2
+                </div>
+                <div class="col-md-12">
+                    二氧化硫
+                </div>
+            </div>
+            <div class="six-item col-md-4 col-sm-4 col-xs-4">
+                <div class="col-md-12">
+                    12ug/m3
+                </div>
+                <div class="col-md-12">
+                    NO2
+                </div>
+                <div class="col-md-12">
+                    二氧化氮
+                </div>
+            </div>
+            <div class="six-item col-md-4 col-sm-4 col-xs-4">
+                <div class="col-md-12">
+                    12ug/m3
+                </div>
+                <div class="col-md-12">
+                    CO
+                </div>
+                <div class="col-md-12">
+                    一氧化碳
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="level-info">
+        <p class="level-info-text">健康影响</p>
+        <p class="level-info-text">空气质量令人满意，基本无空气污染</p>
+        <p class="level-info-text">温馨提示</p>
+        <p class="level-info-text">各类人群可正常活动</p>
+    </div>
+    <div class="today-data-title">
+        今日数据
+        <select class="data-select">
+            <option>PM2.5</option>
+            <option>PM10</option>
+            <option>SO2</option>
+            <option>NO2</option>
+            <option>CO</option>
+            <option>O3</option>
+        </select>
+    </div>
+    <div id="container" class="today-data" style="width: 100%; max-width: 100%;"></div>
+{% endblock %}
+{% block special_js %}
+    <script>
+        var width = $(".six-list").width();
+        $("#container").width = width;
+    </script>
+    <script>
+        /**
+      * Highcharts 在 4.2.0 开始已经不依赖 jQuery 了，直接用其构造函数既可创建图表
+     **/
+    var chart = new Highcharts.Chart('container', {
+        title: {
+            text: '不同城市的月平均气温',
+            x: -20
+        },
+        chart: {
+            backgroundColor: "#1f8fff",
+        },
+        subtitle: {
+            text: '数据来源: WorldClimate.com',
+            x: -20
+        },
+        xAxis: {
+            categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+        },
+        yAxis: {
+            enable:false,
+            title: {
+                text: '',
+                align: 'low'
+            },
+
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            layout: 'horizontal',
+        },
+        series: [ {
+            name: '伦敦',
+            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+        }]
+    });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static from staticfiles %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Base Template{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" type="image/x-icon" href={% static "app/img/favicon.ico" %}/>
+    <link rel="stylesheet" href= {% static "app/css/bootstrap.min.css" %} />
+    <link rel="stylesheet" href= {% static "app/font-awesome/css/font-awesome.min.css" %}>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
+    <link href="https://cdn.bootcss.com/flat-ui/2.3.0/css/flat-ui.min.css" rel="stylesheet">
+    {% block special_css %}
+    {% endblock %}
+    <style>
+        body{
+            background: rgba(30, 144, 255, 0.8);
+            margin-bottom: 100px;
+        }
+        #footer{
+            height: 100px;
+            min-height:20px;
+            background: rgba(0,0,0,0.9);
+            position: fixed;
+            bottom: 0;
+            border-width: 1px 0 0;
+            color:#999;
+            overflow: hidden;
+            width: 100%;
+        }
+        #footer .row > div{
+            text-align: center;
+            line-height: 50px;
+            border-left: 2px solid white;
+            cursor: pointer;
+        }
+        #footer .row > div:hover{
+            background: rgba(0,0,255,0.8);
+        }
+        @media (max-width: 768px){
+            body{
+                margin-bottom: 50px;
+            }
+            #footer{
+                height: 50px;
+            }
+            #footer .row > div{
+                text-align: center;
+                line-height: 25px;
+                border-left: 2px solid white;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id = "body_content">
+    {% block body_content %}
+
+    {% endblock %}
+    </div>
+    <div id = "footer">
+        <div class="row">
+            <div  class="col-md-3 col-sm-3 col-xs-3">
+                <div class="col-md-12" style="position: relative;">
+                    <span class="glyphicon glyphicon-cloud"></span>
+                </div>
+                <div class="col-md-12">空气质量</div>
+            </div>
+            <div  class="col-md-3 col-sm-3 col-xs-3">
+                <div class="col-md-12">
+                    <span class="glyphicon glyphicon-star-empty"></span>
+                </div>
+                <div class="col-md-12">排名</div>
+            </div>
+            <div  class="col-md-3 col-sm-3 col-xs-3">
+                <div class="col-md-12">
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                </div>
+                <div class="col-md-12">地图</div>
+            </div>
+            <div  class="col-md-3 col-sm-3 col-xs-3">
+                <div class="col-md-12">
+                    <span class="glyphicon glyphicon-user"></span>
+                </div>
+                <div class="col-md-12">我的</div>
+            </div>
+        </div>
+    </div>
+    <script src= {% static "app/js/jquery-3.1.1.min.js" %}></script>
+    <script src= {% static "app/js/bootstrap.min.js" %}></script>
+    <script src= {% static "app/js/highcharts.js" %}></script>
+{#    <script src= {% static "app/js/vue.js" %}></script>#}
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        var height =  $(document).height();
+        $("#slider").height(height);
+    </script>
+    {% block special_js %}
+
+    {% endblock %}
+</body>
+</html>
