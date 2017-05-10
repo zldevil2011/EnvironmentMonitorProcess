@@ -25,10 +25,30 @@
             background: blue;
             border-radius: 5px;
         }
+        .disactive{
+            background: #2d6499;
+        }
         .pure-menu-link:hover{
             background: blue;
             border-radius: 5px;
         }
+        .ranking-list ol li{
+            padding: 5px 0px;
+            margin-bottom: 5px;
+            border-bottom:1px dotted white;
+            overflow: hidden;
+        }
+        .ranking-list ol li span{
+            padding: 5px 20px;
+            border-radius: 5px;
+            float: right;
+        }
+        .color-1{  background: green;  }
+        .color-2{  background: greenyellow;  }
+        .color-3{  background: orange;  }
+        .color-4{  background: orangered;  }
+        .color-5{  background: indianred;  }
+        .color-6{  background: darkred;  }
     </style>
 {% endblock %}
 
@@ -39,8 +59,8 @@
     <nav id="MultiTabWrapper">
         <div class="pure-menu pure-menu-horizontal pure-menu-scrollable" style="padding: 0;">
             <ul class="pure-menu-list" style="padding: 0.1rem;">
-                <li class="pure-menu-item pure-menu-link-active"><a name="current_item" href="#" class="pure-menu-link">AQI</a></li>
-                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">PM2.5</a></li>
+                <li name = "tag1" v-on:click="change('aqi', $event)" class="pure-menu-item" v-bind:class="[disactive]"><a name="current_item" href="#" class="pure-menu-link">AQI</a></li>
+                <li v-on:click="change('pm25', $event)" class="pure-menu-item" v-bind:class="[disactive]"><a name="current_item" href="#" class="pure-menu-link">PM2.5</a></li>
                 <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">PM10</a></li>
                 <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">SO2</a></li>
                 <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">NO2</a></li>
@@ -50,17 +70,45 @@
         </div>
     </nav>
     <div class="ranking-list">
-        <ol>
-            <li>1号节点</li>
-            <li>1号节点</li>
-            <li>1号节点</li>
-            <li>1号节点</li>
-            <li>1号节点</li>
-            <li>1号节点</li>
-            <li>1号节点</li>
+        <ol style="padding:20px;" name="aqi">
+            <li>1号节点<span class="color-1">53</span></li>
+            <li>1号节点<span class="color-2">53</span></li>
+            <li>1号节点<span class="color-3">53</span></li>
+            <li>1号节点<span class="color-4">53</span></li>
+            <li>1号节点<span class="color-5">53</span></li>
+            <li>1号节点<span class="color-6">53</span></li>
+            <li>1号节点<span class="color-6">53</span></li>
+        </ol>
+        <ol style="padding:20px;display: none;" name="pm25">
+            <li>岐山医药<span class="color-1">53</span></li>
+            <li>创业园<span class="color-1">53</span></li>
+            <li>望华楼<span class="color-1">53</span></li>
+            <li>1号节点<span class="color-1">53</span></li>
+            <li>1号节点<span class="color-1">53</span></li>
+            <li>1号节点<span class="color-1">53</span></li>
+            <li>1号节点<span class="color-1">53</span></li>
         </ol>
     </div>
 {% endblock %}
 {% block special_js %}
-
+<script>
+    var vm = new Vue({
+        el:"#MultiTabWrapper",
+        data:{
+            disactive : "disactive",
+        },
+        methods:{
+            change:function(name, event){
+                console.log(name);
+                $("[name=" + name + "]").css("display", "block");
+                $("[name=" + name + "]").siblings().css("display", "none");
+                console.log(event);
+                this.disactive="disactive";
+                event.target.parentNode.style.background = "blue";
+            }
+        },
+        created:function(){
+        }
+    })
+</script>
 {% endblock %}
