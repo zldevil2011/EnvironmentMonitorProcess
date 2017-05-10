@@ -1,0 +1,103 @@
+{% extends "phone/base.html" %}
+{% load static from staticfiles %}
+{% block title %}监测点{% endblock %}
+{% block special_css %}
+    <style>
+        #header{
+            text-align: center;
+            color:white;
+            margin-bottom:10px;
+        }
+        .color-1{  background: green;  }
+        .color-2{  background: greenyellow;  }
+        .color-3{  background: orange;  }
+        .color-4{  background: orangered;  }
+        .color-5{  background: indianred;  }
+        .color-6{  background: darkred;  }
+        h4{
+            font-size: 1.5rem;
+        }
+    </style>
+{% endblock %}
+
+{% block body_content %}
+    <div id="header">
+        监测点
+    </div>
+    <div class="map">
+        <div id="map" style="width:100%;height:600px; border: 1px solid rgba(0, 0, 0, 0.04); border-radius: 6px;"></div>
+    </div>
+{% endblock %}
+{% block special_js %}
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WZVN4DbW3hfB9MSgMmwVQBHU8ZV8jRxW"></script>
+<script>
+    var map = new BMap.Map("map");          // 创建地图实例
+        var device_list_data = [
+            {name:"一号点", pm25:"25", so2:"3", pm10:"50",longitude:"117.5436320000",latitude:"30.7078830000"}
+        ];
+        console.log(device_list_data);
+        console.log(typeof(device_list_data));
+        var markerArr = new Array();
+        var infoWindowArr = new Array();
+        for(var i = 0; i < device_list_data.length; ++i) {
+            console.log(device_list_data[i].name);
+            var data = device_list_data[i];
+            var point = new BMap.Point(data.longitude, data.latitude);  // 创建点坐标
+            var sContent =
+                    "<div><h4>" + data.name + "</h4>" +
+                    "<h4>PM2.5:" + data.pm25 + "</h4>" +
+                    "<h4>SO2:" + data.so2 + "</h4>" +
+                    "<h4>PM10:" + data.pm10 + "</h4>" +
+                    "</div>";
+            var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+            var marker = new BMap.Marker(point);
+            infoWindowArr.push(infoWindow);
+            markerArr.push(marker);
+        }
+
+        for(var i = 0; i < infoWindowArr.length; ++i){
+            map.addOverlay(markerArr[i]);
+            var ope = new markerClick(i);
+            markerArr[i].addEventListener("click", ope.clickFunc);
+        }
+        function markerClick(i){
+            this.clickFunc = function() {
+                console.log(i);
+                this.openInfoWindow(infoWindowArr[i]);
+            }
+        }
+
+{#        marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画#}
+
+        map.addControl(new BMap.NavigationControl());
+        map.addControl(new BMap.ScaleControl());
+        map.addControl(new BMap.OverviewMapControl());
+        map.addControl(new BMap.MapTypeControl());
+        var geolocationControl = new BMap.GeolocationControl();
+        geolocationControl.addEventListener("locationSuccess", function(e){
+            // 定位成功事件
+            var address = '';
+            address += e.addressComponent.province;
+            address += e.addressComponent.city;
+            address += e.addressComponent.district;
+            address += e.addressComponent.street;
+            address += e.addressComponent.streetNumber;
+            alert("当前定位地址为：" + address);
+        });
+        geolocationControl.addEventListener("locationError",function(e){
+            // 定位失败事件
+            alert(e.message);
+        });
+        map.addControl(geolocationControl);
+        map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+        map.enableScrollWheelZoom();
+
+        map.enableInertialDragging();
+        map.enableContinuousZoom();
+        var size = new BMap.Size(10, 20);
+        map.addControl(new BMap.CityListControl({
+            anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+            offset: size
+        }));
+</script>
+{% endblock %}
