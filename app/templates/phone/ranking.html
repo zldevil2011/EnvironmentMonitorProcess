@@ -1,0 +1,66 @@
+{% extends "phone/base.html" %}
+{% load static from staticfiles %}
+{% block title %}排名{% endblock %}
+{% block special_css %}
+    <style>
+        #header{
+            text-align: center;
+            color:white;
+            margin-bottom:10px;
+        }
+        .ranking-list{
+            margin-top: 10px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        #MultiTabWrapper{
+            background: rgba(0,0,0,0.4);
+        }
+        .pure-menu-list{
+            font-size:1.5rem;
+{#            background: rgba(0,0,0,0.4);#}
+{#            width: 100%;#}
+        }
+        .pure-menu-link-active{
+            background: blue;
+            border-radius: 5px;
+        }
+        .pure-menu-link:hover{
+            background: blue;
+            border-radius: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block body_content %}
+    <div id="header">
+        空气排名
+    </div>
+    <nav id="MultiTabWrapper">
+        <div class="pure-menu pure-menu-horizontal pure-menu-scrollable" style="padding: 0;">
+            <ul class="pure-menu-list" style="padding: 0.1rem;">
+                <li class="pure-menu-item pure-menu-link-active"><a name="current_item" href="#" class="pure-menu-link">AQI</a></li>
+                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">PM2.5</a></li>
+                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">PM10</a></li>
+                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">SO2</a></li>
+                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">NO2</a></li>
+                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">CO</a></li>
+                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">O3</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="ranking-list">
+        <ol>
+            <li>1号节点</li>
+            <li>1号节点</li>
+            <li>1号节点</li>
+            <li>1号节点</li>
+            <li>1号节点</li>
+            <li>1号节点</li>
+            <li>1号节点</li>
+        </ol>
+    </div>
+{% endblock %}
+{% block special_js %}
+
+{% endblock %}
