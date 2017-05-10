@@ -1,0 +1,67 @@
+{% extends "phone/base.html" %}
+{% load static from staticfiles %}
+{% block title %}我的信息{% endblock %}
+{% block special_css %}
+    <style>
+        #header{
+            text-align: center;
+            color:white;
+            margin-bottom:10px;
+            background: rgba(30, 144, 255, 0.8);
+        }
+        body{
+            background: white !important;
+        }
+        .color-1{  background: green;  }
+        .color-2{  background: greenyellow;  }
+        .color-3{  background: orange;  }
+        .color-4{  background: orangered;  }
+        .color-5{  background: indianred;  }
+        .color-6{  background: darkred;  }
+        h4{
+            font-size: 1.5rem;
+        }
+        .my-head-info{
+            overflow: hidden;
+        }
+        .mine-list ul li{
+            border-top: 1px solid darkgray;
+            text-decoration: none;
+            list-style: none;
+            padding: 10px 0;
+        }
+        .mine-list ul li:last-child{
+            border-bottom: 1px solid darkgray;
+        }
+        .mine-list ul li span{
+            float: right;
+            padding-right: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block body_content %}
+    <div id="header">
+        我的
+    </div>
+    <div class="my-head">
+        <img src= {% static "app/img/favicon.ico" %} width="100" height="100" style="float: left;">
+        <div class="my-head-info">
+            <p style="margin-top: 18px;">多参数环境监测</p>
+            <p>V 0.0.1</p>
+        </div>
+    </div>
+    <div class="mine-list">
+        <ul style="padding-left: 10px;">
+            <li>我的晒图<span class="glyphicon glyphicon-chevron-right"></span></li>
+            <li>相关知识<span class="glyphicon glyphicon-chevron-right"></span></li>
+            <li>关于我们<span class="glyphicon glyphicon-chevron-right"></span></li>
+            <li>关于应用<span class="glyphicon glyphicon-chevron-right"></span></li>
+            <li>检查更新<span class="glyphicon glyphicon-chevron-right"></span></li>
+        </ul>
+    </div>
+{% endblock %}
+{% block special_js %}
+<script>
+</script>
+{% endblock %}

@@ -6,4 +6,5 @@ urlpatterns = [
 	url(r'^index/$', TemplateView.as_view(template_name="phone/index.html")),
 	url(r'^ranking/$', TemplateView.as_view(template_name="phone/ranking.html")),
 	url(r'^map/$', TemplateView.as_view(template_name="phone/map.html")),
+	url(r'^mine/$', TemplateView.as_view(template_name="phone/mine.html")),
 ]
