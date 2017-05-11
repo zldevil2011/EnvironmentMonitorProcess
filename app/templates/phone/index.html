@@ -86,12 +86,19 @@
         .data-select option{
             padding: 10px;
         }
+        .refresh-btn{
+            float: right;
+            cursor: pointer;
+        }
+        .refresh-btn:hover{
+            color:red;
+        }
     </style>
 {% endblock %}
 
 {% block body_content %}
     <div id="header">
-        <p>空气质量</p>
+        <p>空气质量 <span class="glyphicon glyphicon-refresh refresh-btn" style="" onclick="window.android.refreshPage();">刷新</span></p>
     </div>
     <div id="address">
         池州市
