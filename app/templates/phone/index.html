@@ -17,14 +17,18 @@
             text-align: center;
             color:white;
         }
-        .leve1{
+        .level1,.level2,.level3,.level4,.level5,.level6{
             width: 50px;
             height: 10px;
-            background: greenyellow;
             padding:5px 20px;
             border-radius: 5px;
-
         }
+        .level1{  background: green;  }
+        .level2{  background: greenyellow;  }
+        .level3{  background: orange;  }
+        .level4{  background: orangered;  }
+        .level5{  background: indianred;  }
+        .level6{  background: darkred;  }
         .AQI-info{
             background: rgba(30, 144, 255, 1);
             color:white;
@@ -93,21 +97,65 @@
         .refresh-btn:hover{
             color:red;
         }
+        .address-edit{
+            float: left;
+        }
+        .address-edit:hover{
+            color: darkgoldenrod;
+            cursor: pointer;
+        }
+        .modal-dialog{
+            font-size: 1rem !important;
+        }
+        .address-list li{
+            display: inline-block;
+            padding: 3px 5px;
+            margin: 10px 5px;
+            border: 2px solid darkgoldenrod;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .address-list li:hover{
+            border: 2px solid red;
+        }
     </style>
 {% endblock %}
 
 {% block body_content %}
     <div id="header">
-        <p>空气质量 <span class="glyphicon glyphicon-refresh refresh-btn" style="" onclick="window.android.refreshPage();">刷新</span></p>
+        <p><span class="glyphicon glyphicon-pencil address-edit" href="#modal-address-list" role="button" class="btn" data-toggle="modal">{{ device_name.name }}</span> 空气质量 <span class="glyphicon glyphicon-refresh refresh-btn" style="" onclick="window.android.refreshPage();">刷新</span></p>
     </div>
-    <div id="address">
-        池州市
+    <div class="modal fade" id="modal-address-list" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel" style="font-size: 1.5rem !important;">
+                        采集点
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="address-list">
+                        {% for device in device_list %}
+                        <li onclick="window.location.href='/app/index/{{ device.id }}/'">{{ device.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 1rem !important;">关闭</button> <button type="button" class="btn btn-primary" style="font-size: 1rem !important;">确定</button>
+                </div>
+            </div>
+
+        </div>
+
     </div>
+
+{#    <div id="address"></div>#}
     <div id="realAQI">
         AQI
         <div class="">
             <div class="col-md-12" style="text-align: center;">
-                <span class="leve1">121</span>
+                <span class="level{{ device_info.level }}">{{ device_info.aqi }}</span>
             </div>
         </div>
     </div>
@@ -134,7 +182,7 @@
         <div class="">
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    12ug/m3
+                    {{ device_info.pm25 }}ug/m3
                 </div>
                 <div class="col-md-12">
                     PM2.5
@@ -145,7 +193,7 @@
             </div>
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    12ug/m3
+                    {{ device_info.pm10 }}ug/m3
                 </div>
                 <div class="col-md-12">
                     PM10
@@ -156,7 +204,7 @@
             </div>
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    12ug/m3
+                    {{ device_info.o3 }}ug/m3
                 </div>
                 <div class="col-md-12">
                     O3
@@ -167,7 +215,7 @@
             </div>
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    12ug/m3
+                    {{ device_info.so2 }}ug/m3
                 </div>
                 <div class="col-md-12">
                     SO2
@@ -178,7 +226,7 @@
             </div>
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    12ug/m3
+                    {{ device_info.no2 }}ug/m3
                 </div>
                 <div class="col-md-12">
                     NO2
@@ -189,7 +237,7 @@
             </div>
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    12ug/m3
+                    {{ device_info.co }}ug/m3
                 </div>
                 <div class="col-md-12">
                     CO
@@ -202,19 +250,19 @@
     </div>
     <div class="level-info">
         <p class="level-info-text">健康影响</p>
-        <p class="level-info-text">空气质量令人满意，基本无空气污染</p>
+        <p class="level-info-text">{{ device_info.reference }}</p>
         <p class="level-info-text">温馨提示</p>
-        <p class="level-info-text">各类人群可正常活动</p>
+        <p class="level-info-text">{{ device_info.results }}</p>
     </div>
     <div class="today-data-title">
         今日数据
-        <select class="data-select">
-            <option>PM2.5</option>
-            <option>PM10</option>
-            <option>SO2</option>
-            <option>NO2</option>
-            <option>CO</option>
-            <option>O3</option>
+        <select class="data-select" id="dataType">
+            <option value="pm25">PM2.5</option>
+            <option value="pm10">PM10</option>
+            <option value="so2">SO2</option>
+            <option value="no2">NO2</option>
+            <option value="co">CO</option>
+            <option value="o3">O3</option>
         </select>
     </div>
     <div id="container" class="today-data" style="width: 100%; max-width: 100%;"></div>
@@ -225,43 +273,58 @@
         $("#container").width = width;
     </script>
     <script>
-        /**
-      * Highcharts 在 4.2.0 开始已经不依赖 jQuery 了，直接用其构造函数既可创建图表
-     **/
-    var chart = new Highcharts.Chart('container', {
-        title: {
-            text: '不同城市的月平均气温',
-            x: -20
-        },
-        chart: {
-            backgroundColor: "#1f8fff",
-        },
-        subtitle: {
-            text: '数据来源: WorldClimate.com',
-            x: -20
-        },
-        xAxis: {
-            categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
-        },
-        yAxis: {
-            enable:false,
-            title: {
-                text: '',
-                align: 'low'
-            },
+        var today_data = {{ today_data|safe }};
+        var xArr = today_data["time"];
+        var yArr = today_data["pm25"];
+        var name = "pm25";
+        drawChart(name,xArr, yArr);
+        $("#dataType").on("change", function(){
+            var name = $(this).val();
+            console.log(name);
+            var xArr = today_data["time"];
+            var yArr = today_data[name];
+            var name = name;
+            drawChart(name,xArr, yArr);
+        });
+        function drawChart(name, xArr, yArr) {
+            /**
+             * Highcharts 在 4.2.0 开始已经不依赖 jQuery 了，直接用其构造函数既可创建图表
+             **/
+            var chart = new Highcharts.Chart('container', {
+                title: {
+                    text: '今日' + name + "数据",
+                    x: -20
+                },
+                chart: {
+                    backgroundColor: "#1f8fff",
+                },
+                subtitle: {
+                    text: '数据来源: 安徽京师方圆',
+                    x: -20
+                },
+                xAxis: {
+                    categories: xArr,
+                },
+                yAxis: {
+                    enable: false,
+                    title: {
+                        text: '',
+                        align: 'low'
+                    },
 
-        },
-        tooltip: {
-            valueSuffix: '°C'
-        },
-        legend: {
-            layout: 'horizontal',
-        },
-        series: [ {
-            name: '伦敦',
-            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-        }]
-    });
+                },
+                tooltip: {
+                    valueSuffix: 'ug/m3'
+                },
+                legend: {
+                    layout: 'horizontal',
+                },
+                series: [{
+                    name: name,
+                    data: yArr
+                }]
+            });
+        }
 
     </script>
 {% endblock %}
