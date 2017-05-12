@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static from staticfiles %}
+    <meta charset="UTF-8">
+    <title>相关知识</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" type="image/x-icon" href={% static "app/img/favicon.ico" %}/>
+    <link rel="stylesheet" href= {% static "app/css/bootstrap.min.css" %} />
+    <link rel="stylesheet" href= {% static "app/font-awesome/css/font-awesome.min.css" %}>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
+    <link href="https://cdn.bootcss.com/flat-ui/2.3.0/css/flat-ui.min.css" rel="stylesheet">
+    {% block special_css %}
+    {% endblock %}
+    <style>
+        body{
+            background: rgba(30, 144, 255, 0.8);
+            margin-bottom: 100px;
+            color:white;
+        }
+        #header {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px){
+            body{
+                margin-bottom: 50px;
+            }
+        }
+{#        页面加载动画#}
+        .spinner {
+          margin: 100px auto;
+          width: 50px;
+          height: 60px;
+          text-align: center;
+          font-size: 10px;
+        }
+
+        .spinner > div {
+          background-color: #67CF22;
+          height: 100%;
+          width: 6px;
+          display: inline-block;
+
+          -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+          animation: stretchdelay 1.2s infinite ease-in-out;
+        }
+
+        .spinner .rect2 {
+          -webkit-animation-delay: -1.1s;
+          animation-delay: -1.1s;
+        }
+
+        .spinner .rect3 {
+          -webkit-animation-delay: -1.0s;
+          animation-delay: -1.0s;
+        }
+
+        .spinner .rect4 {
+          -webkit-animation-delay: -0.9s;
+          animation-delay: -0.9s;
+        }
+
+        .spinner .rect5 {
+          -webkit-animation-delay: -0.8s;
+          animation-delay: -0.8s;
+        }
+
+        @-webkit-keyframes stretchdelay {
+          0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+          20% { -webkit-transform: scaleY(1.0) }
+        }
+
+        @keyframes stretchdelay {
+          0%, 40%, 100% {
+            transform: scaleY(0.4);
+            -webkit-transform: scaleY(0.4);
+          }  20% {
+            transform: scaleY(1.0);
+            -webkit-transform: scaleY(1.0);
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="knowledge-body">
+        <p style="font-size: 1rem;">
+            1、节约用水
+            　　随时关上水龙头，别让水白流;看见漏水的龙头一定要拧紧它。尽量使用二次水。例如，淘米或洗菜的水可以浇花;洗脸、洗衣后的水可以留下来擦地、冲厕所。如果您家冲水马桶的容量较大，可以在水箱里放一个装满水的可乐瓶，你的这一小小行动每次可节约1.25 升水。
+            2
+            　2、少用洗洁精
+            　　大部分洗涤剂是化学产品，会污染水源。洗餐具时如果油腻过多，可先将残余的油腻倒掉，再用热面汤或热肥皂水等清洗，这样就不会让油污过多地排入水道了。有重油污的厨房用具也可以用苏打加热水来清洗。
+            3
+            3、节约用电
+            　　随手关灯、少用电器、少用空调为减缓地球温暖化出一把力;不要让电视机长时间处于待机状态，只用遥控关闭，实际并没有完全切断电源。每台彩电待机状态耗电约 1.2 瓦/小时;使用节能灯，节能灯虽然价格贵，但比普通灯要省电。用温水、热水煮饭，可省电30%。
+            4
+            4、交通工具
+            　　出行尽量选择公交车、地铁、自行车，少开私开车，减少尾气排放;有私家车的人尽量使用无铅汽油，因为铅会严重损害人的健康和智力。
+            5、选购绿色食品
+            　　很多蔬菜水果都喷洒过农药、化肥，还有很多食品使用了添加剂。这样的食品会危害健康和智力。所以，要选购不施农药、化肥的新鲜果蔬，少吃含防腐剂的方便快餐食品、有色素的饮料和添加剂的香脆零食。或者认准“绿色食品”标志选购食品也行。
+            6、选无磷洗衣粉
+            　　含磷洗衣粉进入水源后，会引起水中藻类疯长，水中含氧量下降，水中生物因缺氧而死亡。水体也由此成为死水、臭水。
+            7、选无磷洗衣粉
+            　　含磷洗衣粉进入水源后，会引起水中藻类疯长，水中含氧量下降，水中生物因缺氧而死亡。水体也由此成为死水、臭水。
+            　8、用充电电池
+            　　我们日常使用的电池是靠化学作用，通俗地 讲就是靠腐蚀作用产生电能的。当其被废弃在自然界时，这些物质便慢慢从电池中溢出，进入土壤或水源，再通过农作物进入人的食物链。 用完的干电池攒到30公斤后，可联系当地垃圾回收中心回收。
+            9、自带菜篮买菜
+            　　现在大型超市已经对购物袋进行收费，目的就是为了减少白色污染，买东西时少领取塑料购物袋，上街购物时带上布袋子或菜篮子。在超市买的购物袋也可以重复利用。
+            10、保护野生动物
+            　　拒食野生动物、拒用野生动物制品，不去那些食用野生动物的饭店就餐。不穿珍稀动物毛皮服装，不使用野生动物植物制品，如象牙、虎骨、红木家具等，正所谓没有买卖，就没有伤害。
+            　11、利用好可回收物品
+            　　生活中有许多废物是可以再利用的，如果是完好的物品，可以在自己的城市二手市场卖给需要的人，可回收垃圾可再次生产利用。
+            　　可回收物品：
+            　　(1)废纸：报纸、书本纸、包装用纸、办公用纸、广告用纸、纸盒 等;注意纸巾和厕所纸由于水溶性太强不可回收。
+            　　(2)塑料：各种塑料袋、塑料泡沫、塑料包装、一次性塑料餐盒餐 具、硬塑料、料牙刷、塑料杯子、矿泉水瓶等;
+            　　(3)玻璃：玻璃瓶和碎玻璃片、镜子、灯泡、暖瓶等;
+            　　(4)金属：易拉罐、铁皮罐头盒、牙膏皮等。
+            　　(5)布料：主要包括废弃衣服、桌布、毛巾、布包等。
+            　　12、领养一棵树
+            12、领养一棵树
+            　　参加领养树的活动，在树上挂一个小牌，写上你的名字，定期给它浇水、培土，照料它成长，让它成为你家庭的一员。
+            　　一棵50年树龄的树，产生氧气的价值约25万元;吸收有毒气体、防止大气污染价值约50万元;增加土壤肥力价值约25万元;涵养水源价值35万元;为鸟类及其他动物提供繁衍场所价值约25万元;产生蛋白质价值2万元。除去花、果实和木材价值，总计创值约150万元。
+            13、避免污染
+            　　如果你去一个地方旅游，不要在你去之前那里是名胜美景，而你走之后那里成为垃圾站。
+            14、少吃口香糖，自己不吸烟，奉劝别人少吸烟。不使用非降解塑料袋、快餐盒等。
+        </p>
+    </div>
+
+    <div id="loading" style="position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%);width: 100%;height: 100%;background: rgba(128, 128, 128, 0.5);">
+        <div class="spinner" style="">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div>
+    </div>
+
+    <script src= {% static "app/js/jquery-3.1.1.min.js" %}></script>
+    <script src= {% static "app/js/bootstrap.min.js" %}></script>
+    <script src= {% static "app/js/highcharts.js" %}></script>
+{#    <script src= {% static "app/js/vue.js" %}></script>#}
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        var height =  $(document).height();
+        $("#slider").height(height);
+    </script>
+    <script>
+        window.onload =function()
+        {
+            console.log("Yes");
+            $("#loading").css("display", "none");
+        }
+    </script>
+
+    <script>
+    </script>
+</body>
+</html>
