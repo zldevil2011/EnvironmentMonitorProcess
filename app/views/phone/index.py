@@ -353,93 +353,93 @@ def ranking(request):
 		adminer = Adminer.objects.get(username=request.session["username"])
 	except:
 		return HttpResponseRedirect("/app/user/login/")
-	sql = MySQL()
-	sql.connectDB("projectmanagement")
-	data = {}
-	data["ProjectID"] = {}
-	data["ProjectID"]["conn"] = "="
-	data["ProjectID"]["val"] = str(1)
-	device_list = sql.get_query("projectnodeinfo", data, None)
-	sql.close_connect()
-	device_list_briage = []
-	admin_ndoe_list = adminer.admin_node.split(',')
-	for device_t in device_list:
-		tmp = {}
-		tmp["name"] = device_t["Description"]
-		tmp["id"] = device_t["NodeNO"]
-		tmp["address"] = device_t["InstallationAddress"]
-		tmp["longitude"] = "117.5436320000"
-		tmp["latitude"] = "30.7078830000"
-		tmp["install_time"] = device_t["SetTime"]
-		if unicode(tmp["id"]) in admin_ndoe_list:
-			device_list_briage.append(tmp)
-	device_list = device_list_briage
-
-
-	# 获取每个站点的最新数据
-	sql.connectDB("jssf")
-	datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
-	datas.reverse()
-	sql.close_connect()
-	for device in device_list:
-		flag = 0
-		for data in datas:
-			tmp = {}
-			try:
-				tmp["so2"] = round(float(data["SO2_SO2"]) * transform_factor["so2"], 3)
-			except:
-				tmp["so2"] = data["SO2_SO2"]
-			try:
-				tmp["no2"] = round(float(data["NO2_NO2"]) * transform_factor["no2"], 3)
-			except:
-				tmp["no2"] = data["NO2_NO2"]
-			try:
-				tmp["pm10"] = data["PM10_PM10"]
-			except:
-				tmp["pm10"] = data["PM10_PM10"]
-			try:
-				tmp["co"] = round(float(data["CO_CO"]) * transform_factor["co"], 3)
-			except:
-				tmp["co"] = data["CO_CO"]
-			try:
-				tmp["o3"] = round(float(data["O3_O3"]) * transform_factor["o3"], 3)
-			except:
-				tmp["o3"] = data["O3_O3"]
-			tmp["pm25"] = data["PM2_5_PM2_5"]
-			tmp["device_id"] = data[u"项目内节点编号"]
-			tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
-			if device["id"] == tmp["device_id"]:
-				try:
-					device["latest_time"] = str(tmp["time"])
-					device["pm25"] = tmp["pm25"]
-					device["so2"] = tmp["so2"]
-					device["pm10"] = tmp["pm10"]
-					flag = 1
-				except Exception as e:
-					print(str(e))
-				break
-		if flag == 0:
-			device["pm25"] = u"无数据"
-			device["so2"] = u"无数据"
-			device["pm10"] = u"无数据"
-	for device in device_list:
-		aqi = AqiParameter()
-		aqi.get_1_aqi(device)
-		device["AQI"] = aqi.AQI_1
-	print(device_list)
-	aqi_list  = sorted(device_list, key=lambda e: e.__getitem__('AQI'))
-	pm25_list  = sorted(device_list, key=lambda e: e.__getitem__('pm25'))
-	pm10_list  = sorted(device_list, key=lambda e: e.__getitem__('pm10'))
-	so2_list  = sorted(device_list, key=lambda e: e.__getitem__('so2'))
-	no2_list  = sorted(device_list, key=lambda e: e.__getitem__('no2'))
-	co_list  = sorted(device_list, key=lambda e: e.__getitem__('co'))
-	o3_list  = sorted(device_list, key=lambda e: e.__getitem__('o3'))
+	# sql = MySQL()
+	# sql.connectDB("projectmanagement")
+	# data = {}
+	# data["ProjectID"] = {}
+	# data["ProjectID"]["conn"] = "="
+	# data["ProjectID"]["val"] = str(1)
+	# device_list = sql.get_query("projectnodeinfo", data, None)
+	# sql.close_connect()
+	# device_list_briage = []
+	# admin_ndoe_list = adminer.admin_node.split(',')
+	# for device_t in device_list:
+	# 	tmp = {}
+	# 	tmp["name"] = device_t["Description"]
+	# 	tmp["id"] = device_t["NodeNO"]
+	# 	tmp["address"] = device_t["InstallationAddress"]
+	# 	tmp["longitude"] = "117.5436320000"
+	# 	tmp["latitude"] = "30.7078830000"
+	# 	tmp["install_time"] = device_t["SetTime"]
+	# 	if unicode(tmp["id"]) in admin_ndoe_list:
+	# 		device_list_briage.append(tmp)
+	# device_list = device_list_briage
+	#
+	#
+	# # 获取每个站点的最新数据
+	# sql.connectDB("jssf")
+	# datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
+	# datas.reverse()
+	# sql.close_connect()
+	# for device in device_list:
+	# 	flag = 0
+	# 	for data in datas:
+	# 		tmp = {}
+	# 		try:
+	# 			tmp["so2"] = round(float(data["SO2_SO2"]) * transform_factor["so2"], 3)
+	# 		except:
+	# 			tmp["so2"] = data["SO2_SO2"]
+	# 		try:
+	# 			tmp["no2"] = round(float(data["NO2_NO2"]) * transform_factor["no2"], 3)
+	# 		except:
+	# 			tmp["no2"] = data["NO2_NO2"]
+	# 		try:
+	# 			tmp["pm10"] = data["PM10_PM10"]
+	# 		except:
+	# 			tmp["pm10"] = data["PM10_PM10"]
+	# 		try:
+	# 			tmp["co"] = round(float(data["CO_CO"]) * transform_factor["co"], 3)
+	# 		except:
+	# 			tmp["co"] = data["CO_CO"]
+	# 		try:
+	# 			tmp["o3"] = round(float(data["O3_O3"]) * transform_factor["o3"], 3)
+	# 		except:
+	# 			tmp["o3"] = data["O3_O3"]
+	# 		tmp["pm25"] = data["PM2_5_PM2_5"]
+	# 		tmp["device_id"] = data[u"项目内节点编号"]
+	# 		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
+	# 		if device["id"] == tmp["device_id"]:
+	# 			try:
+	# 				device["latest_time"] = str(tmp["time"])
+	# 				device["pm25"] = tmp["pm25"]
+	# 				device["so2"] = tmp["so2"]
+	# 				device["pm10"] = tmp["pm10"]
+	# 				flag = 1
+	# 			except Exception as e:
+	# 				print(str(e))
+	# 			break
+	# 	if flag == 0:
+	# 		device["pm25"] = u"无数据"
+	# 		device["so2"] = u"无数据"
+	# 		device["pm10"] = u"无数据"
+	# for device in device_list:
+	# 	aqi = AqiParameter()
+	# 	aqi.get_1_aqi(device)
+	# 	device["AQI"] = aqi.AQI_1
+	# print(device_list)
+	# aqi_list  = sorted(device_list, key=lambda e: e.__getitem__('AQI'))
+	# pm25_list  = sorted(device_list, key=lambda e: e.__getitem__('pm25'))
+	# pm10_list  = sorted(device_list, key=lambda e: e.__getitem__('pm10'))
+	# so2_list  = sorted(device_list, key=lambda e: e.__getitem__('so2'))
+	# no2_list  = sorted(device_list, key=lambda e: e.__getitem__('no2'))
+	# co_list  = sorted(device_list, key=lambda e: e.__getitem__('co'))
+	# o3_list  = sorted(device_list, key=lambda e: e.__getitem__('o3'))
 	return render(request, "phone/ranking.html", {
-		"aqi_list":aqi_list,
-		"pm25_list":pm25_list,
-		"pm10_list":pm10_list,
-		"so2_list":so2_list,
-		"no2_list":no2_list,
-		"co_list":co_list,
-		"o3_list":o3_list,
+		# "aqi_list":aqi_list,
+		# "pm25_list":pm25_list,
+		# "pm10_list":pm10_list,
+		# "so2_list":so2_list,
+		# "no2_list":no2_list,
+		# "co_list":co_list,
+		# "o3_list":o3_list,
 	})
