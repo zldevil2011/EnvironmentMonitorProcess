@@ -111,10 +111,10 @@ def index(request, device_id):
 				 "o3": "无数据", "pm25": "无数据", "reference":"无数据", "results":"无数据"}
 	try:
 		device_info = datas_list[len(datas_list)-1]
+		return HttpResponse(device_info)
 		try:
 			calculator = AqiParameter()
 			calculator.get_1_aqi(device_info)
-			return HttpResponse(calculator)
 			device_info["aqi"] = calculator.AQI_1
 			device_info["reference"] = calculator.AQI_info_1.health
 			device_info["results"] = calculator.AQI_info_1.step
