@@ -273,57 +273,144 @@
         $("#container").width = width;
     </script>
     <script>
+        var device_info = "{{ device_info }}";
+        console.log(device_info);
         var today_data = {{ today_data|safe }};
-        var xArr = today_data["time"];
-        var yArr = today_data["pm25"];
+        var xArr = today_data.time;
         var name = "pm25";
         drawChart(name,xArr, yArr);
         $("#dataType").on("change", function(){
             var name = $(this).val();
             console.log(name);
             var xArr = today_data["time"];
-            var yArr = today_data[name];
+            var yArr = today_data.data[name];
             var name = name;
             drawChart(name,xArr, yArr);
         });
         function drawChart(name, xArr, yArr) {
-            /**
-             * Highcharts 在 4.2.0 开始已经不依赖 jQuery 了，直接用其构造函数既可创建图表
-             **/
-            var chart = new Highcharts.Chart('container', {
-                title: {
-                    text: '今日' + name + "数据",
-                    x: -20
-                },
+            var time_list = xArr;
+            var data_list = yArr;
+            var datas = new Array();
+            var len = data_list.length;
+            for(var i = 0;i < len; ++i){
+                var tmp = new Array();
+                var _ = new Date(time_list[i].replace(/-/g, "/"));
+                _ = _.getTime() + 8*60*60*1000;
+                _ = new Date(_);
+                var time = Date.UTC(_.getUTCFullYear(), _.getUTCMonth(), _.getUTCDate(), _.getUTCHours(), _.getUTCMinutes(), _.getUTCSeconds());
+                tmp.push(time);
+                tmp.push(data_list[i]);
+                datas.push(tmp);
+            }
+            var colors = ['#00ff00'];
+            Highcharts.getOptions().colors = Highcharts.map(colors, function (color) {
+                 return {
+                     radialGradient: { cx:0, cy: -0.8,r:2.3 },
+                     stops: [[0, color], [2, Highcharts.Color(color).brighten(14).get('rgb')] // darken
+                     ]
+                 };
+             });
+            $('#container').highcharts({
                 chart: {
-                    backgroundColor: "#1f8fff",
+                    type: 'line',
+                    backgroundColor: 'rgba(80,81,95,0.1)',
+                },
+                title: {
+                    text: '今日' + name + '监测值',
+                    x: -20 //center
                 },
                 subtitle: {
-                    text: '数据来源: 安徽京师方圆',
+                    text: '数据来源:' + {{ device_name }} + '观测点',
                     x: -20
                 },
                 xAxis: {
-                    categories: xArr,
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        millisecond: '%H:%M:%S',
+                        second: '%H:%M:%S',
+                        minute: '%d %H:%M',
+                        hour: '%m-%d %H:%M',
+                        day: '%m-%d',
+                        week: '%m-%d',
+                        month: '%Y-%m',
+                        year: '%Y',
+                    },
                 },
                 yAxis: {
-                    enable: false,
+                    min:0, // 定义最小值
                     title: {
-                        text: '',
-                        align: 'low'
+                        text: name + '浓度(ug/m³)'
                     },
-
                 },
                 tooltip: {
-                    valueSuffix: 'ug/m3'
+                    valueSuffix: 'ug/m³',
+                    dateTimeLabelFormats: {
+                        millisecond: '%Y-%m-%d %H:%M:%S',
+                        second: '%Y-%m-%d %H:%M:%S',
+                        minute: '%Y-%m-%d %H:%M:%S',
+                        hour: '%Y-%m-%d %H:%M:%S',
+                        day: '%Y-%m-%d %H:%M:%S',
+                        week: '%Y-%m-%d %H:%M:%S',
+                        month: '%Y-%m-%d %H:%M:%S',
+                        year: '%Y-%m-%d %H:%M:%S',
+                    }
+                },
+                plotOptions: {
+                    series: {
+                        marker: {
+                            enabled: true
+                        }
+                    }
                 },
                 legend: {
-                    layout: 'horizontal',
+                    layout: 'vertical',
+                    align: 'center',
+                    verticalAlign: 'bottom',
+                    borderWidth: 0
                 },
                 series: [{
                     name: name,
-                    data: yArr
+                    data: datas,
+                    color:"#4e505d"
                 }]
             });
+{#            /**#}
+{#             * Highcharts 在 4.2.0 开始已经不依赖 jQuery 了，直接用其构造函数既可创建图表#}
+{#             **/#}
+{#            var chart = new Highcharts.Chart('container', {#}
+{#                title: {#}
+{#                    text: '今日' + name + "数据",#}
+{#                    x: -20#}
+{#                },#}
+{#                chart: {#}
+{#                    backgroundColor: "#1f8fff",#}
+{#                },#}
+{#                subtitle: {#}
+{#                    text: '数据来源: 安徽京师方圆',#}
+{#                    x: -20#}
+{#                },#}
+{#                xAxis: {#}
+{#                    categories: xArr,#}
+{#                },#}
+{#                yAxis: {#}
+{#                    enable: false,#}
+{#                    title: {#}
+{#                        text: '',#}
+{#                        align: 'low'#}
+{#                    },#}
+{##}
+{#                },#}
+{#                tooltip: {#}
+{#                    valueSuffix: 'ug/m3'#}
+{#                },#}
+{#                legend: {#}
+{#                    layout: 'horizontal',#}
+{#                },#}
+{#                series: [{#}
+{#                    name: name,#}
+{#                    data: yArr#}
+{#                }]#}
+{#            });#}
         }
 
     </script>
