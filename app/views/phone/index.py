@@ -331,6 +331,7 @@ def map(request):
 					device["pm10"] = data["pm10"]
 					flag = 1
 					break
+			print device
 			if flag == 0:
 				device["AQI"] = u"无数据"
 				device["pm25"] = u"无数据"
