@@ -293,6 +293,7 @@ def map(request):
 		datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
 		datas.reverse()
 		sql.close_connect()
+		print(device_list)
 		for device in device_list:
 			flag = 0
 			for data in datas:
