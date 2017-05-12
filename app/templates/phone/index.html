@@ -123,7 +123,7 @@
 
 {% block body_content %}
     <div id="header">
-        <p><span class="glyphicon glyphicon-pencil address-edit" href="#modal-address-list" role="button" class="btn" data-toggle="modal">{{ device_name.name }}</span> 空气质量 <span class="glyphicon glyphicon-refresh refresh-btn" style="" onclick="window.android.refreshPage();">刷新</span></p>
+        <p><span class="glyphicon glyphicon-pencil address-edit" href="#modal-address-list" role="button" class="btn" data-toggle="modal">{{ device_name }}</span> 空气质量 <span class="glyphicon glyphicon-refresh refresh-btn" style="" onclick="window.android.refreshPage();">刷新</span></p>
     </div>
     <div class="modal fade" id="modal-address-list" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -273,7 +273,7 @@
         $("#container").width = width;
     </script>
     <script>
-        var device_info = "{{ device_info }}";
+        var device_info = "{{ device_info | safe}}";
         console.log(device_info);
         var today_data = {{ today_data|safe }};
         var xArr = today_data.time;
