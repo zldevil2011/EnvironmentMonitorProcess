@@ -71,7 +71,9 @@
     </nav>
     <div class="ranking-list">
         <ol style="padding:20px;" name="aqi">
-            <li>1号节点<span class="color-1">53</span></li>
+            {% for aqi in aqi_list %}
+                <li>{{ aqi.name }}<span class="color-1">{{ aqi.AQI }}</span></li>
+            {% endfor %}
             <li>1号节点<span class="color-2">53</span></li>
             <li>1号节点<span class="color-3">53</span></li>
             <li>1号节点<span class="color-4">53</span></li>
@@ -80,6 +82,9 @@
             <li>1号节点<span class="color-6">53</span></li>
         </ol>
         <ol style="padding:20px;display: none;" name="pm25">
+            {% for pm25 in pm25_list %}
+                <li>{{ pm25.name }}<span class="color-1">{{ pm25.pm25 }}</span></li>
+            {% endfor %}
             <li>岐山医药<span class="color-1">53</span></li>
             <li>创业园<span class="color-1">53</span></li>
             <li>望华楼<span class="color-1">53</span></li>
