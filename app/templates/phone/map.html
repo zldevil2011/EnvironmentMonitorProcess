@@ -47,9 +47,9 @@
                 var point = new BMap.Point(data.longitude, data.latitude);  // 创建点坐标
                 var sContent =
                         "<div><h4>" + data.name + "</h4>" +
-                        "<h4>PM2.5:" + data.pm25 + "</h4>" +
-                        "<h4>SO2:" + data.so2 + "</h4>" +
-                        "<h4>PM10:" + data.pm10 + "</h4>" +
+{#                        "<h4>PM2.5:" + data.pm25 + "</h4>" +#}
+{#                        "<h4>SO2:" + data.so2 + "</h4>" +#}
+{#                        "<h4>PM10:" + data.pm10 + "</h4>" +#}
                         "</div>";
                 var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
                 var marker = new BMap.Marker(point);

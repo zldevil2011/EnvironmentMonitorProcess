@@ -288,59 +288,58 @@ def map(request):
 			if unicode(tmp["id"]) in admin_ndoe_list:
 				device_list_briage.append(tmp)
 		device_list = device_list_briage
-		# return HttpResponse(device_list)
-		sql.connectDB("jssf")
-		datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
-		datas.reverse()
-		sql.close_connect()
-		datas_list_briage = []
-		for device in device_list:
-			flag = 0
-			for data in datas:
-				tmp = {}
-				try:
-					tmp["so2"] = round(float(data["SO2_SO2"]) * transform_factor["so2"], 3)
-				except:
-					tmp["so2"] = data["SO2_SO2"]
-				try:
-					tmp["no2"] = round(float(data["NO2_NO2"]) * transform_factor["no2"], 3)
-				except:
-					tmp["no2"] = data["NO2_NO2"]
-				try:
-					tmp["pm10"] = data["PM10_PM10"]
-				except:
-					tmp["pm10"] = data["PM10_PM10"]
-				try:
-					tmp["co"] = round(float(data["CO_CO"]) * transform_factor["co"], 3)
-				except:
-					tmp["co"] = data["CO_CO"]
-				try:
-					tmp["o3"] = round(float(data["O3_O3"]) * transform_factor["o3"], 3)
-				except:
-					tmp["o3"] = data["O3_O3"]
-				tmp["pm25"] = data["PM2_5_PM2_5"]
-				tmp["device_id"] = data[u"项目内节点编号"]
-				tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
-				if device["id"] == tmp["device_id"]:
-					print(device)
-					try:
-						device["latest_time"] = str(tmp["time"])
-						aqi = AqiParameter()
-						aqi.get_1_aqi(tmp)
-						device["AQI"] = aqi.AQI_1
-						device["pm25"] = tmp["pm25"]
-						device["so2"] = tmp["so2"]
-						device["pm10"] = tmp["pm10"]
-						flag = 1
-					except Exception as e:
-						print(str(e))
-					break
-			if flag == 0:
-				device["AQI"] = u"无数据"
-				device["pm25"] = u"无数据"
-				device["so2"] = u"无数据"
-				device["pm10"] = u"无数据"
-		print(device_list)
+		# sql.connectDB("jssf")
+		# datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
+		# datas.reverse()
+		# sql.close_connect()
+		# datas_list_briage = []
+		# for device in device_list:
+		# 	flag = 0
+		# 	for data in datas:
+		# 		tmp = {}
+		# 		try:
+		# 			tmp["so2"] = round(float(data["SO2_SO2"]) * transform_factor["so2"], 3)
+		# 		except:
+		# 			tmp["so2"] = data["SO2_SO2"]
+		# 		try:
+		# 			tmp["no2"] = round(float(data["NO2_NO2"]) * transform_factor["no2"], 3)
+		# 		except:
+		# 			tmp["no2"] = data["NO2_NO2"]
+		# 		try:
+		# 			tmp["pm10"] = data["PM10_PM10"]
+		# 		except:
+		# 			tmp["pm10"] = data["PM10_PM10"]
+		# 		try:
+		# 			tmp["co"] = round(float(data["CO_CO"]) * transform_factor["co"], 3)
+		# 		except:
+		# 			tmp["co"] = data["CO_CO"]
+		# 		try:
+		# 			tmp["o3"] = round(float(data["O3_O3"]) * transform_factor["o3"], 3)
+		# 		except:
+		# 			tmp["o3"] = data["O3_O3"]
+		# 		tmp["pm25"] = data["PM2_5_PM2_5"]
+		# 		tmp["device_id"] = data[u"项目内节点编号"]
+		# 		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
+		# 		if device["id"] == tmp["device_id"]:
+		# 			print(device)
+		# 			try:
+		# 				device["latest_time"] = str(tmp["time"])
+		# 				aqi = AqiParameter()
+		# 				aqi.get_1_aqi(tmp)
+		# 				device["AQI"] = aqi.AQI_1
+		# 				device["pm25"] = tmp["pm25"]
+		# 				device["so2"] = tmp["so2"]
+		# 				device["pm10"] = tmp["pm10"]
+		# 				flag = 1
+		# 			except Exception as e:
+		# 				print(str(e))
+		# 			break
+		# 	if flag == 0:
+		# 		device["AQI"] = u"无数据"
+		# 		device["pm25"] = u"无数据"
+		# 		device["so2"] = u"无数据"
+		# 		device["pm10"] = u"无数据"
+		# print(device_list)
 	except Exception as e:
 		print(str(e))
 		device_list = []
