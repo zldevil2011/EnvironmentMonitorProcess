@@ -7,6 +7,8 @@ from app.models import Adminer
 from app.views.objects.AqiParameter import AqiParameter
 from app.views.utils.mySqlUtils import MySQL
 transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1.2504464285714287, "no2": 2054.017857142857}
+import json
+
 
 def index(request, device_id):
 	try:
@@ -111,7 +113,7 @@ def index(request, device_id):
 				 "o3": "无数据", "pm25": "无数据", "reference":"无数据", "results":"无数据"}
 	try:
 		device_info = datas_list[len(datas_list)-1]
-		return HttpResponse(device_info)
+		return HttpResponse(json.loads(device_info))
 		try:
 			calculator = AqiParameter()
 			calculator.get_1_aqi(device_info)
