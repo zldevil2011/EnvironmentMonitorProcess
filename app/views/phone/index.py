@@ -328,9 +328,9 @@ def map(request):
 						aqi = AqiParameter()
 						aqi.get_1_aqi(tmp)
 						device["AQI"] = aqi.AQI_1
-						device["pm25"] = data["pm25"]
-						device["so2"] = data["so2"]
-						device["pm10"] = data["pm10"]
+						device["pm25"] = tmp["pm25"]
+						device["so2"] = tmp["so2"]
+						device["pm10"] = tmp["pm10"]
 						flag = 1
 					except Exception as e:
 						return HttpResponse(str(e))
