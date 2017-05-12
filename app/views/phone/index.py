@@ -288,7 +288,7 @@ def map(request):
 			if unicode(tmp["id"]) in admin_ndoe_list:
 				device_list_briage.append(tmp)
 		device_list = device_list_briage
-		return HttpResponse(device_list)
+		# return HttpResponse(device_list)
 		sql.connectDB("jssf")
 		datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
 		datas.reverse()
