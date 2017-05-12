@@ -322,6 +322,7 @@ def map(request):
 				tmp["device_id"] = data[u"项目内节点编号"]
 				tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
 				if device["id"] == tmp["device_id"]:
+					print(device)
 					device["latest_time"] = str(tmp["time"])
 					aqi = AqiParameter()
 					aqi.get_1_aqi(tmp)
