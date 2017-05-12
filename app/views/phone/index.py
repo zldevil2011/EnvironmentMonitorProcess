@@ -347,5 +347,5 @@ def map(request):
 		print(str(e))
 		device_list = []
 	return render(request, "phone/map.html", {
-		"device_list":device_list,
+		"device_list": json.dumps(device_list),
 	})
