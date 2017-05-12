@@ -113,8 +113,8 @@ def index(request, device_id):
 		device_info = datas_list[len(datas_list)-1]
 		try:
 			calculator = AqiParameter()
-			return HttpResponse(calculator)
 			calculator.get_1_aqi(device_info)
+			return HttpResponse(calculator)
 			device_info["aqi"] = calculator.AQI_1
 			device_info["reference"] = calculator.AQI_info_1.health
 			device_info["results"] = calculator.AQI_info_1.step
