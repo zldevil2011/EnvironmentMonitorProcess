@@ -277,6 +277,7 @@
         console.log(device_info);
         var today_data = {{ today_data|safe }};
         var xArr = today_data.time;
+        var yArr = today_data.data.pm25;
         var name = "pm25";
         drawChart(name,xArr, yArr);
         $("#dataType").on("change", function(){

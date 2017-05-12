@@ -110,7 +110,7 @@ def index(request, device_id):
 	device_info = {"aqi": "无数据", "level":"无数据", "so2": "无数据", "no2": "无数据", "pm10": "无数据", "co": "无数据",
 				 "o3": "无数据", "pm25": "无数据", "reference":"无数据", "results":"无数据"}
 	try:
-		device_info = datas_list[0]
+		device_info = datas_list[len(datas_list)-1]
 		try:
 			calculator = AqiParameter()
 			calculator.get_1_aqi(device_info)
