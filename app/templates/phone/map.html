@@ -35,7 +35,7 @@
         var device_list_data = [
             {name:"一号点", pm25:"25", so2:"3", pm10:"50",longitude:"117.5436320000",latitude:"30.7078830000"}
         ];
-        var device_list_data = {{ device_list | safe }};
+        var device_list_data = "{{ device_list | safe }}";
 
         console.log(device_list_data);
         console.log(typeof(device_list_data));
