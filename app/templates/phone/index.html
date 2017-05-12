@@ -155,7 +155,7 @@
         AQI
         <div class="">
             <div class="col-md-12" style="text-align: center;">
-                <span class="level{{ device_info.level }}">{{ device_info.aqi }}</span>
+                <span class="level{{ device_info.level.level_no }}">{{ device_info.aqi }}</span>
             </div>
         </div>
     </div>
@@ -250,9 +250,9 @@
     </div>
     <div class="level-info">
         <p class="level-info-text">健康影响</p>
-        <p class="level-info-text">{{ device_info.reference }}</p>
+        <p class="level-info-text">{{ device_info.reference.reference }}</p>
         <p class="level-info-text">温馨提示</p>
-        <p class="level-info-text">{{ device_info.results }}</p>
+        <p class="level-info-text">{{ device_info.results.results }}</p>
     </div>
     <div class="today-data-title">
         今日数据
