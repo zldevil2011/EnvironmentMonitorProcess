@@ -110,6 +110,15 @@
     </style>
 </head>
 <body>
+    <div id="loading" style="position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%);width: 100%;height: 100%;background: rgba(128, 128, 128, 0.5);">
+        <div class="spinner" style="">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div>
+    </div>
     <div id = "body_content">
     {% block body_content %}
 
@@ -143,16 +152,6 @@
             </div>
         </div>
     </div>
-    <div id="loading" style="position: absolute; left: 50%; top:50%; transform: translate(-50%,-50%);width: 100%;height: 100%;background: rgba(128, 128, 128, 0.5);">
-        <div class="spinner" style="">
-          <div class="rect1"></div>
-          <div class="rect2"></div>
-          <div class="rect3"></div>
-          <div class="rect4"></div>
-          <div class="rect5"></div>
-        </div>
-    </div>
-
     <script src= {% static "app/js/jquery-3.1.1.min.js" %}></script>
     <script src= {% static "app/js/bootstrap.min.js" %}></script>
     <script src= {% static "app/js/highcharts.js" %}></script>

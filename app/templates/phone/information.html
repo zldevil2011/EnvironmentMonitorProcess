@@ -103,7 +103,7 @@
     <div class="information-body">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <p class="titleLine">用户名</p>
+                <p class="titleLine">{{ username }}</p>
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">
@@ -111,12 +111,11 @@
                 <p class="titleLine">管理节点</p>
             </div>
             <div class="">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <p class="node">1号节点</p>
-                </div>
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <p class="node">2号节点</p>
-                </div>
+                {% for device in device_list %}
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <p class="node">{{ device.name }}</p>
+                    </div>
+                {% endfor %}
             </div>
 
         </div>
