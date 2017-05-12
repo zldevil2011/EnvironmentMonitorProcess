@@ -294,6 +294,7 @@ def map(request):
 		datas.reverse()
 		sql.close_connect()
 		print(device_list)
+		datas_list_briage = []
 		for device in device_list:
 			flag = 0
 			for data in datas:
@@ -323,14 +324,17 @@ def map(request):
 				tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
 				if device["id"] == tmp["device_id"]:
 					print(device)
-					device["latest_time"] = str(tmp["time"])
-					aqi = AqiParameter()
-					aqi.get_1_aqi(tmp)
-					device["AQI"] = aqi.AQI_1
-					device["pm25"] = data["pm25"]
-					device["so2"] = data["so2"]
-					device["pm10"] = data["pm10"]
-					flag = 1
+					try:
+						device["latest_time"] = str(tmp["time"])
+						aqi = AqiParameter()
+						aqi.get_1_aqi(tmp)
+						device["AQI"] = aqi.AQI_1
+						device["pm25"] = data["pm25"]
+						device["so2"] = data["so2"]
+						device["pm10"] = data["pm10"]
+						flag = 1
+					except Exception as e:
+						print(str(e))
 					break
 			print device
 			if flag == 0:
