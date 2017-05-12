@@ -118,7 +118,8 @@ def index(request, device_id):
 			device_info["reference"] = calculator.AQI_info_1.health
 			device_info["results"] = calculator.AQI_info_1.step
 			device_info["level"] = calculator.AQI_info_1.level_no
-		except:
+		except Exception as e:
+			return HttpResponse(str(e))
 			device_info["aqi"] = "无数据"
 			device_info["reference"] = "无数据"
 			device_info["results"] = "无数据"
