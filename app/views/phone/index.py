@@ -335,6 +335,7 @@ def map(request):
 				device["pm25"] = u"无数据"
 				device["so2"] = u"无数据"
 				device["pm10"] = u"无数据"
+		print(device_list)
 	except Exception as e:
 		print(str(e))
 		device_list = []
