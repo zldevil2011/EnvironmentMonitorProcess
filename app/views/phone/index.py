@@ -293,7 +293,6 @@ def map(request):
 		datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
 		datas.reverse()
 		sql.close_connect()
-		print(device_list)
 		datas_list_briage = []
 		for device in device_list:
 			flag = 0
@@ -334,9 +333,8 @@ def map(request):
 						device["pm10"] = data["pm10"]
 						flag = 1
 					except Exception as e:
-						print(str(e))
+						return HttpResponse(str(e))
 					break
-			print device
 			if flag == 0:
 				device["AQI"] = u"无数据"
 				device["pm25"] = u"无数据"
