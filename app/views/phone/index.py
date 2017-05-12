@@ -203,3 +203,141 @@ def index(request, device_id):
 		"device_info": device_info,
 		"today_data": today_data,
 	})
+
+
+def map(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/app/user/login/")
+	try:
+		sql = MySQL()
+		sql.connectDB("projectmanagement")
+		data = {}
+		data["ProjectID"] = {}
+		data["ProjectID"]["conn"] = "="
+		data["ProjectID"]["val"] = str(1)
+		device_list = sql.get_query("projectnodeinfo", data, None)
+		sql.close_connect()
+		longitude_dic = {
+			"1": {"name": "齐山医药", "val": 117.5396850000},
+			"2": {"name": "赛威机械", "val": 117.5419160000000},
+			"3": {"name": "创业园", "val": 117.5379210000000},
+			"4": {"name": "太平鸟", "val": 117.5598140000000},
+			"5": {"name": "池州港", "val": 117.5641380000},
+			"6": {"name": "6号节点", "val": 117.5436320000000},
+			"7": {"name": "望华楼", "val": 117.5472020000000},
+			"8": {"name": "老干部局", "val": 117.4914460000000},
+			"9": {"name": "创业园2", "val": 117.5379220000000},
+			"10": {"name": "帽式01", "val": 117.5436320000000},
+			"11": {"name": "帽式02", "val": 117.5436320000000},
+			"12": {"name": "帽式03", "val": 117.5436320000000},
+			"13": {"name": "帽式04", "val": 117.5436320000000},
+			"14": {"name": "帽式04", "val": 117.5436320000000},
+			"15": {"name": "帽式04", "val": 117.5436320000000},
+			"16": {"name": "帽式04", "val": 117.5436320000000},
+			"17": {"name": "帽式04", "val": 117.5436320000000},
+			"18": {"name": "帽式04", "val": 117.5436320000000},
+			"19": {"name": "帽式04", "val": 117.5436320000000},
+			"20": {"name": "帽式04", "val": 117.5436320000000},
+			"21": {"name": "帽式04", "val": 117.5436320000000},
+			"22": {"name": "帽式04", "val": 117.5436320000000},
+			"23": {"name": "帽式04", "val": 117.5436320000000},
+			"24": {"name": "帽式04", "val": 117.5436320000000},
+		}
+		latitude_dic = {
+			"1": {"name": "齐山医药", "val": 30.7137780000},
+			"2": {"name": "赛威机械", "val": 30.703908000000000},
+			"3": {"name": "创业园", "val": 30.691674000000000},
+			"4": {"name": "太平鸟", "val": 30.705204000000000},
+			"5": {"name": "池州港", "val": 30.7393260000},
+			"6": {"name": "6号节点", "val": 30.707883000000000},
+			"7": {"name": "望华楼", "val": 30.665855000000000},
+			"8": {"name": "老干部局", "val": 30.649073000000000},
+			"9": {"name": "创业园2", "val": 30.691675000000000},
+			"10": {"name": "帽式01", "val": 30.707883000000000},
+			"11": {"name": "帽式02", "val": 30.707883000000000},
+			"12": {"name": "帽式03", "val": 30.707883000000000},
+			"13": {"name": "帽式04", "val": 30.707883000000000},
+			"14": {"name": "帽式04", "val": 30.707883000000000},
+			"15": {"name": "帽式04", "val": 30.707883000000000},
+			"16": {"name": "帽式04", "val": 30.707883000000000},
+			"17": {"name": "帽式04", "val": 30.707883000000000},
+			"18": {"name": "帽式04", "val": 30.707883000000000},
+			"19": {"name": "帽式04", "val": 30.707883000000000},
+			"20": {"name": "帽式04", "val": 30.707883000000000},
+			"21": {"name": "帽式04", "val": 30.707883000000000},
+			"22": {"name": "帽式04", "val": 30.707883000000000},
+			"23": {"name": "帽式04", "val": 30.707883000000000},
+			"24": {"name": "帽式04", "val": 30.707883000000000},
+		}
+		device_list_briage = []
+		admin_ndoe_list = adminer.admin_node.split(',')
+		for device_t in device_list:
+			tmp = {}
+			tmp["name"] = device_t["Description"]
+			tmp["id"] = device_t["NodeNO"]
+			tmp["address"] = device_t["InstallationAddress"]
+			try:
+				tmp["longitude"] = longitude_dic[str(tmp["id"])]["val"]
+				tmp["latitude"] = latitude_dic[str(tmp["id"])]["val"]
+			except:
+				tmp["longitude"] = "117.5436320000000"
+				tmp["latitude"] = "30.707883000000000"
+			tmp["install_time"] = device_t["SetTime"]
+			if unicode(tmp["id"]) in admin_ndoe_list:
+				device_list_briage.append(tmp)
+		device_list = device_list_briage
+
+		sql.connectDB("jssf")
+		datas = sql.get_query(u"大气六参数", None, None, u"紧缩型时间传感器_实时时间")
+		datas.reverse()
+		sql.close_connect()
+		for device in device_list:
+			flag = 0
+			for data in datas:
+				tmp = {}
+				try:
+					tmp["so2"] = round(float(data["SO2_SO2"]) * transform_factor["so2"], 3)
+				except:
+					tmp["so2"] = data["SO2_SO2"]
+				try:
+					tmp["no2"] = round(float(data["NO2_NO2"]) * transform_factor["no2"], 3)
+				except:
+					tmp["no2"] = data["NO2_NO2"]
+				try:
+					tmp["pm10"] = data["PM10_PM10"]
+				except:
+					tmp["pm10"] = data["PM10_PM10"]
+				try:
+					tmp["co"] = round(float(data["CO_CO"]) * transform_factor["co"], 3)
+				except:
+					tmp["co"] = data["CO_CO"]
+				try:
+					tmp["o3"] = round(float(data["O3_O3"]) * transform_factor["o3"], 3)
+				except:
+					tmp["o3"] = data["O3_O3"]
+				tmp["pm25"] = data["PM2_5_PM2_5"]
+				tmp["device_id"] = data[u"项目内节点编号"]
+				tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
+				if device["id"] == tmp["device_id"]:
+					device["latest_time"] = str(tmp["time"])
+					aqi = AqiParameter()
+					aqi.get_1_aqi(tmp)
+					device["AQI"] = aqi.AQI_1
+					device["pm25"] = data["pm25"]
+					device["so2"] = data["so2"]
+					device["pm10"] = data["pm10"]
+					flag = 1
+					break
+			if flag == 0:
+				device["AQI"] = u"无数据"
+				device["pm25"] = u"无数据"
+				device["so2"] = u"无数据"
+				device["pm10"] = u"无数据"
+	except Exception as e:
+		print(str(e))
+		device_list = []
+	return render(request, "phone/map.html", {
+		"device_list":device_list,
+	})
