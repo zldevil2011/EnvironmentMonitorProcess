@@ -333,7 +333,7 @@ def map(request):
 						device["pm10"] = tmp["pm10"]
 						flag = 1
 					except Exception as e:
-						return HttpResponse(str(e))
+						print(str(e))
 					break
 			if flag == 0:
 				device["AQI"] = u"无数据"
