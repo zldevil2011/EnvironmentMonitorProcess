@@ -182,7 +182,7 @@
         <div class="">
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    {{ device_info.pm25 }}ug/m3
+                    {{ device_info.pm25 }}ug/m³
                 </div>
                 <div class="col-md-12">
                     PM2.5
@@ -193,7 +193,7 @@
             </div>
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    {{ device_info.pm10 }}ug/m3
+                    {{ device_info.pm10 }}ug/m³
                 </div>
                 <div class="col-md-12">
                     PM10
@@ -204,7 +204,7 @@
             </div>
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    {{ device_info.o3 }}ug/m3
+                    {{ device_info.o3 }}ug/m³
                 </div>
                 <div class="col-md-12">
                     O3
@@ -215,7 +215,7 @@
             </div>
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    {{ device_info.so2 }}ug/m3
+                    {{ device_info.so2 }}ug/m³
                 </div>
                 <div class="col-md-12">
                     SO2
@@ -226,7 +226,7 @@
             </div>
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    {{ device_info.no2 }}ug/m3
+                    {{ device_info.no2 }}ug/m³
                 </div>
                 <div class="col-md-12">
                     NO2
@@ -237,7 +237,7 @@
             </div>
             <div class="six-item col-md-4 col-sm-4 col-xs-4">
                 <div class="col-md-12">
-                    {{ device_info.co }}ug/m3
+                    {{ device_info.co }}mg/m³
                 </div>
                 <div class="col-md-12">
                     CO
@@ -274,7 +274,9 @@
     </script>
     <script>
         var device_info = "{{ device_info | safe}}";
+        var unit_list = "{{ unit_list | safe }}";
         console.log(device_info);
+        console.log(unit_list);
         var today_data = {{ today_data|safe }};
         var xArr = today_data.time;
         var yArr = today_data.data.pm25;
@@ -286,9 +288,9 @@
             var xArr = today_data["time"];
             var yArr = today_data.data[name];
             var name = name;
-            drawChart(name,xArr, yArr);
+            drawChart(name,xArr, yArr, unit_list[name]);
         });
-        function drawChart(name, xArr, yArr) {
+        function drawChart(name, xArr, yArr, unit) {
             var time_list = xArr;
             var data_list = yArr;
             var datas = new Array();
@@ -340,11 +342,11 @@
                 yAxis: {
                     min:0, // 定义最小值
                     title: {
-                        text: name + '浓度(ug/m³)'
+                        text: name + '浓度(' + unit + ')'
                     },
                 },
                 tooltip: {
-                    valueSuffix: 'ug/m³',
+                    valueSuffix: unit,
                     dateTimeLabelFormats: {
                         millisecond: '%Y-%m-%d %H:%M:%S',
                         second: '%Y-%m-%d %H:%M:%S',
