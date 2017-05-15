@@ -438,8 +438,11 @@ def ranking(request):
 
 	for device in device_list:
 		aqi = AqiParameter()
-		aqi.get_1_aqi(device)
-		device["AQI"] = aqi.AQI_1
+		try:
+			aqi.get_1_aqi(device)
+			device["AQI"] = aqi.AQI_1
+		except:
+			device["AQI"] = u"无数据"
 	print(device_list)
 	aqi_list  = sorted(device_list, key=lambda e: e.__getitem__('AQI'))
 	pm25_list  = sorted(device_list, key=lambda e: e.__getitem__('pm25'))
