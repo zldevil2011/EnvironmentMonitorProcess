@@ -257,6 +257,7 @@
     <div class="today-data-title">
         今日数据
         <select class="data-select" id="dataType">
+            <option value="aqi">AQI</option>
             <option value="pm25">PM2.5</option>
             <option value="pm10">PM10</option>
             <option value="so2">SO2</option>
@@ -275,13 +276,14 @@
     <script>
         var device_info = "{{ device_info | safe}}";
         var unit_list = "{{ unit_list | safe }}";
+        unit_list = JSON.parse(unit_list);
         console.log(device_info);
         console.log(unit_list);
         var today_data = {{ today_data|safe }};
         var xArr = today_data.time;
-        var yArr = today_data.data.pm25;
-        var name = "pm25";
-        drawChart(name,xArr, yArr);
+        var yArr = today_data.data.aqi;
+        var name = "sqi";
+        drawChart(name,xArr, yArr, "");
         $("#dataType").on("change", function(){
             var name = $(this).val();
             console.log(name);
