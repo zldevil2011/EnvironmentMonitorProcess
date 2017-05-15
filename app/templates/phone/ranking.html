@@ -59,61 +59,129 @@
     <nav id="MultiTabWrapper">
         <div class="pure-menu pure-menu-horizontal pure-menu-scrollable" style="padding: 0;">
             <ul class="pure-menu-list" style="padding: 0.1rem;">
-                <li name = "tag1" v-on:click="change('aqi', $event)" class="pure-menu-item" v-bind:class="[disactive]"><a name="current_item" href="#" class="pure-menu-link">AQI</a></li>
-                <li v-on:click="change('pm25', $event)" class="pure-menu-item" v-bind:class="[disactive]"><a name="current_item" href="#" class="pure-menu-link">PM2.5</a></li>
-                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">PM10</a></li>
-                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">SO2</a></li>
-                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">NO2</a></li>
-                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">CO</a></li>
-                <li class="pure-menu-item"><a name="current_item" href="#" class="pure-menu-link">O3</a></li>
+{#                <li name = "tag1" v-on:click="change('aqi', $event)" class="pure-menu-item" v-bind:class="[disactive]"><a name="current_item" href="#" class="pure-menu-link">AQI</a></li>#}
+{#                <li v-on:click="change('pm25', $event)" class="pure-menu-item" v-bind:class="[disactive]"><a name="current_item" href="#" class="pure-menu-link">PM2.5</a></li>#}
+                <li class="pure-menu-item" id="aqi"><a name="current_item" href="#" class="pure-menu-link">AQI</a></li>
+                <li class="pure-menu-item" id="pm25"><a name="current_item" href="#" class="pure-menu-link">PM2.5</a></li>
+                <li class="pure-menu-item" id="pm10"><a name="current_item" href="#" class="pure-menu-link">PM10</a></li>
+                <li class="pure-menu-item" id="so2"><a name="current_item" href="#" class="pure-menu-link">SO2</a></li>
+                <li class="pure-menu-item" id="no2"><a name="current_item" href="#" class="pure-menu-link">NO2</a></li>
+                <li class="pure-menu-item" id="co"><a name="current_item" href="#" class="pure-menu-link">CO</a></li>
+                <li class="pure-menu-item" id="o3"><a name="current_item" href="#" class="pure-menu-link">O3</a></li>
             </ul>
         </div>
     </nav>
     <div class="ranking-list">
         <ol style="padding:20px;" name="aqi">
             {% for aqi in aqi_list %}
-                <li>{{ aqi.name }}<span class="color-1">{{ aqi.AQI }}</span></li>
+                <li>{{ aqi.name }}<span class="color-{{ aqi.level }}">{{ aqi.AQI }}</span></li>
             {% endfor %}
-            <li>1号节点<span class="color-2">53</span></li>
-            <li>1号节点<span class="color-3">53</span></li>
-            <li>1号节点<span class="color-4">53</span></li>
-            <li>1号节点<span class="color-5">53</span></li>
-            <li>1号节点<span class="color-6">53</span></li>
-            <li>1号节点<span class="color-6">53</span></li>
+{#            <li>1号节点<span class="color-2">53</span></li>#}
+{#            <li>1号节点<span class="color-3">53</span></li>#}
+{#            <li>1号节点<span class="color-4">53</span></li>#}
+{#            <li>1号节点<span class="color-5">53</span></li>#}
+{#            <li>1号节点<span class="color-6">53</span></li>#}
+{#            <li>1号节点<span class="color-6">53</span></li>#}
         </ol>
         <ol style="padding:20px;display: none;" name="pm25">
             {% for pm25 in pm25_list %}
-                <li>{{ pm25.name }}<span class="color-1">{{ pm25.pm25 }}</span></li>
+                <li>{{ pm25.name }}<span class="color-{{ pm25.level }}">{{ pm25.pm25 }}</span></li>
             {% endfor %}
-            <li>岐山医药<span class="color-1">53</span></li>
-            <li>创业园<span class="color-1">53</span></li>
-            <li>望华楼<span class="color-1">53</span></li>
-            <li>1号节点<span class="color-1">53</span></li>
-            <li>1号节点<span class="color-1">53</span></li>
-            <li>1号节点<span class="color-1">53</span></li>
-            <li>1号节点<span class="color-1">53</span></li>
+{#            <li>岐山医药<span class="color-1">53</span></li>#}
+{#            <li>创业园<span class="color-1">53</span></li>#}
+{#            <li>望华楼<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+        </ol>
+        <ol style="padding:20px;display: none;" name="pm10">
+            {% for data in pm10_list %}
+                <li>{{ data.name }}<span class="color-{{ data.level }}">{{ data.pm10 }}</span></li>
+            {% endfor %}
+{#            <li>岐山医药<span class="color-1">53</span></li>#}
+{#            <li>创业园<span class="color-1">53</span></li>#}
+{#            <li>望华楼<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+        </ol>
+        <ol style="padding:20px;display: none;" name="so2">
+            {% for data in so2_list %}
+                <li>{{ data.name }}<span class="color-{{ data.level }}">{{ data.so2 }}</span></li>
+            {% endfor %}
+{#            <li>岐山医药<span class="color-1">53</span></li>#}
+{#            <li>创业园<span class="color-1">53</span></li>#}
+{#            <li>望华楼<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+        </ol>
+        <ol style="padding:20px;display: none;" name="no2">
+            {% for data in no2_list %}
+                <li>{{ data.name }}<span class="color-{{ data.level }}">{{ data.no2 }}</span></li>
+            {% endfor %}
+{#            <li>岐山医药<span class="color-1">53</span></li>#}
+{#            <li>创业园<span class="color-1">53</span></li>#}
+{#            <li>望华楼<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+        </ol>
+        <ol style="padding:20px;display: none;" name="co">
+            {% for data in co_list %}
+                <li>{{ data.name }}<span class="color-{{ data.level }}">{{ data.co }}</span></li>
+            {% endfor %}
+{#            <li>岐山医药<span class="color-1">53</span></li>#}
+{#            <li>创业园<span class="color-1">53</span></li>#}
+{#            <li>望华楼<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+        </ol>
+        <ol style="padding:20px;display: none;" name="o3">
+            {% for data in o3_list %}
+                <li>{{ data.name }}<span class="color-{{ data.level }}">{{ data.o3 }}</span></li>
+            {% endfor %}
+{#            <li>岐山医药<span class="color-1">53</span></li>#}
+{#            <li>创业园<span class="color-1">53</span></li>#}
+{#            <li>望华楼<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
+{#            <li>1号节点<span class="color-1">53</span></li>#}
         </ol>
     </div>
 {% endblock %}
 {% block special_js %}
 <script>
-    var vm = new Vue({
-        el:"#MultiTabWrapper",
-        data:{
-            disactive : "disactive",
-        },
-        methods:{
-            change:function(name, event){
-                console.log(name);
-                $("[name=" + name + "]").css("display", "block");
-                $("[name=" + name + "]").siblings().css("display", "none");
-                console.log(event);
-                this.disactive="disactive";
-                event.target.parentNode.style.background = "blue";
-            }
-        },
-        created:function(){
-        }
-    })
+    $(".pure-menu-item").on("click", function(){
+        var name = $(this).attr("id");
+        console.log(name);
+        $("[name=" + name + "]").siblings().css("display", "none");
+        $("[name=" + name + "]").css("display", "block");
+    });
+{#    var vm = new Vue({#}
+{#        el:"#MultiTabWrapper",#}
+{#        data:{#}
+{#            disactive : "disactive",#}
+{#        },#}
+{#        methods:{#}
+{#            change:function(name, event){#}
+{#                console.log(name);#}
+{#                $("[name=" + name + "]").css("display", "block");#}
+{#                $("[name=" + name + "]").siblings().css("display", "none");#}
+{#                console.log(event);#}
+{#                this.disactive="disactive";#}
+{#                event.target.parentNode.style.background = "blue";#}
+{#            }#}
+{#        },#}
+{#        created:function(){#}
+{#        }#}
+{#    })#}
 </script>
 {% endblock %}

@@ -447,9 +447,10 @@ def ranking(request):
 		try:
 			aqi.get_1_aqi(device)
 			device["AQI"] = aqi.AQI_1
+			device["level"] = aqi.AQI_info_1["level_no"]
 		except:
 			device["AQI"] = u"无数据"
-	print(device_list)
+	# print(device_list)
 	aqi_list  = sorted(device_list, key=lambda e: e.__getitem__('AQI'))
 	pm25_list  = sorted(device_list, key=lambda e: e.__getitem__('pm25'))
 	pm10_list  = sorted(device_list, key=lambda e: e.__getitem__('pm10'))
@@ -458,6 +459,25 @@ def ranking(request):
 	co_list  = sorted(device_list, key=lambda e: e.__getitem__('co'))
 	o3_list  = sorted(device_list, key=lambda e: e.__getitem__('o3'))
 	# return HttpResponse(aqi_list)
+	# aqi_list = [
+	# 	{"name": "1", "AQI":25, "level":1},
+	# 	{"name": "2", "AQI":25, "level":1},
+	# 	{"name": "3", "AQI":25, "level":1},
+	# 	{"name": "4", "AQI":25, "level":1},
+	# 	{"name": "5", "AQI":25, "level":1},
+	# ]
+	# pm25_list = [
+	# 	{"name": "1", "pm25": 120, "level":2},
+	# 	{"name": "2", "pm25": 120, "level":3},
+	# 	{"name": "3", "pm25": 120, "level":3},
+	# 	{"name": "4", "pm25": 120, "level":4},
+	# 	{"name": "5", "pm25": 120, "level":5},
+	# ]
+	# pm10_list = []
+	# so2_list = []
+	# no2_list = []
+	# co_list = []
+	# o3_list = []
 	return render(request, "phone/ranking.html", {
 		"aqi_list":aqi_list,
 		"pm25_list":pm25_list,
