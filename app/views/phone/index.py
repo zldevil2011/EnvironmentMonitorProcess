@@ -436,8 +436,11 @@ def ranking(request):
 				break
 		if flag == 0:
 			device["pm25"] = u"无数据"
-			device["so2"] = u"无数据"
 			device["pm10"] = u"无数据"
+			device["so2"] = u"无数据"
+			device["no2"] = u"无数据"
+			device["co"] = u"无数据"
+			device["o3"] = u"无数据"
 
 	for device in device_list:
 		aqi = AqiParameter()
