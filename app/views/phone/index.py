@@ -457,7 +457,7 @@ def ranking(request):
 	no2_list  = sorted(device_list, key=lambda e: e.__getitem__('no2'))
 	co_list  = sorted(device_list, key=lambda e: e.__getitem__('co'))
 	o3_list  = sorted(device_list, key=lambda e: e.__getitem__('o3'))
-	return HttpResponse(aqi_list)
+	# return HttpResponse(aqi_list)
 	return render(request, "phone/ranking.html", {
 		"aqi_list":aqi_list,
 		"pm25_list":pm25_list,
