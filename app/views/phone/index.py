@@ -1,5 +1,5 @@
 # coding=utf-8
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
@@ -62,7 +62,7 @@ def index(request, device_id):
 	device_name = device["name"]
 	# 获取ID对应的设备的当前天气状况
 	NOW = datetime.today()
-	start = datetime(NOW.year, NOW.month, NOW.day, 0, 0, 0)
+	start = datetime(NOW.year, NOW.month, NOW.day, 0, 0, 0) - timedelta(days=1)
 	sql = MySQL()
 	sql.connectDB("jssf")
 	print start.strftime("%Y-%m-%d %H:%M:%S")
@@ -425,23 +425,11 @@ def ranking(request):
 				try:
 					device["latest_time"] = str(data["time"])
 					device["pm25"] = data["pm25"]
-					if device["pm25"] is None:
-						device["pm25"] = u"无数据"
 					device["pm10"] = data["pm10"]
-					if device["pm10"] is None:
-						device["pm10"] = u"无数据"
 					device["so2"] = data["so2"]
-					if device["so2"] is None:
-						device["so2"] = u"无数据"
 					device["no2"] = data["no2"]
-					if device["no2"] is None:
-						device["no2"] = u"无数据"
 					device["co"] = data["co"]
-					if device["co"] is None:
-						device["co"] = u"无数据"
 					device["o3"] = data["o3"]
-					if device["o3"] is None:
-						device["o3"] = u"无数据"
 					flag = 1
 				except Exception as e:
 					print(str(e))
@@ -460,6 +448,18 @@ def ranking(request):
 			aqi.get_1_aqi(device)
 			device["AQI"] = aqi.AQI_1
 			device["level"] = aqi.AQI_info_1["level_no"]
+			if device["pm25"] is None:
+				device["pm25"] = u"无数据"
+			if device["pm10"] is None:
+				device["pm10"] = u"无数据"
+			if device["so2"] is None:
+				device["so2"] = u"无数据"
+			if device["no2"] is None:
+				device["no2"] = u"无数据"
+			if device["co"] is None:
+				device["co"] = u"无数据"
+			if device["o3"] is None:
+				device["o3"] = u"无数据"
 		except:
 			device["AQI"] = u"无数据"
 			device["level"] = 6
