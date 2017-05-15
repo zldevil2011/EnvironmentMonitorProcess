@@ -159,6 +159,8 @@
 {% endblock %}
 {% block special_js %}
 <script>
+    $("[name=aqi]").siblings().css("display", "none");
+    $("[name=aqi]").css("display", "block");
     $(".pure-menu-item").on("click", function(){
         var name = $(this).attr("id");
         console.log(name);

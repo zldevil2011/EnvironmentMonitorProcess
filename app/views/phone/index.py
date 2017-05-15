@@ -425,11 +425,23 @@ def ranking(request):
 				try:
 					device["latest_time"] = str(data["time"])
 					device["pm25"] = data["pm25"]
+					if device["pm25"] is None:
+						device["pm25"] = u"无数据"
 					device["pm10"] = data["pm10"]
+					if device["pm10"] is None:
+						device["pm10"] = u"无数据"
 					device["so2"] = data["so2"]
+					if device["so2"] is None:
+						device["so2"] = u"无数据"
 					device["no2"] = data["no2"]
+					if device["no2"] is None:
+						device["no2"] = u"无数据"
 					device["co"] = data["co"]
+					if device["co"] is None:
+						device["co"] = u"无数据"
 					device["o3"] = data["o3"]
+					if device["o3"] is None:
+						device["o3"] = u"无数据"
 					flag = 1
 				except Exception as e:
 					print(str(e))
@@ -450,6 +462,7 @@ def ranking(request):
 			device["level"] = aqi.AQI_info_1["level_no"]
 		except:
 			device["AQI"] = u"无数据"
+			device["level"] = 6
 	# print(device_list)
 	aqi_list  = sorted(device_list, key=lambda e: e.__getitem__('AQI'))
 	pm25_list  = sorted(device_list, key=lambda e: e.__getitem__('pm25'))
