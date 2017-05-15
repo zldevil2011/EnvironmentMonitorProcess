@@ -448,36 +448,17 @@ def ranking(request):
 			aqi.get_1_aqi(device)
 			device["AQI"] = aqi.AQI_1
 			device["level"] = aqi.AQI_info_1["level_no"]
-			if device["pm25"] is None:
-				device["pm25"] = u"无数据"
-			if device["pm10"] is None:
-				device["pm10"] = u"无数据"
-			if device["so2"] is None:
-				device["so2"] = u"无数据"
-			if device["no2"] is None:
-				device["no2"] = u"无数据"
-			if device["co"] is None:
-				device["co"] = u"无数据"
-			if device["o3"] is None:
-				device["o3"] = u"无数据"
 		except:
 			device["AQI"] = u"无数据"
 			device["level"] = 6
 	# print(device_list)
-	aqi_list  = sorted(device_list, key=lambda e: e.__getitem__('AQI'))
-	pm25_list  = sorted(device_list, key=lambda e: e.__getitem__('pm25'))
-	pm10_list  = sorted(device_list, key=lambda e: e.__getitem__('pm10'))
-	so2_list  = sorted(device_list, key=lambda e: e.__getitem__('so2'))
-	no2_list  = sorted(device_list, key=lambda e: e.__getitem__('no2'))
-	co_list  = sorted(device_list, key=lambda e: e.__getitem__('co'))
-	o3_list  = sorted(device_list, key=lambda e: e.__getitem__('o3'))
-	parseData(aqi_list, "AQI")
-	parseData(pm25_list, "pm25")
-	parseData(pm10_list, "pm10")
-	parseData(so2_list, "so2")
-	parseData(no2_list, "no2")
-	parseData(co_list, "co")
-	parseData(o3_list, "o3")
+	aqi_list = sorted(device_list, key=lambda e: e.__getitem__('AQI'))
+	pm25_list = sorted(device_list, key=lambda e: e.__getitem__('pm25'))
+	pm10_list = sorted(device_list, key=lambda e: e.__getitem__('pm10'))
+	so2_list = sorted(device_list, key=lambda e: e.__getitem__('so2'))
+	no2_list = sorted(device_list, key=lambda e: e.__getitem__('no2'))
+	co_list = sorted(device_list, key=lambda e: e.__getitem__('co'))
+	o3_list = sorted(device_list, key=lambda e: e.__getitem__('o3'))
 	# return HttpResponse(aqi_list)
 	# aqi_list = [
 	# 	{"name": "1", "AQI":25, "level":1},
@@ -507,10 +488,3 @@ def ranking(request):
 		"co_list":co_list,
 		"o3_list":o3_list,
 	})
-
-
-def parseData(device_list, name):
-	for device in device_list:
-		if device[name] is None:
-			device[name] = u"无数据"
-			device["level"] = 6
