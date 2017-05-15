@@ -215,7 +215,7 @@ def index(request, device_id):
 		"device_list": device_list,
 		"device_info": device_info,
 		"today_data": today_data,
-		"unit_list":unit_list,
+		"unit_list": json.dumps(unit_list),
 	})
 
 
