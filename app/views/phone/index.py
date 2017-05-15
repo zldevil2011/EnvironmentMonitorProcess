@@ -62,7 +62,7 @@ def index(request, device_id):
 	device_name = device["name"]
 	# 获取ID对应的设备的当前天气状况
 	NOW = datetime.today()
-	start = datetime(NOW.year, NOW.month, NOW.day, 0, 0, 0) - timedelta(days=1)
+	start = datetime(NOW.year, NOW.month, NOW.day, NOW.hour, 0, 0) - timedelta(days=1)
 	sql = MySQL()
 	sql.connectDB("jssf")
 	print start.strftime("%Y-%m-%d %H:%M:%S")
@@ -471,6 +471,13 @@ def ranking(request):
 	no2_list  = sorted(device_list, key=lambda e: e.__getitem__('no2'))
 	co_list  = sorted(device_list, key=lambda e: e.__getitem__('co'))
 	o3_list  = sorted(device_list, key=lambda e: e.__getitem__('o3'))
+	parseData(aqi_list, "AQI")
+	parseData(pm25_list, "pm25")
+	parseData(pm10_list, "pm10")
+	parseData(so2_list, "so2")
+	parseData(no2_list, "no2")
+	parseData(co_list, "co")
+	parseData(o3_list, "o3")
 	# return HttpResponse(aqi_list)
 	# aqi_list = [
 	# 	{"name": "1", "AQI":25, "level":1},
@@ -500,3 +507,10 @@ def ranking(request):
 		"co_list":co_list,
 		"o3_list":o3_list,
 	})
+
+
+def parseData(device_list, name):
+	for device in device_list:
+		if device[name] is None:
+			device[name] = u"无数据"
+			device["level"] = 6
