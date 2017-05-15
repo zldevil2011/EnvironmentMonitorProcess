@@ -281,7 +281,7 @@
         var today_data = {{ today_data|safe }};
         var xArr = today_data.time;
         var yArr = today_data.data.aqi;
-        var name = "sqi";
+        var name = "aqi";
         drawChart(name,xArr, yArr, "");
         $("#dataType").on("change", function(){
             var name = $(this).val();
