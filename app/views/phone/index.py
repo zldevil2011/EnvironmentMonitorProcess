@@ -425,8 +425,11 @@ def ranking(request):
 				try:
 					device["latest_time"] = str(data["time"])
 					device["pm25"] = data["pm25"]
-					device["so2"] = data["so2"]
 					device["pm10"] = data["pm10"]
+					device["so2"] = data["so2"]
+					device["no2"] = data["no2"]
+					device["co"] = data["co"]
+					device["o3"] = data["o3"]
 					flag = 1
 				except Exception as e:
 					print(str(e))
