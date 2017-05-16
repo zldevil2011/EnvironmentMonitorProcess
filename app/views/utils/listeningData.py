@@ -84,6 +84,7 @@ class CreateWarningEventThread(threading.Thread):
 		for data in datas_list:
 			if latest_data_dic[data["device_id"]] is None:
 				latest_data_dic[data["device_id"]] = data
+		print latest_data_dic
 		for k in latest_data_dic:
 			k = latest_data_dic[str(k)]
 			try:
