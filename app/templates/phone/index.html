@@ -118,10 +118,18 @@
         .address-list li:hover{
             border: 2px solid red;
         }
+        .warning-icon{
+            position: fixed;
+            right:0;
+            cursor: pointer;
+        }
     </style>
 {% endblock %}
 
 {% block body_content %}
+    <div class="warning-icon" id="warningList">
+        <span class="glyphicon glyphicon-warning-sign"></span>报警(<span id="newWarningNumber">10</span>)
+    </div>
     <div id="header">
         <p><span class="glyphicon glyphicon-pencil address-edit" href="#modal-address-list" role="button" class="btn" data-toggle="modal">{{ device_name }}</span> 空气质量 <span class="glyphicon glyphicon-refresh refresh-btn" style="" onclick="window.android.refreshPage();">刷新</span></p>
     </div>
@@ -269,6 +277,11 @@
     <div id="container" class="today-data" style="width: 100%; max-width: 100%;"></div>
 {% endblock %}
 {% block special_js %}
+    <script>
+        $("#warningList").on("click", function(){
+            alert("报警列表");
+        })
+    </script>
     <script>
         var width = $(".six-list").width();
         $("#container").width = width;
