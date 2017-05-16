@@ -27,6 +27,7 @@ from views.server import server_sensor_list
 from views.server import server_device_info
 from views.server import server_data_log
 from views.server import server_device_eui
+from views.server import start_listening
 
 
 urlpatterns = [
@@ -86,4 +87,5 @@ urlpatterns += [
 	url(r'^server_device_info/$', server_device_info, name="server_device_info"),
 	url(r'^server_data_log/$', server_data_log, name="server_data_log"),
 	url(r'^server_device_eui/$', server_device_eui, name="server_device_eui"),
+	url(r'^start_listening/$', start_listening, name="start_listening"),
 ]

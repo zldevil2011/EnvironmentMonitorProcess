@@ -433,3 +433,23 @@ def server_device_eui(request):
 		except Exception as e:
 			print(str(e))
 			return HttpResponse("error")
+
+from app.views.utils.listeningData import ReadWarningEventThread, CreateWarningEventThread
+
+
+def start_listening(request):
+	try:
+		# read_thread = ReadWarningEventThread()
+		# read_thread.start()
+
+		new_thread = CreateWarningEventThread(1,[1], 1)
+		new_thread.start()
+
+		res = 1
+	except Exception as e:
+		res = 0
+		print(str(e))
+	if res == 1:
+		return HttpResponse("success")
+	else:
+		return HttpResponse("error")
