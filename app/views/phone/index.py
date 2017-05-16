@@ -48,7 +48,7 @@ def index(request, device_id):
 				"device_info": {},
 				"today_data": {},
 			})
-	print(device)
+	# print(device)
 	# 获取ID对应的站点
 	device_tmp = {}
 	device_tmp["id"] = device["NodeNO"]
@@ -65,7 +65,7 @@ def index(request, device_id):
 	start = datetime(NOW.year, NOW.month, NOW.day, NOW.hour, 0, 0) - timedelta(days=1)
 	sql = MySQL()
 	sql.connectDB("jssf")
-	print start.strftime("%Y-%m-%d %H:%M:%S")
+	# print start.strftime("%Y-%m-%d %H:%M:%S")
 	data = {}
 	data[u"紧缩型时间传感器_实时时间"] = {}
 	data[u"紧缩型时间传感器_实时时间"]["conn"] = ">"
@@ -100,15 +100,15 @@ def index(request, device_id):
 		except:
 			tmp["o3"] = data["O3_O3"]
 		tmp["pm25"] = data["PM2_5_PM2_5"]
-		tmp["Temperature"] = data["Temperature"]
-		tmp["Pressure"] = data["Pressure"]
-		tmp["Humidity"] = data["Humidity"]
+		# tmp["Temperature"] = data["Temperature"]
+		# tmp["Pressure"] = data["Pressure"]
+		# tmp["Humidity"] = data["Humidity"]
 		tmp["device_id"] = data[u"项目内节点编号"]
 		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
 		tmp["name"] = device["name"]
 		datas_list_briage.append(tmp)
 	datas_list = datas_list_briage
-	print datas_list
+	# print datas_list
 	device_info = {"aqi": "无数据", "level":"无数据", "so2": "无数据", "no2": "无数据", "pm10": "无数据", "co": "无数据",
 				 "o3": "无数据", "pm25": "无数据", "reference":"无数据", "results":"无数据"}
 	try:
@@ -195,6 +195,7 @@ def index(request, device_id):
 						pass
 				twelve_data_data[factor].append(round(float(tmp / cnt), 3))
 			except:
+				# twelve_data_data[factor].append("null")
 				pass
 	today_data["time"] = twelve_data_hour
 	today_data["data"] = twelve_data_data
@@ -204,7 +205,10 @@ def index(request, device_id):
 		aqi = AqiParameter()
 		tmp = {}
 		for fc in factors:
-			tmp[fc] = today_data["data"][fc][idx]
+			try:
+				tmp[fc] = today_data["data"][fc][idx]
+			except:
+				pass
 		try:
 			aqi.get_1_aqi(tmp)
 			today_data["data"]["aqi"].append(aqi.AQI_1)
