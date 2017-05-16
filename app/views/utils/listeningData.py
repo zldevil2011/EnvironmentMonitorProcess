@@ -87,9 +87,121 @@ class CreateWarningEventThread(threading.Thread):
 		for k in latest_data_dic:
 			k = latest_data_dic[str(k)]
 			try:
-				# 如果以及存在最新的数据，按照规则比较这两条数据的差异
-				d = LatestData.objects.get(device_id=int(k["device_id"]))
-				if d.data_time < datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S"):
+				try:
+					# 如果以及存在最新的数据，按照规则比较这两条数据的差异
+					d = LatestData.objects.get(device_id=int(k["device_id"]))
+					if d.data_time < datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S"):
+						try:
+							warning_rule = WarningRule.objects.get(device_id=int(k["device_id"]))
+							if warning_rule.warning_type == 0:
+								warning_val = warning_rule.warning_val
+								warning_parameter = warning_rule.parameter
+								if k[warning_parameter] > warning_val:
+									# 超过预定的数值，新建对应的预警实例
+									nt = WarningEvent()
+									nt.device_id = int(k["device_id"])
+									nt.warning_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
+									nt.content = k["device_id"] + "号设备" + warning_parameter + "在" + k["time"] + "数值超过预期阈值"
+									nt.save()
+							else:
+								warning_val = warning_rule.warning_val
+								warning_parameter = warning_rule.parameter
+								pre_val = 0
+								if warning_parameter == "aqi":
+									pre_val = d.aqi
+								elif warning_parameter == "pm25":
+									pre_val = d.pm25
+								elif warning_parameter == "pm10":
+									pre_val = d.pm10
+								elif warning_parameter == "so2":
+									pre_val = d.so2
+								elif warning_parameter == "no2":
+									pre_val = d.no2
+								elif warning_parameter == "co":
+									pre_val = d.co
+								elif warning_parameter == "o3":
+									pre_val = d.o3
+								if k[warning_parameter] > pre_val:
+									try:
+										rate = (k[warning_parameter] - pre_val) / pre_val
+										if rate >= warning_val:
+											# 超过预设的百分比，新建对应的预警实例
+											nt = WarningEvent()
+											nt.device_id = int(k["device_id"])
+											nt.warning_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
+											nt.content = k["device_id"] + "号设备" + warning_parameter + "在" + k["time"] + "增长率超过预期阈值，达到" + str(rate)
+											nt.save()
+									except:
+										pass
+								pass
+						except:
+							# 当前设备不存在预警规则
+							pass
+					# 生成完对应的规则之后，替换当前最信值
+					try:
+						d.aqi = float(k["aqi"])
+					except:
+						d.aqi = 0
+					try:
+						d.pm25 = float(k["pm25"])
+					except:
+						d.pm25 = 0
+					try:
+						d.pm10 = float(k["pm10"])
+					except:
+						d.pm10 = 0
+					try:
+						d.so2 = float(k["so2"])
+					except:
+						d.so2 = 0
+					try:
+						d.no2 = float(k["no2"])
+					except:
+						d.no2 = 0
+					try:
+						d.co = float(k["co"])
+					except:
+						d.co = 0
+					try:
+						d.o3 = float(k["o3"])
+					except:
+						d.o3 = 0
+					d.data_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
+					d.save()
+				except LatestData.DoesNotExist:
+					# 不存在最新的data，则把当前获取到的最新数据填充进去
+					d = LatestData()
+					d.device_id = int(k["device_id"])
+					try:
+						d.aqi = float(k["aqi"])
+					except:
+						d.aqi = 0
+					try:
+						d.pm25 = float(k["pm25"])
+					except:
+						d.pm25 = 0
+					try:
+						d.pm10 = float(k["pm10"])
+					except:
+						d.pm10 = 0
+					try:
+						d.so2 = float(k["so2"])
+					except:
+						d.so2 = 0
+					try:
+						d.no2 = float(k["no2"])
+					except:
+						d.no2 = 0
+					try:
+						d.co = float(k["co"])
+					except:
+						d.co = 0
+					try:
+						d.o3 = float(k["o3"])
+					except:
+						d.o3 = 0
+					d.data_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
+					d.save()
 					try:
 						warning_rule = WarningRule.objects.get(device_id=int(k["device_id"]))
 						if warning_rule.warning_type == 0:
@@ -103,122 +215,13 @@ class CreateWarningEventThread(threading.Thread):
 								nt.content = k["device_id"] + "号设备" + warning_parameter + "在" + k["time"] + "数值超过预期阈值"
 								nt.save()
 						else:
-							warning_val = warning_rule.warning_val
-							warning_parameter = warning_rule.parameter
-							pre_val = 0
-							if warning_parameter == "aqi":
-								pre_val = d.aqi
-							elif warning_parameter == "pm25":
-								pre_val = d.pm25
-							elif warning_parameter == "pm10":
-								pre_val = d.pm10
-							elif warning_parameter == "so2":
-								pre_val = d.so2
-							elif warning_parameter == "no2":
-								pre_val = d.no2
-							elif warning_parameter == "co":
-								pre_val = d.co
-							elif warning_parameter == "o3":
-								pre_val = d.o3
-							if k[warning_parameter] > pre_val:
-								try:
-									rate = (k[warning_parameter] - pre_val) / pre_val
-									if rate >= warning_val:
-										# 超过预设的百分比，新建对应的预警实例
-										nt = WarningEvent()
-										nt.device_id = int(k["device_id"])
-										nt.warning_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
-										nt.content = k["device_id"] + "号设备" + warning_parameter + "在" + k["time"] + "增长率超过预期阈值，达到" + str(rate)
-										nt.save()
-								except:
-									pass
+							# 由于是第一次加入数据，不存在对比
 							pass
 					except:
 						# 当前设备不存在预警规则
 						pass
-				# 生成完对应的规则之后，替换当前最信值
-				try:
-					d.aqi = float(k["aqi"])
-				except:
-					d.aqi = 0
-				try:
-					d.pm25 = float(k["pm25"])
-				except:
-					d.pm25 = 0
-				try:
-					d.pm10 = float(k["pm10"])
-				except:
-					d.pm10 = 0
-				try:
-					d.so2 = float(k["so2"])
-				except:
-					d.so2 = 0
-				try:
-					d.no2 = float(k["no2"])
-				except:
-					d.no2 = 0
-				try:
-					d.co = float(k["co"])
-				except:
-					d.co = 0
-				try:
-					d.o3 = float(k["o3"])
-				except:
-					d.o3 = 0
-				d.data_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
-				d.save()
-			except LatestData.DoesNotExist:
-				# 不存在最新的data，则把当前获取到的最新数据填充进去
-				d = LatestData()
-				d.device_id = int(k["device_id"])
-				try:
-					d.aqi = float(k["aqi"])
-				except:
-					d.aqi = 0
-				try:
-					d.pm25 = float(k["pm25"])
-				except:
-					d.pm25 = 0
-				try:
-					d.pm10 = float(k["pm10"])
-				except:
-					d.pm10 = 0
-				try:
-					d.so2 = float(k["so2"])
-				except:
-					d.so2 = 0
-				try:
-					d.no2 = float(k["no2"])
-				except:
-					d.no2 = 0
-				try:
-					d.co = float(k["co"])
-				except:
-					d.co = 0
-				try:
-					d.o3 = float(k["o3"])
-				except:
-					d.o3 = 0
-				d.data_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
-				d.save()
-				try:
-					warning_rule = WarningRule.objects.get(device_id=int(k["device_id"]))
-					if warning_rule.warning_type == 0:
-						warning_val = warning_rule.warning_val
-						warning_parameter = warning_rule.parameter
-						if k[warning_parameter] > warning_val:
-							# 超过预定的数值，新建对应的预警实例
-							nt = WarningEvent()
-							nt.device_id = int(k["device_id"])
-							nt.warning_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
-							nt.content = k["device_id"] + "号设备" + warning_parameter + "在" + k["time"] + "数值超过预期阈值"
-							nt.save()
-					else:
-						# 由于是第一次加入数据，不存在对比
-						pass
-				except:
-					# 当前设备不存在预警规则
-					pass
+			except Exception as e:
+				print(str(e))
 
 
 class ReadWarningEventThread(threading.Thread):
