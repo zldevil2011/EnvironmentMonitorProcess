@@ -120,6 +120,8 @@
                 <li class="pure-menu-item"><a href="/server_sensor_list/" class="pure-menu-link"><i class="fa fa-window-maximize pure-menu-item-icon"></i>传感器表</a></li>
                 <li class="pure-menu-item"><a href="/server_data_log/" class="pure-menu-link"><i class="fa fa-window-maximize pure-menu-item-icon"></i>接收日志</a></li>
                 <li class="pure-menu-item"><a href="/server_device_eui/" class="pure-menu-link"><i class="fa fa-bandcamp pure-menu-item-icon"></i>EUI配置</a></li>
+                <li class="pure-menu-item"><a href="/server_warning_rule/" class="pure-menu-link"><i class="fa fa-bandcamp pure-menu-item-icon"></i>报警规则</a></li>
+                <li class="pure-menu-item"><a href="/server_warning_list/" class="pure-menu-link"><i class="fa fa-bandcamp pure-menu-item-icon"></i>报警列表</a></li>
             </ul>
         </div>
     </div>
@@ -163,6 +165,10 @@
         dic["server_project_sensor_config"] = "传感器配置";
         dic["server_device_parameter"] = "解析系数配置";
         dic["server_sensor_list"] = "传感器表";
+        dic["server_data_log"] = "接受日志";
+        dic["server_device_eui"] = "EUI配置";
+        dic["server_warning_rule"] = "报警规则";
+        dic["server_warning_list"] = "报警列表";
         if(link_name != "index"){
             $("[name=current_item]").html(dic[link_name]);
             $("[name=current_item]").attr("href",link);

@@ -28,6 +28,8 @@ from views.server import server_device_info
 from views.server import server_data_log
 from views.server import server_device_eui
 from views.server import start_listening
+from views.server import server_warning_rule
+from views.server import server_warning_list
 
 
 urlpatterns = [
@@ -88,4 +90,6 @@ urlpatterns += [
 	url(r'^server_data_log/$', server_data_log, name="server_data_log"),
 	url(r'^server_device_eui/$', server_device_eui, name="server_device_eui"),
 	url(r'^start_listening/$', start_listening, name="start_listening"),
+	url(r'^server_warning_rule/$', server_warning_rule, name="server_warning_rule"),
+	url(r'^server_warning_list/$', server_warning_list, name="server_warning_list"),
 ]

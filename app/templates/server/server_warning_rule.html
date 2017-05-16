@@ -1,0 +1,336 @@
+{% extends "server/server_base.html" %}
+{% block title %}报警规则{% endblock %}
+{% block special_css %}
+    <style>
+        .rule-list{
+            margin: 10px;
+        }
+        .rule-list > div{
+            padding: 5px;
+        }
+        .rule:hover{
+            border: 1px solid black;
+        }
+        .rule{
+            cursor: pointer;
+            margin-top: 10px;
+            border: 1px solid darkgray;
+            padding-left: 5px;
+            -webkit-border-radius:5px;
+            -moz-border-radius:5px;
+            border-radius:5px;;
+        }
+        .rule-add div{
+            margin-top: 20px;
+        }
+        .rule-add .col-md-3, .rule-add .col-md-9{
+            text-align: center;
+            padding: 5px;
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .rule-add .col-md-3 input, .rule-add .col-md-3 select option,
+        .rule-add .col-md-9 input, .rule-add .col-md-9 select option{
+            padding: 5px;
+            display: block;
+            width: 100%;
+            border-radius: 1px;
+        }
+        .modal-rule-info div{
+            margin-top: 10px;
+            display: block;
+        }
+    </style>
+{% endblock %}
+{% block content_body %}
+    <div class="rule-list">
+        {% for rule in rule_list %}
+        <div class="col-md-3 col-xs-12" id="{{ rule.pk }}" href="#modal-{{ rule.pk }}" role="button" class="btn" data-toggle="modal">
+            <div class="rule">
+                <p>ID:<span>{{ rule.device_id }}</span></p>
+                <p><span>{{ rule.name }}</span></p>
+                <p>参数：<span>{{ rule.parameter }}</span></p>
+                <p>类型：<span>{{ rule.warning_type }}</span></p>
+                <p>阈值：<span>{{ rule.warning_val }}</span></p>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col-md-3 col-xs-12">
+            <div class="rule">
+                <p>ID:1</p>
+                <p>1号设备</p>
+                <p>参数：AQI</p>
+                <p>类型：数值</p>
+                <p>阈值：110</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="rule">
+                <p>ID:1</p>
+                <p>1号设备</p>
+                <p>参数：AQI</p>
+                <p>类型：数值</p>
+                <p>阈值：110</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="rule">
+                <p>ID:1</p>
+                <p>1号设备</p>
+                <p>参数：AQI</p>
+                <p>类型：数值</p>
+                <p>阈值：110</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="rule">
+                <p>ID:1</p>
+                <p>1号设备</p>
+                <p>参数：AQI</p>
+                <p>类型：数值</p>
+                <p>阈值：110</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-12">
+            <div class="rule">
+                <p>ID:1</p>
+                <p>1号设备</p>
+                <p>参数：AQI</p>
+                <p>类型：数值</p>
+                <p>阈值：110</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <hr style="border-top: 1px dotted #423232;">
+    </div>
+
+    <div class="rule-add">
+        <div class="col-md-12" style="text-align: left;">
+            <h4>规则添加</h4>
+        </div>
+        <div class="col-md-12" >
+            <div class="col-md-3">
+                设备
+            </div>
+            <div class="col-md-9">
+                <select class="btn-block btn" id="rule-device">
+                    {% for device in device_list %}
+                    <option value="{{ device.id }}">{{ device.name }}</option>
+                    {% endfor %}
+                    <option>1</option>
+                    <option>1</option>
+                    <option>1</option>
+                    <option>1</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                参数
+            </div>
+            <div class="col-md-9">
+                <select class="btn-block btn" id="rule-parameter">
+                    <option value="aqi">AQI</option>
+                    <option value="pm25">PM2.5</option>
+                    <option value="pm10">PM10</option>
+                    <option value="so2">SO2</option>
+                    <option value="no2">NO2</option>
+                    <option value="co">CO</option>
+                    <option value="o3">O3</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                报警类型
+            </div>
+            <div class="col-md-9">
+                <select class="btn-block btn" id="rule-type">
+                    <option value="0">阈值报警</option>
+                    <option value="1">增长率报警</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                限定阈值
+            </div>
+            <div class="col-md-9">
+                <input type="number" id="rule-val">
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-success btn-block" id="addRule">保存</button>
+            </div>
+        </div>
+    </div>
+    {% for rule in rule_list %}
+        <div class="modal fade" id="modal-{{ rule.pk }}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            {{ rule.name }}
+                        </h4>
+                    </div>
+                    <div class="modal-body" id="rule-{{ rule.pk }}">
+                        <div class="row modal-rule-info">
+                            <div class="col-md-3">
+                                参数
+                            </div>
+                            <div class="col-md-9">
+                                <select class="btn-block btn" id="updateParameter-{{ rule.pk }}">
+                                    {% ifequal rule.parameter "aqi" %}
+                                        <option value="aqi" selected="selected">AQI</option>
+                                    {% else %}
+                                        <option value="aqi">AQI</option>
+                                    {% endifequal %}
+                                    {% ifequal rule.parameter "pm25" %}
+                                        <option value="pm25" selected="selected">PM2.5</option>
+                                    {% else %}
+                                        <option value="pm25">PM2.5</option>
+                                    {% endifequal %}
+                                    {% ifequal rule.parameter "pm10" %}
+                                        <option value="pm10" selected="selected">PM10</option>
+                                    {% else %}
+                                        <option value="pm10">PM10</option>
+                                    {% endifequal %}
+                                    {% ifequal rule.parameter "so2" %}
+                                        <option value="so2" selected="selected">SO2</option>
+                                    {% else %}
+                                        <option value="so2">SO2</option>
+                                    {% endifequal %}
+                                    {% ifequal rule.parameter "no2" %}
+                                        <option value="no2" selected="selected">NO2</option>
+                                    {% else %}
+                                        <option value="no2">NO2</option>
+                                    {% endifequal %}
+                                    {% ifequal rule.parameter "co" %}
+                                        <option value="co" selected="selected">CO</option>
+                                    {% else %}
+                                        <option value="co">CO</option>
+                                    {% endifequal %}
+                                    {% ifequal rule.parameter "o3" %}
+                                        <option value="o3" selected="selected">O3</option>
+                                    {% else %}
+                                        <option value="o3">O3</option>
+                                    {% endifequal %}
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                报警类型
+                            </div>
+                            <div class="col-md-9">
+                                <select class="btn-block btn" id="updateType-{{ rule.pk }}">
+                                    {% ifequal rule.warning_type_number 0 %}
+                                        <option value="0" selected="selected">阈值报警</option>
+                                    {% else %}
+                                        <option value="0">阈值报警</option>
+                                    {% endifequal %}
+                                    {% ifequal rule.warning_type_number 1 %}
+                                        <option value="1" selected="selected">增长率报警</option>
+                                    {% else %}
+                                        <option value="1">增长率报警</option>
+                                    {% endifequal %}
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                限定阈值
+                            </div>
+                            <div class="col-md-9">
+                                <input type="number"  id="updateVal-{{ rule.pk }}" style="width: 100%;" value="{{ rule.warning_val }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-danger" name="deleteRule">删除</button>
+                        <button type="button" class="btn btn-primary" name="updateRule">更新</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+{% block special_js %}
+<script>
+    $("#addRule").on("click", function(){
+        var device_id = $("#rule-device").val();
+        var parameter = $("#rule-parameter").val();
+        var type = $("#rule-type").val();
+        var val = $("#rule-val").val();
+{#        console.log(device_id);#}
+{#        console.log(parameter);#}
+{#        console.log(type);#}
+{#        console.log(val);#}
+        if($.trim(val) == ""){
+            $("#rule-val").focus();
+            return false;
+        }
+        $.ajax({
+            url:window.location.href,
+            type:'POST',
+            data:{ope_type:1, device_id:device_id, parameter:parameter, type:type, val:val},
+            success:function(res){
+                if(res == "success"){
+                    alert("创建成功");
+                    window.location.reload();
+                }else{
+                    alert("创建失败，请稍后再试");
+                }
+            },
+            error:function(res){
+                alert("创建失败，请联系管理员");
+            }
+        })
+    });
+    $("[name=updateRule]").on("click", function(){
+        console.log("UPDATE");
+        var rule_id = $($(this).parent().siblings().get(1)).attr("id");
+        rule_id = rule_id.slice(5);
+        var parameter = $("#updateParameter-" + rule_id).val();
+        var type = $("#updateType-" + rule_id).val();
+        var val = $("#updateVal-" + rule_id).val();
+        if($.trim(val) == "") {
+            $("#updateVal-" + rule_id).focus();
+            return false;
+        }
+        $.ajax({
+            url:window.location.href,
+            type:'POST',
+            data:{ope_type:0, rule_id:rule_id, parameter:parameter, type:type, val:val},
+            success:function(res){
+                if(res == "success"){
+                    alert("更新成功");
+                    window.location.reload();
+                }else{
+                    alert("更新失败，请稍后再试");
+                }
+            },
+            error:function(res){
+                alert("更新失败，请联系管理员");
+            }
+        })
+    });
+    $("[name=deleteRule]").on("click", function(){
+        var rule_id = $($(this).parent().siblings().get(1)).attr("id");
+        rule_id = rule_id.slice(5);
+        if(confirm("确认删除")){
+            $.ajax({
+                url:window.location.href,
+                type:'POST',
+                data:{ope_type:-1, rule_id:rule_id},
+                success:function(res){
+                    if(res == "success"){
+                        alert("删除成功");
+                        window.location.reload();
+                    }else{
+                        alert("删除失败，请稍后再试");
+                    }
+                },
+                error:function(res){
+                    alert("删除失败，请联系管理员");
+                }
+            })
+        }else{
+
+        }
+
+    });
+</script>
+{% endblock %}

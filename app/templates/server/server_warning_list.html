@@ -1,0 +1,64 @@
+{% extends "server/server_base.html" %}
+{% block title %}报警列表{% endblock %}
+{% block special_css %}
+    <style>
+        .warning-list{
+            margin: 10px;
+        }
+        tr{
+            cursor: pointer;
+        }
+        tr:hover{
+            background: darkgrey;
+        }
+    </style>
+{% endblock %}
+{% block content_body %}
+    <div class="warning-list">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                设备编号
+                            </th>
+                            <th>
+                                内容
+                            </th>
+                            <th>
+                                报警时间
+                            </th>
+                            <th>
+                                是否已读
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for warning in warning_list %}
+                        <tr>
+                            <td>
+                                {{ warning.device_id }}
+                            </td>
+                            <td>
+                                {{ warning.content }}
+                            </td>
+                            <td>
+                                {{ warning.warning_time }}
+                            </td>
+                            <td>
+                                {{ warning.read_tag }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block special_js %}
+<script>
+
+</script>
+{% endblock %}

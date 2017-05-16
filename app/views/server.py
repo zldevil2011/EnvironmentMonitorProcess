@@ -2,11 +2,13 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime, timedelta
+from dss.Serializer import serializer
 from EMP import settings
 from django.core.mail import send_mail
 from app.views.utils.mySqlUtils import MySQL
-from app.models import Sensor, SensorConfigParameter, SensorDatabaseConfig, Project, Device
+from app.models import Sensor, SensorConfigParameter, SensorDatabaseConfig, Project, Device, WarningRule, WarningEvent
 import random
+import  time
 
 # 配置首页
 @csrf_exempt
@@ -453,3 +455,104 @@ def start_listening(request):
 		return HttpResponse("success")
 	else:
 		return HttpResponse("error")
+
+
+@csrf_exempt
+def server_warning_rule(request):
+	if request.method == "GET":
+		sql = MySQL()
+		sql.connectDB("projectmanagement")
+		data = {}
+		data["ProjectID"] = {}
+		data["ProjectID"]["conn"] = "="
+		data["ProjectID"]["val"] = str(1)
+		devices = sql.get_query("projectnodeinfo", data)
+		sql.close_connect()
+		device_list = []
+		for device in devices:
+			tmp = {}
+			tmp["id"] = device["NodeNO"]
+			tmp["name"] = device["Description"]
+			tmp["address"] = device["InstallationAddress"]
+			tmp["install_time"] = str(device["SetTime"])
+			device_list.append(tmp)
+		rule_list = []
+		rule_list_original = WarningRule.objects.all()
+		for rule in rule_list_original:
+			tmp = {}
+			for device in device_list:
+				if rule.device_id == device["id"]:
+					tmp["pk"] = rule.pk
+					tmp["device_id"] = rule.device_id
+					tmp["name"] = device["name"]
+					tmp["parameter"] = rule.parameter
+					if rule.warning_type == 0:
+						tmp["warning_type"] = "限定阈值"
+						tmp["warning_type_number"] = 0
+					else:
+						tmp["warning_type"] = "增长率"
+						tmp["warning_type_number"] = 1
+					tmp["warning_val"] = rule.warning_val
+					rule_list.append(tmp)
+					break
+		return render(request, "server/server_warning_rule.html", {
+			"rule_list":rule_list,
+			"device_list":device_list,
+		})
+	else:
+		# 新建规则
+		try:
+			operation = int(request.POST.get("ope_type"))
+			if operation == 1:
+				# 新建规则
+				device_id = int(request.POST.get("device_id"))
+				parameter = request.POST.get("parameter")
+				type = int(request.POST.get("type"))
+				val = float(request.POST.get("val"))
+				new_rule = WarningRule()
+				new_rule.device_id = device_id
+				new_rule.parameter = parameter
+				new_rule.warning_type = type
+				new_rule.warning_val = val
+				new_rule.save()
+				return HttpResponse("success")
+			elif operation == -1:
+				rule_id = int(request.POST.get("rule_id"))
+				rule = WarningRule.objects.get(pk=rule_id)
+				rule.delete()
+				# 删除规则
+				return HttpResponse("success")
+			elif operation == 0:
+				# 更新规则
+				rule_id = int(request.POST.get("rule_id"))
+				parameter = request.POST.get("parameter")
+				type = int(request.POST.get("type"))
+				val = float(request.POST.get("val"))
+				rule = WarningRule.objects.get(pk = rule_id)
+				rule.parameter = parameter
+				rule.warning_type = type
+				rule.warning_val = val
+				rule.save()
+				return HttpResponse("success")
+			else:
+				return HttpResponse("error")
+		except Exception as e:
+			return str(e)
+
+
+@csrf_exempt
+def server_warning_list(request):
+	if request.method == "GET":
+		warning_list = WarningEvent.objects.all()
+		warning_list = serializer(warning_list)
+		for warning in warning_list:
+			warning["warning_time"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(warning["warning_time"]))
+			if warning["read_tag"] is False:
+				warning["read_tag"] = "否"
+			else:
+				warning["read_tag"] = "是"
+		return render(request, "server/server_warning_list.html",{
+			"warning_list":warning_list,
+		})
+	else:
+		return HttpResponse("success")
