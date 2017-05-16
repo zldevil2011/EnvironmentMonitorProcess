@@ -6,13 +6,17 @@ from dss.Serializer import serializer
 from EMP import settings
 from django.core.mail import send_mail
 from app.views.utils.mySqlUtils import MySQL
-from app.models import Sensor, SensorConfigParameter, SensorDatabaseConfig, Project, Device, WarningRule, WarningEvent
+from app.models import Sensor, SensorConfigParameter, SensorDatabaseConfig, Project, Device, WarningRule, WarningEvent, Adminer
 import random
 import  time
 
 # 配置首页
 @csrf_exempt
 def server_index(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	sql = MySQL()
 	sql.connectDB("projectmanagement")
 	data = {}
@@ -44,6 +48,10 @@ def server_index(request):
 
 @csrf_exempt
 def server_device_data(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	# 获取设备列表
 	sql = MySQL()
 	sql.connectDB("projectmanagement")
@@ -119,6 +127,10 @@ def server_device_data(request):
 @csrf_exempt
 def server_device_data_list(request):
 	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
+	try:
 		device_id = int(request.GET.get("device_id"))
 		sql = MySQL()
 		sql.connectDB("projectmanagement")
@@ -177,6 +189,10 @@ def server_device_data_list(request):
 
 @csrf_exempt
 def server_device_add(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	if request.method == "GET":
 		return render(request, "server/server_device_add.html", {
 
@@ -231,6 +247,10 @@ def server_device_add(request):
 
 @csrf_exempt
 def server_device_parameter(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	project = Project.objects.get(name=u"大气六参数")
 	project_sensor_list = SensorConfigParameter.objects.filter(project_id=project.id)
 	if request.method == "GET":
@@ -253,6 +273,10 @@ def server_device_parameter(request):
 
 @csrf_exempt
 def server_project_sensor_config(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	if request.method == "GET":
 		project = Project.objects.get(name=u"大气六参数")
 		project_sensor_object = SensorConfigParameter.objects.filter(project_id=project.id)
@@ -298,6 +322,10 @@ def server_project_sensor_config(request):
 
 @csrf_exempt
 def server_sensor_list(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	sensor_list = Sensor.objects.all()
 	return render(request, "server/server_sensor_list.html", {
 		"sensor_list": sensor_list,
@@ -306,6 +334,10 @@ def server_sensor_list(request):
 
 @csrf_exempt
 def server_device_info(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	if request.method == "GET":
 		try:
 			device_id = int(request.GET.get("device_id"))
@@ -394,7 +426,10 @@ def server_device_info(request):
 
 @csrf_exempt
 def server_data_log(request):
-
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	receive_log = list()
 	try:
 		with open('./' + "receive.log", 'r') as destination:
@@ -413,6 +448,10 @@ def server_data_log(request):
 
 @csrf_exempt
 def server_device_eui(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	if request.method == "GET":
 		project = Project.objects.get(name=u"大气六参数")
 		device_list = Device.objects.filter(project_id=project.id)
@@ -437,15 +476,25 @@ def server_device_eui(request):
 			return HttpResponse("error")
 
 from app.views.utils.listeningData import ReadWarningEventThread, CreateWarningEventThread
+from app.views.utils.sendingDataToFont import SendingDataToFont
 
 
 def start_listening(request):
 	try:
-		# read_thread = ReadWarningEventThread()
-		# read_thread.start()
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
+	try:
+		admin_ndoe_list = adminer.admin_node.split(',')
 
-		new_thread = CreateWarningEventThread(1,[1], 1)
-		new_thread.start()
+		log_thread = SendingDataToFont()
+		log_thread.start()
+
+		read_thread = ReadWarningEventThread(2,admin_ndoe_list,log_thread)
+		read_thread.start()
+
+		create_thread = CreateWarningEventThread(1, admin_ndoe_list)
+		create_thread.start()
 
 		res = 1
 	except Exception as e:
@@ -459,6 +508,10 @@ def start_listening(request):
 
 @csrf_exempt
 def server_warning_rule(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	if request.method == "GET":
 		sql = MySQL()
 		sql.connectDB("projectmanagement")
@@ -542,6 +595,10 @@ def server_warning_rule(request):
 
 @csrf_exempt
 def server_warning_list(request):
+	try:
+		adminer = Adminer.objects.get(username=request.session["username"])
+	except:
+		return HttpResponseRedirect("/user_login/")
 	if request.method == "GET":
 		warning_list = WarningEvent.objects.all()
 		warning_list = serializer(warning_list)

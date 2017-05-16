@@ -15,11 +15,10 @@ from dss.Serializer import serializer
 
 
 class CreateWarningEventThread(threading.Thread):
-	def __init__(self, pid, device_id_list, send_data_to_font_thread):
+	def __init__(self, pid, device_id_list):
 		threading.Thread.__init__(self)
 		self.pid = pid
 		self.device_id_list = device_id_list
-		self.send_data_to_font_thread = send_data_to_font_thread
 
 	def run(self):
 		while True:
@@ -223,17 +222,18 @@ class CreateWarningEventThread(threading.Thread):
 
 
 class ReadWarningEventThread(threading.Thread):
-	def __init__(self, pid, device_id_list):
+	def __init__(self, pid, device_id_list, send_data_to_font_thread):
 		threading.Thread.__init__(self)
 		self.pid = pid
 		self.device_id_list = device_id_list
+		self.send_data_to_font_thread = send_data_to_font_thread
 
 	def run(self):
 		while True:
 			# 每5分钟检查一次是否存在未读取的报警事件
 			warning_data_dic = self.read_warning()
-			# self.send_data_to_font_thread.send_data(json.dumps(warning_data_dic))
-			time.sleep(10)
+			self.send_data_to_font_thread.send_data(json.dumps(warning_data_dic))
+			time.sleep(300)
 
 	def read_warning(self):
 		warning_data_dic = {}
