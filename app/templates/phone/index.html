@@ -121,6 +121,7 @@
         .warning-icon{
             position: fixed;
             right:0;
+            top:15px;
             cursor: pointer;
         }
     </style>
@@ -128,7 +129,7 @@
 
 {% block body_content %}
     <div class="warning-icon" id="warningList">
-        <span class="glyphicon glyphicon-warning-sign"></span>报警(<span id="newWarningNumber">10</span>)
+        <span class="glyphicon glyphicon-warning-sign"></span>报警(<span id="newWarningNumber">0</span>)
     </div>
     <div id="header">
         <p><span class="glyphicon glyphicon-pencil address-edit" href="#modal-address-list" role="button" class="btn" data-toggle="modal">{{ device_name }}</span> 空气质量 <span class="glyphicon glyphicon-refresh refresh-btn" style="" onclick="window.android.refreshPage();">刷新</span></p>
@@ -278,9 +279,42 @@
 {% endblock %}
 {% block special_js %}
     <script>
+        var user_id = "{{ user_id }}";
         $("#warningList").on("click", function(){
-            alert("报警列表");
+{#            window.location.href="/app/warning_list?user_id=" + user_id;#}
         })
+    </script>
+    <script>
+        var user_id = "{{ user_id }}";
+        function get_unread_warining_number(){
+            $.ajax({
+                url:'/get_warning/',
+                type:'POST',
+                data:{ope_type:0, user_id:user_id},
+                success:function(res){
+                    if(parseInt(res) > 0){
+                        $("#newWarningNumber").html(res);
+                        $("#warningList").css("color","red");
+                        warningListTagToggle();
+                    }else{
+                        $("#warningList").css("color","red");
+                    }
+                },
+                error:function(res){
+                    console.log(res);
+                }
+            })
+        }
+        var x = setInterval(get_unread_warining_number, 3000);
+        function warningListTagToggle(){
+            setInterval(function(){
+                if($("#warningList").css("color") == "rgb(255, 0, 0)"){
+                    $("#warningList").css("color","black");
+                }else{
+                    $("#warningList").css("color","red");
+                }
+            },1000);
+        }
     </script>
     <script>
         var width = $(".six-list").width();

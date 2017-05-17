@@ -220,6 +220,7 @@ def index(request, device_id):
 		"device_info": device_info,
 		"today_data": today_data,
 		"unit_list": json.dumps(unit_list),
+		"user_id": adminer.pk,
 	})
 
 

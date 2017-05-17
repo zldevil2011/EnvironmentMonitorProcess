@@ -68,3 +68,18 @@ def information(request):
 		"device_list":device_list,
 		"username": username,
 	})
+
+
+@csrf_exempt
+def warning_list(request):
+	# try:
+	# 	adminer = Adminer.objects.get(username=request.session["username"])
+	# except:
+	# 	return HttpResponseRedirect("/app/user/login/")
+	try:
+		user_id = int(request.GET.get("user_id"))
+	except:
+		return HttpResponse("暂时没有数据")
+	return render(request, "phone/user_warning_list.html", {
+		"user_id":user_id,
+	})

@@ -8,7 +8,9 @@ from django.core.mail import send_mail
 from app.views.utils.mySqlUtils import MySQL
 from app.models import Sensor, SensorConfigParameter, SensorDatabaseConfig, Project, Device, WarningRule, WarningEvent, Adminer
 import random
-import  time
+import time
+import json
+
 
 # 配置首页
 @csrf_exempt
@@ -613,3 +615,48 @@ def server_warning_list(request):
 		})
 	else:
 		return HttpResponse("success")
+
+
+@csrf_exempt
+def get_warning(request):
+	# try:
+	# 	adminer = Adminer.objects.get(username=request.session["username"])
+	# except:
+	# 	return HttpResponseRedirect("/user_login/")
+	try:
+		user_id = int(request.POST.get("user_id"))
+		adminer = Adminer.objects.get(pk=user_id)
+	except:
+		return HttpResponse("error")
+	admin_ndoe_list = adminer.admin_node.split(',')
+	warning_list = WarningEvent.objects.filter(device_id__in=admin_ndoe_list)
+	try:
+		ope_type = int(request.POST.get("ope_type"))
+		if ope_type == 0:
+			# 获取最新的未读报警的数目
+			warning_list = warning_list.filter(read_tag=False)
+			unread_number = warning_list.count()
+			return HttpResponse(unread_number)
+		elif ope_type == 1:
+			warning_list = serializer(warning_list)
+			for warning in warning_list:
+				warning["warning_time"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(warning["warning_time"]))
+				if warning["read_tag"] is False:
+					warning["read_tag"] = "未读"
+				else:
+					warning["read_tag"] = "已读"
+			return HttpResponse(json.dumps(warning_list))
+			# 获取所有的报警列表
+			pass
+		elif ope_type == -1:
+			# 删除报警
+			try:
+				warning_id = int(request.POST.get("warning_id"))
+				warning = WarningEvent.objects.get(pk=warning_id)
+				warning.delete()
+				return HttpResponse("success")
+			except:
+				return HttpResponse("error")
+			pass
+	except:
+		return HttpResponse({})
