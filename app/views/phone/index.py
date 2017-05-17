@@ -100,9 +100,9 @@ def index(request, device_id):
 		except:
 			tmp["o3"] = data["O3_O3"]
 		tmp["pm25"] = data["PM2_5_PM2_5"]
-		# tmp["Temperature"] = data["Temperature"]
-		# tmp["Pressure"] = data["Pressure"]
-		# tmp["Humidity"] = data["Humidity"]
+		tmp["Temperature"] = data["Temperature"]
+		tmp["Pressure"] = data["Pressure"]
+		tmp["Humidity"] = data["Humidity"]
 		tmp["device_id"] = data[u"项目内节点编号"]
 		tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
 		tmp["name"] = device["name"]

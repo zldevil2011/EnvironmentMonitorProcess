@@ -16,7 +16,7 @@
         body{
             background: rgba(30, 144, 255, 0.8);
             margin-bottom: 100px;
-            font-size: 1rem;
+            font-size: 1.5rem;
         }
         #header {
             text-align: center;
@@ -82,16 +82,21 @@
             -webkit-transform: scaleY(1.0);
           }
         }
+        .warning_list{
+            margin-top: 10px;
+        }
         .warning_list .col-md-3{
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
         }
         .warning_list .row{
+            padding-bottom: 10px;
             border-bottom: 1px solid darkgray;
         }
         #warning_list_parent .col-md-12{
             margin-bottom: 10px;
+            padding: 10px;
         }
         #warning_list_parent .col-md-12:nth-of-type(2){
             margin-top: 10px;
@@ -134,7 +139,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="modal-template" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="font-size: 1rem;">
+    <div class="modal fade" id="modal-template" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="font-size: 1.3rem;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -160,7 +165,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 1rem;">关闭</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 1rem;" name="readWarning">关闭</button>
                     <button type="button" class="btn btn-danger" name="" style="font-size: 1rem;">删除</button>
                 </div>
             </div>
@@ -221,6 +226,7 @@
                     device_name.html(obj.device_id);
                     dialog.find("[name=content]").html(obj.content);
                     dialog.find("[name=time]").html(obj.warning_time);
+                    dialog.find("[name=readWarning]").attr("onclick", "readWarning(" + obj.id+")");
                     console.log(dialog);
                     $(".warning_list").append(dialog);
                 }
@@ -228,10 +234,21 @@
             error:function(res){
                 console.log(res);
             }
-        })
-    </script>
-
-    <script>
+        });
+        function readWarning(warning_id){
+            $.ajax({
+                url:'/get_warning/',
+                type:'POST',
+                data:{ope_type:2, warning_id:warning_id,user_id:user_id},
+                success:function(res){
+                    console.log(res);
+                    window.location.reload();
+                },
+                error:function(res){
+                    console.log(res);
+                }
+            })
+        }
     </script>
 </body>
 </html>

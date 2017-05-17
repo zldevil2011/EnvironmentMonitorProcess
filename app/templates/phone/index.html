@@ -121,7 +121,7 @@
         .warning-icon{
             position: fixed;
             right:0;
-            top:15px;
+            top:25px;
             cursor: pointer;
         }
     </style>
@@ -282,32 +282,40 @@
         var user_id = "{{ user_id }}";
         $("#warningList").on("click", function(){
 {#            window.location.href="/app/warning_list?user_id=" + user_id;#}
+            window.android.warningList(user_id);
         })
     </script>
     <script>
         var user_id = "{{ user_id }}";
+        var colorChange = null;
+        var getUnreadNumber;
         function get_unread_warining_number(){
             $.ajax({
                 url:'/get_warning/',
                 type:'POST',
                 data:{ope_type:0, user_id:user_id},
                 success:function(res){
+                    console.log(res);
                     if(parseInt(res) > 0){
                         $("#newWarningNumber").html(res);
                         $("#warningList").css("color","red");
                         warningListTagToggle();
                     }else{
-                        $("#warningList").css("color","red");
+                        $("#newWarningNumber").html(res);
+                        $("#warningList").css("color","black");
+                        window.clearInterval(colorChange);
                     }
+                    window.clearTimeout(getUnreadNumber);
+                    getUnreadNumber = setTimeout("get_unread_warining_number()", 3000);
                 },
                 error:function(res){
                     console.log(res);
                 }
             })
         }
-        var x = setInterval(get_unread_warining_number, 3000);
+        var getUnreadNumber = setTimeout("get_unread_warining_number()", 3000);
         function warningListTagToggle(){
-            setInterval(function(){
+            colorChange = setInterval(function(){
                 if($("#warningList").css("color") == "rgb(255, 0, 0)"){
                     $("#warningList").css("color","black");
                 }else{

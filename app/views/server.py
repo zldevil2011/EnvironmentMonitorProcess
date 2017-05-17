@@ -636,6 +636,7 @@ def get_warning(request):
 			# 获取最新的未读报警的数目
 			warning_list = warning_list.filter(read_tag=False)
 			unread_number = warning_list.count()
+			print "unREAD=", unread_number
 			return HttpResponse(unread_number)
 		elif ope_type == 1:
 			warning_list = serializer(warning_list)
@@ -658,5 +659,18 @@ def get_warning(request):
 			except:
 				return HttpResponse("error")
 			pass
+		elif ope_type == 2:
+			# 将预警置为已读
+			try:
+				warning_id = int(request.POST.get("warning_id"))
+				print ope_type
+				print warning_id
+				warning_event = WarningEvent.objects.get(pk=warning_id)
+				warning_event.read_tag = True
+				warning_event.save()
+				return HttpResponse("success")
+			except Exception as e:
+				print(str(e))
+				return HttpResponse(str(e))
 	except:
 		return HttpResponse({})
