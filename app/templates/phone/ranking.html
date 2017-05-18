@@ -49,6 +49,10 @@
         .color-4{  background: orangered;  }
         .color-5{  background: indianred;  }
         .color-6{  background: darkred;  }
+        .ranking-list ol li span{
+            width: 100px;
+            text-align: center;
+        }
     </style>
 {% endblock %}
 
@@ -61,7 +65,7 @@
             <ul class="pure-menu-list" style="padding: 0.1rem;">
 {#                <li name = "tag1" v-on:click="change('aqi', $event)" class="pure-menu-item" v-bind:class="[disactive]"><a name="current_item" href="#" class="pure-menu-link">AQI</a></li>#}
 {#                <li v-on:click="change('pm25', $event)" class="pure-menu-item" v-bind:class="[disactive]"><a name="current_item" href="#" class="pure-menu-link">PM2.5</a></li>#}
-                <li class="pure-menu-item" id="aqi"><a name="current_item" href="#" class="pure-menu-link">AQI</a></li>
+                <li class="pure-menu-item" id="aqi"><a name="current_item" href="#" class="pure-menu-link" id="first_aqi_tag">AQI</a></li>
                 <li class="pure-menu-item" id="pm25"><a name="current_item" href="#" class="pure-menu-link">PM2.5</a></li>
                 <li class="pure-menu-item" id="pm10"><a name="current_item" href="#" class="pure-menu-link">PM10</a></li>
                 <li class="pure-menu-item" id="so2"><a name="current_item" href="#" class="pure-menu-link">SO2</a></li>
@@ -159,9 +163,13 @@
 {% endblock %}
 {% block special_js %}
 <script>
+    var pm25_tag = $("#first_aqi_tag");
+    console.log(pm25_tag);
+    pm25_tag.css({"background":"rgb(0,0,255","border-radius": "5px"});
     $("[name=aqi]").siblings().css("display", "none");
     $("[name=aqi]").css("display", "block");
     $(".pure-menu-item").on("click", function(){
+        $("#first_aqi_tag").css("background","");
         var name = $(this).attr("id");
         console.log(name);
         $("[name=" + name + "]").siblings().css("display", "none");
