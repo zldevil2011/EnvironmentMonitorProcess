@@ -12,7 +12,8 @@ transform_factor = {"so2": 2949.276785714286, "o3": 2142.7767857142856, "co": 1.
 from app.models import LatestData, WarningRule, WarningEvent, Adminer
 from app.views.objects.AqiParameter import AqiParameter
 from dss.Serializer import serializer
-
+from django.core.mail import send_mail
+from EMP import settings
 
 class CreateWarningEventThread(threading.Thread):
 	def __init__(self, pid, device_id_list):
@@ -135,6 +136,15 @@ class CreateWarningEventThread(threading.Thread):
 												nt.warning_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
 												nt.content = k["device_id"] + "号设备" + warning_parameter + "在" + k["time"] + "增长率超过预期阈值，达到" + str(rate)
 												nt.save()
+												subject = u"增长过快通知"
+												text_content = nt.content + "VAL:" + str(k[warning_parameter]) + ":PreVAL:" + str(pre_val) + "RATE:" + str(rate)
+												from_email = settings.EMAIL_HOST_USER
+												to = "929034478@qq.com"
+												try:
+													send_mail(subject, text_content, from_email, [to],
+															  fail_silently=False)
+												except Exception as e:
+													pass
 										except:
 											pass
 									pass
