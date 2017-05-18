@@ -476,6 +476,8 @@ def ranking(request):
 		except:
 			device["AQI"] = u"无数据"
 			device["level"] = 6
+			device["pm25_level"] = 6
+			device["pm10_level"] = 6
 		try:
 			print so2_level
 			print so2_level.reverse()
