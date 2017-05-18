@@ -485,7 +485,7 @@ def ranking(request):
 		try:
 			for idx in range(len(so2_level)):
 				level = so2_level[idx]
-				if float(device['so2'] <= 0):
+				if float(device['so2']) <= 0:
 					device["so2_level"] = 1
 					break
 				if float(device['so2']) > level:
@@ -497,7 +497,7 @@ def ranking(request):
 		try:
 			for idx in range(len(no2_level)):
 				level = no2_level[idx]
-				if float(device['no2'] <= 0):
+				if float(device['no2']) <= 0:
 					device["no2_level"] = 1
 					break
 				if float(device['no2']) > level:
@@ -509,7 +509,7 @@ def ranking(request):
 		try:
 			for idx in range(len(co_level)):
 				level = co_level[idx]
-				if float(device['co'] <= 0):
+				if float(device['co']) <= 0:
 					device["co_level"] = 1
 					break
 				if float(device['co']) > level:
@@ -521,7 +521,7 @@ def ranking(request):
 		try:
 			for idx in range(len(o3_level)):
 				level = o3_level[idx]
-				if float(device['o3'] <= 0):
+				if float(device['o3']) <= 0:
 					device["o3_level"] = 1
 					break
 				if float(device['o3']) > level:
