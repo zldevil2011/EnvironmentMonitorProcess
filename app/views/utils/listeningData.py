@@ -96,6 +96,7 @@ class CreateWarningEventThread(threading.Thread):
 							warning_rule_list = WarningRule.objects.filter(device_id=int(k["device_id"]))
 							for warning_rule in warning_rule_list:
 								if warning_rule.warning_type == 0:
+									# 0代表超过某一个数值就报警
 									warning_val = warning_rule.warning_val
 									warning_parameter = warning_rule.parameter
 									if k[warning_parameter] > warning_val:
@@ -105,7 +106,8 @@ class CreateWarningEventThread(threading.Thread):
 										nt.warning_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
 										nt.content = k["device_id"] + "号设备" + warning_parameter + "在" + k["time"] + "数值超过预期阈值"
 										nt.save()
-								else:
+								elif warning_rule.warning_type == 1:
+									# 1代表增长率超过一定数值就报警
 									warning_val = warning_rule.warning_val
 									warning_parameter = warning_rule.parameter
 									pre_val = 0
@@ -135,6 +137,42 @@ class CreateWarningEventThread(threading.Thread):
 												nt.save()
 										except:
 											pass
+									pass
+								elif warning_rule.warning_type == 2:
+									# 2代表差值超过某一个数值就报警
+									warning_val = warning_rule.warning_val
+									warning_parameter = warning_rule.parameter
+									pre_val = 0
+									if warning_parameter == "aqi":
+										pre_val = d.aqi
+									elif warning_parameter == "pm25":
+										pre_val = d.pm25
+									elif warning_parameter == "pm10":
+										pre_val = d.pm10
+									elif warning_parameter == "so2":
+										pre_val = d.so2
+									elif warning_parameter == "no2":
+										pre_val = d.no2
+									elif warning_parameter == "co":
+										pre_val = d.co
+									elif warning_parameter == "o3":
+										pre_val = d.o3
+									if k[warning_parameter] > pre_val:
+										try:
+											add_val = k[warning_parameter] - pre_val
+											if add_val >= warning_val:
+												# 超过预设的差值，新建对应的预警实例
+												nt = WarningEvent()
+												nt.device_id = int(k["device_id"])
+												nt.warning_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
+												nt.content = k["device_id"] + "号设备" + warning_parameter + "在" + k[
+													"time"] + "增长过快，达到" + str(add_val)
+												nt.save()
+										except:
+											pass
+									pass
+								else:
+									# 无效编号
 									pass
 						except:
 							# 当前设备不存在预警规则

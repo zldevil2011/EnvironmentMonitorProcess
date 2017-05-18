@@ -79,8 +79,8 @@ class Sensor(models.Model):
 class WarningRule(models.Model):
 	device_id = models.IntegerField(default=0)				# 对应的设备ID
 	parameter = models.CharField(max_length=200, null=True) # 关注的参数（aqi,pm25,pm10,so2,no2,co,o3）
-	warning_type = models.IntegerField(default=0)			# 0代表数值，1代表百分比
-	warning_val = models.FloatField(default=0.0)			# 0代表数值，1代表百分比
+	warning_type = models.IntegerField(default=0)			# 0代表数值，1代表百分比，2代表差值
+	warning_val = models.FloatField(default=0.0)
 
 	def __unicode__(self):
 		return str(self.pk)

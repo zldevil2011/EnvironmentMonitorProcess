@@ -96,6 +96,7 @@
                 <select class="btn-block btn" id="rule-type">
                     <option value="0">阈值报警</option>
                     <option value="1">增长率报警</option>
+                    <option value="2">增长差值报警</option>
                 </select>
             </div>
             <div class="col-md-3">
@@ -177,6 +178,11 @@
                                         <option value="1" selected="selected">增长率报警</option>
                                     {% else %}
                                         <option value="1">增长率报警</option>
+                                    {% endifequal %}
+                                    {% ifequal rule.warning_type_number 2 %}
+                                        <option value="1" selected="selected">增长差值报警</option>
+                                    {% else %}
+                                        <option value="1">增长差值报警</option>
                                     {% endifequal %}
                                 </select>
                             </div>

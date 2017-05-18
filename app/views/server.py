@@ -544,9 +544,12 @@ def server_warning_rule(request):
 					if rule.warning_type == 0:
 						tmp["warning_type"] = "限定阈值"
 						tmp["warning_type_number"] = 0
-					else:
+					elif rule.warning_type == 1:
 						tmp["warning_type"] = "增长率"
 						tmp["warning_type_number"] = 1
+					elif rule.warning_type == 2:
+						tmp["warning_type"] = "增长差值"
+						tmp["warning_type_number"] = 2
 					tmp["warning_val"] = rule.warning_val
 					rule_list.append(tmp)
 					break
