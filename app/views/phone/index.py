@@ -487,7 +487,7 @@ def ranking(request):
 				print idx, so2_level[idx]
 				level = so2_level[idx]
 				if float(device['so2']) > level:
-					device["so2_level"] = int(idx) + 1
+					device["so2_level"] = 6 - idx
 					break
 		except Exception as e:
 			device["so2"] = u"无数据"
@@ -496,7 +496,7 @@ def ranking(request):
 			for idx in range(len(no2_level)):
 				level = no2_level[idx]
 				if float(device['no2']) > level:
-					device["no2_level"] = int(idx) + 1
+					device["no2_level"] = 6 - idx
 					break
 		except:
 			device["no2"] = u"无数据"
@@ -505,7 +505,7 @@ def ranking(request):
 			for idx in range(len(co_level)):
 				level = co_level[idx]
 				if float(device['co']) > level:
-					device["co_level"] = int(idx) + 1
+					device["co_level"] = 6 - idx
 					break
 		except:
 			device["co"] = u"无数据"
@@ -514,7 +514,7 @@ def ranking(request):
 			for idx in range(len(o3_level)):
 				level = o3_level[idx]
 				if float(device['o3']) > level:
-					device["o3_level"] = int(idx) + 1
+					device["o3_level"] = 6 - idx
 					break
 		except:
 			device["o3"] = u"无数据"
