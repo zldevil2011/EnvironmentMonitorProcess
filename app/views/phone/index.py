@@ -460,16 +460,53 @@ def ranking(request):
 			device["no2"] = u"无数据"
 			device["co"] = u"无数据"
 			device["o3"] = u"无数据"
-
+	so2_level = [0, 150, 500, 650, 800, 800] # ug/m3
+	no2_level = [0, 40,  80,  180, 280, 565] # ug/m3
+	co_level =  [0, 5,   10,  35,  60,  90] # mg/m3
+	o3_level =  [0, 160, 200, 300, 400, 800] # ug/m3
 	for device in device_list:
 		aqi = AqiParameter()
 		try:
 			aqi.get_1_aqi(device)
 			device["AQI"] = aqi.AQI_1
 			device["level"] = aqi.AQI_info_1["level_no"]
+			device["pm25_level"] = aqi.AQI_info_1["level_no"]
+			device["pm10_level"] = aqi.AQI_info_1["level_no"]
 		except:
 			device["AQI"] = u"无数据"
 			device["level"] = 6
+		try:
+			for idx, level in enumerate(so2_level.reverse()):
+				if float(device['so2']) > level:
+					device["so2_level"] = int(idx) + 1
+					break
+		except:
+			device["so2"] = u"无数据"
+			device["so2_level"] = 6
+		try:
+			for idx, level in enumerate(so2_level.reverse()):
+				if float(device['no2']) > level:
+					device["no2_level"] = int(idx) + 1
+					break
+		except:
+			device["no2"] = u"无数据"
+			device["no2_level"] = 6
+		try:
+			for idx, level in enumerate(so2_level.reverse()):
+				if float(device['co']) > level:
+					device["co_level"] = int(idx) + 1
+					break
+		except:
+			device["co"] = u"无数据"
+			device["co_level"] = 6
+		try:
+			for idx, level in enumerate(so2_level.reverse()):
+				if float(device['o3']) > level:
+					device["o3_level"] = int(idx) + 1
+					break
+		except:
+			device["o3"] = u"无数据"
+			device["o3_level"] = 6
 	# print(device_list)
 	aqi_list = sorted(device_list, key=lambda e: e.__getitem__('AQI'))
 	pm25_list = sorted(device_list, key=lambda e: e.__getitem__('pm25'))

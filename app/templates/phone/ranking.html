@@ -85,7 +85,7 @@
         </ol>
         <ol style="padding:20px;display: none;" name="pm25">
             {% for pm25 in pm25_list %}
-                <li>{{ pm25.name }}<span class="color-{{ pm25.level }}">{{ pm25.pm25 }}</span></li>
+                <li>{{ pm25.name }}<span class="color-{{ pm25.pm25_level }}">{{ pm25.pm25 }}</span></li>
             {% endfor %}
 {#            <li>岐山医药<span class="color-1">53</span></li>#}
 {#            <li>创业园<span class="color-1">53</span></li>#}
@@ -97,7 +97,7 @@
         </ol>
         <ol style="padding:20px;display: none;" name="pm10">
             {% for data in pm10_list %}
-                <li>{{ data.name }}<span class="color-{{ data.level }}">{{ data.pm10 }}</span></li>
+                <li>{{ data.name }}<span class="color-{{ data.pm10_level }}">{{ data.pm10 }}</span></li>
             {% endfor %}
 {#            <li>岐山医药<span class="color-1">53</span></li>#}
 {#            <li>创业园<span class="color-1">53</span></li>#}
@@ -109,7 +109,7 @@
         </ol>
         <ol style="padding:20px;display: none;" name="so2">
             {% for data in so2_list %}
-                <li>{{ data.name }}<span class="color-{{ data.level }}">{{ data.so2 }}</span></li>
+                <li>{{ data.name }}<span class="color-{{ data.so2_level }}">{{ data.so2 }}</span></li>
             {% endfor %}
 {#            <li>岐山医药<span class="color-1">53</span></li>#}
 {#            <li>创业园<span class="color-1">53</span></li>#}
@@ -121,7 +121,7 @@
         </ol>
         <ol style="padding:20px;display: none;" name="no2">
             {% for data in no2_list %}
-                <li>{{ data.name }}<span class="color-{{ data.level }}">{{ data.no2 }}</span></li>
+                <li>{{ data.name }}<span class="color-{{ data.no2_level }}">{{ data.no2 }}</span></li>
             {% endfor %}
 {#            <li>岐山医药<span class="color-1">53</span></li>#}
 {#            <li>创业园<span class="color-1">53</span></li>#}
@@ -133,7 +133,7 @@
         </ol>
         <ol style="padding:20px;display: none;" name="co">
             {% for data in co_list %}
-                <li>{{ data.name }}<span class="color-{{ data.level }}">{{ data.co }}</span></li>
+                <li>{{ data.name }}<span class="color-{{ data.co_level }}">{{ data.co }}</span></li>
             {% endfor %}
 {#            <li>岐山医药<span class="color-1">53</span></li>#}
 {#            <li>创业园<span class="color-1">53</span></li>#}
@@ -145,7 +145,7 @@
         </ol>
         <ol style="padding:20px;display: none;" name="o3">
             {% for data in o3_list %}
-                <li>{{ data.name }}<span class="color-{{ data.level }}">{{ data.o3 }}</span></li>
+                <li>{{ data.name }}<span class="color-{{ data.o3_level }}">{{ data.o3 }}</span></li>
             {% endfor %}
 {#            <li>岐山医药<span class="color-1">53</span></li>#}
 {#            <li>创业园<span class="color-1">53</span></li>#}
