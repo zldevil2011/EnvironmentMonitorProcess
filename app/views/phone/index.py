@@ -480,11 +480,12 @@ def ranking(request):
 				if float(device['so2']) > level:
 					device["so2_level"] = int(idx) + 1
 					break
-		except:
+		except Exception as e:
+			return HttpResponse(str(e))
 			device["so2"] = u"无数据"
 			device["so2_level"] = 6
 		try:
-			for idx, level in enumerate(so2_level.reverse()):
+			for idx, level in enumerate(no2_level.reverse()):
 				if float(device['no2']) > level:
 					device["no2_level"] = int(idx) + 1
 					break
@@ -492,7 +493,7 @@ def ranking(request):
 			device["no2"] = u"无数据"
 			device["no2_level"] = 6
 		try:
-			for idx, level in enumerate(so2_level.reverse()):
+			for idx, level in enumerate(co_level.reverse()):
 				if float(device['co']) > level:
 					device["co_level"] = int(idx) + 1
 					break
@@ -500,7 +501,7 @@ def ranking(request):
 			device["co"] = u"无数据"
 			device["co_level"] = 6
 		try:
-			for idx, level in enumerate(so2_level.reverse()):
+			for idx, level in enumerate(o3_level.reverse()):
 				if float(device['o3']) > level:
 					device["o3_level"] = int(idx) + 1
 					break
