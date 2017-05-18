@@ -464,6 +464,7 @@ def ranking(request):
 	no2_level = [0, 40,  80,  180, 280, 565] # ug/m3
 	co_level =  [0, 5,   10,  35,  60,  90] # mg/m3
 	o3_level =  [0, 160, 200, 300, 400, 800] # ug/m3
+	print so2_level
 	for device in device_list:
 		aqi = AqiParameter()
 		try:
