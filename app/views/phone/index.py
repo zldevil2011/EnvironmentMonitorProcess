@@ -477,8 +477,11 @@ def ranking(request):
 			device["AQI"] = u"无数据"
 			device["level"] = 6
 		try:
+			print so2_level
 			print so2_level.reverse()
+			print so2_level
 			for idx, level in enumerate(so2_level.reverse()):
+				print idx, level
 				print device['so2']
 				print float(device['so2'])
 				if float(device['so2']) > level:
