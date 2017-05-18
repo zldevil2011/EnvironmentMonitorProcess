@@ -484,8 +484,10 @@ def ranking(request):
 			device["pm10_level"] = 6
 		try:
 			for idx in range(len(so2_level)):
-				print idx, so2_level[idx]
 				level = so2_level[idx]
+				if float(device['so2'] <= 0):
+					device["so2_level"] = 1
+					break
 				if float(device['so2']) > level:
 					device["so2_level"] = 6 - idx
 					break
@@ -495,6 +497,9 @@ def ranking(request):
 		try:
 			for idx in range(len(no2_level)):
 				level = no2_level[idx]
+				if float(device['no2'] <= 0):
+					device["no2_level"] = 1
+					break
 				if float(device['no2']) > level:
 					device["no2_level"] = 6 - idx
 					break
@@ -504,6 +509,9 @@ def ranking(request):
 		try:
 			for idx in range(len(co_level)):
 				level = co_level[idx]
+				if float(device['co'] <= 0):
+					device["co_level"] = 1
+					break
 				if float(device['co']) > level:
 					device["co_level"] = 6 - idx
 					break
@@ -513,6 +521,9 @@ def ranking(request):
 		try:
 			for idx in range(len(o3_level)):
 				level = o3_level[idx]
+				if float(device['o3'] <= 0):
+					device["o3_level"] = 1
+					break
 				if float(device['o3']) > level:
 					device["o3_level"] = 6 - idx
 					break
@@ -527,8 +538,6 @@ def ranking(request):
 	no2_list = sorted(device_list, key=lambda e: e.__getitem__('no2'))
 	co_list = sorted(device_list, key=lambda e: e.__getitem__('co'))
 	o3_list = sorted(device_list, key=lambda e: e.__getitem__('o3'))
-	print aqi_list
-	print so2_list
 	# return HttpResponse(aqi_list)
 	# aqi_list = [
 	# 	{"name": "1", "AQI":25, "level":1},
