@@ -329,6 +329,22 @@
         $("#container").width = width;
     </script>
     <script>
+        var TitleArr = {};
+        TitleArr["aqi"] = "AQI指数";
+        TitleArr["pm25"] = "PM2.5监测值";
+        TitleArr["pm10"] = "PM10监测值";
+        TitleArr["so2"] = "SO2监测值";
+        TitleArr["no2"] = "NO2监测值";
+        TitleArr["co"] = "CO监测值";
+        TitleArr["o3"] = "O3监测值";
+        var YTitleArr = {};
+        YTitleArr["aqi"] = "AQI指数";
+        YTitleArr["pm25"] = "PM2.5浓度(ug/m³)";
+        YTitleArr["pm10"] = "PM10浓度(ug/m³)";
+        YTitleArr["so2"] = "SO2浓度(ug/m³)";
+        YTitleArr["no2"] = "NO2浓度(ug/m³)";
+        YTitleArr["co"] = "CO浓度(mg/m³)";
+        YTitleArr["o3"] = "O3浓度(ug/m³)";
         var device_info = "{{ device_info | safe}}";
         var unit_list = {{ unit_list | safe }};
         console.log(device_info);
@@ -337,16 +353,16 @@
         var xArr = today_data.time;
         var yArr = today_data.data.aqi;
         var name = "aqi";
-        drawChart(name,xArr, yArr, "");
+        drawChart(name,xArr, yArr, "", TitleArr[name], YTitleArr[name]);
         $("#dataType").on("change", function(){
             var name = $(this).val();
             console.log(name);
             var xArr = today_data["time"];
             var yArr = today_data.data[name];
             var name = name;
-            drawChart(name,xArr, yArr, unit_list[name]);
+            drawChart(name,xArr, yArr, unit_list[name],TitleArr[name], YTitleArr[name]);
         });
-        function drawChart(name, xArr, yArr, unit) {
+        function drawChart(name, xArr, yArr, unit, Title, YTitle) {
             var time_list = xArr;
             var data_list = yArr;
             var datas = new Array();
@@ -375,7 +391,7 @@
                     backgroundColor: 'rgba(80,81,95,0.1)',
                 },
                 title: {
-                    text: '今日' + name + '监测值',
+                    text: '今日' + Title,
                     x: -20 //center
                 },
                 subtitle: {
@@ -398,7 +414,7 @@
                 yAxis: {
                     min:0, // 定义最小值
                     title: {
-                        text: name + '浓度(' + unit + ')'
+                        text: YTitle
                     },
                 },
                 tooltip: {
