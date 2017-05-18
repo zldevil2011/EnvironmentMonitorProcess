@@ -461,9 +461,13 @@ def ranking(request):
 			device["co"] = u"无数据"
 			device["o3"] = u"无数据"
 	so2_level = [0, 150, 500, 650, 800, 800] # ug/m3
+	so2_level.reverse()
 	no2_level = [0, 40,  80,  180, 280, 565] # ug/m3
+	no2_level.reverse()
 	co_level =  [0, 5,   10,  35,  60,  90] # mg/m3
+	co_level.reverse()
 	o3_level =  [0, 160, 200, 300, 400, 800] # ug/m3
+	o3_level.reverse()
 	print so2_level
 	for device in device_list:
 		aqi = AqiParameter()
@@ -479,14 +483,9 @@ def ranking(request):
 			device["pm25_level"] = 6
 			device["pm10_level"] = 6
 		try:
-			print so2_level
-			print so2_level.reverse()
-			print so2_level
 			for idx in range(len(so2_level)):
 				print idx, so2_level[idx]
 				level = so2_level[idx]
-				print device['so2']
-				print float(device['so2'])
 				if float(device['so2']) > level:
 					device["so2_level"] = int(idx) + 1
 					break
@@ -494,7 +493,7 @@ def ranking(request):
 			device["so2"] = u"无数据"
 			device["so2_level"] = 6
 		try:
-			for idx in range(len(no2_level.reverse())):
+			for idx in range(len(no2_level)):
 				level = no2_level[idx]
 				if float(device['no2']) > level:
 					device["no2_level"] = int(idx) + 1
@@ -503,7 +502,7 @@ def ranking(request):
 			device["no2"] = u"无数据"
 			device["no2_level"] = 6
 		try:
-			for idx in range(len(co_level.reverse())):
+			for idx in range(len(co_level)):
 				level = co_level[idx]
 				if float(device['co']) > level:
 					device["co_level"] = int(idx) + 1
@@ -512,7 +511,7 @@ def ranking(request):
 			device["co"] = u"无数据"
 			device["co_level"] = 6
 		try:
-			for idx in range(len(o3_level.reverse())):
+			for idx in range(len(o3_level)):
 				level = o3_level[idx]
 				if float(device['o3']) > level:
 					device["o3_level"] = int(idx) + 1
@@ -528,6 +527,8 @@ def ranking(request):
 	no2_list = sorted(device_list, key=lambda e: e.__getitem__('no2'))
 	co_list = sorted(device_list, key=lambda e: e.__getitem__('co'))
 	o3_list = sorted(device_list, key=lambda e: e.__getitem__('o3'))
+	print aqi_list
+	print so2_list
 	# return HttpResponse(aqi_list)
 	# aqi_list = [
 	# 	{"name": "1", "AQI":25, "level":1},
