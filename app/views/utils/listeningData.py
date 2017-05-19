@@ -25,7 +25,7 @@ class CreateWarningEventThread(threading.Thread):
 		while True:
 			# 每5分钟检查一次最新数据是否超过预警值，如果超过新建报警事件
 			self.create_warning()
-			time.sleep(10)
+			time.sleep(300)
 
 	def create_warning(self):
 		sql = MySQL()
@@ -62,9 +62,9 @@ class CreateWarningEventThread(threading.Thread):
 			except:
 				tmp["o3"] = data["O3_O3"]
 			tmp["pm25"] = data["PM2_5_PM2_5"]
-			# tmp["Temperature"] = data["Temperature"]
-			# tmp["Pressure"] = data["Pressure"]
-			# tmp["Humidity"] = data["Humidity"]
+			tmp["Temperature"] = data["Temperature"]
+			tmp["Pressure"] = data["Pressure"]
+			tmp["Humidity"] = data["Humidity"]
 			tmp["device_id"] = str(data[u"项目内节点编号"])
 			tmp["time"] = str(data[u"紧缩型时间传感器_实时时间"])
 			try:
@@ -83,8 +83,8 @@ class CreateWarningEventThread(threading.Thread):
 		# 获取当前所有节点的最新数据
 		# latest_data_dic是按照现在的设备列表生成的最新的数据列表
 		for data in datas_list:
-			if latest_data_dic[data["device_id"]] is None:
-				latest_data_dic[data["device_id"]] = data
+			if latest_data_dic[str(data["device_id"])] is None:
+				latest_data_dic[str(data["device_id"])] = data
 		print latest_data_dic
 		for k in latest_data_dic:
 			k = latest_data_dic[str(k)]
