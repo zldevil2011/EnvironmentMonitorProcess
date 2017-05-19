@@ -126,6 +126,9 @@ class CreateWarningEventThread(threading.Thread):
 										pre_val = d.co
 									elif warning_parameter == "o3":
 										pre_val = d.o3
+									pre_msg = ""
+									pre_msg += "pre_data: aqi=" + str(d.aqi) + ",pm25=" + str(d.pm25) + ",pm10=" + str(d.pm10)\
+											   + ",so2=" + str(d.so2)  + ",no2=" + str(d.no2)  + ",co=" + str(d.co)  + ",o3=" + str(d.o3) + ",time=" + str(d.data_time)
 									if k[warning_parameter] > pre_val:
 										try:
 											rate = (k[warning_parameter] - pre_val) / pre_val
@@ -137,7 +140,7 @@ class CreateWarningEventThread(threading.Thread):
 												nt.content = k["device_id"] + "号设备" + warning_parameter + "在" + k["time"] + "增长率超过预期阈值，达到" + str(rate)
 												nt.save()
 												subject = u"增长过快通知"
-												text_content = nt.content + "VAL:" + str(k[warning_parameter]) + ":PreVAL:" + str(pre_val) + "RATE:" + str(rate)
+												text_content = nt.content + "VAL:" + str(k[warning_parameter]) + ":PreVAL:" + str(pre_val) + "RATE:" + str(rate) + pre_msg + str(json.dumps(k))
 												from_email = settings.EMAIL_HOST_USER
 												to = "929034478@qq.com"
 												try:
