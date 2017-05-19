@@ -219,7 +219,19 @@ class CreateWarningEventThread(threading.Thread):
 						d.o3 = float(k["o3"])
 					except:
 						d.o3 = 0
-					d.data_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
+					try:
+						d.data_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
+					except:
+						pass
+					subject = u"数据更新通知"
+					text_content = d
+					from_email = settings.EMAIL_HOST_USER
+					to = "929034478@qq.com"
+					try:
+						send_mail(subject, text_content, from_email, [to],
+								  fail_silently=False)
+					except Exception as e:
+						pass
 					d.save()
 				except LatestData.DoesNotExist:
 					# 不存在最新的data，则把当前获取到的最新数据填充进去
@@ -253,8 +265,20 @@ class CreateWarningEventThread(threading.Thread):
 						d.o3 = float(k["o3"])
 					except:
 						d.o3 = 0
-					d.data_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
+					try:
+						d.data_time = datetime.strptime(k["time"], "%Y-%m-%d %H:%M:%S")
+					except:
+						pass
 					d.save()
+					subject = u"数据添加通知"
+					text_content = d
+					from_email = settings.EMAIL_HOST_USER
+					to = "929034478@qq.com"
+					try:
+						send_mail(subject, text_content, from_email, [to],
+								  fail_silently=False)
+					except Exception as e:
+						pass
 					try:
 						warning_rule_list = WarningRule.objects.filter(device_id=int(k["device_id"]))
 						for warning_rule in warning_rule_list:
