@@ -125,19 +125,7 @@
     </style>
 </head>
 <body>
-    <script>
-        try{
-            var username = window.localStorage.getItem("emp");
-            if(username == null){
-                //没有本地记录
-            }else{
-                window.android.loginTip(username);
-                window.location.href="/app/index/1/";
-            }
-        }catch (e){
-            console.log(String.valueOf(e));
-        }
-    </script>
+
     <div id="header">
         登陆
     </div>
@@ -188,6 +176,37 @@
 {#    <script src= {% static "app/js/vue.js" %}></script>#}
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script>
+        try{
+            var username = window.localStorage.getItem("emp_username");
+            var password = window.localStorage.getItem("emp_password");
+            if(username == null){
+                //没有本地记录
+            }else{
+                $.ajax({
+                    url:'/app/user/login/',
+                    method:'POST',
+                    data:{username:username, password:password},
+                    success:function(res){
+                        if(res == "error"){
+                            window.android.loginFailed();
+                        }else{
+                            window.localStorage.setItem("emp_username", username);
+                            window.localStorage.setItem("emp_password", password);
+                            window.location.href="/app/index/1/";
+                        }
+                    },
+                    error:function(res){
+                        window.android.loginTip("用户名或密码错误");
+                    }
+                });
+{#                window.android.loginTip(username);#}
+{#                window.location.href="/app/index/1/";#}
+            }
+        }catch (e){
+            console.log(String.valueOf(e));
+        }
+    </script>
+    <script>
         var height =  $(document).height();
         $("#slider").height(height);
     </script>
@@ -217,7 +236,8 @@
                     if(res == "error"){
                         window.android.loginFailed();
                     }else{
-                        window.localStorage.setItem("emp", username);
+                        window.localStorage.setItem("emp_username", username);
+                        window.localStorage.setItem("emp_password", password);
                         window.location.href="/app/index/1/";
                     }
                 },
