@@ -69,4 +69,5 @@ db.sqlite3
 monitor/*.png
 .DS_Store
 .idea/workspace.xml
-db.sqlite3
+./db.sqlite3
+app/migrations
